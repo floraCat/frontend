@@ -169,7 +169,7 @@ if($_REQUEST["setting"]=="render"){
 	}
 	$script=stripcslashes($_REQUEST["script"]);
 	$all.=$script."\n".$newCode;
-	$view=fopen("details_setting_view.html","w");
+	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">'."\n");
 	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />'."\n");
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
@@ -208,10 +208,10 @@ if($_REQUEST["act"]=="setting"){
 	}
 	if(!$arr_code[3]==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
 	$all=$str_script."\n".$css."\n".$html."\n".$js;
-	$view=fopen("details_setting_view.html","w");
-	fwrite($view,'<meta charset="utf-8">');
-	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />');
-	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>');
+	$view=fopen("temp_details_setting.html","w");
+	fwrite($view,'<meta charset="utf-8">'."\n");
+	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />'."\n");
+	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,$all);
 	fclose($view);
 

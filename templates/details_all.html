@@ -19,17 +19,17 @@
 <div class="fDetails">
 
 	<!--图片-->
-	<div class="fPic"><ol><img src="/000/fore-end/col_<{$smarty.get.page}>/pc/images/<{$info.ttl}>" /></ol></div>
+	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pc/pictures/<{$info.ttl}>" /></ol></div>
 	<p class="ttl"><{$info.ttl}></p>
 
 	<!--兼容-->
 	<input type="hidden" id="dataHack" value="<{$info.hack}>" />
 	<div class="fHack">
-		<ol id="firefox" class="yes"><img src="images/tab_firefox.png" /></ol>
-		<ol id="chrome" class="yes"><img src="images/tab_chrome.png" /></ol>
-		<ol id="safari" class="yes"><img src="images/tab_safari.png" /></ol>
+		<ol id="firefox" class="yes"><img src="images/sys/tab_firefox.png" /></ol>
+		<ol id="chrome" class="yes"><img src="images/sys/tab_chrome.png" /></ol>
+		<ol id="safari" class="yes"><img src="images/sys/tab_safari.png" /></ol>
 		<ol class="ie">
-			<img src="images/tab_ie.png" />
+			<img src="images/sys/tab_ie.png" />
 			<ul>
 				<li id="ie11" class="yes">11</li>
 				<li id="ie10" class="yes">10</li>
@@ -54,7 +54,7 @@
 			<{if $smarty.get.page!="unit"}>
 				<a class="fr download" href="col_details_zip.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&ttl=<{$info.ttl}>&act=zipAll">整套下载</a>
 			<{else}>
-				<a class="fr download" href="col_<{$smarty.get.page}>/pc/zip_files/<{$info.ttl}>.zip">整套下载</a>
+				<a class="fr download" href="files/zip/col_<{$smarty.get.page}>/<{$info.ttl}>.zip">整套下载</a>
 			<{/if}>
 		</ul>
 	</ol>		

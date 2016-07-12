@@ -227,7 +227,7 @@ if($_REQUEST["act"]=="settingAll"){
 	$js=$arr_all[2];
 	if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
 	$code_all=$style."\n".$html."\n".$js;
-	$view=fopen("details_setting_view.html","w");
+	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');
 	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />');
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>');

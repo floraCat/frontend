@@ -8,7 +8,7 @@
 
 //下载zip[单个]
 if($_REQUEST["act"]=="zipOne"){
-	$url="./zip";
+	$url="./files/download_file";
 	$file=$_GET["file"];
 	deldir($url);
 	file2dir($file, $url);
@@ -20,7 +20,7 @@ if($_REQUEST["act"]=="zipOne"){
 
 //下载zip[整套]
 if($_REQUEST["act"]=="zipAll"){
-	$url="./zip";
+	$url="./files/download_file";
 	if($_REQUEST["attr"]=="formAll"){//多个控件合并
 		deldir($url);
 		$page=$_REQUEST["page"];
@@ -45,7 +45,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$code_all=$doc_top."\n".$style."\n".$html."\n".$js."\n".$doc_btm;
-		$f=fopen("./zip/form_".date("YmdHis", time()).".html","w+");
+		$f=fopen($url."/form_".date("YmdHis", time()).".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
 		$files=array();
@@ -81,7 +81,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$code_all=$doc_top."\n".$style."\n".$html."\n".$js."\n".$doc_btm;
-		$f=fopen("./zip/".$ttl.".html","w+");
+		$f=fopen($url."/".$ttl.".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
 		$files=array();
