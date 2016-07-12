@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/h_reset.css" />
+<link rel="stylesheet" href="css/col_style.css" />
+<script src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+<script src="js/ckeditor/ckeditor.js"></script>
+<title>base</title>
+</head>
+<body>
+<style>
+body{ overflow-x: visible; }
+#cke_1_top{ display: none; }
+#cke_1_bottom{ display: none; }
+</style>
+
+
+<div class="noteList style2">
+    <p>右边的源码中灰字样式代码为结构的必要代码，建议不要删改，只调整数值；绿字样式代码可随意修改 / 按键<em>'复制改后代码'</em>：只把右边能看到的源码[即模块的主体代码]复制到剪切板，不包含依赖文件等</p>
+</div>
+
+
+
+<a class="vBtn btn_view" href="javascript:;">改后查看效果</a>
+<a class="vBtn btn_copy" href="javascript:;">复制改后代码</a>
+<div class="mAlert">已复制到剪切板</div>
+
+
+
+
+<iframe class="tView" src="details_setting_view.html"></iframe>
+
+
+<div class="tCode">
+
+    <xmp style="display: none;" id="refer_script"><{$script}></xmp>
+
+    <textarea id="Comment" name="Comment">
+    </textarea>
+    <xmp id="pre_content" name="pre_content" style="display:none;"><{$str}>
+    </xmp>
+    <script>
+        //编辑器
+        var html=$("#pre_content").html();
+        //console.log($("#pre_content").html());
+        //console.log(html);
+       var content = CKEDITOR.replace('Comment',{ allowedContent: true });
+       content.setData(html);
+    </script>
+
+</div>
+
+
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+
+<script>
+$(function(){
+            
+    //复制改后代码
+    $(".btn_copy").zclip({
+        path: "js/copy/ZeroClipboard.swf",
+        copy: function(){
+            var win = document.getElementsByTagName('iframe')[1].contentWindow;
+            return win.document.body.innerText;
+        },
+        afterCopy:function(){
+            $(".mAlert").css("bottom","55px").animate({"opacity":"1","bottom":"120px"},400).delay(500).animate({"opacity":"0"},800);
+        }
+    });
+
+    //
+    $(".zclip").on("mouseover",function(){
+        $(".btn_copy").addClass("on");
+    });
+    $(".zclip").on("mouseout",function(){
+        $(".btn_copy").removeClass("on");
+    });
+
+
+    //改后查看效果
+    $(".btn_view").click(function(){
+        var newCode = document.getElementsByTagName('iframe')[1].contentWindow.document.body.innerText;
+        var script=$("#refer_script").text();
+        var page=$("#page").val();
+        var submitdata={
+            'page':page,
+            'newCode':newCode,
+            'script':script,
+            'setting':'render'
+        }
+        //console.log(document.getElementsByTagName('iframe')[1].contentWindow.document.body.innerText);
+        console.log(newCode);
+        $.post("col_list.php",submitdata,function(){
+            document.getElementsByTagName('iframe')[0].contentWindow.location.reload();
+        });
+    });
+
+
+    //屏幕高
+    function windowHeight(){
+        var windowHeight;
+        if(self.innerHeight){ windowHeight = self.innerHeight;
+        }else{
+            if(document.documentElement && document.documentElement.clientHeight){    
+                windowHeight = document.documentElement.clientHeight;
+            }else{
+                if(document.body){ windowHeight = document.body.clientHeight;}
+            }
+        } 
+        return windowHeight;
+    }
+    window.onload=function(){
+        setTimeout(function(){
+            $("#cke_1_contents").add($(".tView")).height(windowHeight()-32); 
+        },60);
+        
+    }
+
+});
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>前端规范文档</title>
+	<link rel="stylesheet" href="css/h_reset.css" />
+	<link rel="stylesheet" href="css/col_style.css" />
+	<script src="js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+<style>
+*{ margin: 0; padding: 0; font-family: 微软雅黑;}
+ul,ol,li{ list-style: none;}
+a{ text-decoration: none; }
+
+.mainTtl{ width: 870px; padding: 0 15px; margin:20px auto; height: 60px; line-height: 60px; font-style: 30px; font-size: 18px; font-weight: bold; background-color: #f9f9f9;}
+.mainTtl a{ float: right; font-size: 12px; color: #999; margin-right: 30px; }
+.main{ width: 900px; margin:20px auto; overflow: hidden; background-color: #f9f9f9; position: relative;}
+.main em{ font-style: normal;}
+.hightlight em{ background: yellow; color: #000; }
+.mLeft{ position:absolute; top: 30px; left: 50%; margin-left: -450px; width: 200px;}
+.mLeft ol a{ display: block; padding: 12px 25px; border-bottom: #e5e5e5 1px solid; font-size:16px; color: #555;}
+.mLeft ol a:hover{ color: red; }
+.mLeft ul{ padding: 30px 20px 0; }
+.mLeft ul h6{ margin-bottom: 6px; font-weight: bold; color: #666;}
+.mLeft ul a{ display: block; width: 120px; text-align: center; padding:0 10px; border:#c1dfc1 1px solid; background-color: #e4f6e4; margin-bottom: 6px;}
+
+.mRight{ width: 640px; padding:30px 30px 20px 230px;}
+.mRight ol{ margin-bottom: 25px; font-size: 13px; line-height: 21px; color: #666; }
+.mRight h3{ font-size:18px; height: 40px; line-height: 40px; border-bottom: #eee 10px solid; margin-bottom: 10px; color: #333; position: relative;}
+.mRight h4{ font-size:14px; height: 24px; line-height: 24px; padding-left: 15px; color: #333; margin-bottom: 5px;}
+.mRight li{ list-style: disc; margin-left: 20px; line-height: 24px;}
+.mRight li a.btn{ padding:0 10px; border:#c1dfc1 1px solid; background-color: #e4f6e4;}
+.mRight xmp{ width: 550px; margin:0 auto; padding: 15px 20px; background-color: #fbf7db; color: #333; border-radius: 5px;}
+.mRight i{ display: block; font-size: 14px; color: #5668a4; width: 100%; text-align: center;}
+.mRight h3 a{ position: absolute; top: 0; right: 0;  width: 40px; height: 40px; cursor: pointer; background:url(css/imgs/ar_btm.png) no-repeat center; background-size: 35%;}
+.mRight h3 a.up{ background:url(css/imgs/ar_up.png) no-repeat center; background-size: 35%;}
+.gotop{ position: fixed; bottom: 30px; right: 30px; width: 40px; height: 40px; background: url(css/imgs/i_gotop2.png) no-repeat center; background-size: 100%; text-indent: -9999px;}
+</style>
+
+
+
+<h1 class="mainTtl">网站前端规范<a class="switch">全部收起</a><a class="hl">高亮重点</a></h1>
+
+
+<div class="main">
+
+
+<!--@左边导航-->
+<div class="mLeft">
+	<ol>
+		<a href="#rule">基本规范</a>
+		<a href="#html">HTML规范</a>
+		<a href="#css">CSS规范</a>
+		<a href="#js">JAVASCRIPT规范</a>
+	</ol>
+	<ul>
+		<h6>快捷入口：</h6>
+		<a target="_blank" href="index.php?page=cssAttr">样式属性命名顺序</a>
+		<a target="_blank" href="index.php?page=naming">样式表文件命名参考</a>
+	</ul>
+</div><!--/mLeft-->
+
+
+<!--@右边正文-->
+<div class="mRight">
+
+	<!--通用规范-->
+	<a name="rule"></a>
+	<div class="rule">
+
+		<ol>
+			<h3>规范目的<a class="key"></a></h3>
+			<ul class="unit">
+				<p>为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护,前端开发人员<em>必须按本文档规范</em>进行前端页面开发；
+本文档如有不对或者不合理的地方请及时提出, 经讨论决定后方可更改。</p>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>基本准则<a class="key"></a></h3>
+			<ul class="unit">
+				<li>符合<em>web标准</em></li>
+				<li><em>结构/表现/行为 分离</em></li>
+				<li><em>语义化</em>html</li>
+				<li><em>代码书写</em>简洁明了有序</li>
+				<li>测试需<em>兼容</em>Firefox,Chrome,Opera,IE(ie8及以上版本)浏览器;</li>
+				<li>尽可能<em>减小服务器负载</em>, 保证最快的解析速度。</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>前端架构<a class="key"></a></h3>
+			<div class="unit">
+			<h4>html</h4>
+
+			<ul style=" margin:0 0 20px 15px;">
+				<li>每个站点都应该有一个<em>整站链接目录页</em>（统一命名为__enter.html）</li>
+				<li>整站<em>通用的模块</em>（如头部、底部等）需<em>独立</em>出来，各页面再通过java来引入</li>
+				<!-- <li><em>样式</em>的设置尽量只用<em>class</em>属性；<br><em>js</em>行为的选择器尽量只用<em>data-*</em>属性；<br><em>id</em>属性一般由团队确立分配，<em>不建议私自设置</em></li> -->
+			</ul>
+
+			<h4>css</h4>
+			<ul style=" margin:0 0 20px 15px;">
+				<li>使用<em>less</em>预编译css</li>
+			</ul>
+			
+			<h4>javascript</h4>
+			<ul style=" margin:0 0 20px 15px;">
+				<li>使用<em>requirejs</em>技术模块化引入脚本文件</li>
+				<li>脚本一般基于<em>jQuery</em>库来书写：pc端使用1.10.2版本，移动端使用2.2.0版本</li>
+				<!-- <li>表单的<em>数据提交</em>统一使用<em>ajax</em>完成，不建议使用默认的表单控件提交</li> -->
+				<li><em>表单</em>都需要做前端<em>验证</em></li>
+				<li>每个页面所有变量和函数都放到一个全局对象中</li>
+			</ul>
+
+			<h4>辅助工具</h4>
+			<ul style=" margin:0 0 20px 15px;">
+				<li>使用<em>Git</em>版本控制工具来管理网站</li>
+				<li>使用<em>Gulp</em>构建工具自动化打包网站</li>
+			</ul>
+
+			</div>
+		</ol>
+
+		<ol>
+			<h3>文件规范<a class="key"></a></h3>
+				<div class="unit">
+				<h4><em>文件目录结构</em>：</h4>
+				<ul style=" margin:0 0 20px 15px;">
+					<li>参看：'站点架构' -> <a target="_blank" class="btn" href="index.php?page=frame">开发时的文件目录结构</a></li>
+					<li>参看：'站点架构' -> <a target="_blank" class="btn" href="index.php?page=frame&tab=2">打包后文件目录结构</a></li>
+				</ul>
+				<!-- <xmp style=" margin-bottom: 20px;">/css          
+	/imgs                ---背景图标存放处
+	base.css             ---公用base样式表（less编译生成）
+	a.css                ---页面a样式表（less编译生成）
+	b.css                ---页面b样式表（less编译生成）
+
+/images                ---图片存放处
+	/images_demo         ---测试图片存放存，发布前整文件夹删除
+
+index.html             ---首页html
+
+/js     
+	/app                 ---存放整站所用到的脚本文件
+		jquery.js
+		base.js            ---通用脚本文件
+		a.js               ---页面a的脚本
+		b.js	
+	app.js               ---项目的入口初始化文件    
+	require.js     			 ---requirejs
+
+/less						       ---存放css预处理文件
+	var.less             ---less变量
+	base.less            ---公用base样式
+	mixins.less          ---重用模块样式
+	a.less               ---页面a样式
+	b.less               ---页面b样式</xmp> -->
+				<h4>文件命名规则：</h4>
+				<ul style=" margin-left: 15px;">
+					<li>名称英文字母全为<em>小写</em></li>
+					<li>必要时用<em>下划线'_'</em>作为<em>分隔符</em></li>
+					<li>其中<em>不得包含</em>汉字、空格和特殊字符</li>
+					<li>一般文件<em>以字母开头</em>，如以下划线'_'都有特殊的含义与用途</li>
+					<li>命名<em>优先</em>考虑对应<em>英文</em>，可使用常规缩写形式，如英文太生僻或复杂再考虑<em>拼音</em></li>
+					<li><em>命名原则</em>：1）使得你自己和工作组的每一个成员能够方便的理解每一个文件的意义；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）当我们在文件夹中使用“按名称排例”的命令时，同一种大类的文件能够排列在一起,以便我们查找、修改、替换、计算负载量等等操作。</li>
+				</ul>
+				</div>
+		</ol>
+
+		<ol>
+			<h3>图片规范<a class="key"></a></h3>
+			<ul class="unit">
+				<li>在保证视觉效果的情况下选择<em>最小的图片格式</em>与图片质量, 以减少加载时间</li>
+				<li>非首页轮播大图外的<em>图片大小</em>尽量限定在 <em>70K 左右</em></li>
+				<li>一般比较少改动的图标用背景形式呈现，并<em>分类合并</em>，以减小http请求</li>
+				<li>图片格式仅限于<em>gif || png || jpg</em></li>
+				<li>透明背景图标用<em>png24</em>,不透明背景且图形扁平色彩单一的用<em>png8</em>，否则用jpg</li>
+			</ul>
+		</ol>
+
+	</div><!--/rule-->
+
+	<!--html规范-->
+	<a name="html"></a>
+	<i style=" margin: 60px 0 25px;">----------------------------------------以下是html规范 START----------------------------------------</i>
+
+	<div class="html">
+
+		<ol>
+			<h3><em>html基本结构</em><a class="key"></a></h3>
+			<div class="unit">
+
+			<li>参看：'站点架构' -> <a target="_blank" class="btn" href="index.php?page=frame&tab=index">index.html结构</a></li>
+
+			<!-- <h4>PC端：</h4>
+				<xmp style=" margin-bottom: 20px;"><!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>标题</title>
+	<link rel="stylesheet" href="css/base.css">
+	<script src="js/jquery.1.10.2.min.js"></script> 
+	<script src="js/base.js"></script> 
+</head>
+<body>
+...
+</body> 
+</html></xmp>
+			<h4>移动端：</h4>
+				<xmp style=" margin-bottom: 20px;"><!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>标题</title>
+	<link rel="stylesheet" href="css/base.css" /> 
+	<script src="js/jquery.2.2.0.min.js"></script>
+	<script src="js/base.js"></script>  
+</head>
+<body>
+...
+</body> 
+</html></xmp> -->
+		</div>
+		</ol>
+
+		<ol>
+			<h3>html格式<a class="key"></a></h3>
+			<ul class="unit">
+				<li>用<em>两个空格</em>代替tab键实现<em>缩进</em>（这是唯一能保证在所有环境下获得一致展现的方法）</li>
+				<li>尽量<em>避免使用实体</em>，如：</li>
+				<xmp style="margin:10px auto;">&nbsp; | &mdash; | &rdquo; 等</xmp>
+				<li>css代码不建议写在html里;如<em>外调style</em>文件请在<em>head中引入</em></li>
+				<li><em>js代码</em>不建议写在模块中间，<em>要么写在head，要么写在body后面</em>；一般情况都写在外调的js文件中；如<em>外调js</em>文件，其引入位置参看如下：</li>
+				<xmp style=" margin-top: 10px;">如要兼容ie低版本浏览器，推荐：
+-------------------------
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <!-- body goes here -->		 
+    <script src="main.js" async></script>
+  </body>
+</html>
+
+如主要兼容现代浏览器，推荐：
+-------------------------
+<html>
+  <head>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js" async></script>
+  </head>
+  <body>
+    <!-- body goes here -->
+  </body>
+</html></xmp>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>html标签<a class="key"></a></h3>
+			<ul class="unit">
+				<li>页面<em>title</em>不可缺少</li>
+				<li>不能省略可选的<em>结束标签</em>，如：
+				<xmp style=" margin:10px auto;"></li>,</body></xmp>
+				</li>
+				<li><em>不</em>建议使用<em>table</em>来布局</li>
+				<li><em>input</em>的标题及控件<em>用label包裹</em>，属性for要与input的id值一致，这样点击标题时对应input才被选中或获得焦点，如：
+				<xmp style=" margin:10px auto;"><label for="name">姓名：<input type="text" id="name" /></label></xmp>
+				</li>
+				<li>在一段完整的文字中请尽量<em>不要使用 br/ </em>来人工干预分段</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>html属性<a class="key"></a></h3>
+			<ul class="unit">
+				<li>标签<em>属性</em>值使用<em>双引号</em>，不要使用单引号</li>
+				<li><em>ID</em>属性在一个页面内是<em>唯一</em>的</li>
+				<li>外调文件如是默认类型<em>不需要</em>声明<em>type</em>，如：</li>
+				<xmp style=" margin: 10px auto;">//script不用加属性type="text/javascript"
+<script src="js/base.js"></script>
+
+//style不用加属性type="text/style"
+<link rel="stylesheet" href="css/base.css" /></xmp>
+				<li>一般情况下<em>不使用内置style</em>，如不推荐：
+				<xmp style=" margin:10px auto;"><p style="color:#ddd">ppp</p></xmp>
+				</li>
+				<li>合理设置链接的<em>target属性</em>，如：target='_blank' | target='_self' 等</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>html注释<a class="key"></a></h3>
+			<ul class="unit">
+				<li>每个大模块都应该<em>注释其栏目名称或相关说明</em>，格式如下：</li>
+				<xmp style=" margin:10px auto;"><!--@ 新闻中心 -->//按此加上@，以方便栏目检索</xmp>
+				<li>一些整站<em>通用的模块</em>如头部/底部/侧栏等为了更好地区分开来，需要<em>用一对对应的注释包裹</em>起来，统一格式如下：</li>
+				<xmp style=" margin:10px auto;"><!--@ 头部 -->
+<div class="pageHead">
+	...
+</div>
+<!--@ /头部 --></xmp>
+				<li>嵌套太深或代码太多不好区分各自结束符时，应在<em>容易混淆的结束符后添加注释</em>如下：</li>
+				<xmp style=" margin: 10px auto;"><div class="main">
+...
+</div><!-- /main -->//不需加@</xmp>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>html优化<a class="key"></a></h3>
+			<ul class="unit">
+				<li>h1 ~ h6 （每个页面有且<em>只有一个h1</em>,而<em>h2~h6按层级</em>使用）</li>
+				<li><em>img</em>标签需要<em>加alt</em>属性 (装饰性的图片或图标不加alt)</li>
+				<xmp style="margin:10px auto;"><img src="图片.gif" alt="给图片提示"></xmp>
+				<li><em>a</em>链接需要加<em>title</em>属性</li>
+				<xmp style="margin:10px auto;"><a href="#" Title="给链接文字提示">文字</a></xmp>
+				<li>页面元信息name为<em>keywords/description</em>等在发布前应添加合适内容</li>
+			</ul>
+		</ol>
+
+	</div><!--/html-->
+	<i style=" margin: 40px 0 60px;">-----------------------------------------以上是html规范 END------------------------------------------</i>
+
+	<!--css规范-->
+	<a name="css"></a>
+	<i style=" margin: 60px 0 25px;">-----------------------------------------以下是css规范 START-----------------------------------------</i>
+	<div class="css">
+
+		<ol>
+			<h3>css<em>属性声明顺序</em><a class="key"></a></h3>
+			<ul class="unit">
+			<li>参看：<a target="_blank" class="btn" href="index.php?page=cssAttr">样式属性声明顺序</a></li>
+				<!-- <xmp>//以下列举的只是常用的属性声明，其他属性请自行判断声明顺序，尽量同类型的属性放到一块
+
+---------------------------------最前面-----
+-- content:''
+
+---------------------------------定位-----
+-- z-index    
+-- position
+-- top / bottom / left / right
+
+---------------------------------盒模型-----
+-- display
+-- float
+	-- clear
+-- overflow     
+-- width
+-- height
+-- padding
+-- margin
+
+---------------------------------排版-----
+-- font-family
+-- font-size
+-- font-weight
+-- line-height
+-- text-aligh
+-- text-indent
+-- text-decoration
+	-- white-space
+-- color
+
+---------------------------------视觉-----
+-- border
+-- outline
+	-- visibility
+-- background (-color -image -position -size)
+
+---------------------------------css3,需兼容前缀-----
+-- text-overflow
+-- opacity
+-- border-radius
+-- box-shadow
+-- text-shadow
+-- transform
+-- transition
+-- @keyframes
+
+---------------------------------杂项-----
+...</xmp> -->
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>css要求<a class="key"></a></h3>
+			<ul class="unit">
+				<li><em>样式都用class设置</em>，慎用id</li>
+				<li>值为<em>0</em>时后面<em>不加单位</em></li>
+				<li><em>颜色</em>值都用<em>小写</em></li>
+				<li><em>属性</em>值用<em>单引号</em>，而不是双引号 （推荐：content:'aaa';）</li>
+				<li>每个样式属性<em>后加 ";"</em></li>
+				<li>尽量用<em>缩写</em>，如：</li>
+				<xmp style="margin:10px auto;">background | border | margin | padding 等</xmp>
+				<li>需<em>注释</em>所属栏目或模块标题，跟html对应模块标题一致; 多个模块标题用'&'分隔</li>
+				<li>相同或类似的模块尽量把<em>代码整合重用</em>起来</li>
+				<li>css<em>慎用expression</em>表达式</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>z-index层叠数<a class="key"></a></h3>
+			<ul class="unit">
+				<li><em>默认的z-index值</em>：<br>&nbsp;&nbsp;&nbsp;&nbsp;* fixed顶部(90)<br>&nbsp;&nbsp;&nbsp;&nbsp;* 覆盖层h_mask(99)<br>&nbsp;&nbsp;&nbsp;&nbsp;* 弹窗(990)</li>
+				<li>值<em>不能超过9999</em></li>
+				<li>除了<em>以上模块以外</em>需要设置z-index的，只能在<em>11~88之间</em>的数值中选择</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>css命名<a class="key"></a></h3>
+			<ul class="unit">
+				<li>不要用有唯一指定性的类名，转<em>用能反应其目的和用途的名称</em>，如下例:</li>
+				<xmp style='margin:10px auto;'>不推荐：
+-----------
+.fw_800{ font-weight:800;}
+.red{ color:red;}
+
+推荐：
+-----------
+.heavy{ font-weight:800;}
+.important{ color:red;}</xmp>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3><em>样式表文件命名</em>参考<a class="key"></a></h3>
+			<ul class="unit">
+				<li>参看：<a target="_blank" class="btn" href="index.php?page=naming">样式表文件命名参考</a></li>
+				<!-- <xmp>基本共用 base.css
+主要的 master.css
+模块 module.css
+布局、版面 layout.css
+主题 themes.css
+专栏 columns.css
+文字 font.css
+表单 forms.css
+补丁 mend.css
+打印 print.css</xmp> -->
+			</ul>
+		</ol>
+
+	</div><!--/css-->
+	<i style=" margin: 40px 0 60px;">------------------------------------------以上是css规范 END-------------------------------------------</i>
+
+	<!--js规范-->
+	<a name="js"></a>
+	<i style=" margin: 60px 0 25px;">-----------------------------------------以下是js规范 START-----------------------------------------</i>
+	<div class="js">
+
+		<ol>
+			<h3>js要求<a class="key"></a></h3>
+			<ul class="unit">
+				<li><em>js用data-*</em>作为选择器，不用class & id</li>
+				<li>总是使用<em>var声明变量</em>，且要求变量集中在函数开头声明, 避免全局变量的污染</li>
+				<li>使用<em>闭包</em>时<em>防止循环引用</em></li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>js格式<a class="key"></a></h3>
+			<ul class="unit">
+				<li>用<em>两空格缩进</em></li>
+				<li>每句语句<em>后加';'</em>（方便压缩工具"断句"）</li>
+				<li><em>if、while、for、do</em>语句的执行体总是<em>用"{"和"}"</em>括起来，即使在其结构体内只有一条语句</li>
+				<li>应该<em>优先</em>使用<em>单引号(‘)</em>，因为字符串可能包含带有双引号(“)的HTML代码</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>js命名规则<a class="key"></a></h3>
+			<ul class="unit">
+				<li><em>变量</em>命名: 以下划线'_'开头，驼峰式命名, 首字母须小写, 如_iTaoLun</li>
+				<li><em>函数</em>命名: 首字母小写驼峰式命名. 如iTaoLun()</li>
+				<li><em>类</em>命名: 首字母大写, 驼峰式命名. 如 ITaoLun</li>
+				<li><em>常量</em>（不会重定义的变量）：全部大写，下划线'_'分隔</li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>尽量避免<a class="key"></a></h3>
+			<ul class="unit">
+				<li>尽量<em>避免</em>使用存在兼容性及消耗资源的方法或属性, 比如<em>eval() & innerText</em></li>
+				<li><em>避免</em>对象上使用<em>with()</em></li>
+				<li><em>避免数组使用for in</em></li>
+			</ul>
+		</ol>
+
+		<ol>
+			<h3>js注释<a class="key"></a></h3>
+			<ul class="unit">
+				<li>注释尽量<em>详尽且到位</em></li>
+				<li>需<em>写明所属</em>页面或栏目</li>
+				<li><em>类</em>等脚本文件需添<em>加头描述</em>：</li>
+				<xmp>/*
+ * 简述
+ *
+ * 功能详细描述
+ *
+ * @param <String> arg1 参数1
+ * @param <Number> arg2 参数2，默认为0
+ * @return <Boolean> 看xxx是否成功
+ */
+ function fooFunction (arg1, arg2) {
+ }</xmp>
+			</ul>
+		</ol>
+
+	</div><!--/js-->
+	<i style=" margin: 40px 0 60px;">------------------------------------------以上是js规范 END-------------------------------------------</i>
+
+</div><!--/mRight-->
+
+</div><!--/main-->
+
+<a class="gotop" href="javascript:;">返回顶部</a>
+
+
+
+
+
+<script>
+$(function(){
+
+	//滚动时左栏固定
+	$(window).scroll(function(){
+		var scrollTop=document.documentElement.scrollTop + document.body.scrollTop;
+		if(scrollTop>200){
+			$(".mLeft").css({"position":"fixed","top":"0"});
+		}else{
+			$(".mLeft").css({"position":"absolute","top":"30px"});
+		}
+	});
+
+	//全部收起 & 全部打开
+	$(".mainTtl .switch").click(function(){
+		if(!$(this).hasClass("close")){
+			$(this).addClass("close").text("全部打开");
+			$(".main .unit").slideUp(300);
+			$(".main .key").each(function(){
+				if(!$(this).hasClass("up")){$(".main .key").addClass("up");}
+			});
+		}else{
+			$(this).removeClass("close").text("全部收起");
+			$(".main .unit").slideDown(300);
+			$(".main .key").each(function(){
+				if($(this).hasClass("up")){$(".main .key").removeClass("up");}
+			});
+		}
+	});
+
+	//单个收起 & 打开
+	$("h3 .key").click(function(){
+		$(this).toggleClass("up");
+		$(this).parent().siblings(".unit").slideToggle();
+	});
+
+	//高亮增加 & 取消
+	$(".hl").click(function(){
+		$(".main").toggleClass("hightlight");
+	});
+
+	//返回顶部
+	$(".gotop").click(function(){
+		$("html,body").animate({scrollTop:0},200);
+	});
+
+});
+</script>
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+</body>
+</html>

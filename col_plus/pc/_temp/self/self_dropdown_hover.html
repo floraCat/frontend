@@ -1,0 +1,78 @@
+<?php echo($meta);?>
+
+<body>
+
+
+
+<style>
+/*_css*/
+	ol{ width: 100px; }
+	ol.open a{ color: red; }
+	ol.open ul{ display: block; }
+	ul{height: 100px; display: none; background: #333; color: #fff;}
+/*css_*/
+</style>
+
+
+
+<!--_html-->
+<ol data-js-hover>
+	<a>hover控件</a>
+	<ul>
+		hover显隐层
+	</ul>
+</ol>
+<!--html_-->
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:yes,
+ie6:yes
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+hover下拉
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/h_base_hover.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+鼠标滑过显隐层显示;
+依赖插件h_base_hover.js；
+插件实现原理：
+(1).在要执行下拉的对象添加必要的属性[data-js-hover]
+(2).符合条件(1)后鼠标hover就会使得此对象切换类名.open
+(3).切换层默认情况下设置隐藏，再设置.open下切换层显示即可
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

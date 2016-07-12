@@ -1,0 +1,107 @@
+<?php echo($meta);?>
+
+
+
+
+
+<style>
+/*_css*/
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fForm .input{ width:100%; height:35px; padding:3px 5px; line-height:27px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.fForm .mgR{ margin-right:90px;}
+.fForm .posR{ position:absolute; top:0; right:0;}
+
+.msmBtn{ display:block; width:80px; height:30px; line-height:30px; margin-top:2px; text-align:center; color:#fff; background-color:#e43a3d; border-radius: 5px; -webkit-border-radius:5px; -o-border-radius:5px;}
+.msmBtn:hover{ color:#eee;}
+.msmBtn.off{ background-color:#aaa;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<dl>
+    <dt>dl_msm：<em>*</em></dt>
+    <dd class="mgR"><input class="input" type="text" name="" placeholder="请输入手机短信验证码" /></dd>
+    <div class="posR">
+        <a class="msmBtn" data-js-yzm="3" href="javascript:;">获取验证码</a>
+    </div>
+</dl>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	//手机获取验证码
+	$("[data-js-yzm]").delegate("","click",function(){
+		if(!$(this).hasClass("off")){
+			$(this).addClass("off");
+			var second=$(this).data("js-yzm");
+			$(this).text("剩下"+second+"秒");
+			$this=$(this);
+			count(second);
+		}
+		function count(i){
+			setI=setInterval(function(){
+				if(i>0){
+					i--;
+					$this.text("剩下"+i+"秒");
+				}else{
+					clearInterval(setI);
+					$this.removeClass("off").text("重获验证码");
+				}
+			},1000);
+		}
+	});	
+/*js_*/
+});
+</script>
+
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:no,
+    ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+test_desc_01
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+test_note_1
+test_note_1
+</pre>
+<!--note_-->
+
+
+
+
+</body>
+</html>

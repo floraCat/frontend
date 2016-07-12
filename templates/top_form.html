@@ -1,0 +1,136 @@
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/h_reset.css" />
+    <link rel="stylesheet" href="css/col_style.css" />
+    <script src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <title>base</title>
+    </head>
+<body>
+
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+
+<div class="noteList">
+    <p>以下为表单的各个控件 / 此栏目提供自定义组合表单 / 此栏目只提供基本结构和样式的控件模块，旨在能快速搭建一个简易的表单</p>
+</div>
+
+
+<div class="btn_form">
+    <a class="clearCookie" href="javascript:;">清空控件清单</a>
+    <a class="listCookie" href="javascript:;">自定义表单控件清单<p>0</p></a>
+    <i></i>
+    <div class="desc">选择控件添加到清单里，点击上面的按键可进入清单列表，可选择预览或生成整个表单，表单中的控件重复的样式会自动被共用起来。</div>
+</div>
+
+
+<style>.pCat7 li{ padding:0 9px;}</style>
+<ul class="pCat7" style="width:1200px; margin-top: 80px;">
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=text_"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=text">text输入框</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=password"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=recom">password输入框</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=radio"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=radio">radio单选</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=checkbox"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=checkbox">checkbox多选</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=file"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=file">file上传控件</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=button"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=button">button按键</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=select"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=select">select选项框</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list_form.php?page=form&list=textarea"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list_form.php?page=form&list=textarea">textarea文本框</a></h5>
+    </li>
+</ul><!--pCat7-->
+
+<script>
+$(function(){
+
+    ttlOn();
+
+    //问号
+    $(".btn_form i").click(function(){
+        $(".btn_form .desc").toggle();
+    });
+
+    //控件清单数据提交
+    $(".btn_form .listCookie").click(function(){
+        var submitdata={
+            'act':'formData'
+        }
+        $.post("col_list_form.php",submitdata,function(data){
+            window.location.href="col_list_form.php?page=form&act=formCart";
+        });
+    });
+
+    //清空控件清单
+    $(".btn_form .clearCookie").click(function(){
+        $.cookie("form","");
+        window.location.reload();
+    });
+});
+
+//重载时被选中的默认.on + cookie控件数
+function ttlOn(){
+    var cookie_ttl=$.cookie("form");
+    if(cookie_ttl){
+        cookie_ttl=cookie_ttl.substr(14);
+        var units=cookie_ttl.split("#");
+        for(var i=0;i<units.length;i++){
+            var index_gap=units[i].indexOf(",");
+            var ttl=units[i].substr(0,index_gap);
+            $("[data-ttl="+ttl+"]").addClass("on");
+        }
+        var length_ttl=units.length;
+        $(".btn_form a p").text(length_ttl);
+    }
+}
+</script>
+
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+
+
+
+</body>
+</html>

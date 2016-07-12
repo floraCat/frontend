@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/h_reset.css" />
+<link rel="stylesheet" href="css/col_style.css" />
+<script src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+<title>base</title>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+<div class="fDetails">
+
+	<!--图片-->
+	<div class="fPic"><ol><img src="/000/fore-end/col_<{$smarty.get.page}>/pc/images/<{$info.ttl}>" /></ol></div>
+	<p class="ttl"><{$info.ttl}></p>
+
+	<!--兼容-->
+	<input type="hidden" id="dataHack" value="<{$info.hack}>" />
+	<div class="fHack">
+		<ol id="firefox" class="yes"><img src="images/tab_firefox.png" /></ol>
+		<ol id="chrome" class="yes"><img src="images/tab_chrome.png" /></ol>
+		<ol id="safari" class="yes"><img src="images/tab_safari.png" /></ol>
+		<ol class="ie">
+			<img src="images/tab_ie.png" />
+			<ul>
+				<li id="ie11" class="yes">11</li>
+				<li id="ie10" class="yes">10</li>
+				<li id="ie9" class="no">9</li>
+				<li id="ie8" class="no">8</li>
+				<li id="ie7" class="no">7</li>
+				<li id="ie6" class="no">6</li>
+			</ul>
+		</ol>
+	</div>
+
+	<!--按键-->
+	<ol class="fBtn">
+		<ul class="btn1">
+			<a class="fl" target="_blank" href="col_list_form.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&_temp=<{$info.ttl}>">效果展示</a>
+			<a class="fr" target="_blank" href="col_list.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&act=setting&ttl=<{$info.ttl}>">自定义设置</a>
+		</ul>
+		<ul class="btn2">
+			<a class="fl copy" href="javascript:;">源码复制</a>
+			<a class="fr download" href="col_details_zip.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&ttl=<{$info.ttl}>&act=zipAll">整套下载</a>
+		</ul>
+	</ol>		
+
+	<xmp id="code" style="display:none;"><{$code}></xmp><!--源码-->
+	<div class="h_mask"></div><!--覆盖层-->
+	<div class="mAlert2">已复制到剪切板！</div>
+
+	<!--简介-->
+	<div class="fDesc"><p>模块描述：<{$info.desc}></p></div>
+
+	<!--依赖-->
+	<input type="hidden" id="dataRefer" value="<{$info.refer}>" />
+	<div class="fRely">
+		<h5>DEMO所依赖的文件：</h5>
+		<ol>
+			<li>
+				<p>h_reset.css</p>
+				<span>：浏览器重置样式</span>
+				<a target="_blank" href="css/h_reset.css">查看源码</a>
+				<a target="_blank" href="col_details_zip.php?act=zipOne&file=css/h_reset.css">点击下载</a>
+			</li>
+			<li>
+				<p>jquery-1.10.2.js</p>
+				<span>：JQ库</span>
+				<a target="_blank" href="js/jquery-1.10.2.js">查看源码</a>
+				<a target="_blank" href="col_details_zip.php?act=zipOne&file=js/jquery-1.10.2.js">点击下载</a>
+			</li>
+		</ol>
+	</div>
+
+	<!--其他说明-->
+	<div class="fNote">
+		<h5>其他说明：</h5>
+		<ol>
+			<{$info.note}>
+		</ol>
+	</div>
+
+</div><!--/fDetails-->
+
+
+
+<script>
+$(function(){
+
+	//兼容
+	var dataHack=$("#dataHack").val().replace(/\s+/g,"");
+	var arr_hack=dataHack.split(",");
+	for(var i=0;i<arr_hack.length;i++){
+		var arr=[];
+		arr[i]=arr_hack[i].split(":");
+		$("#"+arr[i][0]).attr("class","").addClass(arr[i][1]);
+	}
+
+	//依赖
+	if($("#dataRefer").val()!=""){
+		var dataRefer=$("#dataRefer").val().replace(/\s+/g,"");//去掉空格？
+		var arr_Refer=dataRefer.split(",");
+		for(var i=0;i<arr_Refer.length;i++){
+			var arr=[];
+			arr[i]=arr_Refer[i].split(":");
+			var temp=arr[i][0].split("/");
+			var basename=temp[temp.length-1];
+			var html=
+			'<li>'
+				+'<p>'+basename+'</p>'
+				+'<span>：'+arr[i][1]+'</span>'
+				+'<a target="_blank" href="'+arr[i][0]+'">查看源码</a>'
+				+'<a href="col_details_zip.php?act=zipOne&page=<{$smarty.get.page}>&file='+arr[i][0]+'">点击下载</a>'
+			+'</li>';
+			$(".fRely ol").append(html);
+		}
+	}
+		
+
+	//复制代码
+	$(".fBtn .copy").zclip({
+		path: "js/copy/ZeroClipboard.swf",
+		copy: function(){
+		return $("#code").text();
+		},
+		afterCopy:function(){
+			$(".h_mask").show().delay(1000).fadeOut();
+			$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
+		}
+	});
+
+});
+
+//屏高
+function windowH(){
+	if(self.innerHeight){ windowHeight = self.innerHeight;
+	}else{
+		if(document.documentElement && document.documentElement.clientHeight){    
+			windowHeight = document.documentElement.clientHeight;
+		}else{
+			if(document.body){ windowHeight = document.body.clientHeight;}
+		}
+	} 
+	return windowHeight;
+}
+</script>
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<input type="hidden" id="folder" value="<{$smarty.get.folder}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+</body>
+</html>

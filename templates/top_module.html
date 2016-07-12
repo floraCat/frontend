@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/h_reset.css" />
+<link rel="stylesheet" href="css/col_style.css" />
+<script src="js/jquery-1.10.2.js"></script>
+<title>base</title>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+
+
+<div class="noteList">
+    <p class="s">以下为网页常用模块的分类，每个分类包含 <i>[ </i><em>'基本结构模块'</em><i>：只注重结构定位和布局 ]</i> 和 <i>[ </i><em>'参考样式模块'</em><i>：基于基本结构的各种表现效果 ]</i></p>
+</div>
+
+
+
+<ul class="pCat7">
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pTop"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pTop">顶部</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pHead"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pHead">头部</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pSearch"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pSearch">搜索框</a></h5>
+    </li>
+    <li>
+        <a class="img" href="col_list.php?page=module&list=pNav"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pNav">导航栏</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pSnav"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pSnav">侧栏</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pPos"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pPos">面包屑导航</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pHd"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pHd">栏目标题</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pCat"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pCat">分类列表</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pListw"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pListw">文字列表</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pListp"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pListp">图片列表</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pPage"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pPage">分页</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pArt"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pArt">详情</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pFoot"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pFoot">底部</a></h5>
+    </li>
+    <li class="noClick">
+        <a class="img" href="col_list.php?page=module&list=pLayout"><img src="images/3.jpg" alt="" /></a>
+        <h5><a href="col_list.php?page=module&list=pLayout">其他常用布局</a></h5>
+    </li>
+</ul><!--pCat7-->
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+</body>
+</html>

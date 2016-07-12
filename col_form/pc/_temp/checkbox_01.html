@@ -1,0 +1,97 @@
+<?php echo($meta);?>
+
+
+
+
+
+<style>
+/*_css*/
+.gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+.wCheck input{ display:none;}
+.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/i_check.png) no-repeat 0 center; background-size:18px;}
+.wCheck.on label{ background:url(images/i_check_on.png) no-repeat 0 center; background-size:18px;}
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fChecks.gFlex > *{ width:23%; padding:0 1%;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<dl>
+    <dt>dl_checkbox：</dt>
+    <dd>
+        <ol class="fChecks gFlex" data-js-checkbox>
+            <div class="wCheck"><input type="checkbox" value="1" name="fav" /><label>兴趣一</label></div>
+            <div class="wCheck"><input type="checkbox" value="2" name="fav" /><label>兴趣二</label></div>
+            <div class="wCheck"><input type="checkbox" value="3" name="fav" /><label>兴趣三</label></div>
+            <div class="wCheck"><input type="checkbox" value="4" name="fav" /><label>兴趣四</label></div>
+        </ol>
+    </dd>
+</dl>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	$("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
+	//checkbox
+	$("[ data-js-checkbox] label").click(function(){
+		$(this).parent().toggleClass("on");	
+		if($(this).parent().hasClass("on")){
+			$(this).siblings("input").attr("checked",true);	
+		}else{
+			$(this).siblings("input").attr("checked",false);	
+		}
+	});		
+/*js_*/
+});
+</script>
+
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:no,
+    ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+test_desc_01
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+test_note_1
+test_note_1
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

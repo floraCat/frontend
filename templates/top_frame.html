@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/h_reset.css" />
+<link rel="stylesheet" href="css/col_style.css" />
+<script src="js/jquery-1.10.2.js"></script>
+<title>base</title>
+</head>
+<body>
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+<style>
+.pTabs{ width: 330px; margin: 20px auto 20px; overflow: hidden; }
+.pTabs li{ width: 150px; height: 34px; line-height: 34px; border:#ddd 1px solid; text-align: center; cursor: pointer; background: #f8f8f8; border-radius: 18px; -webkit-border-radius:18px;}
+.pTabs li.on{ background-color: #cf5d4e; border:#bf3928 1px solid; color: #fff;}
+.pTabs .fl{ float: left; }
+.pTabs .fr{ float: right; }
+.frameFile{ position: absolute; top: 190px; left: 50%; width: 1200px; height: 730px; line-height: 22px; margin-left: -600px;}
+.frameFile h5{ font-size: 18px; font-weight: bold; position: relative;}
+.frameFile .dir1 div{ display: none; }
+.frameFile ol{ position: relative; float: left; width: 690px; padding-top: 30px; background: url(css/imgs/line_dotted_v.png) 53px repeat-y;}
+.btn_download{ position: absolute; top:-30px; left: 0; width: 145px; height: 24px; line-height: 24px; text-align: center; border:#c1dfc1 1px solid; background-color: #e4f6e4; }
+.key_toggle{ position: absolute; top: 0; left: 28px; width: 60px; height: 26px; line-height: 26px; text-align: center; color: #aaa; background: #fff; cursor: pointer;}
+.key_toggle.on{ color: red; }
+.frameFile .dir1{ padding-left: 50px; }
+.frameFile .dir2{ padding-left: 50px; }
+.frameFile .dir3{ padding-left: 50px; }
+.frameFile ol p{ padding-left: 17px; position: relative; overflow: hidden; }
+.frameFile ol p.key{ padding-left: 0; }
+.frameFile ol p a{ float: left; width:13px; height: 13px; margin-top:6px; margin-right: 20px;  background: url(css/imgs/i_add.png) no-repeat center; background-size: 13px;}
+.frameFile ol .open p a{ background: url(css/imgs/i_sub.png) no-repeat center; background-size: 13px;}
+.frameFile ol p b{ float: left; font-weight: bold; margin-right: 6px; background: #fff;}
+.frameFile ol p s{ float: left; width: 200px; height: 24px; background:#fff url(css/imgs/line_dotted.png) repeat-x center;}
+.frameFile ol p span{ float: left; padding: 0 6px; background: #fff;}
+.frameFile ol p i{ float: left; width: 18px; height: 18px; padding-right: 10px; margin-top: 3px; cursor: pointer; background:#fff url(css/imgs/i_note.png) no-repeat center; background-size: auto 100%; opacity: .3;}
+.frameFile ol p i:hover,.frameFile ol p.on i{ opacity: 1; }
+.frameFile ol p.on{ background: url(css/imgs/line_dotted.png) repeat-x center; }
+.frameFile ol p.on:after{ content:''; position: absolute; top: 0; right: 0; width: 24px; height: 24px; background: url(css/imgs/ar_r.png) no-repeat center right; background-size: auto 80%;}
+.frameFile .dir2{ background-position: 40px 7px;}
+.frameFile p:before{ content: ''; position: absolute; top: 0; left: 0; width: 14px; height: 14px; margin-top: 5px; background: url(css/imgs/i_file_2.png) no-repeat center; background-size: 12px;}
+.frameFile p.key:before{ content: ''; position: absolute; top: 0; left: 17px; width: 14px; height: 14px; margin-top: 6px; background: url(css/imgs/i_folder.png) no-repeat center; background-size: 14px;}
+.showDivs{ position: absolute; left: 700px; width: 498px; height: 728px; background-color: #f8f8f8; border:#eee 1px solid; border-radius: 5px; -webkit-border-radius:5px;}
+.showDivs .show{ display: none; padding: 20px;}
+.showDivs .show.fixed{ position: fixed; top: 0;}
+.showDivs .show .btn{ display: block; width: 120px; text-align: center; padding:0 10px; border:#c1dfc1 1px solid; background-color: #e4f6e4; margin-bottom: 6px;}
+</style>
+
+
+	
+<div class="pTabs">
+	<li class="fl on">开发时文件目录结构</li>
+	<li class="fr">打包后文件目录结构</li>
+</div>
+<input type="hidden" id="tab" name="tab" value="<{$smarty.get.tab}>" />
+
+
+<div style="width: 100%; height: 730px"></div>
+
+<!--开发时文件目录结构-->
+<div class="frameFile frame_1">
+
+	<ol>
+		<a class="btn_download" href="files/zip/dev.zip">下载整个项目文件夹/dev</a>
+		<a class="key_toggle">展开全部</a>
+		<div class="dir0">
+			<p class="key"><b style="padding-left: 32px;" data-role="appDir">/dev</b><s></s><span>站点根目录</span><i></i></p>
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="imagesDir">/images</b><s></s><span>图片目录</span><i></i></p>
+				<div class="dir2 imagesDir">
+					<p><b>1.jpg</b></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="jsDir">/js</b><s></s><span>脚本目录</span><i></i></p>
+				<div class="dir2 jsDir">
+					<p><b data-role="commonJs">g_common.js</b><s></s><span>共用脚本</span><i></i></p>
+					<p><b data-role="headerJs">g_header.js</b><s></s><span>头部脚本</span><i></i></p>
+					<p><b data-role="lessJs">less.js</b><s></s><span>html中可直接执行less</span><i></i></p>
+					<p><b data-role="rconfigJs">rconfig.js</b><s></s><span>requirejs配置文件</span><i></i></p>
+					<p><b data-role="requireJs">require.js</b><s></s><span>requirejs核心文件</span><i></i></p>
+					<p><b data-role="iconfigJs">iconfig.js</b><s></s><span>路径配置文件</span><i></i></p>
+					<p><b data-role="indexJs">p_index.js</b><s></s><span>首页样式表</span><i></i></p>
+					<p><b data-role="listJs">p_list.js</b><s></s><span>列表页样式表</span><i></i></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="lessDir">/less</b><s></s><span>less目录</span><i></i></p>
+				<div class="dir dir2 lessDir">
+					<p class="key"><a></a><b data-role="imgsDir">/imgs</b><s></s><span>背景图目录</span><i></i></p>
+					<div class="dir3 imgsDir">
+						<p><b>01.png</b></p>
+					</div>
+					<p><b data-role="varLess">pre_var.less</b><s></s><span>预定义less变量</span><i></i></p>
+					<p><b data-role="mixLess">pre_mix.less</b><s></s><span>预定义less类</span><i></i></p>
+					<p><b data-role="resetLess">reset.less</b><s></s><span>重置样式表预编译</span><i></i></p>
+					<p><b data-role="commonLess">common.less</b><s></s><span>共用样式表预编译</span><i></i></p>
+					<p><b data-role="indexLess">index.less</b><s></s><span>首页样式表预编译</span><i></i></p>
+					<p><b data-role="listLess">list.less</b><s></s><span>列表页样式表预编译</span><i></i></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="libDir">/lib</b><s></s><span>库目录</span><i></i></p>
+				<div class="dir2 libDir">
+					<p><b>jquery-1.10.2.js</b><s></s><span>jquery库</span></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="pluginsDir">/plugins</b><s></s><span>插件</span><i></i></p>
+				<div class="dir2 pluginsDir">
+					<p><b>catCarousel.js</b><s></s><span>幻灯片插件</span></p>
+				</div>
+			</div>
+
+			<div class="dir1">
+				<p><b data-role="indexHtml">index.html</b><s></s><span>首页</span><i></i></p>
+				<p><b data-role="listHtml">list.html</b><s></s><span>列表页</span><i></i></p>
+			</div>
+
+			<p><b data-role="enterHtml">__enter.html</b><s></s><span>整站页面链接入口</span><i></i></p>
+			<p><b data-role="gulpfileJs">gulpfile.html</b><s></s><span>构建gulp文件</span><i></i></p>
+		</div>
+	</ol>
+
+	<div class="showDivs">
+		<!--appDir note-->
+		<ul class="show show_appDir">
+			站点根目录：<br />
+			- 开发中的整个项目文件夹；<br />
+			- 项目发布前此文件夹内的文件会被gulp构建工具处理后转移到正式的项目发布目录'/app/';
+		</ul>
+		<!--imagesDir note-->
+		<ul class="show show_imagesDir">
+		图片目录：<br />
+		- 存放整个项目除背景图以外的图片；<br />
+		- 此目录内的图片在项目发布前会被gulp构建工具压缩后转移到目录'/app/image/';
+		</ul>
+		<!--jsDir note-->
+		<ul class="show show_jsDir">
+		脚本目录：<br />
+		- 存放项目中的业务js脚本文件;<br />
+		- 除去 js库[存放到'/lib/'] & 外调插件[存放到/'plugins'/] 以外的其他脚本文件;
+		</ul>
+		<!--commonJs note-->
+		<ul class="show show_commonJs">
+		共用脚本：<br />
+		- 项目各页面共用的脚本；<br />
+		- 除去头部脚本 [存放到g_header.js] 以外的共用脚本；
+		</ul>
+		<!--headerJs note-->
+		<ul class="show show_headerJs">
+		头部脚本：<br />
+		- 项目的共用头部用到的js脚本独立一个文件
+		</ul>
+		<!--lessJs note-->
+		<ul class="show show_lessJs">
+		less.js：<br />
+		- 默认html渲染中不能执行less预编译的样式文件<br />
+		- 此插件使得html可以直接执行less样式以方便前端测试<br />
+		- 发布前此脚本文件不会被包含到正式发布项目中<br />
+		- 发布前项目中的less会被编译成css转移到目录'/app/css/'，html中调用的less会被css替换
+		</ul>
+		<!--rconfigJs note-->
+		<ul class="show show_rconfigJs">
+		requireJs配置文件：<br />
+		- 整站通用的requireJs的参数配置
+		</ul>
+		<!--requireJs note-->
+		<ul class="show show_requireJs">
+		requireJs核心文件：<br />
+		- 此文件可使页面模块化调入js文件，以方便脚本文件的管理；<br />
+		- 项目各html均需调用此文件；
+		</ul>
+		<!--iconfigJs note-->
+		<ul class="show show_iconfigJs">
+		路径配置文件：<br />
+		- 后端用以方便配置整站的链接路径
+		</ul>
+		<!--indexJs note-->
+		<ul class="show show_indexJs">
+		首页样式表：<br />
+		- 首页中除共用脚本以外的脚本
+		</ul>
+		<!--listJs note-->
+		<ul class="show show_listJs">
+		列表页样式表：<br />
+		- 列表页中除共用脚本以外的脚本
+		</ul>
+		<!--lessDir note-->
+		<ul class="show show_lessDir">
+		less目录<br />
+		- 存放less预编译样式文件;<br />
+		- 发布前项目中的less会被编译成css转移到目录'/app/css/'，此目录最后不会被包含到正式发布项目中<br />
+		- 发布前html中调用的less会被css替换
+		</ul>
+		<!--imgsDir note-->
+		<ul class="show show_imgsDir">
+		背景图目录：<br />
+		- 存放项目用到的背景图 [一般为图标]<br />
+		- 发布前此文件夹内的背景图会被分类整合到一张背景图中，再转移到目录'/app/css/imgs/';
+		</ul>
+		<!--varLess note-->
+		<ul class="show show_varLess">
+		预定义less变量：<br />
+		- 此less文件中预定义了项目通用的样式变量以供其他less文件调用；<br />
+		- 发布前此文件不会被编辑成css，也不会被包含在正式发布项目中
+		</ul>
+		<!--mixLess note-->
+		<ul class="show show_mixLess">
+		预定义less类：<br />
+		- 此less文件中预定义了项目通用的样式class以供其他less文件调用；<br />
+		- 发布前此文件不会被编辑成css，也不会被包含在正式发布项目中
+		</ul>
+		<!--resetLess note-->
+		<ul class="show show_resetLess">
+		重置样式表预编译：<br />
+		- 发布前此脚本文件会被编译成reset.css，再转存到正式发布目录'/app/css/'中
+		</ul>
+		<!--commonLess note-->
+		<ul class="show show_commonLess">
+		共用样式表预编译：<br />
+		- 发布前此脚本文件会被编译成common.css，再转存到正式发布目录'/app/css/'中
+		</ul>
+		<!--indexLess note-->
+		<ul class="show show_indexLess">
+		首页样式表预编译：<br />
+		- 发布前此脚本文件会被编译成index.css，再转存到正式发布目录'/app/css/'中
+		</ul>
+		<!--listLess note-->
+		<ul class="show show_listLess">
+		列表页样式表预编译：<br />
+		- 发布前此脚本文件会被编译成list.css，再转存到正式发布目录'/app/css/'中
+		</ul>
+		<!--libDir note-->
+		<ul class="show show_libDir">
+		库目录：<br />
+		- 存放外调的js库文件
+		- 此文件夹内的文件会被压缩后转存到正式发布目录'/app/lib/'中
+		</ul>
+		<!--pluginsDir note-->
+		<ul class="show show_pluginsDir">
+		插件目录：<br />
+		- 存放外调的js插件
+		- 此文件夹内的文件会被压缩后转存到正式发布目录'/app/plugins/'中
+		</ul>
+		<!--indexHtml note-->
+		<ul class="show show_indexHtml">
+		首页html，其内部结构如下：
+		<xmp style="font-family: '微软雅黑'; font-size: 13px;color: #38a338; padding: 0 30px; line-height: 22px; white-space: pre-wrap;"><!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/less" href="less/common.less" />
+	<link rel="stylesheet" type="text/less" href="less/index.less" /><script language="javascript" type="text/javascript" src="js/less.js"></script>
+	<script src="js/iconfig.js"></script>
+</head>
+<body>
+
+<?php include("include/header.php"); ?>
+
+首页html
+
+<?php include("include/footer.php"); ?>
+
+<script src="js/rconfig.js"></script>
+<script src="js/require.js" data-main="js/p_index.js"></script>
+
+</body> 
+</html>
+		</xmp>
+		</ul>
+		<!--listHtml note-->
+		<ul class="show show_listHtml">
+			列表页html，其内部结构如下：
+			<xmp style="font-family: '微软雅黑'; font-size: 13px;color: #38a338; padding:0 30px; line-height: 22px; white-space: pre-wrap;"><!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>页面标题</title>
+	<link rel="stylesheet" type="text/less" href="less/common.less" />
+	<link rel="stylesheet" type="text/less" href="less/list.less" /><script language="javascript" type="text/javascript" src="js/less.js"></script>
+	<script src="js/iconfig.js"></script>
+</head>
+<body>
+
+<?php include("include/header.php"); ?>
+
+列表页html
+
+<?php include("include/footer.php"); ?>
+
+<script src="js/rconfig.js"></script>
+<script src="js/require.js" data-main="js/p_list.js"></script>
+
+
+</body> 
+</html>
+			</xmp>
+		</ul>
+		<!--enterHtml note-->
+		<ul class="show show_enterHtml">
+		整站页面链接入口：<br />
+		- 所有页面的链接入口，使得项目结构一目了然，方便前后端开发测试
+		</ul>
+		<!--gulpfileJs note-->
+		<ul class="show show_gulpfileJs">
+		gulp构建工具：<br />
+		- 具体代码请查看：<a class="btn" target="_blank" href="index.php?page=gulpfile">gulpfile.html源码</a>
+		</ul>
+	</div>
+</div>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+
+
+
+<!--打包后文件目录结构-->
+<div class="frameFile frame_2" style="left:-9999px;">
+
+	<ol>
+		<a class="btn_download" href="files/zip/app.zip">下载整个项目文件夹/app</a>
+		<a class="key_toggle">展开全部</a>
+		<div class="dir0">
+			<p class="key"><b style="padding-left: 32px;" data-role="appDir">/app</b><s></s><span>站点根目录</span><i></i></p>
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="imagesDir">/images</b><s></s><span>图片目录</span><i></i></p>
+				<div class="dir2 imagesDir">
+					<p><b>1.jpg</b></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="cssDir">/css</b><s></s><span>css目录</span><i></i></p>
+				<div class="dir dir2 cssDir">
+					<p class="key"><a></a><b data-role="imgsDir">/imgs</b><s></s><span>背景图目录</span><i></i></p>
+					<div class="dir3 imgsDir">
+						<p><b>01.png</b></p>
+					</div>
+					<p><b data-role="commonCss">common.css</b><s></s><span>共用样式表</span><i></i></p>
+					<p><b data-role="indexCss">index.css</b><s></s><span>首页样式表</span><i></i></p>
+					<p><b data-role="listCss">list.css</b><s></s><span>列表页样式表</span><i></i></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="jsDir">/js</b><s></s><span>脚本目录</span><i></i></p>
+				<div class="dir2 jsDir">
+					<p><b data-role="commonJs">g_common.js</b><s></s><span>共用脚本</span><i></i></p>
+					<p><b data-role="rconfigJs">rconfig.js</b><s></s><span>requirejs配置文件</span><i></i></p>
+					<p><b data-role="requireJs">require.js</b><s></s><span>requirejs核心文件</span><i></i></p>
+					<p><b data-role="iconfigJs">iconfig.js</b><s></s><span>路径配置文件</span><i></i></p>
+					<p><b data-role="indexJs">p_index.js</b><s></s><span>首页样式表</span><i></i></p>
+					<p><b data-role="listJs">p_list.js</b><s></s><span>列表页样式表</span><i></i></p>
+				</div>
+			</div>
+
+			
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="libDir">/lib</b><s></s><span>库目录</span><i></i></p>
+				<div class="dir2 libDir">
+					<p><b>jquery-1.10.2.js</b><s></s><span>jquery库</span></p>
+				</div>
+			</div>
+
+			<div class="dir dir1">
+				<p class="key"><a></a><b data-role="pluginsDir">/plugins</b><s></s><span>插件</span><i></i></p>
+				<div class="dir2 pluginsDir">
+					<p><b>catCarousel.js</b><s></s><span>幻灯片插件</span></p>
+				</div>
+			</div>
+
+			<div class="dir1">
+				<p><b data-role="indexHtml">index.html</b><s></s><span>首页</span><i></i></p>
+				<p><b data-role="listHtml">list.html</b><s></s><span>列表页</span><i></i></p>
+			</div>
+
+		</div>
+	</ol>
+
+	<div class="showDivs">
+		<!--appDir note-->
+		<ul class="show show_appDir">
+			站点根目录：<br />
+			- 打包后的整个项目文件夹；<br />
+			- 此文件夹下的文件是由gulp构建工具对开发目录'/dev/'下文件处理后转移而来的
+		</ul>
+		<!--cssDir note-->
+		<ul class="show show_cssDir">
+		css目录<br />
+		- 存放css样式文件;<br />
+		- 此目录中的css是由开发目录'/dev/less/'经gulp编译压缩后转移而来
+		</ul>
+		<!--imgsDir note-->
+		<ul class="show show_imgsDir">
+		背景图目录：<br />
+		- 存放项目用到的背景图 [一般为图标]<br />
+		- 此文件夹内的背景图由开发目录'/dev/less/imgs'下的背景图分类整合并经gulp压缩后转移而来
+		</ul>
+		<!--commonCss note-->
+		<ul class="show show_commonCss">
+		共用样式表预编译：<br />
+		- 此文件是由开发目录'/dev/less/common.less'经gulp编译压缩后转移而来
+		</ul>
+		<!--indexCss note-->
+		<ul class="show show_indexCss">
+		首页样式表预编译：<br />
+		- 此文件是由开发目录'/dev/less/index.less'经gulp编译压缩后转移而来
+		</ul>
+		<!--listCss note-->
+		<ul class="show show_listCss">
+		列表页样式表预编译：<br />
+		- 此文件是由开发目录'/dev/less/list.less'经gulp编译压缩后转移而来
+		</ul>
+		<!--imagesDir note-->
+		<ul class="show show_imagesDir">
+		图片目录：<br />
+		- 存放整个项目除背景图以外的图片；<br />
+		- 此目录中的图片是由开发目录'/dev/images/'经gulp压缩后转移而来
+		</ul>
+		<!--jsDir note-->
+		<ul class="show show_jsDir">
+		脚本目录：<br />
+		- 存放项目中的业务js脚本文件;<br />
+		- 除去 js库[存放到'/lib/'] & 外调插件[存放到/'plugins'/] 以外的其他脚本文件;<br />
+		- 此目录中的js是由开发目录下'/dev/js/'经gulp处理后转移而来
+		</ul>
+		<!--commonJs note-->
+		<ul class="show show_commonJs">
+		共用脚本：<br />
+		- 项目各页面共用的脚本；<br />
+		- 此文件是由开发目录'/dev/js/common.js'经gulp与同目录的'header.js'合并压缩后转移而来
+		</ul>
+		<!--rconfigJs note-->
+		<ul class="show show_rconfigJs">
+		requireJs配置文件：<br />
+		- 整站通用的requireJs的参数配置<br />
+		- 此文件是由开发目录'/dev/js/rconfig.js'经gulp压缩后转移而来
+		</ul>
+		<!--requireJs note-->
+		<ul class="show show_requireJs">
+		requireJs核心文件：<br />
+		- 此文件可使页面模块化调入js文件，以方便脚本文件的管理；<br />
+		- 项目各html均需调用此文件；<br />
+		- 此文件是由开发目录'/dev/js/require.js'经gulp压缩后转移而来
+		</ul>
+		<!--iconfigJs note-->
+		<ul class="show show_iconfigJs">
+		路径配置文件：<br />
+		- 后端用以方便配置整站的链接路径<br />
+		- 此文件是由开发目录'/dev/js/iconfig.js'经gulp压缩后转移而来
+		</ul>
+		<!--indexJs note-->
+		<ul class="show show_indexJs">
+		首页样式表：<br />
+		- 首页中除共用脚本以外的脚本<br />
+		- 此文件是由开发目录'/dev/js/index.js'经gulp与其必要的依赖js文件合并压缩后转移而来
+		</ul>
+		<!--listJs note-->
+		<ul class="show show_listJs">
+		列表页样式表：<br />
+		- 列表页中除共用脚本以外的脚本<br />
+		- 此文件是由开发目录'/dev/js/list.js'经gulp与其必要的依赖js文件合并压缩后转移而来
+		</ul>
+		
+		<!--libDir note-->
+		<ul class="show show_libDir">
+		库目录：<br />
+		- 存放外调的js库文件
+		- 此目录下的文件是由开发目录'/dev/js/lib'的文件经gulp压缩后转移而来
+		</ul>
+		<!--pluginsDir note-->
+		<ul class="show show_pluginsDir">
+		插件目录：<br />
+		- 存放外调的js插件
+		- 此目录下的文件是由开发目录'/dev/js/plugin'的文件经gulp压缩后转移而来
+		</ul>
+		<!--indexHtml note-->
+		<ul class="show show_indexHtml">
+		首页html
+		</ul>
+		<!--listHtml note-->
+		<ul class="show show_listHtml">
+		列表页html
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+<script>
+$(function(){
+
+	//文件目录收起展开
+	$(".frameFile ol p a").click(function(){
+		$(this).parent().siblings("div").toggle();
+		$(this).parent().parent().toggleClass("open");
+	});
+	//说明显示层
+	$(".frameFile ol i").click(function(){
+		var show=$(this).siblings("b").attr("data-role");
+		$(this).parents(".frameFile").find(".show_"+show).show().addClass("showOn").siblings(".show").hide().removeClass("showOn");
+		$(this).parents(".frameFile").find(".dir0 .on").removeClass("on");
+		$(this).parent().addClass("on");
+		scroll_show=$(".showOn").offset().top;
+		windowScroll=document.documentElement.scrollTop + document.body.scrollTop;
+		if(windowScroll>scroll_show){
+			$(".showOn").addClass("fixed");
+		}else{
+			$(".showOn").removeClass("fixed");
+		}
+	});
+	$("[data-role=appDir]").siblings("i").click();
+	$(document).on("scroll",function(){
+		var windowScroll=document.documentElement.scrollTop + document.body.scrollTop;
+		if(windowScroll>scroll_show){
+			$(".showOn").addClass("fixed");
+		}else{
+			$(".showOn").removeClass("fixed");
+		}
+	});
+
+	//展开&收起
+	$(".key_toggle").click(function(){
+		if($(this).hasClass("on")){
+			$(this).removeClass("on").text("以下展开");
+			$(this).parents(".frameFile").find("ol .dir0 div").removeClass("open").children("div").hide();
+		}else{
+			$(this).addClass("on").text("以下收起");
+			$(this).parents(".frameFile").find("ol .dir0 div").addClass("open").children("div").show();
+		}
+	});
+	$(".key_toggle").trigger("click");
+
+	//切换
+	$(".pTabs li").click(function(){
+		if($(this).hasClass("fr")){
+			$(".frame_1").animate({"left":"9999px"},200);
+			$(".frame_2").animate({"left":"50%"},200);
+		}
+		if($(this).hasClass("fl")){
+			$(".frame_1").animate({"left":"50%"},200);
+			$(".frame_2").animate({"left":"-9999px"},200);
+		}
+		$(this).addClass("on").siblings().removeClass("on");	
+	});
+
+	//默认显示
+	var def_tab=$("#tab").val();
+	if(def_tab=="2"){
+		console.log(def_tab);
+		$(".pTabs .fr").trigger("click");
+	}
+	if(def_tab=="index"){
+		$("[data-role='indexHtml']").siblings("i").trigger("click");
+	}
+
+});
+</script>
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+
+</body>
+</html>

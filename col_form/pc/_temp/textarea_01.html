@@ -1,0 +1,91 @@
+<?php echo($meta);?>
+
+
+
+
+
+<style>
+/*_css*/
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fTxt{ width:100%; height:112px; padding:5px; line-height:20px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+.fTxt1 p{ height:21px; font-size:12px; line-height:21px; text-align:right; color:#aaa;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<dl>
+    <dt>dl_txt1：</dt>
+    <dd class="fTxt1">
+        <textarea  data-js-txt="20" class="fTxt" placeholder="请输入留言"></textarea>
+        <p>建议在20个字内</p>
+    </dd>
+</dl>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	//文本框字数限制
+	$("[data-js-txt]").keyup(function(){
+		var txtnum=$(this).data("js-txt");
+		if($(this).val().length>txtnum){
+			$(this).val($(this).val().substr(0,txtnum));	
+		}
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:no,
+    ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+test_desc_01
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+test_note_1
+test_note_1
+</pre>
+<!--note_-->
+
+
+
+
+</body>
+</html>

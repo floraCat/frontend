@@ -1,0 +1,194 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/h_reset.css" />
+	<link rel="stylesheet" href="css/col_style.css" />
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fly.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+
+<div class="noteList">
+	<p style="width:900px; margin:0 auto;">以下控件清单可操作<em>排序</em>和<em>删除</em> / 合并后的表单其重复的样式会自动被共用起来</p>
+</div>
+
+
+
+<table class="listCart">
+	<tr class="hd">
+		<td>序号</td>
+		<td>控件图示</td>
+		<td>控件名称</td>
+		<td>排序操作</td>
+		<td>其他操作</td>
+	</tr>
+
+	<!-- <tr>
+		<td class="sort">1</td>
+		<td class="img"><img src="#" /></td>
+		<td class="ttl">aaa</td>
+		<td>
+			<a class="first">最前</a>
+			<a class="last">最后</a>
+			<a class="up">向上一级</a>
+		</td>
+		<td><a class="del">删除</a></td>
+	</tr> -->
+
+</table>
+
+
+
+<div class="pBtns">
+	<a class="createForm" href="col_list_form.php?page=form&act=createForm">合成表单</a>
+	<a target="_blank" class="viewForm" href="col_list_form.php?page=form&act=viewForm">查看效果</a>
+</div>
+
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+//列举cookies
+function cookieList(){
+	if($.cookie("form")!=""){
+		var cookie=$.cookie("form").substr(14);
+		var arr_cookie=cookie.split("#");
+		for(var i=0;i<arr_cookie.length;i++){
+			var arr2=arr_cookie[i].split(",");
+			var html=
+			'<tr class="tr">'
+				+'<td class="sort">'+(i+1)+'</td>'
+				+'<td class="img"><img src="'+arr2[1]+'" /></td>'
+				+'<td class="ttl">'+arr2[0]+'</td>'
+				+'<td><a class="first">最前</a><a class="last">最后</a><a class="up">向上一级</a></td>'
+				+'<td><a class="del">删除</a></td>'
+			+'</tr>';
+			$(".listCart").append(html);
+		};
+	}
+}
+
+
+$(function(){
+
+	cookieList();
+ 
+    //最前
+	$(".listCart").on("click",".first",function(){
+		var ttl=$(this).parents("tr").find(".ttl").text();
+		var code=$.cookie("form").substr(0,13);
+		var submitdata={
+			"ttl":ttl,
+			"code":code,
+			"goto":"first",
+		}
+		$.post("col_list_form.php",submitdata,function(data){
+			$(".listCart .tr").remove();
+			callback(data);
+		});
+	});
+
+    //最后
+	$(".listCart").on("click",".last",function(){
+		var ttl=$(this).parents("tr").find(".ttl").text();
+		var code=$.cookie("form").substr(0,13);
+		var submitdata={
+			"ttl":ttl,
+			"code":code,
+			"goto":"last",
+		}
+		$.post("col_list_form.php",submitdata,function(data){
+			$(".listCart .tr").remove();
+			callback(data);
+		});
+	});
+
+    //向上一级
+	$(".listCart").on("click",".up",function(){
+		var ttl=$(this).parents("tr").find(".ttl").text();
+		var ttl_prev=$(this).parents("tr").prev().find(".ttl").text();
+		var code=$.cookie("form").substr(0,13);
+		var sort=$(this).parents("tr").find(".sort").text();
+		if(sort>1){
+			var submitdata={
+				"ttl":ttl,
+				"ttl_prev":ttl_prev,
+				"code":code,
+				"sort":sort,
+				"goto":"up",
+			}
+			$.post("col_list_form.php",submitdata,function(data){
+				$(".listCart .tr").remove();
+				callback(data);
+			});
+		}
+	});
+
+
+	//删除
+	$(".listCart").on("click",".del",function(){
+		var ttl=$(this).parents("tr").find(".ttl").text();
+		var code=$.cookie("form").substr(0,13);
+		var submitdata={
+			"ttl":ttl,
+			"code":code,
+			"goto":"del"
+		}
+		if(confirm("确定要删除此条目吗？")){
+			$.post("col_list_form.php",submitdata,function(data){
+				$(".listCart .tr").remove();
+				callback(data);
+			});
+		}
+			
+	});
+
+
+});
+
+
+function callback(data){
+	var data = eval("(" + data + ")");
+	var code=$.cookie("form").substr(0,14);
+	var arr=[];
+	for(var i=0;i<data.length;i++){
+		var str=data[i]["ttl"]+","+data[i]["img"];
+		arr.push(str);
+	}
+	var strs=code+arr.join("#");
+	$.cookie("form",strs);
+	cookieList();
+}
+
+</script>
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+
+</body>
+</html>

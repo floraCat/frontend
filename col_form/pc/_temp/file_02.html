@@ -1,0 +1,122 @@
+<?php echo($meta);?>
+
+
+
+
+
+<style>
+/*_css*/
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fFile2 .fFile{ position:relative;}
+.fFile2 .fFile input{ border:none;}
+.fFile2 .fFile img{ width:80px;}
+.fFile2 .fFile .mg{ position:absolute; bottom:0; left:90px; height:24px; line-height:24px;}
+.fFile2 p{ color: #aaa;}
+.fFile2 p a{ color: red;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<dl>
+    <dt>dl_file2：</dt>
+    <dd class="fFile2">
+        <div class="fFile" data-js-file>
+            <img src="images/mode/m/pic_default.jpg" data-js-role="images/mode/m/pic_default.jpg" />
+            <div class="mg"><input type="file" name="" /></div>
+        </div>
+        <p><a class="quit_file red" data-js-role="dd">删除</a> 图片2M之内！</p>
+    </dd>
+</dl>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	//上传图片预览
+	$("[data-js-file]").on("change","input",function(){
+		var objUrl = getFileUrl(this);
+		if (objUrl){
+			$(this).parents(".fFile").find("img").attr("src", objUrl);
+			$(this).parents(".fFile").addClass("on");
+		}else{
+			$(this).parents(".fFile").removeClass("on");
+		}
+		$(".fForm .quit_file").click(function(){
+			var parent=$(this).data("js-role");
+			if(parent && parent!=".fFile"){
+				var $img=$(this).parents(parent).find("img");
+				$(this).parents(parent).find(".fFile").removeClass("on");
+				$(this).parents(parent).find("input").val("");
+			}else{
+				var $img=$(this).parents(".fFile").find("img");
+				$(this).parents(".fFile").removeClass("on");
+				$(this).parents(".fFile").find("input").val("");
+			}
+			$img.attr("src",$img.data("js-role"));
+		});
+		function getFileUrl(obj) { 
+			var url; 
+			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
+				url = obj.value; 
+			}else if(window.createObjectURL!=undefined){ // basic
+				url = window.createObjectURL(obj.files.item(0));
+			}else if (window.URL!=undefined){ // mozilla(firefox)
+				url = window.URL.createObjectURL(obj.files.item(0)); 
+			}else if (window.webkitURL!=undefined){ // webkit or chrome
+				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
+			} 
+			return url; 
+		} 
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:no,
+    ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+test_desc_01
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+test_note_1
+test_note_1
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

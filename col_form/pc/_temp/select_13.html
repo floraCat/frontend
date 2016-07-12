@@ -1,0 +1,124 @@
+<?php echo($meta);?>
+
+
+
+
+
+<style>
+/*_css*/
+.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+.fForm dd{ margin-left:90px;}
+.fSelects.gFlex{ width:298px;}
+.fSelects.gFlex > *{ width:31.3%; padding:0 1%;}
+.fSelects select{ width: 100%; height:30px; line-height:30px;}
+.fSelects ol{ position:relative;}
+	.gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+	.gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    /*选择框key*/
+    .fSelect{ position:relative;}
+    .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(upload/referM/i_key_drop.png) no-repeat; background-size:100% 100%;}
+    .fSelect h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
+    .fSelect select{ position:absolute; top:0; left:0; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<script type="text/javascript" src="js/m/mode/address.js"></script><!--全国各省市区-->
+<script type="text/javascript" src="js/m/mode/addr_link.js"></script><!--省市区联动-->
+<dl data-js-select-addr>
+    <dt>dl_sel13：<em>*</em></dt>
+    <dd class="fSelects gFlex">
+        <div class="fSelect">
+            <ol class="_prov">
+                <i class="key"></i>
+                <h6 data-val="6">广东</h6>
+                <select>
+                    <option value="-1">--省--</option>
+                </select>
+            </ol>
+        </div><!---->
+        <div class="fSelect">
+            <ol class="_city">
+                <i class="key"></i>
+                <h6></h6>
+                <select>
+                    <option value="-1">--市--</option>
+                </select>
+            </ol>
+        </div><!---->
+        <div class="fSelect">
+            <ol class="_area">
+                <i class="key"></i>
+                <h6></h6>
+                <select>
+                    <option value="-1">--区--</option>
+                </select>
+            </ol>
+        </div><!---->
+    </dd>
+</dl>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	//选择框key
+	$("option[selected]").each(function(){
+		$(this).parent().siblings("h6").text($(this).text());
+	});
+	$("[data-js-select]").delegate("select","change",function(){
+		var cur=$(this).find('option:selected').text();
+		$(this).siblings("h6").text(cur);
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:no,
+    ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+test_desc_01
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+test_note_1
+test_note_1
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>
