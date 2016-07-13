@@ -367,31 +367,35 @@ function code_all($page,$folder,$form){
 	$arr_css=implode("\n\t",$css);
 
 	//脚本去重
-	$arr_js=$arr_js.$sCode[3]."\n";
+	if($arr_js!=""){
+
+// /(!\.)\S+[^\()]/
+
+	}
 
 
 	//函数去重
 	if($arr_fun!=""){
 		$str_fun=str_replace("\n","",trim($arr_fun));
-		$size_fun=substr_count($str_fun,"function",0);
+		$size_fun=substr_count($str_fun,"function ",0);
 		for($x=1;$x<=$size_fun;$x++){
-			$start_pos=newstripos($str_fun,"function",$x);
-			$end_pos=strpos($str_fun,"}function",$start_pos+8);
+			$start_pos=newstripos($str_fun,"function ",$x);
+			$end_pos=strpos($str_fun,"}function",$start_pos+9);
 			if(!$end_pos){ $end_pos=strlen($str_fun);}
-			$len=$end_pos-$start_pos;
+			$len=$end_pos-$start_pos+1;
 			$fun=substr($str_fun,$start_pos,$len);
 			preg_match('/function\s+([^\(]+)/',$fun,$result);
-
-			print_r($end_pos);die;	
-			print_r($result[1]);die;	
+				$rs[$x]=$result[1];
+			if($x>1){
+				if($rs[$x]==$rs[$x-1]){
+					$str_fun=substr_replace($str_fun,'',$start_pos,$len);
+				}
+			}
 		}
+		$str_fun=str_replace("}function","}"."\n"."function",$str_fun);
+		print_r($str_fun);die;
 	}
 		
-
-
-
-// /function\s+([^\(]+)/
-
 
 
 	array_push($arr_all,"\t".$arr_css,$arr_html,$arr_js,$arr_fun);
