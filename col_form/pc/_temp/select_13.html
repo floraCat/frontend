@@ -6,16 +6,15 @@
 
 <style>
 /*_css*/
-.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-.fForm dd{ margin-left:90px;}
-.fSelects.gFlex{ width:298px;}
-.fSelects.gFlex > *{ width:31.3%; padding:0 1%;}
-.fSelects select{ width: 100%; height:30px; line-height:30px;}
-.fSelects ol{ position:relative;}
-	.gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-	.gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
-    /*选择框key*/
+    .gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+    .gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+    .fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+    .fForm dd{ margin-left:90px;}
+    .fSelects.gFlex{ width:298px;}
+    .fSelects.gFlex > *{ width:31.3%; padding:0 1%;}
+    .fSelects select{ width: 100%; height:30px; line-height:30px;}
+    .fSelects ol{ position:relative;}
     .fSelect{ position:relative;}
     .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
     .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
@@ -28,40 +27,40 @@
 
 
 <!--_html-->
-<script type="text/javascript" src="js/m/mode/address.js"></script><!--全国各省市区-->
-<script type="text/javascript" src="js/m/mode/addr_link.js"></script><!--省市区联动-->
-<dl data-js-select-addr>
-    <dt>dl_sel13：<em>*</em></dt>
-    <dd class="fSelects gFlex">
-        <div class="fSelect">
-            <ol class="_prov">
-                <i class="key"></i>
-                <h6 data-val="6">广东</h6>
-                <select>
-                    <option value="-1">--省--</option>
-                </select>
-            </ol>
-        </div><!---->
-        <div class="fSelect">
-            <ol class="_city">
-                <i class="key"></i>
-                <h6></h6>
-                <select>
-                    <option value="-1">--市--</option>
-                </select>
-            </ol>
-        </div><!---->
-        <div class="fSelect">
-            <ol class="_area">
-                <i class="key"></i>
-                <h6></h6>
-                <select>
-                    <option value="-1">--区--</option>
-                </select>
-            </ol>
-        </div><!---->
-    </dd>
-</dl>
+    <script type="text/javascript" src="js/m/mode/address.js"></script><!--全国各省市区-->
+    <script type="text/javascript" src="js/m/mode/addr_link.js"></script><!--省市区联动-->
+    <dl data-js-select-addr>
+        <dt>dl_sel13：<em>*</em></dt>
+        <dd class="fSelects gFlex">
+            <div class="fSelect">
+                <ol class="_prov">
+                    <i class="key"></i>
+                    <h6 data-val="6">广东</h6>
+                    <select>
+                        <option value="-1">--省--</option>
+                    </select>
+                </ol>
+            </div>
+            <div class="fSelect">
+                <ol class="_city">
+                    <i class="key"></i>
+                    <h6></h6>
+                    <select>
+                        <option value="-1">--市--</option>
+                    </select>
+                </ol>
+            </div>
+            <div class="fSelect">
+                <ol class="_area">
+                    <i class="key"></i>
+                    <h6></h6>
+                    <select>
+                        <option value="-1">--区--</option>
+                    </select>
+                </ol>
+            </div>
+        </dd>
+    </dl>
 <!--html_-->
 
 

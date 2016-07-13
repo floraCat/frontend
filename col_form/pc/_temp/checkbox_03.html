@@ -6,9 +6,9 @@
 
 <style>
 /*_css*/
-.wCheck input{ display:none;}
-.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
-.wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
+    .wCheck input{ display:none;}
+    .wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
+    .wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
 /*css_*/
 </style>
 
@@ -16,13 +16,13 @@
 
 
 <!--_html-->
-<div class="fOneCheck" data-js-checkbox>
-    <div class="wCheck">
-    <input class="hide" type="checkbox" name="regAgree" />
-        <label>同意</label>
-        <a href="#">《服务协议》</a>
+    <div class="fOneCheck" data-js-checkbox>
+        <div class="wCheck">
+        <input class="hide" type="checkbox" name="regAgree" />
+            <label>同意</label>
+            <a href="#">《服务协议》</a>
+        </div>
     </div>
-</div>
 <!--html_-->
 
 
@@ -32,7 +32,6 @@
 $(function(){
 /*_js*/
 	$("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
-	//checkbox
 	$("[ data-js-checkbox] label").click(function(){
 		$(this).parent().toggleClass("on");	
 		if($(this).parent().hasClass("on")){

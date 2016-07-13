@@ -18,8 +18,9 @@ if($_GET["list"]){
 			$temp[$index]["ttl"]=$ttl;
 			$arr_code=code_arr($page,$sort,$ttl);
 			$style='<style>'."\n".$arr_code[0]."\n".'</style>';
-			if(!$arr_code[3]==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n"."\n".'});'."\n".'</script>';}
-			$code_all=$style."\n".$arr_code[2]."\n".$js;
+			$html='<div class="fForm">'."\n".$arr_code[2]."\n".'</div>';
+			if(!$arr_code[3]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
+			$code_all=$style."\n".$html."\n".$js;
 			$temp[$index]["code"]=$code_all;
 			$index++;
 		}
@@ -38,8 +39,8 @@ if($_GET["_temp"]){
 	$arr_code=code_arr($page,$folder,$_REQUEST["_temp"]);
 	$style='<style>'."\n".$arr_code[0]."\n".'</style>';
 	$html='<div class="fForm">'."\n".$arr_code[2]."\n".'</div>';
-	if(!$arr_code[3]==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
-	$code_all=$style."\n".$html."\n".$js;
+	if(!$arr_code[3]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
+	$code_all=$style."\n".$html."\n".$js."\n";
 	$smarty->assign('content',$code_all);
 	$smarty->display("list_form_view.html");
 }
@@ -190,7 +191,7 @@ if($_REQUEST["act"]=="createForm"){
 	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 	$js=$arr_all[2];
-	if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
+	if(!$js==""){ $js='<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
 	$code_all=$style."\n".$arr_all[1]."\n".$js;
 	$smarty->assign("code",$code_all);
 	$smarty->display("details_formAll.html");
@@ -204,28 +205,12 @@ if($_REQUEST["act"]=="settingAll"){
 	$folder=$_REQUEST["folder"];
 	$form=$_REQUEST["form"];
 
-	//获取依赖js文件
-	// $arr_info=code_arr2($page,$ttl,$folder);
-	// $refer=trimall($arr_info[2]);
-	// if($refer!=""){
-	// 	$arr_refer=explode(',', $refer);
-	// 	$str_script="";
-	// 	foreach($arr_refer as $k=>$v){
-	// 		$temp=explode(":", $v);
-	// 		$script='<script src="'.$temp[0].'"></script>';
-	// 		$str_script.=$script."\n";
-	// 	}
-	// }
-	// $test=refer_all($page,$folder,$form);
-	// print_r($test);die;
-	//$smarty->assign("script",$script);
-
 	//模板渲染代码
 	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 	$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[1]."\n".'</div>';
 	$js=$arr_all[2];
-	if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
+	if(!$js==""){ $js='<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
 	$code_all=$style."\n".$html."\n".$js;
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');
@@ -234,20 +219,22 @@ if($_REQUEST["act"]=="settingAll"){
 	fwrite($view,$code_all);
 	fclose($view);
 
-	$html=str_replace("    ","\t",htmlspecialchars($arr_all[1]));
-	$html=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$html);
-	$html=str_replace("\n","<br />",$html);
-	$js=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",htmlspecialchars('<script>'."\n".$arr_all[2]."\n".'</script>'));
-	$js=str_replace("\n","<br/>",$js);
-	$css=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",htmlspecialchars('<style>'."\n".$arr_all[0]."\n".'</style>'));
-	$css=str_replace("\n","<br/>",$css);
+	$html=htmlTabs('<div class="fForm">'."\n".$arr_all[1]."\n".'</div>');
+	$js=htmlTabs('<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>');
+	$css=htmlTabs('<style>'."\n".$arr_all[0]."\n".'</style>');
 	$str_unit=$css."<br />".$html."<br />".$js;
 	$smarty->assign("str",$str_unit);
-
 	$smarty->display("details_setting.html");
 }
 
 
+//格式化：制表符 & 换行
+function htmlTabs($str){
+	$str=str_replace("    ", "\t",htmlspecialchars($str));
+	$str=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$str);
+	$str=str_replace("\n","<br />",$str);
+	return $str;
+}
 
 
 //获取模板'css/html/js'的数组
@@ -274,8 +261,15 @@ function code_arr($page,$folder,$ttl){
 	$len_js=$end_js-$start_js;
 	$js=substr($str,$start_js+9,$len_js-11);
 
+	$start_fun=strpos($str,"/*_fun");
+	$end_fun=strpos($str,"/*fun_");
+	$len_fun=$end_fun-$start_fun;
+	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
+	else{$fun="";}
+	
+
 	$arr_code=array();
-	array_push($arr_code,$css,$spec,$html,$js);
+	array_push($arr_code,$css,$spec,$html,$js,$fun);
 	return $arr_code;
 }
 
@@ -326,9 +320,24 @@ function code_all($page,$folder,$form){
 		$arr[$k]=explode(",",$v);
 		$sCode=code_arr($page,$folder,$arr[$k][0]);
 		$arr_css=$arr_css.$sCode[0]."\n";
-		$arr_html=$arr_html.$sCode[2];
-		$arr_js=$arr_js.$sCode[3];
+		$arr_html=$arr_html.$sCode[2]."\n";
+		$arr_js=$arr_js.$sCode[3]."\n";
+		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
 	};
+
+
+// //去重(如合并表单函数)
+// function noRepeat($str,$start,$end){
+// 	$size_find=substr_count($str,$start,0);
+// 	for($x=1;$x<=$size_find;$x++){
+// 		$start_pos=newstripos($str,$start,$x)+count($start);
+// 		$end_pos=strpos($str,$end,$start_pos)-count($end);
+// 		$len=$end_pos-$start_pos;
+// 		$findStr=substr($str,$start_pos,$len);	
+// 	}
+// }
+
+
 	//样式去重
 	$class=array();
 	$len_cls=substr_count($arr_css,"}",0);
@@ -356,23 +365,39 @@ function code_all($page,$folder,$form){
 		}
 	}
 	$arr_css=implode("\n\t",$css);
-	array_push($arr_all,"\t".$arr_css,$arr_html,$arr_js);
+
+	//脚本去重
+	$arr_js=$arr_js.$sCode[3]."\n";
+
+
+	//函数去重
+	if($arr_fun!=""){
+		$str_fun=str_replace("\n","",trim($arr_fun));
+		$size_fun=substr_count($str_fun,"function",0);
+		for($x=1;$x<=$size_fun;$x++){
+			$start_pos=newstripos($str_fun,"function",$x);
+			$end_pos=strpos($str_fun,"}function",$start_pos+8);
+			if(!$end_pos){ $end_pos=strlen($str_fun);}
+			$len=$end_pos-$start_pos;
+			$fun=substr($str_fun,$start_pos,$len);
+			preg_match('/function\s+([^\(]+)/',$fun,$result);
+
+			print_r($end_pos);die;	
+			print_r($result[1]);die;	
+		}
+	}
+		
+
+
+
+// /function\s+([^\(]+)/
+
+
+
+	array_push($arr_all,"\t".$arr_css,$arr_html,$arr_js,$arr_fun);
 	return($arr_all);
 }
 
-
-//表单全部依赖
-// function refer_all($page,$folder,$form){
-// 	$cookie_arr=explode("#",substr($form,14));
-// 	$arr_all=array();
-// 	foreach($cookie_arr as $k=>$v){
-// 		$arr[$k]=explode(",",$v);
-// 		$sCode=code_arr2($page,$arr[$k][0],$folder);
-// 		$str_refer=$arr_refer.$sCode[2]."\n";
-// 		echo($sCode[2]);die;
-// 	}
-// 	return $str_refer;
-// }
 
 
 //获取dir所有文件名称列表

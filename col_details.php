@@ -31,11 +31,14 @@ if($_REQUEST["details"]){
 //模板整源码
 function code_str($page,$folder,$ttl){
 	$arr_code=code_arr($page,$folder,$ttl);
-		if($arr_code[0]!=""){$style='<style>'."\n".$arr_code[0]."\n".'</style>';}
-		else{$style="";};
+	if($arr_code[0]!=""){$style='<style>'."\n".$arr_code[0]."\n".'</style>';}
+	else{$style="";};
+	if($page=="form"){
+		$html='<div class="fForm">'."\n".$arr_code[1]."\n".'</div>';
+	}
 	$js=$arr_code[2];
-	if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[2].'});'."\n".'</script>';}
-	$code_all=$style."\n".$arr_code[1]."\n".$js;
+	if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[2]."\n".'});'."\n".'</script>';}
+	$code_all=$style."\n".$html."\n".$js;
 	return $code_all;
 }
 

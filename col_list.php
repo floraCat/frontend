@@ -24,7 +24,7 @@ if($_GET["list"]){
 				$arr_code=code_arr($page,$sort,$ttl);
 				if($arr_code[0]!=""){$style='<style>'."\n".$arr_code[0]."\n".'</style>';}
 				else{$style="";};
-				if(!$arr_code[3]==""){ $js="\n".'<script>'."\n".'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>';}
+				if(!$arr_code[3]==""){ $js="\n".'<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>';}
 				$code_all=$style."\n".$arr_code[2]."\n".$js;
 				$temp[$index]["code"]=$code_all;
 				$temp[$index]["folder"]=$sort;
@@ -42,7 +42,7 @@ if($_GET["list"]){
 						$temp[$index]["ttl"]=$ttl;
 						$arr_code=code_arr($page,$folder,$ttl);
 						if($arr_code[0]!=""){$style='<style>'."\n".$arr_code[0]."\n".'</style>'."\n";}else{$style="";};
-						if(!$arr_code[3]==""){ $js="\n".'<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
+						if(!$arr_code[3]==""){ $js="\n".'<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
 						$code_all=$style.$arr_code[2].$js;
 						$temp[$index]["code"]=$code_all;
 						$temp[$index]["folder"]=$folder;
@@ -105,8 +105,15 @@ function code_arr($page,$folder,$ttl){
 	$end_js=strpos($str,"/*js_");
 	$len_js=$end_js-$start_js;
 	$js=substr($str,$start_js+9,$len_js-11);
+
+	$start_fun=strpos($str,"/*_fun");
+	$end_fun=strpos($str,"/*fun_");
+	$len_fun=$end_fun-$start_fun;
+	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
+	else{$fun="";}
+
 	$arr_code=array();
-	array_push($arr_code,$css,$spec,$html,$js);
+	array_push($arr_code,$css,$spec,$html,$js,$fun);
 	return $arr_code;
 }
 
@@ -206,7 +213,7 @@ if($_REQUEST["act"]=="setting"){
 	}else{
 		$html='</style>'."\n".$arr_code[2];
 	}
-	if(!$arr_code[3]==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
+	if(!$arr_code[3]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
 	$all=$str_script."\n".$css."\n".$html."\n".$js;
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">'."\n");
@@ -238,7 +245,6 @@ if($_REQUEST["act"]=="setting"){
 	//可编辑样式添加字体颜色
 	$arr_unit=explode('}',substr($arr_code[0],0,-1));
 	$str_unit='';
-	//echo("<pre>");print_r($arr_spec);echo("</pre>");die;
 	foreach($arr_unit as $k1=>$v1){
 		$class=substr($v1,0,strpos($v1,"{"));
 		$arr_style=explode(";",substr($v1,strpos($v1,"{")+1,-1));
@@ -276,16 +282,22 @@ if($_REQUEST["act"]=="setting"){
 		$css='&nbsp;&nbsp;&nbsp;&nbsp;'.$class.'{'.$css.'}<br />';
 		$str_unit.=$css;
 	};
-	$html=str_replace("    ","\t",htmlspecialchars($arr_code[2]));
-	$html=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$html);
-	$html=str_replace("\n","<br />",$html);
-	$js=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",htmlspecialchars('<script>'."\n".$arr_code[3]."\n".'</script>'));
-	$js=str_replace("\n","<br/>",$js);
+
+	$html=htmlTabs('<div class="fForm">'."\n".$arr_code[2]."\n".'</div>');
+	$js=htmlTabs('<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>');
 	$str_unit='<p>&lt;style&gt;</p>'.$str_unit.'<p>&lt;/style&gt;</p>'.$html."<br />".$js;
 	$smarty->assign("str",$str_unit);
 	$smarty->display("details_setting.html");
 }
 
+
+//格式化：制表符 & 换行
+function htmlTabs($str){
+	$str=str_replace("    ", "\t",htmlspecialchars($str));
+	$str=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$str);
+	$str=str_replace("\n","<br />",$str);
+	return $str;
+}
 
 
 //效果展示
@@ -312,8 +324,8 @@ if($_REQUEST["_temp"]){
 	$arr_code=code_arr($page,$folder,$_REQUEST["_temp"]);
 	if($arr_code[0]!=""){ $style='<style>'."\n".$arr_code[0]."\n".'</style>';}
 	else{$style="";}
-	if(!$arr_code["3"]==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
-	$code_all=$str_script."\n".$style."\n".$arr_code[2]."\n".$js;
+	if(!$arr_code["3"]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
+	$code_all=$str_script."\n".$style."\n".$arr_code[2]."\n".$js."\n";
 	$smarty->assign('content',$code_all);
 	$smarty->display("list_1_view.html");
 }

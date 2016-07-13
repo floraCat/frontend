@@ -24,7 +24,7 @@
 		<span class="f"> -></span>
 		<span><em>效果展示</em>：模块的前端展示效果</span>
 		<span class="c"> | </span>
-		<span><em>代码复制</em>：把模板的主体代码复制到剪切板</span>
+		<span><em>源码复制</em>：把模板的主体源码复制到剪切板</span>
 		<span class="c"> | </span>
 		<span><em>自定义设置</em>：提供源码的修改</span>
 		<span class="r"><em>控件清单</em>：可自选控件组合成一个表单，详情请点下面的问号</span>
@@ -38,6 +38,8 @@
 	<div class="desc">勾选控件左上角的选项框添加至此清单，点击上面的按键可进入清单列表，可选择预览或生成整个表单，表单中的控件重复的样式会自动被共用起来。</div>
 </div>
 
+<!--表单特殊说明-->
+<xmp class="noteForm">'源码复制'只复制该模块的主体代码，所有表单控件还需被包含在'<div class="fForm"></div>'以内；组合表单已默认包含此表单容器</xmp>
 
 
 <div class="modeList listForm" style="margin-top:100px"><!--覆盖层-->
@@ -53,7 +55,7 @@
 	<h5><{$temp[list].ttl}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
 		<a href="col_list_form.php?page=<{$smarty.get.page}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
-		<a class="copy">代码复制</a>
+		<a class="copy">源码复制</a>
 		<a href="col_list.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&act=setting&ttl=<{$temp[list].ttl}>" target="_blank">自定义设置</a>
 	</ol>
 	<xmp class="code" style=" display:none;"><{$temp[list].code}></xmp>

@@ -6,9 +6,9 @@
 
 <style>
 /*_css*/
-.wCheck input{ display:none;}
-.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
-.wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
+	.wCheck input{ display:none;}
+	.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
+	.wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
 /*css_*/
 </style>
 
@@ -21,30 +21,34 @@
 
 
 <!--_html-->
-<div class="fOneCheck" data-js-checkbox>
-    <div class="wCheck">
-        <input type="checkbox" name="loginAuto" />
-        <label>自动登录</label>
-    </div>
-</div>
+	<div class="fOneCheck" data-js-checkbox>
+	    <div class="wCheck">
+	        <input type="checkbox" name="loginAuto" />
+	        <label>自动登录</label>
+	    </div>
+	</div>
 <!--html_-->
 
 
 
 
 <script>
+/*_fun*/
+function wCheck(wrap){
+    $(wrap).find("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
+    $(wrap).find("[ data-js-checkbox] label").click(function(){
+        $(this).parent().toggleClass("on"); 
+        if($(this).parent().hasClass("on")){
+            $(this).siblings("input").attr("checked",true); 
+        }else{
+            $(this).siblings("input").attr("checked",false);    
+        }
+    });
+}
+/*fun_*/
 $(function(){
 /*_js*/
-	$("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
-	//checkbox
-	$("[ data-js-checkbox] label").click(function(){
-		$(this).parent().toggleClass("on");	
-		if($(this).parent().hasClass("on")){
-			$(this).siblings("input").attr("checked",true);	
-		}else{
-			$(this).siblings("input").attr("checked",false);	
-		}
-	});	
+	
 /*js_*/
 });
 </script>
