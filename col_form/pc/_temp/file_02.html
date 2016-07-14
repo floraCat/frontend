@@ -38,10 +38,9 @@
 
 
 <script>
-$(function(){
-/*_js*/
-	//上传图片预览
-	$("[data-js-file]").on("change","input",function(){
+/*_fun*/
+function previewFile(wrap){
+	$(wrap).find("[data-js-file]").on("change","input",function(){
 		var objUrl = getFileUrl(this);
 		if (objUrl){
 			$(this).parents(".fFile").find("img").attr("src", objUrl);
@@ -49,7 +48,7 @@ $(function(){
 		}else{
 			$(this).parents(".fFile").removeClass("on");
 		}
-		$(".fForm .quit_file").click(function(){
+		$(wrap).find(".quit_file").click(function(){
 			var parent=$(this).data("js-role");
 			if(parent && parent!=".fFile"){
 				var $img=$(this).parents(parent).find("img");
@@ -76,6 +75,11 @@ $(function(){
 			return url; 
 		} 
 	});
+}
+/*fun_*/
+$(function(){
+/*_js*/
+	previewFile(".fForm");
 /*js_*/
 });
 </script>

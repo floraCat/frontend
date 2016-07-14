@@ -29,7 +29,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 		$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[1]."\n".'</div>';
 		$js=$arr_all[2];
-		if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
+		if(!$js==""){ $js='<script>'."\n".$arr_all[3]."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$code_all=$doc_top."\n".$style."\n".$html."\n".$js."\n".$doc_btm;
@@ -79,7 +79,7 @@ if($_REQUEST["act"]=="zipAll"){
 			$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_code[1]."\n".'</div>';
 		}else{$html=$arr_code[1];}
 		$js=$arr_code[2];
-		if(!$js==""){ $js='<script>'."\n".'$(function(){'."\n".$arr_code[2]."\n".'});'."\n".'</script>';}
+		if(!$js==""){ $js='<script>'."\n".$arr_code[3]."\n".'$(function(){'."\n".$arr_code[2]."\n".'});'."\n".'</script>';}
 		//获取依赖js文件
 		$arr_info=code_arr2($page,$ttl,$folder);
 		$refer=trimall($arr_info[2]);
@@ -170,8 +170,14 @@ function code_arr($page,$folder,$ttl){
 	$len_js=$end_js-$start_js;
 	$js=substr($str,$start_js+9,$len_js-11);
 
+	$start_fun=strpos($str,"/*_fun");
+	$end_fun=strpos($str,"/*fun_");
+	$len_fun=$end_fun-$start_fun;
+	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
+	else{$fun="";}
+
 	$arr_code=array();
-	array_push($arr_code,$css,$html,$js);
+	array_push($arr_code,$css,$html,$js,$fun);
 	return $arr_code;
 }
 
@@ -215,7 +221,8 @@ function code_all($page,$folder,$form){
 		$sCode=code_arr($page,$folder,$arr[$k][0]);
 		$arr_css=$arr_css.$sCode[0]."\n";
 		$arr_html=$arr_html.$sCode[1]."\n";
-		$arr_js=$arr_js.$sCode[2];
+		$arr_js=$arr_js.$sCode[2]."\n";
+		if($sCode[3]){$arr_fun=$arr_fun.$sCode[3];}
 	};
 	//样式去重
 	$class=array();
@@ -244,7 +251,58 @@ function code_all($page,$folder,$form){
 		}
 	}
 	$arr_css=implode("\n",$css);
-	array_push($arr_all,$arr_css,$arr_html,$arr_js);
+
+		//脚本去重
+	if($arr_js!=""){
+		$arr_js=explode("\n", $arr_js);
+		$arr_js2=array();
+		$arr_exFun2=array();
+		foreach($arr_js as $k=>$v){
+			if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
+				if(empty($arr_exFun2)){
+					$arr_js2[$k]=$v;
+					$arr_exFun2[$k]=$v;
+				}else{
+					foreach($arr_exFun2 as $k2=>$v2){
+						if(trim($v)==trim($v2)){}else{
+							$arr_exFun2[$k]=$v;
+							$arr_js2[$k]=$v;
+						}
+					};
+				}
+			}else{
+				$arr_js2[$k]=$v;
+			}
+		};
+		$str_js=implode("\n", $arr_js2);
+	}
+	
+	//函数去重
+	if($arr_fun!=""){
+		$str_fun=str_replace("\n","",trim($arr_fun));
+		$size_fun=substr_count($str_fun,"function ",0);
+		for($x=1;$x<=$size_fun;$x++){
+			$start_pos=newstripos($str_fun,"function ",$x);
+			$end_pos=strpos($str_fun,"}function",$start_pos+9);
+			if(!$end_pos){ $end_pos=strlen($str_fun);}
+			$len=$end_pos-$start_pos+1;
+			$fun=substr($str_fun,$start_pos,$len);
+			preg_match('/function\s+([^\(]+)/',$fun,$result);
+				$rs[$x]=$result[1];
+			if($x>1){
+				if($rs[$x]==$rs[$x-1]){
+					$str_fun=substr_replace($str_fun,'',$start_pos,$len);
+				}
+			}
+		}
+		$str_fun=str_replace("{","{"."\n",$str_fun);
+		$str_fun=str_replace(";",";"."\n",$str_fun);
+		$str_fun=str_replace('}',"}"."\n",$str_fun);
+		$str_fun=str_replace("\n".');',');',$str_fun);
+		$str_fun=str_replace("\n".'else{','else{',$str_fun);
+	}
+
+	array_push($arr_all,$arr_css,$arr_html,$str_js,$str_fun);
 	return($arr_all);
 }
 

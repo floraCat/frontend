@@ -191,7 +191,8 @@ if($_REQUEST["act"]=="createForm"){
 	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 	$js=$arr_all[2];
-	if(!$js==""){ $js='<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
+	$fun=str_replace("\n",'',$arr_all[3]);
+	if(!$js==""){ $js='<script>'."\n".$fun."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
 	$code_all=$style."\n".$arr_all[1]."\n".$js;
 	$smarty->assign("code",$code_all);
 	$smarty->display("details_formAll.html");
@@ -210,7 +211,8 @@ if($_REQUEST["act"]=="settingAll"){
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 	$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[1]."\n".'</div>';
 	$js=$arr_all[2];
-	if(!$js==""){ $js='<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
+	$fun=str_replace("\n",'',$arr_all[3]);
+	if(!$js==""){ $js='<script>'."\n".$fun.'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
 	$code_all=$style."\n".$html."\n".$js;
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');
@@ -219,8 +221,8 @@ if($_REQUEST["act"]=="settingAll"){
 	fwrite($view,$code_all);
 	fclose($view);
 
-	$html=htmlTabs('<div class="fForm">'."\n".$arr_all[1]."\n".'</div>');
-	$js=htmlTabs('<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>');
+	$html=htmlTabs('<div class="fForm">'."\n".$arr_all[1].'</div>');
+	$js=htmlTabs('<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>');
 	$css=htmlTabs('<style>'."\n".$arr_all[0]."\n".'</style>');
 	$str_unit=$css."<br />".$html."<br />".$js;
 	$smarty->assign("str",$str_unit);
@@ -267,7 +269,6 @@ function code_arr($page,$folder,$ttl){
 	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
 	else{$fun="";}
 	
-
 	$arr_code=array();
 	array_push($arr_code,$css,$spec,$html,$js,$fun);
 	return $arr_code;
@@ -325,19 +326,6 @@ function code_all($page,$folder,$form){
 		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
 	};
 
-
-// //去重(如合并表单函数)
-// function noRepeat($str,$start,$end){
-// 	$size_find=substr_count($str,$start,0);
-// 	for($x=1;$x<=$size_find;$x++){
-// 		$start_pos=newstripos($str,$start,$x)+count($start);
-// 		$end_pos=strpos($str,$end,$start_pos)-count($end);
-// 		$len=$end_pos-$start_pos;
-// 		$findStr=substr($str,$start_pos,$len);	
-// 	}
-// }
-
-
 	//样式去重
 	$class=array();
 	$len_cls=substr_count($arr_css,"}",0);
@@ -368,12 +356,33 @@ function code_all($page,$folder,$form){
 
 	//脚本去重
 	if($arr_js!=""){
-
-// /(!\.)\S+[^\()]/
-
+		$arr_js=explode("\n", $arr_js);
+		$arr_js2=array();
+		$arr_exFun2=array();
+		foreach($arr_js as $k=>$v){
+			if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
+				if(empty($arr_exFun2)){
+					$arr_js2[$k]=$v;
+					$arr_exFun2[$k]=$v;
+				}else{
+					$pushIn=1;
+					foreach($arr_exFun2 as $k2=>$v2){
+						if(trim($v)==trim($v2)){
+							$pushIn=0;
+						}
+					};
+					if($pushIn==1){
+						$arr_exFun2[$k]=$v;
+						$arr_js2[$k]=$v;
+					}
+				}
+			}else{
+				$arr_js2[$k]=$v;
+			}
+		};
+		$str_js=implode("\n", $arr_js2);
 	}
-
-
+	
 	//函数去重
 	if($arr_fun!=""){
 		$str_fun=str_replace("\n","",trim($arr_fun));
@@ -392,13 +401,14 @@ function code_all($page,$folder,$form){
 				}
 			}
 		}
-		$str_fun=str_replace("}function","}"."\n"."function",$str_fun);
-		print_r($str_fun);die;
+		$str_fun=str_replace("{","{"."\n",$str_fun);
+		$str_fun=str_replace(";",";"."\n",$str_fun);
+		$str_fun=str_replace('}',"}"."\n",$str_fun);
+		$str_fun=str_replace("\n".');',');',$str_fun);
+		$str_fun=str_replace("\n".'else{','else{',$str_fun);
 	}
-		
 
-
-	array_push($arr_all,"\t".$arr_css,$arr_html,$arr_js,$arr_fun);
+	array_push($arr_all,"\t".$arr_css,$arr_html,$str_js,$str_fun);
 	return($arr_all);
 }
 

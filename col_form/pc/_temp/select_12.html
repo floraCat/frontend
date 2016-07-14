@@ -19,7 +19,7 @@
     .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
     .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
     .fSelect h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
-    .fSelect select{ position:absolute; top:0; left:0; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
+    .fSelect select{ position:absolute; top:0; left:0; width: 100%; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
 /*css_*/
 </style>
 
@@ -68,16 +68,20 @@
 
 
 <script>
+/*_fun*/
+function selectTrigger(wrap){
+    $(wrap).find("option[selected]").each(function(){
+        $(this).parent().siblings("h6").text($(this).text());
+    });
+    $(wrap).on("change","select",function(){
+        var cur=$(this).find('option:selected').text();
+        $(this).siblings("h6").text(cur);
+    });
+}
+/*fun_*/
 $(function(){
 /*_js*/
-	//选择框key
-	$("option[selected]").each(function(){
-		$(this).parent().siblings("h6").text($(this).text());
-	});
-	$("[data-js-select]").delegate("select","change",function(){
-		var cur=$(this).find('option:selected').text();
-		$(this).siblings("h6").text(cur);
-	});
+    selectTrigger(".fSelect");
 /*js_*/
 });
 </script>

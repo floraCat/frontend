@@ -29,17 +29,22 @@
 
 
 <script>
+/*_fun*/
+function wCheck(wrap){
+    $(wrap).find("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
+    $(wrap).find("[ data-js-checkbox] label").click(function(){
+        $(this).parent().toggleClass("on"); 
+        if($(this).parent().hasClass("on")){
+            $(this).siblings("input").attr("checked",true); 
+        }else{
+            $(this).siblings("input").attr("checked",false);    
+        }
+    });
+}
+/*fun_*/
 $(function(){
 /*_js*/
-	$("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
-	$("[ data-js-checkbox] label").click(function(){
-		$(this).parent().toggleClass("on");	
-		if($(this).parent().hasClass("on")){
-			$(this).siblings("input").attr("checked",true);	
-		}else{
-			$(this).siblings("input").attr("checked",false);	
-		}
-	});	
+    wCheck(".fForm");
 /*js_*/
 });
 </script>

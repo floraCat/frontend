@@ -1,0 +1,41 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="h_reset.css" />
+	<script src="jquery-1.10.2.js"></script>
+	<script src="h_base_hover.js"></script>
+</head>
+<body>
+
+<style>
+.pNav2{ height:40px; line-height:40px;}
+.pNav2 li{ position:relative; float:left;}
+.pNav2 li .h_n{ display:block; padding:0 15px;}
+.pNav2 li a:hover,.pNav2 li .on,.pNav2 .open .h_n{ color:#fff; background-color:#CC0000;}
+.pNav2 li ol{ position:absolute; top:40px; left:0; display:none; width:100%;}
+.pNav2 li.open ol{ display:block;}
+.pNav2 li ol a{ display:block; background-color:#eee; _float:left; _width:100%;}
+</style>
+<div class="pNav2">
+	<li><a class="h_n on" href="#">首页</a></li>
+	<li><a class="h_n" href="#">栏目壹</a></li>
+	<li data-js-hover>
+		<a class="h_n" href="#">栏目贰</a>
+		<ol>
+			<a class="h_c" href="#">下拉栏目一</a>
+			<a class="h_c" href="#">下拉栏目二</a>
+		</ol>
+	</li>
+	<li data-js-hover>
+		<a class="h_n" href="#">栏目叁</a>
+		<ol>
+			<a class="h_c" href="#">新闻一</a>
+			<a class="h_c" href="#">新闻二</a>
+		</ol>
+	</li>
+	<li><a class="h_n" href="#">栏目肆</a></li>
+</div>
+
+
+</body>
+</html>
