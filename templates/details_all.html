@@ -44,15 +44,15 @@
 	<!--按键-->
 	<ol class="fBtn">
 		<ul class="btn1">
-			<a class="fl" target="_blank" href="col_list.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&_temp=<{$info.ttl}>">效果展示</a>
+			<a class="fl" target="_blank" href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&_temp=<{$info.ttl}>">效果展示</a>
 			<{if $smarty.get.page!="unit"}>
-			<a class="fr" target="_blank" href="col_list.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&act=setting&ttl=<{$info.ttl}>">自定义设置</a>
+			<a class="fr" target="_blank" href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&act=setting&ttl=<{$info.ttl}>">自定义设置</a>
 			<{/if}>
 		</ul>
 		<ul class="btn2">
 			<a class="fl copy" href="javascript:;">源码复制</a>
 			<{if $smarty.get.page!="unit"}>
-				<a class="fr download" href="col_details_zip.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&ttl=<{$info.ttl}>&act=zipAll">整套下载</a>
+				<a class="fr download" href="col_zip.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&ttl=<{$info.ttl}>&act=zipAll">整套下载</a>
 			<{else}>
 				<a class="fr download" href="files/zip/col_<{$smarty.get.page}>/<{$info.ttl}>.zip">整套下载</a>
 			<{/if}>
@@ -75,13 +75,13 @@
 				<p>h_reset.css</p>
 				<span>：浏览器重置样式</span>
 				<a target="_blank" href="css/h_reset.css">查看源码</a>
-				<a target="_blank" href="col_details_zip.php?act=zipOne&file=css/h_reset.css">点击下载</a>
+				<a target="_blank" href="col_zip.php?act=zipOne&file=css/h_reset.css">点击下载</a>
 			</li>
 			<li>
 				<p>jquery-1.10.2.js</p>
 				<span>：JQ库</span>
 				<a target="_blank" href="js/jquery-1.10.2.js">查看源码</a>
-				<a target="_blank" href="col_details_zip.php?act=zipOne&file=js/jquery-1.10.2.js">点击下载</a>
+				<a target="_blank" href="col_zip.php?act=zipOne&file=js/jquery-1.10.2.js">点击下载</a>
 			</li>
 		</ol>
 	</div>
@@ -124,7 +124,7 @@ $(function(){
 				+'<p>'+basename+'</p>'
 				+'<span>：'+arr[i][1]+'</span>'
 				+'<a target="_blank" href="'+arr[i][0]+'">查看源码</a>'
-				+'<a href="col_details_zip.php?act=zipOne&page=<{$smarty.get.page}>&file='+arr[i][0]+'">点击下载</a>'
+				+'<a href="col_zip.php?act=zipOne&page=<{$smarty.get.page}>&file='+arr[i][0]+'">点击下载</a>'
 			+'</li>';
 			$(".fRely ol").append(html);
 		}

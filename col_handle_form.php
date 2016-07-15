@@ -1,50 +1,7 @@
 <?php
 include_once("include.php");
+include_once("global_function.php");
 $sdb=new db();
-
-
-
-//列举/_temp/下文件夹内的文件名
-if($_GET["list"]){
-	$list=$_GET["list"];
-	$page=$_REQUEST['page'];
-	$url2="col_form/pc/_temp";
-	$sort=$_GET["sort"];
-	$files=my_scandir($url2);
-	$index=0;
-	foreach($files as $k0=>$v0){
-		if(strstr($v0,$list)){
-			$ttl=substr($v0,0,-5);
-			$temp[$index]["ttl"]=$ttl;
-			$arr_code=code_arr($page,$sort,$ttl);
-			$style='<style>'."\n".$arr_code[0]."\n".'</style>';
-			$html='<div class="fForm">'."\n".$arr_code[2]."\n".'</div>';
-			if(!$arr_code[3]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
-			$code_all=$style."\n".$html."\n".$js;
-			$temp[$index]["code"]=$code_all;
-			$index++;
-		}
-	}
-	$smarty->assign("temp",$temp);
-	$smarty->display("list_form.html");
-}
-
-
-
-
-//效果展示
-if($_GET["_temp"]){
-	$page=$_GET["page"];
-	$folder=$_GET["folder"];
-	$arr_code=code_arr($page,$folder,$_REQUEST["_temp"]);
-	$style='<style>'."\n".$arr_code[0]."\n".'</style>';
-	$html='<div class="fForm">'."\n".$arr_code[2]."\n".'</div>';
-	if(!$arr_code[3]==""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>';}
-	$code_all=$style."\n".$html."\n".$js."\n";
-	$smarty->assign('content',$code_all);
-	$smarty->display("list_form_view.html");
-}
-
 
 
 
@@ -171,7 +128,7 @@ if($_REQUEST["goto"]=="del"){
 
 
 
-//查看效果
+//查看效果__[控件清单]
 if($_REQUEST["act"]=="viewForm"){
 	$page=$_REQUEST['page'];
 	$folder=$_REQUEST["folder"];
@@ -184,11 +141,12 @@ if($_REQUEST["act"]=="viewForm"){
 
 
 
-//合成表单(详情页)
+//合成表单__[控件清单]
 if($_REQUEST["act"]=="createForm"){
 	$page=$_REQUEST["page"];
 	$folder=$_REQUEST["folder"];
-	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
+	$form=$_REQUEST["form"];
+	$arr_all=code_all($page,$folder,$form);
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
 	$js=$arr_all[2];
 	$fun=str_replace("\n",'',$arr_all[3]);
@@ -200,7 +158,7 @@ if($_REQUEST["act"]=="createForm"){
 
 
 
-//样式设置[全部控件]
+//自定义设置__[合成表单]
 if($_REQUEST["act"]=="settingAll"){
 	$page=$_REQUEST["page"];
 	$folder=$_REQUEST["folder"];
@@ -230,87 +188,7 @@ if($_REQUEST["act"]=="settingAll"){
 }
 
 
-//格式化：制表符 & 换行
-function htmlTabs($str){
-	$str=str_replace("    ", "\t",htmlspecialchars($str));
-	$str=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$str);
-	$str=str_replace("\n","<br />",$str);
-	return $str;
-}
 
-
-//获取模板'css/html/js'的数组
-function code_arr($page,$folder,$ttl){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
-
-	$start_css=strpos($str,"/*_css");
-	$end_css=strpos($str,"/*css_");
-	$len_css=$end_css-$start_css;
-	$css=substr($str,$start_css+10,$len_css-12);
-
-	$start_spec=strpos($str,"<!--_spec");
-	$end_spec=strpos($str,"<!--spec_");
-	$len_spec=$end_spec-$start_spec;
-	$spec=substr($str,$start_spec+12,$len_spec-14);
-
-	$start_html=strpos($str,"<!--_html");
-	$end_html=strpos($str,"<!--html_");
-	$len_html=$end_html-$start_html;
-	$html=substr($str,$start_html+14,$len_html-16);
-
-	$start_js=strpos($str,"/*_js");
-	$end_js=strpos($str,"/*js_");
-	$len_js=$end_js-$start_js;
-	$js=substr($str,$start_js+9,$len_js-11);
-
-	$start_fun=strpos($str,"/*_fun");
-	$end_fun=strpos($str,"/*fun_");
-	$len_fun=$end_fun-$start_fun;
-	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
-	else{$fun="";}
-	
-	$arr_code=array();
-	array_push($arr_code,$css,$spec,$html,$js,$fun);
-	return $arr_code;
-}
-
-
-//模块详情页信息
-function code_arr2($page,$ttl,$folder){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
-
-	$start_hack=strpos($str,"<!--_hack");
-	$end_hack=strpos($str,"<!--hack_");
-	$len_hack=$end_hack-$start_hack;
-	$hack=substr($str,$start_hack+14,$len_hack-16);
-
-	$start_desc=strpos($str,"<!--_desc");
-	$end_desc=strpos($str,"<!--desc_");
-	$len_desc=$end_desc-$start_desc;
-	$desc=substr($str,$start_desc+14,$len_desc-16);
-	
-	$start_refer=strpos($str,"<!--_refer");
-	$end_refer=strpos($str,"<!--refer_");
-	$len_refer=$end_refer-$start_refer;
-	$refer=substr($str,$start_refer+15,$len_refer-17);
-
-	$start_note=strpos($str,"<!--_note");
-	$end_note=strpos($str,"<!--note_");
-	$len_note=$end_note-$start_note;
-	$note=substr($str,$start_note+14,$len_note-16);
-
-	$arr_code=array();
-	array_push($arr_code,$hack,$desc,$refer,$note);
-	return $arr_code;
-}
-
-
-//删除全部空格
-function trimall($str){
-    $qian=array(" ","　","\t","\n","\r");
-    $hou=array("","","","","");
-    return str_replace($qian,$hou,$str); 
-}
 
 
 //表单全部控件(html/css/js)arr数组
@@ -413,36 +291,6 @@ function code_all($page,$folder,$form){
 }
 
 
-
-//获取dir所有文件名称列表
-function my_scandir($dir){
-    $files = array();  
-    $dir_list = scandir($dir);  
-    foreach($dir_list as $file){  
-		$path_parts = pathinfo($file);
-		if($path_parts['extension']=='html'){
-			if ( $file != ".." && $file != "." ){  
-				if ( is_dir($dir . "/" . $file) ){  
-					$files[$file] = my_scandir($dir . "/" . $file);  
-				}else{  
-					$files[] = $file;  
-				}  
-			}  
-		}
-    }  
-    return $files;  
-}  
-
-
-//第几次出现的位置
-function newstripos($str, $find, $count, $offset=0){
-	$pos = stripos($str, $find, $offset);
-	$count--;
-	if ($count > 0 && $pos !== FALSE){
-		$pos = newstripos($str, $find ,$count, $pos+1);
-	}
-	return $pos;
-}
 
 
 ?>

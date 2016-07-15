@@ -49,8 +49,8 @@
 
 
 <div class="pBtns">
-	<a class="createForm" href="col_list_form.php?page=form&act=createForm">合成表单</a>
-	<a target="_blank" class="viewForm" href="col_list_form.php?page=form&act=viewForm">查看效果</a>
+	<a class="createForm" href="col_handle_form.php?page=form&folder=base&act=createForm">合成表单</a>
+	<a target="_blank" class="viewForm" href="col_handle_form.php?page=form&folder=base&act=viewForm">查看效果</a>
 </div>
 
 
@@ -93,7 +93,7 @@ $(function(){
 			"code":code,
 			"goto":"first",
 		}
-		$.post("col_list_form.php",submitdata,function(data){
+		$.post("col_handle_form.php",submitdata,function(data){
 			$(".listCart .tr").remove();
 			callback(data);
 		});
@@ -108,7 +108,7 @@ $(function(){
 			"code":code,
 			"goto":"last",
 		}
-		$.post("col_list_form.php",submitdata,function(data){
+		$.post("col_handle_form.php",submitdata,function(data){
 			$(".listCart .tr").remove();
 			callback(data);
 		});
@@ -128,7 +128,7 @@ $(function(){
 				"sort":sort,
 				"goto":"up",
 			}
-			$.post("col_list_form.php",submitdata,function(data){
+			$.post("col_handle_form.php",submitdata,function(data){
 				$(".listCart .tr").remove();
 				callback(data);
 			});
@@ -146,7 +146,7 @@ $(function(){
 			"goto":"del"
 		}
 		if(confirm("确定要删除此条目吗？")){
-			$.post("col_list_form.php",submitdata,function(data){
+			$.post("col_handle_form.php",submitdata,function(data){
 				$(".listCart .tr").remove();
 				callback(data);
 			});

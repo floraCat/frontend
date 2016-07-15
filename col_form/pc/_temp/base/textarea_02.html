@@ -37,26 +37,18 @@ function txtLimit(wrap,isChange){
     $obj.keyup(function(){
         var txtLimit=$(this).data("js-txt");
         var txtLen=$(this).val().length;
-        if(isChange){
-            $(wrap).find(".txtNum").text(txtLimit-txtLen);
-        }
-        if(txtLen>txtLimit){
+        if(txtLen>=txtLimit){
             $obj.val($(this).val().substr(0,txtLimit));
         }
+        if(isChange){
+            $(wrap).find(".txtNum").text(txtLimit-txtLen);
+        }        
     })
 }
 /*fun_*/
 $(function(){
 /*_js*/
-	//文本框2字数限制
-	$("[data-js-txt]").keyup(function(){
-		var txtnum=$(this).data("js-txt");
-		var len_txt=$(this).val().length;
-		$(this).siblings("p").find("span").text(txtnum-len_txt);
-		if(len_txt>txtnum){
-			$(this).val($(this).val().substr(0,txtnum));	
-		}
-	});
+    txtLimit(".fTxt2",1);
 /*js_*/
 });
 </script>

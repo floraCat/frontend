@@ -34,15 +34,24 @@
 
 
 <script>
+/*_fun*/
+function txtLimit(wrap,isChange){
+    var $obj=$(wrap).find("[data-js-txt]");
+    $obj.keyup(function(){
+        var txtLimit=$(this).data("js-txt");
+        var txtLen=$(this).val().length;
+        if(txtLen>=txtLimit){
+            $obj.val($(this).val().substr(0,txtLimit));
+        }
+        if(isChange){
+            $(wrap).find(".txtNum").text(txtLimit-txtLen);
+        }        
+    })
+}
+/*fun_*/
 $(function(){
 /*_js*/
-	//文本框字数限制
-	$("[data-js-txt]").keyup(function(){
-		var txtnum=$(this).data("js-txt");
-		if($(this).val().length>txtnum){
-			$(this).val($(this).val().substr(0,txtnum));	
-		}
-	});
+    txtLimit(".fTxt1",0);
 /*js_*/
 });
 </script>

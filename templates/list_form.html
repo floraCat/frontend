@@ -49,14 +49,14 @@
 
 <{section name=list loop=$temp}>
 <li data-ttl="<{$temp[list].ttl}>">
-	<a class="a img" href="col_details.php?page=<{$smarty.get.page}>&details=<{$temp[list].ttl}>" target="_blank">
+	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&details=<{$temp[list].ttl}>" target="_blank">
 		<img src="col_<{$smarty.get.page}>/pc/pictures/<{$temp[list].ttl}>" />
 	</a>
 	<h5><{$temp[list].ttl}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
-		<a href="col_list_form.php?page=<{$smarty.get.page}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
+		<a href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$smarty.get.folder}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
 		<a class="copy">源码复制</a>
-		<a href="col_list.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&act=setting&ttl=<{$temp[list].ttl}>" target="_blank">自定义设置</a>
+		<a href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&act=setting&ttl=<{$temp[list].ttl}>" target="_blank">自定义设置</a>
 	</ol>
 	<xmp class="code" style=" display:none;"><{$temp[list].code}></xmp>
 	<div class="check" data-ttl="<{$temp[list].ttl}>"></div>
@@ -86,8 +86,8 @@ $(function(){
 		var submitdata={
 			'act':'formData'
 		}
-		$.post("col_list_form.php",submitdata,function(data){
-			window.location.href="col_list_form.php?page=form&act=formCart";
+		$.post("col_handle_form.php",submitdata,function(data){
+			window.location.href="col_handle_form.php?page=form&act=formCart";
 		});
 	});
 

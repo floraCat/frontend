@@ -1,4 +1,5 @@
 <?php
+include_once("global_function.php");
 
 /*
 --压缩下载模块执行前面不能有header信息，否则无法设置压缩需要的header信息，所以跟其他功能区分开来
@@ -26,42 +27,19 @@ if($_REQUEST["act"]=="zipAll"){
 		$page=$_REQUEST["page"];
 		$folder=$_REQUEST["folder"];
 		$arr_all=code_all($page,$folder,$_REQUEST["form"]);
-		$style='<style>'."\n".$arr_all[0]."\n".'</style>';
-		$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[1]."\n".'</div>';
-		$js=$arr_all[2];
-		if(!$js==""){ $js='<script>'."\n".$arr_all[3]."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
+		//模板渲染代码
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
-		$code_all=$doc_top."\n".$style."\n".$html."\n".$js."\n".$doc_btm;
+		$code_all=$doc_top."\n".code_str($arr_all)."\n".$doc_btm;
 		$f=fopen($url."/form_".date("YmdHis", time()).".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
-		//获取背景图片
-		$len_imgs=substr_count($style,'url(',0);
-		if($len_imgs>0){
-			for($i=1;$i<=$len_imgs;$i++){
-				$start_pos=newstripos($style, 'url(', $i)+4;
-				$end_pos=strpos($style,')',$start_pos);	
-				$len=$end_pos-$start_pos;
-				$str_img=substr($style,$start_pos,$len);
-				$url_img=pathinfo($str_img);
-				file2dir($str_img, $url.'/'.$url_img["dirname"]);
-			};
-		}
-		//获取html图片
-		preg_match_all('/<img.*?src="(.*?)".*?>/is',$html,$arr_pics);
-		$len_pics=count($arr_pics[1]);
-		for($j=0;$j<$len_pics;$j++){
-			if($j>0){
-				if($arr_pics[1][$j]!=$arr_pics[1][$j-1]){
-					$url_pic=pathinfo($arr_pics[1][$j]);
-					file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
-				}
-			}else{
-				$url_pic=pathinfo($arr_pics[1][$j]);
-				file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
-			}
-		}
+
+		$style=$arr_all[0];
+		getImgs($url,$style);//获取背景图片
+		$html=$arr_all[2];
+		getImages($url,$html);//获取html图片
+
 		$files=array();
 		array_push($files,'./css/h_reset.css');
 		array_push($files,'./js/jquery-1.10.2.js');
@@ -73,59 +51,24 @@ if($_REQUEST["act"]=="zipAll"){
 		$page=$_GET["page"];
 		$folder=$_GET["folder"];
 		$ttl=$_GET["ttl"];
-		$arr_code=code_arr($page,$folder,$ttl);
-		$style='<style>'."\n".$arr_code[0]."\n".'</style>';
-		if($page=="form"){
-			$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_code[1]."\n".'</div>';
-		}else{$html=$arr_code[1];}
-		$js=$arr_code[2];
-		if(!$js==""){ $js='<script>'."\n".$arr_code[3]."\n".'$(function(){'."\n".$arr_code[2]."\n".'});'."\n".'</script>';}
-		//获取依赖js文件
-		$arr_info=code_arr2($page,$ttl,$folder);
-		$refer=trimall($arr_info[2]);
-		if($refer!=""){
-			$arr_refer=explode(',', $refer);
-			$str_script="";
-			foreach($arr_refer as $k=>$v){
-				$temp=explode(":", $v);
-				$script='<script src="'.basename($temp[0]).'"></script>';
-				$str_script.=$script;
-			}
-		}
+		$str_script=getRefer($page,$ttl,$folder);//依赖
+		//模板渲染代码
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
-		$code_all=$doc_top."\n".$style."\n".$html."\n".$js."\n".$doc_btm;
+		$arr_code=code_arr($page,$folder,$ttl);
+		$code_all=$doc_top."\n".code_str($arr_code)."\n".$doc_btm;
+
 		$f=fopen($url."/".$ttl.".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
-		//获取背景图片
-		$len_imgs=substr_count($style,'url(',0);
-		if($len_imgs>0){
-			for($i=1;$i<=$len_imgs;$i++){
-				$start_pos=newstripos($style, 'url(', $i)+4;
-				$end_pos=strpos($style,')',$start_pos);	
-				$len=$end_pos-$start_pos;
-				$str_img=substr($style,$start_pos,$len);
-				$url_img=pathinfo($str_img);
-				file2dir($str_img, $url.'/'.$url_img["dirname"]);
-			};
-		}
-		//获取html图片
-		preg_match_all('/<img.*?src="(.*?)".*?>/is',$html,$arr_pics);
-		$len_pics=count($arr_pics[1]);
-		for($j=0;$j<$len_pics;$j++){
-			if($j>0){
-				if($arr_pics[1][$j]!=$arr_pics[1][$j-1]){
-					$url_pic=pathinfo($arr_pics[1][$j]);
-					file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
-				}
-			}else{
-				$url_pic=pathinfo($arr_pics[1][$j]);
-				file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
-			}
-		}
+
+		$style=$arr_all[0];
+		getImgs($url,$style);//获取背景图片
+		$html=$arr_all[2];
+		getImages($url,$html);//获取html图片
+
 		$files=array();
-		$arr_info=code_arr2($page,$ttl,$folder);
+		$arr_info=info_arr($page,$ttl,$folder);
 		if(strpos($arr_info[2],",")===false){//依赖[单个]
 			$refer=$arr_info[2];
 			$arr_temp=explode(':',$refer);
@@ -151,64 +94,37 @@ if($_REQUEST["act"]=="zipAll"){
 
 
 
-//获取模板'css/html/js'的数组
-function code_arr($page,$folder,$ttl){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
-
-	$start_css=strpos($str,"/*_css");
-	$end_css=strpos($str,"/*css_");
-	$len_css=$end_css-$start_css;
-	$css=substr($str,$start_css+10,$len_css-12);
-
-	$start_html=strpos($str,"<!--_html");
-	$end_html=strpos($str,"<!--html_");
-	$len_html=$end_html-$start_html;
-	$html=substr($str,$start_html+14,$len_html-16);
-
-	$start_js=strpos($str,"/*_js");
-	$end_js=strpos($str,"/*js_");
-	$len_js=$end_js-$start_js;
-	$js=substr($str,$start_js+9,$len_js-11);
-
-	$start_fun=strpos($str,"/*_fun");
-	$end_fun=strpos($str,"/*fun_");
-	$len_fun=$end_fun-$start_fun;
-	if($start_fun){ $fun=substr($str,$start_fun+10,$len_fun-12)."\n";}
-	else{$fun="";}
-
-	$arr_code=array();
-	array_push($arr_code,$css,$html,$js,$fun);
-	return $arr_code;
+//获取背景图片
+function getImgs($url,$style){
+	$len_imgs=substr_count($style,'url(',0);
+	if($len_imgs>0){
+		for($i=1;$i<=$len_imgs;$i++){
+			$start_pos=newstripos($style, 'url(', $i)+4;
+			$end_pos=strpos($style,')',$start_pos);	
+			$len=$end_pos-$start_pos;
+			$str_img=substr($style,$start_pos,$len);
+			$url_img=pathinfo($str_img);
+			file2dir($str_img, $url.'/'.$url_img["dirname"]);
+		};
+	}
 }
 
 
-//模块详情页信息
-function code_arr2($page,$ttl,$folder){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
-
-	$start_hack=strpos($str,"<!--_hack");
-	$end_hack=strpos($str,"<!--hack_");
-	$len_hack=$end_hack-$start_hack;
-	$hack=substr($str,$start_hack+14,$len_hack-16);
-
-	$start_desc=strpos($str,"<!--_desc");
-	$end_desc=strpos($str,"<!--desc_");
-	$len_desc=$end_desc-$start_desc;
-	$desc=substr($str,$start_desc+14,$len_desc-16);
-	
-	$start_refer=strpos($str,"<!--_refer");
-	$end_refer=strpos($str,"<!--refer_");
-	$len_refer=$end_refer-$start_refer;
-	$refer=substr($str,$start_refer+15,$len_refer-17);
-
-	$start_note=strpos($str,"<!--_note");
-	$end_note=strpos($str,"<!--note_");
-	$len_note=$end_note-$start_note;
-	$note=substr($str,$start_note+14,$len_note-16);
-
-	$arr_code=array();
-	array_push($arr_code,$hack,$desc,$refer,$note);
-	return $arr_code;
+//获取html图片
+function getImages($url,$html){
+	preg_match_all('/<img.*?src="(.*?)".*?>/is',$html,$arr_pics);
+	$len_pics=count($arr_pics[1]);
+	for($j=0;$j<$len_pics;$j++){
+		if($j>0){
+			if($arr_pics[1][$j]!=$arr_pics[1][$j-1]){
+				$url_pic=pathinfo($arr_pics[1][$j]);
+				file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
+			}
+		}else{
+			$url_pic=pathinfo($arr_pics[1][$j]);
+			file2dir($arr_pics[1][$j], $url.'/'.$url_pic["dirname"]);
+		}
+	}
 }
 
 
@@ -220,9 +136,10 @@ function code_all($page,$folder,$form){
 		$arr[$k]=explode(",",$v);
 		$sCode=code_arr($page,$folder,$arr[$k][0]);
 		$arr_css=$arr_css.$sCode[0]."\n";
-		$arr_html=$arr_html.$sCode[1]."\n";
-		$arr_js=$arr_js.$sCode[2]."\n";
-		if($sCode[3]){$arr_fun=$arr_fun.$sCode[3];}
+		$arr_spec=$arr_spec.$sCode[1];
+		$arr_html=$arr_html.$sCode[2]."\n";
+		$arr_js=$arr_js.$sCode[3]."\n";
+		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
 	};
 	//样式去重
 	$class=array();
@@ -252,7 +169,7 @@ function code_all($page,$folder,$form){
 	}
 	$arr_css=implode("\n",$css);
 
-		//脚本去重
+	//脚本去重
 	if($arr_js!=""){
 		$arr_js=explode("\n", $arr_js);
 		$arr_js2=array();
@@ -302,7 +219,7 @@ function code_all($page,$folder,$form){
 		$str_fun=str_replace("\n".'else{','else{',$str_fun);
 	}
 
-	array_push($arr_all,$arr_css,$arr_html,$str_js,$str_fun);
+	array_push($arr_all,$arr_css,$arr_spec,$arr_html,$str_js,$str_fun);
 	return($arr_all);
 }
 
@@ -339,25 +256,6 @@ function deldir($dir,$leave) {
 	else{ return false;}  	
   }
 	  
-}
-
-
-//删除全部空格
-function trimall($str){
-    $qian=array(" ","　","\t","\n","\r");
-    $hou=array("","","","","");
-    return str_replace($qian,$hou,$str); 
-}
-
-
-//第几次出现的位置
-function newstripos($str, $find, $count, $offset=0){
-	$pos = stripos($str, $find, $offset);
-	$count--;
-	if ($count > 0 && $pos !== FALSE){
-		$pos = newstripos($str, $find ,$count, $pos+1);
-	}
-	return $pos;
 }
 
 

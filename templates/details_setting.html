@@ -92,7 +92,7 @@ $(function(){
         }
         //console.log(document.getElementsByTagName('iframe')[1].contentWindow.document.body.innerText);
         console.log(newCode);
-        $.post("col_list.php",submitdata,function(){
+        $.post("col_handle.php",submitdata,function(){
             document.getElementsByTagName('iframe')[0].contentWindow.location.reload();
         });
     });

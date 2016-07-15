@@ -35,10 +35,10 @@
 <div class="listSort">
 	<h5>筛选：</h5>
     <ul>
-        <a class="on" data-cat="all" href="col_list.php?page=<{$smarty.get.page}>&list=<{$smarty.get.list}>">全部</a>
+        <a class="on" data-cat="all" href="col_handle.php?page=<{$smarty.get.page}>&list=<{$smarty.get.list}>">全部</a>
 
         <{section name=list loop=$arr_sort}>
-        <a data-cat="<{$arr_sort[list][0]}>" href="col_list.php?page=<{$smarty.get.page}>&list=<{$smarty.get.list}>&sort=<{$arr_sort[list][0]}>"><{$arr_sort[list][1]}></a>
+        <a data-cat="<{$arr_sort[list][0]}>" href="col_handle.php?page=<{$smarty.get.page}>&list=<{$smarty.get.list}>&sort=<{$arr_sort[list][0]}>"><{$arr_sort[list][1]}></a>
         <{/section}>
     </ul>
 </div>
@@ -51,15 +51,15 @@
 
 <{section name=list loop=$temp}>
 <li>
-	<a class="a img" href="col_details.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&details=<{$temp[list].ttl}>" target="_blank">
+	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&details=<{$temp[list].ttl}>" target="_blank">
 		<img src="col_<{$smarty.get.page}>/pc/pictures/<{$temp[list].ttl}>" />
 	</a>
 	<h5><{$temp[list].ttl}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
-		<a href="col_list.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
+		<a href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
 		<a class="copy">源码复制</a>
 		<{if $smarty.get.page!='unit'}>
-		<a href="col_list.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&act=setting&ttl=<{$temp[list].ttl}>" target="_blank">自定义设置</a>
+		<a href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&act=setting&ttl=<{$temp[list].ttl}>" target="_blank">自定义设置</a>
 		<{/if}>
 	</ol>
 	<xmp class="code" style=" display:none;"><{$temp[list].code}></xmp>

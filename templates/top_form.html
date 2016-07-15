@@ -33,36 +33,36 @@
 <style>.pCat7 li{ padding:0 9px;}</style>
 <ul class="pCat7" style="width:1200px; margin-top: 80px;">
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=text_"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=text">text输入框</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=text_"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=text">text输入框</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=password"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=recom">password输入框</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=password"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=recom">password输入框</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=radio"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=radio">radio单选</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=radio"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=radio">radio单选</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=checkbox"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=checkbox">checkbox多选</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=checkbox"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=checkbox">checkbox多选</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=file"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=file">file上传控件</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=file"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=file">file上传控件</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=other"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=other">其他控件</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=other"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=other">其他控件</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=select"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=select">select选项框</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=select"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=select">select选项框</a></h5>
     </li>
     <li>
-        <a class="img" href="col_list_form.php?page=form&list=textarea"><img src="images/sys/3.jpg" alt="" /></a>
-        <h5><a href="col_list_form.php?page=form&list=textarea">textarea文本框</a></h5>
+        <a class="img" href="col_handle.php?page=form&folder=base&list=textarea"><img src="images/sys/3.jpg" alt="" /></a>
+        <h5><a href="col_handle.php?page=form&folder=base&list=textarea">textarea文本框</a></h5>
     </li>
 </ul><!--pCat7-->
 
@@ -81,8 +81,8 @@ $(function(){
         var submitdata={
             'act':'formData'
         }
-        $.post("col_list_form.php",submitdata,function(data){
-            window.location.href="col_list_form.php?page=form&act=formCart";
+        $.post("col_handle_form.php",submitdata,function(data){
+            window.location.href="col_handle_form.php?page=form&act=formCart";
         });
     });
 

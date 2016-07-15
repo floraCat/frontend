@@ -3,18 +3,6 @@ include_once("include.php");
 $sdb=new db();
 
 
-/*默认值 [暂时]*/
-// $db_name="db_".$_GET["col"]."";
-// $tpl_con="content.html";
-// $tpl_list="list.html";
-// $tpl_list_body="list_body_ttl.html";
-// $smarty->assign("tpl_list_body",$tpl_list_body);
-// $smarty->assign("iHeight","1000px");
-// $smarty->display("index.html");
-
-
-
-
 $g=$_GET;
 $p=$_POST;
 $r=$_REQUEST;
@@ -46,16 +34,6 @@ if($g["page"]=="part"){ $smarty->display("top_part.html");}
 
 //表单
 if($g["page"]=="form"){ $smarty->display("top_form.html");}
-
-
-
-
-
-
-
-
-
-
 
 
 
