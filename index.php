@@ -35,6 +35,9 @@ if($g["page"]=="part"){ $smarty->display("top_part.html");}
 //表单
 if($g["page"]=="form"){ $smarty->display("top_form.html");}
 
+//其他
+if($g["page"]=="others"){ $smarty->display("top_others.html");}
+
 
 
 ?>

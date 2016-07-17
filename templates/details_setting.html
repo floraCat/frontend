@@ -57,13 +57,21 @@ body{ overflow-x: visible; }
 
 <script>
 $(function(){
-            
+ 
+
     //复制改后代码
     $(".btn_copy").zclip({
         path: "js/copy/ZeroClipboard.swf",
         copy: function(){
-            var win = document.getElementsByTagName('iframe')[1].contentWindow;
-            return win.document.body.innerText;
+            var win = document.getElementsByTagName('iframe')[1].contentWindow.document.body.innerText;
+            var start_js=win.indexOf("$(function(){")+13;
+            var end_js=win.indexOf("/script")-1;
+            var str_js=win.substr(start_js,end_js-start_js);
+            if(str_js.replace(/\s+/g,"")=="});"){
+                var start_js_2=win.indexOf("<script>");
+                win=win.substr(0,start_js_2);
+            }
+            return win;
         },
         afterCopy:function(){
             $(".mAlert").css("bottom","55px").animate({"opacity":"1","bottom":"120px"},400).delay(500).animate({"opacity":"0"},800);
@@ -90,8 +98,6 @@ $(function(){
             'script':script,
             'setting':'render'
         }
-        //console.log(document.getElementsByTagName('iframe')[1].contentWindow.document.body.innerText);
-        console.log(newCode);
         $.post("col_handle.php",submitdata,function(){
             document.getElementsByTagName('iframe')[0].contentWindow.location.reload();
         });

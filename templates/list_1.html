@@ -54,7 +54,7 @@
 	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&details=<{$temp[list].ttl}>" target="_blank">
 		<img src="col_<{$smarty.get.page}>/pc/pictures/<{$temp[list].ttl}>" />
 	</a>
-	<h5><{$temp[list].ttl}></h5>
+	<h5><{$temp[list].ttl}> / <{$temp[list].ttl_zh}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
 		<a href="col_handle.php?page=<{$smarty.get.page}>&folder=<{$temp[list].folder}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
 		<a class="copy">源码复制</a>
@@ -92,7 +92,15 @@ $(function(){
 		$(this).zclip({
 			path: "js/copy/ZeroClipboard.swf",
 			copy: function(){
-			return $(this).parents("li").find(".code").text();
+				var str_code=$(this).parents("li").find(".code").text();
+				var start_js=str_code.indexOf("$(function(){")+13;
+	            var end_js=str_code.indexOf("/script")-1;
+	            var str_js=str_code.substr(start_js,end_js-start_js);
+	            if(str_js.replace(/\s+/g,"")=="});"){
+	                var start_js_2=str_code.indexOf("<script>");
+	                str_code=str_code.substr(0,start_js_2);
+	            }
+	            return str_code;
 			},
 			afterCopy:function(){
 				$(".h_mask").show().delay(1000).fadeOut();

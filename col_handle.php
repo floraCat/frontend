@@ -15,12 +15,12 @@ if($_GET["list"]){
 	$handle=scandir($url2);
 	
 	if($folder){//有指定筛选
-		$temp=eachFile($list,$page,$url2,$folder);
+		$temp=eachFile($list,$page,$url2,$folder);//指定筛选项模块源码数组
 	}
 	else{//全部
 		foreach($handle as $folder){
 			if($folder!='.' || $folder!='..'){
-				$temp=eachFile($list,$page,$url2,$folder);
+				$temp=eachFile($list,$page,$url2,$folder);//全部模块源码数组
 			}
 		};
 	}
@@ -63,7 +63,7 @@ if($_REQUEST["_temp"]){
 	$page=$_GET["page"];
 	$folder=$_GET["folder"];
 	$ttl=$_GET["_temp"];
-	$str_script=getRefer($page,$ttl,$folder);//依赖
+	$str_script=getRefer($page,$ttl,$folder,0);//依赖
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$smarty->assign('content',$code_all);
@@ -77,7 +77,7 @@ if($_REQUEST["act"]=="setting"){
 	$page=$_GET["page"];
 	$folder=$_GET["folder"];
 	$ttl=$_REQUEST["ttl"];
-	$str_script=getRefer($page,$ttl,$folder);//依赖
+	$str_script=getRefer($page,$ttl,$folder,0);//依赖
 	$smarty->assign("script",$str_script);
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
@@ -94,7 +94,6 @@ if($_REQUEST["act"]=="setting"){
 		$arr_spec=explode("}",substr(trimall($arr_code[1]),0,-1));
 		$arr2_spec=array();
 		foreach($arr_spec as $k0=>$v0){
-			
 			if(substr($v0,0,1)=="!"){//排除可编辑的
 				$arr2_spec[$k0]["key"]="!";
 				$arr_temp=substr($v0,2);
@@ -112,11 +111,10 @@ if($_REQUEST["act"]=="setting"){
 	$arr_unit=explode('}',substr($arr_code[0],0,-1));
 	$str_unit='';
 	foreach($arr_unit as $k1=>$v1){
-		$class=substr($v1,0,strpos($v1,"{"));
-		$arr_style=explode(";",substr($v1,strpos($v1,"{")+1,-1));
-		//此处可插入属性声明顺序的函数
 		$css="";
-		if($arr2_spec){
+		if($arr2_spec){//有spec数组
+			$class=substr($v1,0,strpos($v1,"{"));
+			$arr_style=explode(";",substr($v1,strpos($v1,"{")+1,-1));
 			if($arr2_spec[$k1]["key"]=="*"){
 				foreach($arr_style as $k2=>$v2){
 					$css.='<span style="color:#aaa;">'.$v2.'; </span>';
@@ -144,14 +142,16 @@ if($_REQUEST["act"]=="setting"){
 					}else{ $css.='<span style="color:#aaa;">'.$v2.'; </span>';}
 				}
 			}
+			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($class).'{'.$css.'}<br />';
+		}else{
+			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($v1).'<br />';
 		}
-		$css='&nbsp;&nbsp;&nbsp;&nbsp;'.$class.'{'.$css.'}<br />';
 		$str_unit.=$css;
 	};
 	
-	if($page=="form"){ $html=htmlTabs('<div class="fForm">'."\n".$arr_code[2]."\n".'</div>');}
+	if($page=="form"){ $html=htmlTabs('<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>');}
 	else{ $html=htmlTabs($arr_code[2]);}
-	$js=htmlTabs('<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3]."\n".'});'."\n".'</script>');
+	$js=htmlTabs('<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>');
 	$str_unit='<p>&lt;style&gt;</p>'.$str_unit.'<p>&lt;/style&gt;</p>'.$html."<br />".$js;
 
 	$smarty->assign("str",$str_unit);
@@ -164,8 +164,9 @@ if($_REQUEST["act"]=="setting"){
 //改后查看效果__[自定义设置]
 if($_REQUEST["setting"]=="render"){
 	$newCode=stripcslashes($_REQUEST["newCode"]);
+	$newCode=str_replace(" "," ",$newCode);//处理特殊空格！！
+	$newCode=str_replace('&nbsp;'," ",$newCode);//处理空格
 	$newCode=str_replace('    ',"\t",$newCode);//处理制表符
-	$newCode=str_replace(' ',"&nbsp;",$newCode);//处理空格
 	if($_REQUEST["page"]=="form"){
 		$newCode='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$newCode."\n".'</div>';
 	}
@@ -217,6 +218,8 @@ function eachFile($list,$page,$url2,$folder){
 			$code_all=code_str($arr_code);
 			$temp[$index]["code"]=$code_all;
 			$temp[$index]["folder"]=$folder;
+			$info_arr=info_arr($page,$ttl,$folder);
+			$temp[$index]["ttl_zh"]=$info_arr[1];
 			$index++;
 		}
 	}

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>shop</title>
+
+<link rel="stylesheet" href="css/h_reset.css" />
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../copy/js/jquery.zclip.min.js"></script>
+
+</head>
+<body>
+
+
+<style>
+.copyList{ width:1200px; margin:40px auto;}
+.copyList li{ float:left; position:relative; width:18%; margin:20px 1%; border-bottom:#ddd 1px solid; background:#FFFFCC; box-sizing:border;}
+.copyList li img{ width:196px; height:196px; padding:10px;}
+.copyList li h4{ text-indent:10px; padding-bottom:34px;}
+.copyList li input{ position:absolute; left:7px; bottom:7px; padding:0 3px; height:24px; line-height:24px;}
+.copyList li ol{ position:absolute; right:10px; bottom:5px;}
+
+</style>
+<div class="copyList">
+	<div class="cutter" style=" display:none;"></div>
+	<ul class="over">
+		<{section name=list loop=$rsList}>
+		<li>
+			<div class="img"><img src="images/col_others/css3/<{$rsList[list].title}>.png" /></div>
+			<h4><{$rsList[list].title}></h4>
+			<{if $rsList[list].val}>
+			<input type="text" value="<{$rsList[list].val}>">
+			<{/if}>
+			<ol>
+				<a class="copy" data-title="<{$rsList[list].title}>" href="javascript:;">复制代码</a>
+			</ol>
+		</li>
+		<{/section}>
+	</ul>
+</div>
+
+
+
+<style>
+.mAlert{ display:none; position:fixed; top:100px; left:50%; margin-left:-100px; width:200px; height:60px; line-height:60px; font-size:16px; border:#ddd 1px solid; background:#fff; text-align:center;}
+</style>
+<div class="mAlert">复制成功！</div>
+
+<script>
+$(function(){
+	$(".copy").click(function(){
+		$(".zclip").remove();
+		_this=$(this);
+		var data_title=$(this).data("title");
+		if($(this).parents("li").find("input")){
+			var data_val=$(this).parents("li").find("input").val();
+		}
+		var submitdata={
+			data_title:data_title,
+			data_val:data_val
+		};
+		$.post('_css3.php',submitdata,
+		function(data){
+			$(".cutter").text(data);
+			_this.zclip({
+				path: "js/ZeroClipboard.swf",
+				copy: function(){
+				return $(".cutter").text();
+				},
+				afterCopy:function(){
+					$(".mAlert").show().delay(1000).fadeOut();
+				}
+			});
+		},'json');
+	});
+	
+
+});
+</script>
+
+
+<!--新一页获取当页源代码 start-->
+<a onClick="getHtml();" href="javascript:;" style=" display:block; position:fixed; right:0; top:5px; padding:10px 20px; background-color:#ddd;">源代码</a>
+<script>
+function getHtml(){
+	 var html=document.getElementsByTagName('html')[0].innerHTML; 
+	 var a=window.open("about:blank");
+	 var d=a.document;
+	 d.write("<xmp>"+html+"</xmp>");
+}
+</script>
+<!--新一页获取当页源代码 end-->
+
+</div><!--mMain end-->
+</body>
+</html>

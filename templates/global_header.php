@@ -13,6 +13,7 @@
             <li><a class="unit" href="index.php?page=unit">组件</a></li>
             <li><a class="part" href="index.php?page=part">部件</a></li>
             <li><a class="form" href="index.php?page=form">表单</a></li>
+            <li><a class="others" href="index.php?page=others">其他</a></li>
         </ul>
     </div>
 </div>

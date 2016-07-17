@@ -1,0 +1,49 @@
+<?php echo($meta);?>
+
+<body>
+
+
+<xmp>按钮__loading...
+</xmp>
+
+
+
+<style>
+/*_style*/
+/*style_*/
+
+/*_own*/
+/*own_*/
+
+/*_css3*/
+/*css3_*/
+</style>
+
+
+
+
+<!--_html-->
+<button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+  Loading state
+</button>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+<!--_js-->
+	$('#myButton').on('click', function () {
+		var $btn = $(this).button('loading')
+		// business logic...
+		//$btn.button('reset')
+	})
+<!--js_-->
+});
+</script>
+
+
+
+</body>
+</html>

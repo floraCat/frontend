@@ -30,7 +30,7 @@ if($_REQUEST["act"]=="zipAll"){
 		//模板渲染代码
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
-		$code_all=$doc_top."\n".code_str($arr_all)."\n".$doc_btm;
+		$code_all=$doc_top."\n".code_str_all($arr_all)."\n".$doc_btm;
 		$f=fopen($url."/form_".date("YmdHis", time()).".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
@@ -51,7 +51,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$page=$_GET["page"];
 		$folder=$_GET["folder"];
 		$ttl=$_GET["ttl"];
-		$str_script=getRefer($page,$ttl,$folder);//依赖
+		$str_script=getRefer($page,$ttl,$folder,1);//依赖
 		//模板渲染代码
 		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
@@ -62,9 +62,9 @@ if($_REQUEST["act"]=="zipAll"){
 		fwrite($f,$code_all);
 		fclose($f);
 
-		$style=$arr_all[0];
+		$style=$arr_code[0];
 		getImgs($url,$style);//获取背景图片
-		$html=$arr_all[2];
+		$html=$arr_code[2];
 		getImages($url,$html);//获取html图片
 
 		$files=array();
@@ -127,101 +127,6 @@ function getImages($url,$html){
 	}
 }
 
-
-//表单全部控件(html/css/js)arr数组
-function code_all($page,$folder,$form){
-	$cookie_arr=explode("#",substr($form,14));
-	$arr_all=array();
-	foreach($cookie_arr as $k=>$v){
-		$arr[$k]=explode(",",$v);
-		$sCode=code_arr($page,$folder,$arr[$k][0]);
-		$arr_css=$arr_css.$sCode[0]."\n";
-		$arr_spec=$arr_spec.$sCode[1];
-		$arr_html=$arr_html.$sCode[2]."\n";
-		$arr_js=$arr_js.$sCode[3]."\n";
-		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
-	};
-	//样式去重
-	$class=array();
-	$len_cls=substr_count($arr_css,"}",0);
-	for($x=1;$x<=$len_cls;$x++){
-		$cls_1[$x]=newstripos($arr_css,"}",$x);			
-		if($x>1){
-			$start_pos=newstripos($arr_css,"}",$x-1);
-		}else{
-			$start_pos=0;
-		}
-		$cls_2=stripos($arr_css,".",$start_pos);		
-		$len=$cls_1[$x]-$cls_2+1;
-		$class[$x]=substr($arr_css,$cls_2,$len);
-		$css[1]=$class[1];
-		if($x>1){
-			$flag=true;
-			for($y=1;$y<$x;$y++){
-				if($class[$x]==$class[$y]){
-					$flag=flase;
-				}
-			}
-			if($flag===true){
-				$css[$x]=$class[$x];
-			}
-		}
-	}
-	$arr_css=implode("\n",$css);
-
-	//脚本去重
-	if($arr_js!=""){
-		$arr_js=explode("\n", $arr_js);
-		$arr_js2=array();
-		$arr_exFun2=array();
-		foreach($arr_js as $k=>$v){
-			if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
-				if(empty($arr_exFun2)){
-					$arr_js2[$k]=$v;
-					$arr_exFun2[$k]=$v;
-				}else{
-					foreach($arr_exFun2 as $k2=>$v2){
-						if(trim($v)==trim($v2)){}else{
-							$arr_exFun2[$k]=$v;
-							$arr_js2[$k]=$v;
-						}
-					};
-				}
-			}else{
-				$arr_js2[$k]=$v;
-			}
-		};
-		$str_js=implode("\n", $arr_js2);
-	}
-	
-	//函数去重
-	if($arr_fun!=""){
-		$str_fun=str_replace("\n","",trim($arr_fun));
-		$size_fun=substr_count($str_fun,"function ",0);
-		for($x=1;$x<=$size_fun;$x++){
-			$start_pos=newstripos($str_fun,"function ",$x);
-			$end_pos=strpos($str_fun,"}function",$start_pos+9);
-			if(!$end_pos){ $end_pos=strlen($str_fun);}
-			$len=$end_pos-$start_pos+1;
-			$fun=substr($str_fun,$start_pos,$len);
-			preg_match('/function\s+([^\(]+)/',$fun,$result);
-				$rs[$x]=$result[1];
-			if($x>1){
-				if($rs[$x]==$rs[$x-1]){
-					$str_fun=substr_replace($str_fun,'',$start_pos,$len);
-				}
-			}
-		}
-		$str_fun=str_replace("{","{"."\n",$str_fun);
-		$str_fun=str_replace(";",";"."\n",$str_fun);
-		$str_fun=str_replace('}',"}"."\n",$str_fun);
-		$str_fun=str_replace("\n".');',');',$str_fun);
-		$str_fun=str_replace("\n".'else{','else{',$str_fun);
-	}
-
-	array_push($arr_all,$arr_css,$arr_spec,$arr_html,$str_js,$str_fun);
-	return($arr_all);
-}
 
 
 //转移文件

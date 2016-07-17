@@ -1,0 +1,140 @@
+<?php echo($meta);?>
+
+<body>
+
+
+
+<style>
+/*_css*/
+.pLayout4{ width:1000px; margin:20px auto; border:#ddd 1px solid;}
+.pLayout4 ol{ padding:15px; line-height:16px; border-bottom:#ddd 1px dotted; overflow:hidden; _zoom:1;}
+.pLayout4 ol h4{ float:left; width:70px; text-align:right; font-size:14px; margin-right:15px;}
+.pLayout4 ol ul{ float:left; width:700px; overflow:hidden; _zoom:1;}
+.pLayout4 ol li{ float:left; margin-bottom:8px; padding:0 15px; border-right:#ddd 1px solid;}
+.pLayout4 ol li.on{}
+.pLayout4 .switch{ height:20px; line-height:20px; background-color:#666; color:#fff; text-align:center; cursor:pointer;}
+.pLayout4 .switch:hover{ background-color:#999;}
+.pLayout4 ol ul.brand li{ border-right:none; padding:3px; margin-bottom:0;}
+.pLayout4 ol ul.brand li img{ width:80px; height:60px;}
+/*css_*/
+</style>
+
+
+
+
+<!--_html-->
+<div class="pLayout4">
+	<!--1-->
+	<ol>
+		<h4>店铺品牌：</h4>
+		<ul class="brand">
+			<li><a href="#"><img src="upload/pics/logo_1.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_2.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_3.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_4.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_1.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_2.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_3.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_4.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_1.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_2.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_3.jpg" alt="" /></a></li>
+			<li><a href="#"><img src="upload/pics/logo_4.jpg" alt="" /></a></li>
+		</ul>
+	</ol>
+	<!--2-->
+	<ol>
+		<h4>热门款式：</h4>
+		<ul>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+			<li><a href="#">款式名</a></li>
+		</ul>
+	</ol>
+	<!--3-->
+	<ol class="toggle">
+		<h4>热门风格：</h4>
+		<ul>
+			<li><a href="#">风格</a></li>
+			<li><a href="#">风格</a></li>
+			<li><a href="#">风格</a></li>
+			<li><a href="#">风格</a></li>
+		</ul>
+	</ol>
+	<!--4-->
+	<ol class="toggle">
+		<h4>材质：</h4>
+		<ul>
+			<li><a href="#">材质</a></li>
+			<li><a href="#">材质</a></li>
+			<li><a href="#">材质</a></li>
+			<li><a href="#">材质</a></li>
+		</ul>
+	</ol>
+	<div class="switch">展开条件</div>
+</div>
+<!--html_-->
+
+
+
+
+<script>
+$(function(){
+/*_js*/
+	//展开筛选条件
+	$(".pLayout4 .toggle").hide();
+	$(".pLayout4 .switch").click(function(){
+		$(".pLayout4 .toggle").slideToggle();
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+ chrome:yes,
+ safari:yes,
+   ie11:yes,
+   ie10:yes,
+    ie9:yes,
+    ie8:yes,
+    ie7:yes,
+    ie6:yes
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+模块描述
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+模块说明内容
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

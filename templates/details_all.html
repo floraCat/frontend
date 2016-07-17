@@ -135,7 +135,15 @@ $(function(){
 	$(".fBtn .copy").zclip({
 		path: "js/copy/ZeroClipboard.swf",
 		copy: function(){
-		return $("#code").text();
+			var str_code=$("#code").text();
+			var start_js=str_code.indexOf("$(function(){")+13;
+            var end_js=str_code.indexOf("/script")-1;
+            var str_js=str_code.substr(start_js,end_js-start_js);
+            if(str_js.replace(/\s+/g,"")=="});"){
+                var start_js_2=str_code.indexOf("<script>");
+                str_code=str_code.substr(0,start_js_2);
+            }
+            return str_code;
 		},
 		afterCopy:function(){
 			$(".h_mask").show().delay(1000).fadeOut();

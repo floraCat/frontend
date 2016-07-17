@@ -134,8 +134,6 @@ if($_REQUEST["act"]=="viewForm"){
 	$folder=$_REQUEST["folder"];
 	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
 	$smarty->assign("sCode",$arr_all);
-	$formWarp='.fForm{width:500px; margin-left:auto; margin-right:auto;}';
-	$smarty->assign("formWarp",$formWarp);
 	$smarty->display("list_form_viewAll.html");
 }
 
@@ -147,11 +145,7 @@ if($_REQUEST["act"]=="createForm"){
 	$folder=$_REQUEST["folder"];
 	$form=$_REQUEST["form"];
 	$arr_all=code_all($page,$folder,$form);
-	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
-	$js=$arr_all[2];
-	$fun=str_replace("\n",'',$arr_all[3]);
-	if(!$js==""){ $js='<script>'."\n".$fun."\n".'$(function(){'."\n".$arr_all[2]."\n".'});'."\n".'</script>';}
-	$code_all=$style."\n".$arr_all[1]."\n".$js;
+	$code_all=code_str_all($arr_all);
 	$smarty->assign("code",$code_all);
 	$smarty->display("details_formAll.html");
 }
@@ -166,12 +160,7 @@ if($_REQUEST["act"]=="settingAll"){
 
 	//模板渲染代码
 	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
-	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
-	$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[1]."\n".'</div>';
-	$js=$arr_all[2];
-	$fun=str_replace("\n",'',$arr_all[3]);
-	if(!$js==""){ $js='<script>'."\n".$fun.'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>';}
-	$code_all=$style."\n".$html."\n".$js;
+	$code_all=code_str_all($arr_all);
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');
 	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />');
@@ -179,8 +168,8 @@ if($_REQUEST["act"]=="settingAll"){
 	fwrite($view,$code_all);
 	fclose($view);
 
-	$html=htmlTabs('<div class="fForm">'."\n".$arr_all[1].'</div>');
-	$js=htmlTabs('<script>'."\n".$arr_all[3].'$(function(){'."\n".$arr_all[2].'});'."\n".'</script>');
+	$html=htmlTabs('<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[2].'</div>');
+	$js=htmlTabs('<script>'."\n".$arr_all[4].'$(function(){'."\n".$arr_all[3].'});'."\n".'</script>');
 	$css=htmlTabs('<style>'."\n".$arr_all[0]."\n".'</style>');
 	$str_unit=$css."<br />".$html."<br />".$js;
 	$smarty->assign("str",$str_unit);
@@ -190,105 +179,6 @@ if($_REQUEST["act"]=="settingAll"){
 
 
 
-
-//表单全部控件(html/css/js)arr数组
-function code_all($page,$folder,$form){
-	$cookie_arr=explode("#",substr($form,14));
-	$arr_all=array();
-	foreach($cookie_arr as $k=>$v){
-		$arr[$k]=explode(",",$v);
-		$sCode=code_arr($page,$folder,$arr[$k][0]);
-		$arr_css=$arr_css.$sCode[0]."\n";
-		$arr_html=$arr_html.$sCode[2]."\n";
-		$arr_js=$arr_js.$sCode[3]."\n";
-		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
-	};
-
-	//样式去重
-	$class=array();
-	$len_cls=substr_count($arr_css,"}",0);
-	for($x=1;$x<=$len_cls;$x++){
-		$cls_1[$x]=newstripos($arr_css,"}",$x);			
-		if($x>1){
-			$start_pos=newstripos($arr_css,"}",$x-1);
-		}else{
-			$start_pos=0;
-		}
-		$cls_2=stripos($arr_css,".",$start_pos);		
-		$len=$cls_1[$x]-$cls_2+1;
-		$class[$x]=substr($arr_css,$cls_2,$len);
-		$css[1]=$class[1];
-		if($x>1){
-			$flag=true;
-			for($y=1;$y<$x;$y++){
-				if($class[$x]==$class[$y]){
-					$flag=flase;
-				}
-			}
-			if($flag===true){
-				$css[$x]=$class[$x];
-			}
-		}
-	}
-	$arr_css=implode("\n\t",$css);
-
-	//脚本去重
-	if($arr_js!=""){
-		$arr_js=explode("\n", $arr_js);
-		$arr_js2=array();
-		$arr_exFun2=array();
-		foreach($arr_js as $k=>$v){
-			if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
-				if(empty($arr_exFun2)){
-					$arr_js2[$k]=$v;
-					$arr_exFun2[$k]=$v;
-				}else{
-					$pushIn=1;
-					foreach($arr_exFun2 as $k2=>$v2){
-						if(trim($v)==trim($v2)){
-							$pushIn=0;
-						}
-					};
-					if($pushIn==1){
-						$arr_exFun2[$k]=$v;
-						$arr_js2[$k]=$v;
-					}
-				}
-			}else{
-				$arr_js2[$k]=$v;
-			}
-		};
-		$str_js=implode("\n", $arr_js2);
-	}
-	
-	//函数去重
-	if($arr_fun!=""){
-		$str_fun=str_replace("\n","",trim($arr_fun));
-		$size_fun=substr_count($str_fun,"function ",0);
-		for($x=1;$x<=$size_fun;$x++){
-			$start_pos=newstripos($str_fun,"function ",$x);
-			$end_pos=strpos($str_fun,"}function",$start_pos+9);
-			if(!$end_pos){ $end_pos=strlen($str_fun);}
-			$len=$end_pos-$start_pos+1;
-			$fun=substr($str_fun,$start_pos,$len);
-			preg_match('/function\s+([^\(]+)/',$fun,$result);
-				$rs[$x]=$result[1];
-			if($x>1){
-				if($rs[$x]==$rs[$x-1]){
-					$str_fun=substr_replace($str_fun,'',$start_pos,$len);
-				}
-			}
-		}
-		$str_fun=str_replace("{","{"."\n",$str_fun);
-		$str_fun=str_replace(";",";"."\n",$str_fun);
-		$str_fun=str_replace('}',"}"."\n",$str_fun);
-		$str_fun=str_replace("\n".');',');',$str_fun);
-		$str_fun=str_replace("\n".'else{','else{',$str_fun);
-	}
-
-	array_push($arr_all,"\t".$arr_css,$arr_html,$str_js,$str_fun);
-	return($arr_all);
-}
 
 
 
