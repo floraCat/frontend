@@ -72,17 +72,17 @@ if($_REQUEST["col"]=="css3"){
 	//transform: translate(50px,100px)
 	$translate["title"]="transform:translate";
 	$translate["ttl"]="transform";
-	$translate["val"]='translate(50px,100px)';
+	$translate["val"]='translate(50px,50px)';
 
 	//transform: scale(2,4);
 	$scale["title"]="transform:scale";
 	$scale["ttl"]="transform";
-	$scale["val"]='scale(2,4)';
+	$scale["val"]='scale(2,1)';
 
 	//transform: skew(30deg,20deg);
 	$skew["title"]="transform:skew";
 	$skew["ttl"]="transform";
-	$skew["val"]='skew(30deg,20deg)';
+	$skew["val"]='skew(-30deg,0deg)';
 
 	//transform:matrix(0.866,0.5,-0.5,0.866,0,0);
 	$matrix["title"]="transform:matrix";
@@ -92,12 +92,12 @@ if($_REQUEST["col"]=="css3"){
 	//transform: rotateX(120deg);
 	$rotateX["title"]="transform:rotateX";
 	$rotateX["ttl"]="transform";
-	$rotateX["val"]='rotateX(120deg)';
+	$rotateX["val"]='rotateX(30deg)';
 
 	//transform: rotateY(130deg);
 	$rotateY["title"]="transform:rotateY";
 	$rotateY["ttl"]="transform";
-	$rotateY["val"]='rotateY(130deg)';
+	$rotateY["val"]='rotateY(30deg)';
 
 	//transition:all .5s ease-in-out; 
 	$transition["title"]="transition";
@@ -123,6 +123,14 @@ if($_REQUEST["col"]=="css3"){
 		$rotateY,
 		$transition,
 		$animation);
+
+	foreach($rsList as $k2=>$v2){
+		if(strpos($v2["title"],"transform")!== false){
+			$rsList[$k2]['ttl_img']=substr($v2["title"],10);
+		}else{
+			$rsList[$k2]['ttl_img']=$v2["title"];
+		}
+	};
 
 	//column-count:3;
 	//column-gap:40px;
