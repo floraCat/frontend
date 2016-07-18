@@ -14,7 +14,7 @@
 
 /*导航*/
 .pNav{ position: absolute; top: 200px; left: 0; width: 100%; height:40px; line-height:40px; padding: 50px 0; background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% auto;}
-.pNav ul{ width: 1200px; margin:0 auto; overflow: hidden;}
+.pNav ul{ width: 880px; margin:0 auto; overflow: hidden;}
 .pNav li{ position:relative; float:left; width: 125px; text-align: center;}
 .pNav li a{ display:block; width: 90%; margin: 0 auto; font-size: 15px; color: #6b6b6b;
     -webkit-border-radius: 20px;
@@ -28,6 +28,7 @@
 .pNav li a:hover,.pNav li a.on{ 
     color: #cf5d4e; font-weight: bold; background: #e8e3e3;
 }
+.pNav li a i{ font-size: 12px;}
 .indexBack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%;  background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% 100%; opacity: .5; z-index: -1;}
 
 
@@ -36,6 +37,17 @@
 .gHeader .pNav li a{ height: 34px; line-height: 34px; -webkit-border-radius: 17px; -moz-border-radius: 17px; border-radius: 17px; }
 
 .h_mask{ display: none; position: fixed; top: 0; left:0; width: 100%; height: 100%; background-color: #fff; opacity: .5;}
+
+.pTabs{ width: 330px; margin: 20px auto 20px; overflow: hidden; }
+.pTabs li{ padding:0 20px; height: 34px; line-height: 34px; border:#ddd 1px solid; text-align: center; cursor: pointer; background: #f8f8f8; border-radius: 18px; -webkit-border-radius:18px;}
+.pTabs li.on{ background-color: #cf5d4e; border:#bf3928 1px solid; color: #fff;}
+.pTabs .fl{ float: left; }
+.pTabs .fr{ float: right; }
+
+.pPlus{ width: 210px;}
+.pPlus li{ padding: 0 30px; font-size: 14px; font-weight: bold; letter-spacing: 2px;}
+.pShow{ position:absolute; top: 190px; left: 50%; margin-left: -960px; width: 1920px;}
+
 
 
 /* top_* */

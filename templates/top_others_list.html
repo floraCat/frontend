@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/h_reset.css" />
+    <link rel="stylesheet" href="css/col_style.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+<div class="modeList" style="padding-top:20px;">
+
+<{section name=list loop=$temp}>
+<li>
+    <a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&list=<{$temp[list]}>" target="_blank">
+        <img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list]}>_01" />
+    </a>
+    <h5><{$temp[list]}></h5>
+</li>
+<{/section}>
+
+</div>
+
+
+<div class="h_mask"></div><!--覆盖层-->
+<div class="mAlert2">已复制到剪切板！</div>
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+<!--底部-->
+<{include file="global_footer.php"}>
+
+
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/h_reset.css" />
+	<link rel="stylesheet" href="css/col_style.css" />
+	<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+
+<div class="noteList">
+	<p style="width:1200px; margin:0 auto; text-align: left;">
+		<em>'源码复制'</em>只复制html代码，请自行引入对应的Bootstrap脚本文件和样式文件
+	</p>
+</div>
+
+
+
+
+
+<div class="modeList" style="padding-top:20px;">
+
+<{section name=list loop=$temp}>
+<li>
+	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$temp[list].folder}>&_temp=<{$temp[list].ttl}>" target="_blank">
+		<img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list].ttl}>" />
+	</a>
+	<h5><{$temp[list].ttl}></h5>
+	<ol data-title="<{$temp[list].ttl}>">
+		<a class="copy a2">html源码复制</a>
+	</ol>
+	<xmp class="code" style=" display:none;"><{$temp[list].code}></xmp>
+</li>
+<{/section}>
+
+
+
+</div>
+
+
+<div class="h_mask"></div><!--覆盖层-->
+<div class="mAlert2">已复制到剪切板！</div>
+
+
+
+<script>
+$(function(){
+	//筛选
+	var sort_index=$("#sort").val();
+	$("[data-cat="+sort_index+"]").addClass("on").siblings().removeClass("on");
+	$(".listSort ul li").on("click",function(){
+		$(this).addClass("on").siblings().removeClass("on");
+	});
+});
+
+//复制到剪切板
+$(function(){
+	$(".modeList .copy").each(function(){
+		$(this).zclip({
+			path: "js/copy/ZeroClipboard.swf",
+			copy: function(){
+				var str_code=$(this).parents("li").find(".code").text();
+				var start_js=str_code.indexOf("$(function(){")+13;
+	            var end_js=str_code.indexOf("/script")-1;
+	            var str_js=str_code.substr(start_js,end_js-start_js);
+	            if(str_js.replace(/\s+/g,"")=="});"){
+	                var start_js_2=str_code.indexOf("<script>");
+	                str_code=str_code.substr(0,start_js_2);
+	            }
+	            return str_code;
+			},
+			afterCopy:function(){
+				$(".h_mask").show().delay(1000).fadeOut();
+				$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
+			}
+		});
+	});
+});
+
+//屏高
+function windowH(){
+	if(self.innerHeight){ windowHeight = self.innerHeight;
+	}else{
+		if(document.documentElement && document.documentElement.clientHeight){    
+			windowHeight = document.documentElement.clientHeight;
+		}else{
+			if(document.body){ windowHeight = document.body.clientHeight;}
+		}
+	} 
+	return windowHeight;
+}
+</script>
+
+
+
+
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<input type="hidden" id="sort" value="<{$smarty.get.sort}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+
+<!--底部-->
+<!--_refer-->
+<{include file="global_footer.php"}>
+<!--refer_-->
+
+
+</body>
+</html>

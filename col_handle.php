@@ -3,21 +3,24 @@ include_once("include.php");
 include_once("global_function.php");
 $sdb=new db();
 
-	
+
+
+
 
 
 //列表页
 if($_GET["list"]){
 	$list=$_GET["list"];
 	$page=$_REQUEST['page'];
-	$url2="col_".$page."/pc/_temp";
-	$folder=$_GET["sort"];
+	$url2='col_'.$_REQUEST["page"].'/'.$_REQUEST["col"];
+	$sort=$_GET["sort"];
+	$folder=$_GET["folder"];
 	$handle=scandir($url2);
-	
-	if($folder){//有指定筛选
-		$temp=eachFile($list,$page,$url2,$folder);//指定筛选项模块源码数组
-	}
-	else{//全部
+	if($sort){//有指定筛选
+		$temp=eachFile($list,$page,$url2,$sort);//指定筛选项模块源码数组
+	}else if($folder){//网址有floder参数
+		$temp=eachFile($list,$page,$url2,$folder);//指定文件夹模块源码数组
+	}else{//全部
 		foreach($handle as $folder){
 			if($folder!='.' || $folder!='..'){
 				$temp=eachFile($list,$page,$url2,$folder);//全部模块源码数组
@@ -33,14 +36,17 @@ if($_GET["list"]){
 	if($page=="plus"){
 		$sorts=array('self:自主封装插件','common:常用插件','recommend:推荐插件');
 	}
-	if($page=="part"){
-		$sorts=array('mark:符号');
-	}
 	if($page=="unit"){
 		$sorts=array('common:常用');
 	}
 	if($page=="form"){
 		$sorts=array('base:基本结构控件');
+	}
+	if($_REQUEST["col"]=="bs"){
+		$sorts=array('_set:组件','_plus:插件');
+	}
+	if($_REQUEST["col"]=="part"){
+		$sorts=array('mark:符号');
 	}
 	foreach($sorts as $k=>$v){
 		$arr_sort[$k]=array();
@@ -48,11 +54,13 @@ if($_GET["list"]){
 	};
 	$smarty->assign("arr_sort",$arr_sort);
 	if($page=='form'){
-		$smarty->display("list_form.html");
-	}else if($page=='part'){
-		$smarty->display("list_2.html");
+		$smarty->display("list_col_form.html");
+	}else if($_REQUEST["col"]=='part'){
+		$smarty->display("list_col_part.html");
+	}else if($_REQUEST["col"]=='bs'){
+		$smarty->display("list_col_bs.html");
 	}else{
-		$smarty->display("list_1.html");
+		$smarty->display("list_col.html");
 	}
 }
 
@@ -67,7 +75,7 @@ if($_REQUEST["_temp"]){
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$smarty->assign('content',$code_all);
-	$smarty->display("list_1_view.html");
+	$smarty->display("list_view.html");
 }
 
 

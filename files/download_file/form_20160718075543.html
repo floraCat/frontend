@@ -1,0 +1,59 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="h_reset.css" />
+	<script src="jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<style>
+	.fForm .in2{ margin-bottom: 15px; }
+	.fForm .in2 .input{ width:488px; height:40px; padding:3px 5px; line-height:34px; text-indent:45px; box-sizing: border-box; -webkit-box-sizing: border-box;}
+	.fForm .in2 label{ position:absolute; top:1px; left:1px; width:38px; height:38px; background:#fff no-repeat center; background-size:100% 100%;}
+	.fForm .in2 label.i_pass{ background-image:url(images/col_form/i_pass.png);}
+	.wSwitch{ position:relative; overflow:hidden; width:70px; height:35px; background:url(images/col_form/i5_switch_bg.png) no-repeat center; background-size:100% auto;}
+	.wSwitch.on{ background:url(images/col_form/i5_switch_on_bg.png) no-repeat center; background-size:100% auto;}
+	.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+	.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+	.fForm dd{ margin-left:90px;}
+	.fForm .input{ width:100%; height:35px; padding:3px 5px; line-height:27px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+	.fForm .mgR{ margin-right:90px;}
+	.fForm .posR{ position:absolute; top:0; right:0;}
+</style>
+<form class="fForm" style="width:500px; margin:0 auto;">
+	<dl class="in2">
+	    <label class="i_pass"></label>
+	    <input class="input" type="password" name="" placeholder="请输入密码" />
+	</dl>
+	<dl>
+		<dt>dl_pass：<em>*</em></dt>
+		<dd class="mgR"><input class="input" type="text" name="" placeholder="请输入密码" /></dd>
+		<div class="posR">
+			<div class="wSwitch" data-js-switch></div>
+		</div>
+	</dl>
+</form>
+<script>
+function switchBtn(wrap){
+	var $obj=$(wrap).find("[data-js-switch]");
+	switchOn($obj);
+	$obj.on("click",function(){
+		$(this).toggleClass("on");
+		switchOn($obj);
+	});
+	function switchOn(obj){
+		if(obj.hasClass("on")){
+			obj.parents("li").find("input").attr("type","text");
+		}else{
+			obj.parents("li").find("input").attr("type","password");
+		}
+	}
+}
+$(function(){
+
+	switchBtn(".fForm");
+});
+</script>
+
+</body>
+</html>

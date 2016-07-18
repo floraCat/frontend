@@ -34,7 +34,7 @@ function newstripos($str, $find, $count, $offset=0){
 
 //获取模块'css/spec/html/js/fun'的数组
 function code_arr($page,$folder,$ttl){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
+	$str=file_get_contents("col_".$page."/".$_REQUEST["col"]."/".$folder."/".$ttl.".html");
 
 	$start_css=strpos($str,"/*_css");
 	$end_css=strpos($str,"/*css_");
@@ -100,7 +100,7 @@ function code_str_all($arr_all){
 
 //详情页信息数组
 function info_arr($page,$ttl,$folder){
-	$str=file_get_contents("col_".$page."/pc/_temp/".$folder."/".$ttl.".html");
+	$str=file_get_contents("col_".$page."/".$_REQUEST["col"]."/".$folder."/".$ttl.".html");
 
 	$start_hack=strpos($str,"<!--_hack");
 	$end_hack=strpos($str,"<!--hack_");
