@@ -20,6 +20,16 @@ if($_REQUEST["col"]=="website"){
 	$smarty->display("top_others_website.html");
 }
 
+//常用样式
+if($_REQUEST["col"]=="style"){
+	$smarty->display("top_others_style.html");
+}
+
+//常用正则
+if($_REQUEST["col"]=="reg"){
+	$smarty->display("top_others_reg.html");
+}
+
 //列表
 if($_REQUEST["act"]=="listAll"){
 	$url2='col_others/'.$_REQUEST["col"].'/'.$_REQUEST["folder"];

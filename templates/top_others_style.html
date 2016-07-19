@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/h_reset.css" />
+    <link rel="stylesheet" href="css/col_style.css" />
+    <link rel="stylesheet" href="css/col_style_2.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+</head>
+<body>
+
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+
+<div class="Marticle">
+
+    <div class="Mbody MStyle">
+
+        <ol>
+            <h3>万能消浮：</h3>
+            <xmp class="code">.clr{ *display: inline-block;}
+.clr:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}</xmp>
+            <a class="copy">复制代码</a>
+        </ol>
+
+        <ol>
+            <h3>容器中的图片或文字垂直和水平居中：</h3>
+            <xmp class="code">display: table-cell; width: 200px; height: 200px; vertical-align: middle; text-align: center;</xmp>
+            <div class="des">注：以上样式设置在容器上，如容器绝对定位或浮动，垂直居中不生效</div>
+            <a class="copy">复制代码</a>
+        </ol>
+
+    </div>
+
+</div>
+
+
+<script>
+$(function(){
+    //复制代码
+    $(".MStyle .copy").zclip({
+        path: "js/copy/ZeroClipboard.swf",
+        copy: function(){
+            return $(this).siblings(".code").text();
+        },
+        afterCopy:function(){
+            $(this).append('<div class="mAlert3">已复制到剪切板</div>');
+            $(".mAlert3").animate({'opacity':'1','bottom':'40px'},400).delay(1000).fadeOut(400,function(){
+                $(this).remove();
+            });
+        }
+    });
+});
+</script>
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+
+<!--底部-->
+<{include file="global_footer.php"}>
+
+
+</body>
+</html>
