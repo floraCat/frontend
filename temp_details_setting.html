@@ -1,30 +1,16 @@
-<meta charset="utf-8"><link rel="stylesheet" href="css/h_reset.css" /><script src="js/jquery-1.10.2.js"></script><style>
-	.wCheck input{ display:none;}
-	.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
-	.wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/h_reset.css" />
+<script src="js/jquery-1.10.2.js"></script>
+
+<style>
+.pHd{ width: 300px; height:40px; line-height:40px; overflow:hidden;}
+.pHd h3{ float:left; font-size:16px;}
+.pHd p{ float:left; margin-left:10px; color:#aaa;}
+.pHd a{ float:right;}
 </style>
-<form class="fForm" style="width:500px; margin:0 auto;">
-    <div class="fOneCheck" data-js-checkbox>
-        <div class="wCheck">
-        <input class="hide" type="checkbox" name="regAgree" />
-            <label>同意</label>
-            <a href="#">《服务协议》</a>
-        </div>
-    </div>
-</form>
+<div class="pHd"><h3>栏目名称</h3><p>栏目说明文字栏目说明文字</p><a href="#">更多 ></a></div>
 <script>
-function wCheck(wrap){
-    $(wrap).find("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
-    $(wrap).find("[ data-js-checkbox] label").click(function(){
-        $(this).parent().toggleClass("on"); 
-        if($(this).parent().hasClass("on")){
-            $(this).siblings("input").attr("checked",true); 
-        }else{
-            $(this).siblings("input").attr("checked",false);    
-        }
-    });
-}
 $(function(){
-    wCheck(".fForm");
+
 });
 </script>

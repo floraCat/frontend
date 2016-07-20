@@ -37,6 +37,7 @@
 			<{/if}>
 			<ol>
 				<a class="copy" data-title="<{$rsList[list].title}>" href="javascript:;">复制代码</a>
+				<xmp class="code" style="display:none;"><{$rsList[list].code}></xmp>
 			</ol>
 		</li>
 		<{/section}>
@@ -51,12 +52,22 @@
 
 <script>
 $(function(){
-	$(".copy").click(function(){
-		_this=$(this);
-		var data_title=$(this).data("title");
-		if($(this).parents("li").find("input")){
-			var data_val=$(this).parents("li").find("input").val();
+
+	$(".copyList li .copy").zclip({
+		path: "js/copy/ZeroClipboard.swf",
+		copy: function(){
+			return $(this).parents("li").find(".code").text();
+		},
+		afterCopy:function(){
+			$(".h_mask").show().delay(1000).fadeOut();
+			$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
 		}
+	});
+
+	$(".copyList li input").keyup(function(){
+		var _this=$(this);
+		var data_title=$(this).parents("li").find(".copy").data("title");
+		var data_val=$(this).val();
 		var submitdata={
 			data_title:data_title,
 			data_val:data_val
@@ -64,11 +75,12 @@ $(function(){
 		console.log(submitdata);
 		$.post('col_others.php?col=css3',submitdata,
 		function(data){
-			$(".cutter").text(data);
-			_this.zclip({
+			_this.parents("li").find(".code").text(data);
+			_this.parents("li").find(".zclip").remove();
+			_this.parents("li").find(".copy").zclip({
 				path: "js/copy/ZeroClipboard.swf",
 				copy: function(){
-				return $(".cutter").text();
+					return _this.parents("li").find(".code").text();
 				},
 				afterCopy:function(){
 					$(".h_mask").show().delay(1000).fadeOut();
@@ -77,6 +89,34 @@ $(function(){
 			});
 		},'json');
 	});
+
+
+
+	// $(".copy").click(function(){
+	// 	_this=$(this);
+	// 	var data_title=$(this).data("title");
+	// 	if($(this).parents("li").find("input")){
+	// 		var data_val=$(this).parents("li").find("input").val();
+	// 	}
+	// 	var submitdata={
+	// 		data_title:data_title,
+	// 		data_val:data_val
+	// 	};
+	// 	$.post('col_others.php?col=css3',submitdata,
+	// 	function(data){
+	// 		$(".cutter").text(data);
+	// 		_this.zclip({
+	// 			path: "js/copy/ZeroClipboard.swf",
+	// 			copy: function(){
+	// 			return $(".cutter").text();
+	// 			},
+	// 			afterCopy:function(){
+	// 				$(".h_mask").show().delay(1000).fadeOut();
+	// 				$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
+	// 			}
+	// 		});
+	// 	},'json');
+	// });
 
 });
 

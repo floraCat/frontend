@@ -137,8 +137,10 @@ if($_REQUEST["col"]=="css3"){
 	foreach($rsList as $k2=>$v2){
 		if(strpos($v2["title"],"transform")!== false){
 			$rsList[$k2]['ttl_img']=substr($v2["title"],10);
+			$rsList[$k2]["code"]=val($v2["title"],$v2["val"]);
 		}else{
 			$rsList[$k2]['ttl_img']=$v2["title"];
+			$rsList[$k2]["code"]=val($v2["title"],$v2["val"]);
 		}
 	};
 
@@ -147,9 +149,16 @@ if($_REQUEST["col"]=="css3"){
 	//column-rule:3px outset #ff0000;
 
 	if($_POST["data_title"]){//复制操作时
+
 		foreach($rsList as $k=>$v){
-			val($v);
+
+			if($v["title"]==$_POST["data_title"]){
+				$v1=$_POST["data_val"];
+				$code=val($_POST["data_title"],$v1);
+				echo json_encode($code);
+			}
 		};
+		
 	}else{//展示列表
 		$smarty->assign("rsList",$rsList);
 		$smarty->display("top_others_css3.html");
@@ -159,18 +168,57 @@ if($_REQUEST["col"]=="css3"){
 
 
 //兼容处理后返回
-function val($title){
-	if($_POST["data_title"]==$title["title"]){
-		if(!$_POST["data_val"]==""){
-			$val=$_POST["data_val"];
-		}else{
-			$val=$title["val"];
-		}
-		$code=$title["ttl"].":".$val."; -webkit-".$title["ttl"].":".$val.";";
-		echo json_encode($code);
-	}
+function val($ttl,$val){
+	if($title=="opacity"){ $code1='';}
+	else if($title=="transform"){ $code1="-webkit-".$ttl.":".$val."; -moz-".$ttl.":".$val."; -ms-".$ttl.":".$val.";";
+	}else{ $code1="-webkit-".$ttl.":".$val."; -moz-".$ttl.":".$val.";";}
+	$code=$ttl.":".$val."; ".$code1;
+	return $code;		
 }
 
 
+
+/*
+
+
+border-radius:
+	moz  webkit  o
+	不兼容6~8
+
+opacity:
+	不用前缀
+	不兼容6~8
+
+box-shadow:
+	moz  webkit
+	不兼容6~8
+
+transform:
+	moz  webkit  ms
+	不兼容6~8
+
+transition:
+	moz  webkit
+	不兼容6~9
+
+animation:
+	moz  webkit
+	不兼容6~9
+
+
+
+
+
+
+
+
+
+*/
+
+
+
 ?>
+
+
+
 
