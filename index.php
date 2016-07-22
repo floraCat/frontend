@@ -17,8 +17,12 @@ if($g["page"]=="cssAttr"){ $smarty->display("top_standard_cssAttr.html");}
 if($g["page"]=="naming"){ $smarty->display("top_standard_naming.html");}
 
 //前端框架
-if($g["page"]=="frame"){ $smarty->display("top_frame.html");}
-if($g["page"]=="gulpfile"){ $smarty->display("top_frame_gulpfile.html");}
+if($g["page"]=="frame" && !$g["extra"]){ $smarty->display("top_frame.html");}
+if($g["extra"]=="gulpfile"){ $smarty->display("extra/top_frame_gulpfile.html");}
+if($g["extra"]=="index"){ $smarty->display("extra/html_index.html");}
+if($g["extra"]=="list"){ $smarty->display("extra/html_list.html");}
+if($g["extra"]=="html"){ $smarty->display("extra/html.html");}
+if($g["extra"]=="reset"){ $smarty->display("extra/reset.html");}
 
 //常用模块
 if($g["page"]=="module"){ $smarty->display("top_module.html");}

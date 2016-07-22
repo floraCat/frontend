@@ -62,8 +62,10 @@ a{ text-decoration: none; }
 	</ol>
 	<ul>
 		<h6>快捷入口：</h6>
+		<a target="_blank" href="index.php?page=frame&extra=html">html基本结构</a>
 		<a target="_blank" href="index.php?page=cssAttr">样式属性命名顺序</a>
 		<a target="_blank" href="index.php?page=naming">样式表文件命名参考</a>
+		<a target="_blank" href="index.php?page=frame&extra=reset">重置样式参考设置</a>
 	</ul>
 </div><!--/mLeft-->
 
@@ -198,44 +200,9 @@ index.html             ---首页html
 			<h3><em>html基本结构</em><a class="key"></a></h3>
 			<div class="unit">
 
-			<li>参看：'站点架构' -> <a target="_blank" class="btn" href="index.php?page=frame&tab=index">index.html结构</a></li>
+			<li>参看：<a target="_blank" class="btn" href="index.php?page=frame&extra=html">html基本结构</a></li>
 
-			<!-- <h4>PC端：</h4>
-				<xmp style=" margin-bottom: 20px;"><!DOCTYPE HTML>
-<html lang="zh-cn">
-<head>
-	<meta charset="utf-8">
-	<meta name="copyright" content="LeederEducation">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<title>标题</title>
-	<link rel="stylesheet" href="css/base.css">
-	<script src="js/jquery.1.10.2.min.js"></script> 
-	<script src="js/base.js"></script> 
-</head>
-<body>
-...
-</body> 
-</html></xmp>
-			<h4>移动端：</h4>
-				<xmp style=" margin-bottom: 20px;"><!DOCTYPE HTML>
-<html lang="zh-cn">
-<head>
-	<meta charset="utf-8">
-	<meta name="copyright" content="LeederEducation">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<title>标题</title>
-	<link rel="stylesheet" href="css/base.css" /> 
-	<script src="js/jquery.2.2.0.min.js"></script>
-	<script src="js/base.js"></script>  
-</head>
-<body>
-...
-</body> 
-</html></xmp> -->
-		</div>
+			</div>
 		</ol>
 
 		<ol>
@@ -344,58 +311,16 @@ index.html             ---首页html
 	<div class="css">
 
 		<ol>
+			<h3>重置样式<a class="key"></a></h3>
+			<ul class="unit">
+			<li>参看：<a target="_blank" class="btn" href="index.php?page=frame&extra=reset"><em>重置样式</em>参考设置</a></li>
+			</ul>
+		</ol>
+
+		<ol>
 			<h3>css<em>属性声明顺序</em><a class="key"></a></h3>
 			<ul class="unit">
 			<li>参看：<a target="_blank" class="btn" href="index.php?page=cssAttr">样式属性声明顺序</a></li>
-				<!-- <xmp>//以下列举的只是常用的属性声明，其他属性请自行判断声明顺序，尽量同类型的属性放到一块
-
----------------------------------最前面-----
--- content:''
-
----------------------------------定位-----
--- z-index    
--- position
--- top / bottom / left / right
-
----------------------------------盒模型-----
--- display
--- float
-	-- clear
--- overflow     
--- width
--- height
--- padding
--- margin
-
----------------------------------排版-----
--- font-family
--- font-size
--- font-weight
--- line-height
--- text-aligh
--- text-indent
--- text-decoration
-	-- white-space
--- color
-
----------------------------------视觉-----
--- border
--- outline
-	-- visibility
--- background (-color -image -position -size)
-
----------------------------------css3,需兼容前缀-----
--- text-overflow
--- opacity
--- border-radius
--- box-shadow
--- text-shadow
--- transform
--- transition
--- @keyframes
-
----------------------------------杂项-----
-...</xmp> -->
 			</ul>
 		</ol>
 
@@ -464,6 +389,18 @@ index.html             ---首页html
 	<a name="js"></a>
 	<i style=" margin: 60px 0 25px;">-----------------------------------------以下是js规范 START-----------------------------------------</i>
 	<div class="js">
+
+		<ol>
+			<h3>js基本设置<a class="key"></a></h3>
+			<ul class="unit">
+				<xmp style="margin:10px auto;">传统js脚本的编写，要求用下面的模板进行包裹：
+-----------------------------------------
+(function($){
+	'use strict';
+	// code...
+}(jQuery));</xmp>
+			</ul>
+		</ol>
 
 		<ol>
 			<h3>js要求<a class="key"></a></h3>
