@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>模板实例</title>
+    <link type="text/css" rel="stylesheet" href="../web/css/pc/h_reset.css" />
+    <script type="text/javascript" src="../web/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/col_plus/h_base_tabs.js"></script>
+</head>
+<body style="position:relative;">
+
+
+<style>
+/*_css*/
+.jTabs{ width: 200px; }
+.jTabs .keys{ overflow: hidden; }
+.jTabs .keys li{ float: left; width: 50px; text-align: center; cursor: pointer;}
+.jTabs .keys li:hover,.jTabs .keys li.on{ color: red; }
+.jTabs .shows ol{ display: none; padding: 10px; background-color: #eee; }
+/*css_*/
+</style>
+
+<!--_html-->
+<div class="jTabs" data-js-tabs=".keys|.shows">
+    <ul class="keys">
+        <li>tab_1</li>
+        <li class="on">tab_2</li>
+        <li>tab_3</li>
+    </ul>
+    <div class="shows">
+        <!--展示1-->
+        <ol>
+            show_div_1
+        </ol>
+        <!--展示2-->
+        <ol>
+            show_div_2
+        </ol>
+        <!--展示3-->
+        <ol>
+            show_div_3
+        </ol>
+    </div>
+</div>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+切换卡[单个]
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/h_base_tabs.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+本模块的执行脚本封装到依赖文件h_base_tabs.js里；
+切换卡[单个]--点击key可切换到对应的div
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

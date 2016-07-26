@@ -1,0 +1,114 @@
+<?php echo($meta);?>
+
+<body>
+
+
+
+<style>
+/*_css*/
+.jTabs{ width: 200px; }
+.jTabs .keys{ overflow: hidden; }
+.jTabs .keys li{ float: left; width: 50px; text-align: center; cursor: pointer;}
+.jTabs .keys li:hover,.jTabs .keys li.on{ color: red; }
+.jTabs .shows ol{ display: none; padding: 10px; background-color: #eee; }
+/*css_*/
+</style>
+
+<!--_html-->
+<div data-js-tabs=".keys|.shows|.jTabs">
+
+    <!--切换卡1-->
+    <div class="jTabs">
+        <ul class="keys">
+            <li class="on">tab_11</li>
+            <li>tab_12</li>
+            <li>tab_13</li>
+        </ul>
+        <div class="shows">
+            <!--展示1-->
+            <ol>
+                show_div_11
+            </ol>
+            <!--展示2-->
+            <ol>
+                show_div_12
+            </ol>
+            <!--展示3-->
+            <ol>
+                show_div_13
+            </ol>
+        </div>
+    </div>
+
+    <!--切换卡2-->
+    <div class="jTabs">
+        <ul class="keys">
+            <li>tab_21</li>
+            <li class="on">tab_22</li>
+            <li>tab_23</li>
+        </ul>
+        <div class="shows">
+            <!--展示1-->
+            <ol>
+                show_div_21
+            </ol>
+            <!--展示2-->
+            <ol>
+                show_div_22
+            </ol>
+            <!--展示3-->
+            <ol>
+                show_div_23
+            </ol>
+        </div>
+    </div>
+
+</div>
+<!--html_-->
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+切换卡[多个]
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/h_base_tabs.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+切换卡[多个]
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>模板实例</title>
+    <link type="text/css" rel="stylesheet" href="../css/m/h_reset.css" />
+    <script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/m/h_base_select.js"></script>
+    <script type="text/javascript" src="../js/m/h_dialog.js"></script>
+</head>
+<body style="position:relative;">
+
+
+<style>
+/*_css*/
+.pSelect{ width: 40px; margin-right: 20px; position: relative;}
+.pSelect i{ position: absolute; top: 5px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 12px;}
+.pSelect .t_a{ display: block; position: relative;}
+.pSelect .t_a.on{ color:red;}
+.pSelect ol{ display:none;}
+.pSelect ol .selected,.pSelect ol li:hover{ color:#FF0004; cursor: pointer;}
+/*css_*/
+</style>
+
+
+<!--data-js-select:点击按键选择器|下拉选择器|多个下拉的父级选择器-->
+<!--_html-->
+<ul class="pSelect" data-js-select="a|ol" style="float: left;">
+    <i></i>
+    <a class="t_a t2" data-val="" href="javascript:;"></a>
+    <ol id="ol">
+        <ul>
+            <li data-val="1">111</li>
+            <li data-val="2">222</li>
+            <li data-val="3">333</li>
+        </ul>
+    </ol>
+</ul>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+自定义选项框_[单个]
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/h_base_select.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+自定义选项框_[单个]
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

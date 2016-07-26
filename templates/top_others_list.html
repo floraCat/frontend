@@ -14,11 +14,25 @@
 <{include file="global_header.php"}>
 
 
+
+<!--侧栏-->
+<div class="sideOther">
+    <a href="col_others.php?page=others&col=css3" data-col="css3">css3样式</a>
+    <a href="col_others.php?page=others&col=part&folder=mark&act=listAll" data-col="part">小部件</a>
+    <a href="col_others.php?page=others&col=bs&act=catTop" data-col="bs">BS模块</a>
+    <a href="col_others.php?page=others&col=website" data-col="website">前端网址</a>
+    <a href="col_others.php?page=others&col=style" data-col="style">常用样式</a>
+    <a href="col_others.php?page=others&col=reg" data-col="reg">常用正则</a>
+</div>
+<input type="hidden" id="side_col" value="<{$smarty.get.col}>" />
+
+
+
 <div class="modeList" style="padding-top:20px;">
 
 <{section name=list loop=$temp}>
 <li>
-    <a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&list=<{$temp[list]}>" target="_blank">
+    <a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&list=<{$temp[list]}>">
         <img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list]}>_01" />
     </a>
     <h5><{$temp[list]}></h5>
@@ -31,6 +45,20 @@
 <div class="h_mask"></div><!--覆盖层-->
 <div class="mAlert2">已复制到剪切板！</div>
 
+
+<script>
+$(function(){
+    //‘其他’侧栏
+    var side_col=$("#side_col").val();
+    $(".sideOther a").each(function(){
+        var data_col=$(this).attr("data-col");
+        if(data_col==side_col){
+            $(this).addClass("on").siblings("a").removeClass("on");
+            return;
+        }
+    });
+});
+</script>
 
 
 <!--当前导航加.on-->

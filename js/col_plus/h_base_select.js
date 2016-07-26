@@ -32,7 +32,7 @@
 			var $arr=$val.split("|");
 			var key=$arr[0];
 			var opts=$arr[1];
-			var parent=$arr[2]?$arr[2]:'';
+			var parent=$arr[2]?$(this).find($arr[2]):$(this);
 			select_default(key,opts,parent);
 			$(this).on("click",function(ev){
 				select_click($(this),key,opts,parent,ev);

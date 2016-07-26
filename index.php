@@ -12,7 +12,11 @@ $r=$_REQUEST;
 if(!$g["page"]){ $smarty->display("top_index.html");}
 
 //前端规范
-if($g["page"]=="standard"){ $smarty->display("top_standard.html");}
+if($g["page"]=="standard" && !$g["extra"]){ $smarty->display("top_standard.html");}
+if($g["extra"]=="naming_html"){ $smarty->display("extra/naming_html.html");}
+if($g["extra"]=="naming_style"){ $smarty->display("extra/naming_style.html");}
+if($g["extra"]=="naming_js"){ $smarty->display("extra/naming_js.html");}
+
 if($g["page"]=="cssAttr"){ $smarty->display("top_standard_cssAttr.html");}
 if($g["page"]=="naming"){ $smarty->display("top_standard_naming.html");}
 
@@ -23,6 +27,7 @@ if($g["extra"]=="index"){ $smarty->display("extra/html_index.html");}
 if($g["extra"]=="list"){ $smarty->display("extra/html_list.html");}
 if($g["extra"]=="html"){ $smarty->display("extra/html.html");}
 if($g["extra"]=="reset"){ $smarty->display("extra/reset.html");}
+
 
 //常用模块
 if($g["page"]=="module"){ $smarty->display("top_module.html");}

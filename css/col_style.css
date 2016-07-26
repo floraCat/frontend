@@ -31,6 +31,10 @@
 .pNav li a i{ font-size: 12px;}
 .indexBack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%;  background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% 100%; opacity: .5; z-index: -1;}
 
+/*侧栏*/
+.sideOther{ position: fixed; top: 200px; left: 50%; margin-left: -680px; width: 70px; border: #ddd 1px solid; border-bottom: none; background: #fff; text-align: center;}
+.sideOther a{ display:block; height: 30px; line-height: 30px; border-bottom: #ddd 1px solid;}
+.sideOther a:hover,.sideOther a.on{ background: #cf5d4e; color:#fff; }
 
 /*通用头部*/
 .gHeader .pNav{ position: relative; top: 0; padding: 25px 0;}

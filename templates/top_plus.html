@@ -16,8 +16,8 @@
 
 
 <div class="pTabs pPlus">
-    <li class="fl on">插件</li>
-    <li class="fr">组件</li>
+    <li class="fl on" data-role="plus">插件</li>
+    <li class="fr" data-role="unit">组件</li>
 </div>
 <input type="hidden" id="tab" name="tab" value="<{$smarty.get.tab}>" />
 <div style="width: 100%; height: 800px;"></div>
@@ -30,11 +30,11 @@
     </div>
 
     <ul class="pCat7" style="margin-top:50px;">
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=carousel"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=carousel">幻灯片</a></h5>
         </li>
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=tabs"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=tabs">切换卡</a></h5>
         </li>
@@ -42,19 +42,19 @@
             <a class="img" href="col_handle.php?page=plus&col=plus&list=dropdown"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=dropdown">下拉</a></h5>
         </li>
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=modal"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=modal">模态窗</a></h5>
         </li>
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=dialog"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=dialog">对话框</a></h5>
         </li>
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=select"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=select">选项框</a></h5>
         </li>
-        <li class="noClick">
+        <li>
             <a class="img" href="col_handle.php?page=plus&col=plus&list=gotop"><img src="images/sys/3.jpg" alt="" /></a>
             <h5><a href="col_handle.php?page=plus&col=plus&list=gotop">返回顶部</a></h5>
         </li>
@@ -84,19 +84,36 @@
 
 
 <script>
-$(function(){
-    //切换
-    $(".pTabs li").click(function(){
-        if($(this).hasClass("fr")){
+//识别url参数定位分类
+function optUrl(){
+    var url_plus=window.location.href;
+    var index_plus=url_plus.indexOf("#");
+    if(index_plus!=0){
+        var opt_plus=url_plus.substr(index_plus);
+        if(opt_plus=="#unit"){
             $(".show_plus").animate({"left":"9999px"},200);
             $(".show_unit").animate({"left":"50%"},200);
+            $(".pTabs li").eq(1).addClass("on").siblings().removeClass("on");
         }
-        if($(this).hasClass("fl")){
+        if(opt_plus=="#plus"){
             $(".show_plus").animate({"left":"50%"},200);
             $(".show_unit").animate({"left":"-9999px"},200);
+            $(".pTabs li").eq(0).addClass("on").siblings().removeClass("on");
         }
-        $(this).addClass("on").siblings().removeClass("on");    
-    });
+    }
+}
+$(function(){
+    optUrl();
+    $(".pTabs li").on("click",function(){
+        var dataRole=$(this).attr("data-role");
+        var url_plus=window.location.href;
+        var index_plus=url_plus.indexOf("#");
+        if(index_plus!=0){
+            url_plus=url_plus.substr(0,index_plus);
+        }
+        window.location.href=url_plus+"#"+dataRole;
+        optUrl();
+    });   
 });
 </script>
 
@@ -114,9 +131,7 @@ $(function(){
 
 
 <!--底部-->
-<!--_refer-->
 <{include file="global_footer.php"}>
-<!--refer_-->
 
 
 </body>
