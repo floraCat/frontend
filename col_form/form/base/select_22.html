@@ -6,15 +6,15 @@
 
 <style>
 /*_css*/
-    .gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-    .gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .g-flex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+    .g-flex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
     .fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .fForm dd{ margin-left:90px;}
-    .fSelects.gFlex{ width:298px;}
-    .fSelects.gFlex > *{ width:31.3%; padding:0 1%;}
-    .fSelects select{ width: 100%; height:30px; line-height:30px;}
-    .fSelects ol{ position:relative;}
+    .p-form .selects.g-flex{ width:298px;}
+    .p-form .selects.g-flex > *{ width:31.3%; padding:0 1%;}
+    .p-form .selects select{ width: 100%; height:30px; line-height:30px;}
+    .p-form .selects ol{ position:relative;}
 
     .fForm dl.select_drop{ overflow:visible;}
     .fForm dl.select_drop section{ position:relative;}
@@ -23,10 +23,10 @@
     .sel_drop ul{ height:100%; overflow-y:scroll;}
     .sel_drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888;}
     .sel_drop li.on{ background-color:#eee;}
-    .fSelect{ position:relative;}
-    .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
-    .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
-    .fSelect h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
+    .p-form .select{ position:relative;}
+    .p-form .select h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
+    .p-form .select h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
 /*css_*/
 </style>
 
@@ -36,9 +36,9 @@
 <!--_html-->
     <dl class="select_drop">
         <dt>dl_sel22：<em>*</em></dt>
-        <dd class="fSelects gFlex" data-js-cover>
+        <dd class="selects g-flex" data-js-cover>
             <section>
-                <div class="fSelect" data-js-pop>
+                <div class="select" data-js-pop>
                     <ol>
                         <input type="hidden" name="province" value="prov1" />
                         <h6 data-val></h6>
@@ -53,7 +53,7 @@
                 </div>
             </section>
             <section>
-                <div class="fSelect" data-js-pop>
+                <div class="select" data-js-pop>
                     <ol>
                         <input type="hidden" name="province" value="prov1" />
                         <h6 data-val></h6>
@@ -68,7 +68,7 @@
                 </div>
             </section>
             <section>
-                <div class="fSelect" data-js-pop>
+                <div class="select" data-js-pop>
                     <ol>
                         <input type="hidden" name="province" value="prov1" />
                         <h6 data-val></h6>

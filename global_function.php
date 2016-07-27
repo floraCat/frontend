@@ -77,7 +77,7 @@ function code_str($arr_code){
 		$style='<style>'."\n".$arr_code[0]."\n".'</style>'."\n";
 	}else{$style="";};
 	if($_REQUEST["page"]=="form"){
-		$html='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>'."\n";
+		$html='<div class="p-form" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>'."\n";
 	}else{ $html=$arr_code[2]."\n";}
 	if($arr_code[3]!=""){ $js='<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>'."\n";
 	}else{$js="";}
@@ -89,7 +89,7 @@ function code_str($arr_code){
 
 function code_str_all($arr_all){
 	$style='<style>'."\n".$arr_all[0]."\n".'</style>';
-	$html='<form class="fForm" style="width:500px; margin:0 auto;">'."\n".$arr_all[2].'</form>';
+	$html='<form class="p-form" style="width:500px; margin:0 auto;">'."\n".$arr_all[2].'</form>';
 	$js=$arr_all[3];
 	if(!$js==""){ $js='<script>'."\n".$arr_all[4].'$(function(){'."\n".$arr_all[3].'});'."\n".'</script>';}
 	$code_all=$style."\n".$html."\n".$js;

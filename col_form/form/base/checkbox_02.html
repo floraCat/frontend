@@ -6,9 +6,9 @@
 
 <style>
 /*_css*/
-	.wCheck input{ display:none;}
-	.wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
-	.wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
+	.g-check input{ display:none;}
+	.g-check label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
+	.g-check.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
 /*css_*/
 </style>
 
@@ -21,8 +21,8 @@
 
 
 <!--_html-->
-	<div class="fOneCheck" data-js-checkbox>
-	    <div class="wCheck">
+	<div class="check" data-js-checkbox>
+	    <div class="g-check">
 	        <input type="checkbox" name="loginAuto" />
 	        <label>自动登录</label>
 	    </div>
@@ -34,8 +34,8 @@
 
 <script>
 /*_fun*/
-function wCheck(wrap){
-    $(wrap).find("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
+function gCheck(wrap){
+    $(wrap).find("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
     $(wrap).find("[ data-js-checkbox] label").click(function(){
         $(this).parent().toggleClass("on"); 
         if($(this).parent().hasClass("on")){
@@ -48,7 +48,7 @@ function wCheck(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	wCheck(".fForm");
+	gCheck(".p-form");
 /*js_*/
 });
 </script>

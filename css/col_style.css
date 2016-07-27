@@ -62,8 +62,9 @@ border-radius:66px; -webkit-border-radius:66px; -moz-border-radius:66px; -khtml-
 .pCat7 li:hover .img{ background-color:#3f86f0;}
 .pCat7 li .img img{ width:120px; height:120px; 
 border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-border-radius:60px;}
-.pCat7 li h5{ font-size:14px;line-height: 30px;}
+.pCat7 li h5{ font-size:13px;line-height: 30px;}
 .pCat7 li h5 a{ color: #444;}
+.pCat7 li h5 a i{ display: inline; font-size: 12px; color: #5cb85c;}
 /*.topTtl{ width: 800px; margin:30px auto 0; font-size: 14px; font-weight:bold;}*/
 
 
@@ -174,7 +175,6 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 /* detail_setting */
 xmp{ margin:0; padding: 0; }
 
-/*.wrapView{ position: fixed; top: 30px; left: 0; width: 51%; padding:20px 2%; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}*/
 .tView{ width:55%; position:relative; top:30px;}
 .tCode{ position: absolute; right: 0; width: 45%; top: 30px;}
 .btn_view{ position: fixed; bottom: 12px; right: 46%; width: 88px; height: 22px; line-height: 22px; padding:7px 15px; background: #e4f6e4; border:#c1dfc1 1px solid; text-align: center; z-index: 99; border-radius: 5px; -webkit-border-radius: 5px;}
@@ -182,3 +182,6 @@ xmp{ margin:0; padding: 0; }
 .vBtn:hover,.vBtn.on{ background-color: #5cb85c; color: #fff;}
 .mAlert{ position:fixed; bottom:120px; right: 47%; width:95px; height:20px; line-height:20px; font-size:10px; background:#5cb85c; color: #fff; text-align:center; border-radius: 4px; opacity:0;}
 body .cke_chrome{ border:none; border-left: #ddd 1px solid;}
+
+
+.preTxt{ padding: 20px; font-family: 微软雅黑; font-size: 14px; line-height: 24px;}

@@ -6,15 +6,15 @@
 
 <style>
 /*_css*/
-	.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-	.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-	.fForm dd{ margin-left:90px;}
-	.fFile2 .fFile{ position:relative;}
-	.fFile2 .fFile input{ border:none;}
-	.fFile2 .fFile img{ width:80px;}
-	.fFile2 .fFile .mg{ position:absolute; bottom:0; left:90px; height:24px; line-height:24px;}
-	.fFile2 p{ color: #aaa;}
-	.fFile2 p a{ color: red;}
+	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+	.p-form dd{ margin-left:90px;}
+	.p-form .file2 .file{ position:relative;}
+	.p-form .file2 .file input{ border:none;}
+	.p-form .file2 .file img{ width:80px;}
+	.p-form .file2 .file .mg{ position:absolute; bottom:0; left:90px; height:24px; line-height:24px;}
+	.p-form .file2 p{ color: #aaa;}
+	.p-form .file2 p a{ color: red;}
 /*css_*/
 </style>
 
@@ -24,8 +24,8 @@
 <!--_html-->
 	<dl>
 	    <dt>dl_file2：</dt>
-	    <dd class="fFile2">
-	        <div class="fFile" data-js-file>
+	    <dd class="file2">
+	        <div class="file" data-js-file>
 	            <img src="images/col_form/pic_default.jpg" data-js-role="images/col_form/pic_default.jpg" />
 	            <div class="mg"><input type="file" name="" /></div>
 	        </div>
@@ -43,21 +43,21 @@ function previewFile(wrap){
 	$(wrap).find("[data-js-file]").on("change","input",function(){
 		var objUrl = getFileUrl(this);
 		if (objUrl){
-			$(this).parents(".fFile").find("img").attr("src", objUrl);
-			$(this).parents(".fFile").addClass("on");
+			$(this).parents(".file").find("img").attr("src", objUrl);
+			$(this).parents(".file").addClass("on");
 		}else{
-			$(this).parents(".fFile").removeClass("on");
+			$(this).parents(".file").removeClass("on");
 		}
 		$(wrap).find(".quit_file").click(function(){
 			var parent=$(this).data("js-role");
-			if(parent && parent!=".fFile"){
+			if(parent && parent!=".file"){
 				var $img=$(this).parents(parent).find("img");
-				$(this).parents(parent).find(".fFile").removeClass("on");
+				$(this).parents(parent).find(".file").removeClass("on");
 				$(this).parents(parent).find("input").val("");
 			}else{
-				var $img=$(this).parents(".fFile").find("img");
-				$(this).parents(".fFile").removeClass("on");
-				$(this).parents(".fFile").find("input").val("");
+				var $img=$(this).parents(".file").find("img");
+				$(this).parents(".file").removeClass("on");
+				$(this).parents(".file").find("input").val("");
 			}
 			$img.attr("src",$img.data("js-role"));
 		});
@@ -79,7 +79,7 @@ function previewFile(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	previewFile(".fForm");
+	previewFile(".p-form");
 /*js_*/
 });
 </script>

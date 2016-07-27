@@ -6,14 +6,14 @@
 
 <style>
 /*_css*/
-	.fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-	.fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-	.fForm dd{ margin-left:90px;}
-	.fFile1 .fFile{ position:relative; width:80px; height:80px;}
-	.fFile1 .fFile img{ width:100%; height:100%;}
-	.fFile1 .fFile input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
-	.fFile1 p{ color: #aaa;}
-	.fFile1 p a{ color: red;}
+	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+	.p-form dd{ margin-left:90px;}
+	.p-form .file1 .file{ position:relative; width:80px; height:80px;}
+	.p-form .file1 .file img{ width:100%; height:100%;}
+	.p-form .file1 .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
+	.p-form .file1 p{ color: #aaa;}
+	.p-form .file1 p a{ color: red;}
 /*css_*/
 </style>
 
@@ -23,10 +23,10 @@
 <!--_html-->
 	<dl>
 	    <dt>dl_file1：</dt>
-	    <dd class="fFile1">
-	        <div class="fFile" data-js-file>
+	    <dd class="file1">
+	        <div class="file" data-js-file>
 	            <input type="file" name="" />
-	            <img src="images/col_form/list_1.jpg" data-js-role="images/list_1.jpg" />
+	            <img src="images/col_form/list_1.jpg" data-js-role="images/col_form/list_1.jpg" />
 	        </div>
 	        <p><a class="quit_file red" data-js-role="dd">删除</a> 图片2M之内！</p>
 	    </dd>
@@ -42,21 +42,21 @@ function previewFile(wrap){
 	$(wrap).find("[data-js-file]").on("change","input",function(){
 		var objUrl = getFileUrl(this);
 		if (objUrl){
-			$(this).parents(".fFile").find("img").attr("src", objUrl);
-			$(this).parents(".fFile").addClass("on");
+			$(this).parents(".file").find("img").attr("src", objUrl);
+			$(this).parents(".file").addClass("on");
 		}else{
-			$(this).parents(".fFile").removeClass("on");
+			$(this).parents(".file").removeClass("on");
 		}
 		$(wrap).find(".quit_file").click(function(){
 			var parent=$(this).data("js-role");
-			if(parent && parent!=".fFile"){
+			if(parent && parent!=".file"){
 				var $img=$(this).parents(parent).find("img");
-				$(this).parents(parent).find(".fFile").removeClass("on");
+				$(this).parents(parent).find(".file").removeClass("on");
 				$(this).parents(parent).find("input").val("");
 			}else{
-				var $img=$(this).parents(".fFile").find("img");
-				$(this).parents(".fFile").removeClass("on");
-				$(this).parents(".fFile").find("input").val("");
+				var $img=$(this).parents(".file").find("img");
+				$(this).parents(".file").removeClass("on");
+				$(this).parents(".file").find("input").val("");
 			}
 			$img.attr("src",$img.data("js-role"));
 		});
@@ -78,7 +78,7 @@ function previewFile(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	previewFile(".fForm");
+	previewFile(".p-form");
 /*js_*/
 });
 </script>

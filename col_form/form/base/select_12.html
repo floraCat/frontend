@@ -6,20 +6,20 @@
 
 <style>
 /*_css*/
-    .gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-    .gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
-    .fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-    .fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-    .fForm dd{ margin-left:90px;}
-    .fSelects.gFlex{ width:298px;}
-    .fSelects.gFlex > *{ width:31.3%; padding:0 1%;}
-    .fSelects select{ width: 100%; height:30px; line-height:30px;}
-    .fSelects ol{ position:relative;}
-    .fSelect{ position:relative;}
-    .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
-    .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
-    .fSelect h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
-    .fSelect select{ position:absolute; top:0; left:0; width: 100%; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
+    .g-flex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+    .g-flex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+    .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+    .p-form dd{ margin-left:90px;}
+    .p-form .selects.g-flex{ width:298px;}
+    .p-form .selects.g-flex > *{ width:31.3%; padding:0 1%;}
+    .p-form .selects select{ width: 100%; height:30px; line-height:30px;}
+    .p-form .selects ol{ position:relative;}
+    .p-form .select{ position:relative;}
+    .p-form .select h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
+    .p-form .select h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
+    .p-form .select select{ position:absolute; top:0; left:0; width: 100%; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
 /*css_*/
 </style>
 
@@ -29,8 +29,8 @@
 <!--_html-->
     <dl data-js-select>
         <dt>dl_sel12：<em>*</em></dt>
-        <dd class="fSelects gFlex">
-            <div class="fSelect">
+        <dd class="selects g-flex">
+            <div class="select">
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -40,7 +40,7 @@
                     </select>
                 </ol>
             </div>
-            <div class="fSelect">
+            <div class="select">
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -50,7 +50,7 @@
                     </select>
                 </ol>
             </div>
-            <div class="fSelect">
+            <div class="select">
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -81,7 +81,7 @@ function selectTrigger(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-    selectTrigger(".fSelect");
+    selectTrigger(".p-form .select");
 /*js_*/
 });
 </script>

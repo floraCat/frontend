@@ -6,20 +6,20 @@
 
 <style>
 /*_css*/
-    .fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-    .fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-    .fForm dd{ margin-left:90px;}
-    .fForm dl.select_drop{ overflow:visible;}
-    .fForm dl.select_drop section{ position:relative;}
+    .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+    .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+    .p-form dd{ margin-left:90px;}
+    .p-form dl.select_drop{ overflow:visible;}
+    .p-form dl.select_drop section{ position:relative;}
     .sel_drop{ z-index:999; display:none; position:absolute; top:35px; left:0; width:100%; border:#ddd 1px solid; background-color:#fff;}
     .open .sel_drop{ display:block;}
     .sel_drop ul{ height:100%; overflow-y:scroll;}
     .sel_drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888;}
     .sel_drop li.on{ background-color:#eee;}
-    .fSelect{ position:relative;}
-    .fSelect h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
-    .fSelect .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
-    .fSelect h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
+    .p-form .select{ position:relative;}
+    .p-form .select h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
+    .p-form .select h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
 /*css_*/
 </style>
 
@@ -31,7 +31,7 @@
         <dt>dl_sel21：<em>*</em></dt>
         <dd>
         	<section class="re">
-                <div class="fSelect" data-js-pop>
+                <div class="select" data-js-pop>
                     <input type="hidden" name="province" value="prov1" />
                     <h6 data-val></h6>
                     <i class="key"></i>

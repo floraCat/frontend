@@ -6,15 +6,15 @@
 
 <style>
 /*_css*/
-    .gFlex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-    .gFlex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
-    .wCheck input{ display:none;}
-    .wCheck label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
-    .wCheck.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
-    .fForm dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-    .fForm dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-    .fForm dd{ margin-left:90px;}
-    .fRadios.gFlex > *{ width:31.3%; padding:0 1%;}
+    .g-flex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+    .g-flex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .g-check input{ display:none;}
+    .g-check label{ display:inline-block; height:30px; line-height:30px; padding-left:25px; background:url(images/col_form/i_check.png) no-repeat 0 center; background-size:18px;}
+    .g-check.on label{ background:url(images/col_form/i_check_on.png) no-repeat 0 center; background-size:18px;}
+    .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+    .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+    .p-form dd{ margin-left:90px;}
+    .p-form .radios.g-flex > *{ width:31.3%; padding:0 1%;}
 /*css_*/
 </style>
 
@@ -25,10 +25,10 @@
     <dl>
         <dt>dl_radio：<em>*</em></dt>
         <dd>
-            <ol class="fRadios gFlex" data-js-radio>
-                <div class="wCheck"><input type="radio" value="1" name="sex" /><label>男</label></div>
-                <div class="wCheck"><input type="radio" value="2" name="sex" checked /><label>女</label></div>
-                <div class="wCheck"><input type="radio" value="3" name="sex" /><label>保密</label></div>
+            <ol class="radios g-flex" data-js-radio>
+                <div class="g-check"><input type="radio" value="1" name="sex" /><label>男</label></div>
+                <div class="g-check"><input type="radio" value="2" name="sex" checked /><label>女</label></div>
+                <div class="g-check"><input type="radio" value="3" name="sex" /><label>保密</label></div>
             </ol>
         </dd> 
     </dl>
@@ -40,10 +40,10 @@
 <script>
 $(function(){
 /*_js*/
-	$("input[checked]").parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
+	$("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
 	$("[ data-js-radio] label").click(function(){
-		$(this).parent(".wCheck").addClass("on").siblings(".wCheck").removeClass("on");
-		$(this).siblings("input").attr("checked",true).parent(".wCheck").siblings(".wCheck").find("input").removeAttr("checked");
+		$(this).parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
+		$(this).siblings("input").attr("checked",true).parent(".g-check").siblings(".g-check").find("input").removeAttr("checked");
 	});	
 /*js_*/
 });

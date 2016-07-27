@@ -1,81 +1,112 @@
-
-<pre>网页模块外容器类名参考：
-
-p-header
-p-search
-p-topnav
-p-crumb
-p-sidebar
-p-menu
-p-submenu
-p-container
-p-main
-p-article
-p-list-news
-p-list-prod
-p-pagination
-p-banner
-p-friendlink
-p-partner
-p-brand
-p-guide
-p-copyright
-p-footer
-p-login
-p-register
-p-form
-p_table
+<link rel="stylesheet" href="css/col_style.css" />
+<pre class="preTxt">* 网页模块外容器类名参考：
+p-topbar            //顶部工具栏
+p-header            //网页头部
+p-search            //网页搜索框
+p-mainnav            //头部主导航
+p-sidebar            //侧导航
+p-crumb            //面包屑导航
+p-floor            //楼层
+p-channel            //频道
+p-column            //栏目
+p-special            //专栏
+p-cats            //分类列表
+p-ttls            //标题列表
+p-menu            //菜单
+p-submenu            //下级菜单
+p-wraper            //容器
+p-container            //容器
+p-main            //主体内容
+p-details            //详情
+p-article            //文档正文
+p-list            //通用列表
+p-list-news            //新闻列表
+p-list-prod            //产品列表
+p-list-case            //案例列表
+p-pagination            //分页
+p-banner-ad            //广告横幅
+p-ads            //广告位
+p-info            //相关信息
+p-notice            //通告之类
+p-friendlink            //友情链接
+p-partner            //合作伙伴
+p-brand            //合作品牌
+p-guide            //向导之类
+p-copyright            //版权之类
+p-footer            //网页底部
+p-login            //登录
+p-register            //注册
+p-layout            //版面布局
+p-form            //表单
+p-table            //表格
 ...
-
-//要求需要前缀'p-'，以区分容器内部元素类名
+//要求需要前缀'p-'，(p寓意page)
 //整个项目中是唯一的，不能重复
 
+-------------------------------------------------------------
 
-
-
-共用功能模块命名参考：
-g-flex
-g-check
-g-switch
-g-toggle
-g-arrow-down
-
-
-
-
-除外容器外的内部元素命名参考：
-left
-right
-cen
-logo
-ttl
-btn
-menu
-list
-desc
-summary
-body
-banner
-tab
-msg
-icon
-hot
-new
-column
-status
+* 共用样式或共用(功能)模块命名参考：
+g-clr            //清除消浮
+g-ttl            //通用标题
+g-hd            //栏目头部
+g-btn            //按键
+g-label            //标签之类
+g-switch            //切换小控件
+g-toggle            //切换小控件
+g-arrow-down            //通用箭头样式（如下拉箭头）
+g-flex            //flex弹性盒模型通用样式
+g-check            //自定义勾选框
+g-select            //自定义选项框
 ...
+//要求需要前缀'g-'，(g寓意global)
+//整个项目中是唯一的，不能重复
 
-//要求不能带有前缀'p-'，以区分外容器类名
+-------------------------------------------------------------
+
+* 外容器内部元素（除共用模块外）的命名参考：
+left            //左边
+right            //右边
+cen            //中间
+top            //顶部
+bottom            //底部
+logo            //商标
+ttl            //标题
+btn            //按键
+item            //条目
+items            //一组条目
+unit            //一组
+menu            //菜单
+pannel            //面板
+wrap            //容器
+list            //列表
+desc            //描述
+summary            //摘要
+body            //主体
+banner            //横幅
+tab            //标签
+label            //标签
+msg            //信息
+icon            //图标
+hot            //热点
+new            //最新
+column            //栏目
+status            //状态
+...
+//要求不要带有前缀如'p-'和'g-'，以区分外容器和共用样式的类名
 //只要不在同一个外容器内命名可以重复，只要样式设置时带有外容器类名前缀即可
 
+-------------------------------------------------------------
 
-样式表命名参考：
-通用样式：common.css     //重置代码及网站头部底部侧栏等公用代码（开发时可分为重置样式+）
+* 样式表命名参考：
+通用样式：common.css     //重置代码及网站头部底部侧栏等公用代码（开发时可按模块区分开来，如：reset.css+header.css+footer.css+common.css，发布前合并成一个样式表）
 首页：index.css
-各页面特定样式 **.css     //样式表名称尽量跟对应html文件名一致
-主题 themes.css
-文字 font.css
-表单 forms.css
-打印 print.css
+各页面特定样式（如 新闻列表页：list-news.css）     //样式表名称尽量跟html文件名对应
+布局/版面：layout.css
+主题：themes.css
+文字：font.css
+表单：forms.css
+补丁：mend.css
+打印：print.css
 ...
+//分隔符适当使用点'.'或中划线'-'
 </pre>
