@@ -125,7 +125,7 @@ if($_REQUEST["act"]=="setting"){
 			$arr_style=explode(";",substr($v1,strpos($v1,"{")+1,-1));
 			if($arr2_spec[$k1]["key"]=="*"){
 				foreach($arr_style as $k2=>$v2){
-					$css.='<span style="color:#aaa;">'.$v2.'; </span>';
+					$css.='<span style="color:#a2aea2;">'.$v2.'; </span>';
 				}
 			}else if($arr2_spec[$k1]["key"]=="!"){
 				foreach($arr_style as $k2=>$v2){
@@ -135,7 +135,7 @@ if($_REQUEST["act"]=="setting"){
 						if($v3==trim($arr[0])){ $flag=1;}
 					};
 					if($flag===1){ $css.=$v2.'; ';
-					}else{ $css.='<span style="color:#aaa;">'.$v2.'; </span>';}
+					}else{ $css.='<span style="color:#a2aea2;">'.$v2.'; </span>';}
 				}
 			}else{
 				foreach($arr_style as $k2=>$v2){
@@ -147,7 +147,7 @@ if($_REQUEST["act"]=="setting"){
 						};
 					}
 					if($flag==0){ $css.=$v2.'; ';
-					}else{ $css.='<span style="color:#aaa;">'.$v2.'; </span>';}
+					}else{ $css.='<span style="color:#a2aea2;">'.$v2.'; </span>';}
 				}
 			}
 			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($class).'{'.$css.'}<br />';
@@ -157,7 +157,7 @@ if($_REQUEST["act"]=="setting"){
 		$str_unit.=$css;
 	};
 	
-	if($page=="form"){ $html=htmlTabs('<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>');}
+	if($page=="form"){ $html=htmlTabs('<div class="p-form" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>');}
 	else{ $html=htmlTabs($arr_code[2]);}
 	$js=htmlTabs('<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>');
 	$str_unit='<p>&lt;style&gt;</p>'.$str_unit.'<p>&lt;/style&gt;</p>'.$html."<br />".$js;
@@ -176,7 +176,7 @@ if($_REQUEST["setting"]=="render"){
 	$newCode=str_replace('&nbsp;'," ",$newCode);//处理空格
 	$newCode=str_replace('    ',"\t",$newCode);//处理制表符
 	if($_REQUEST["page"]=="form"){
-		$newCode='<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$newCode."\n".'</div>';
+		$newCode='<div class="p-form" style="width:500px; margin:10px auto;">'."\n".$newCode."\n".'</div>';
 	}
 	$script=stripcslashes($_REQUEST["script"]);
 	$all.=$script."\n".$newCode;

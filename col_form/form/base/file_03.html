@@ -12,8 +12,8 @@
 	.p-form .files .file{ position:relative; width:80px; height:80px;}
 	.p-form .files .file img{ width:100%; height:100%;}
 	.p-form .files .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
-	.p-form .files .file .quit_file{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit.png) no-repeat; background-size:100% 100%;}
-	.p-form .files .file.on .quit_file{ display:block;}
+	.p-form .files .file .quit{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit.png) no-repeat; background-size:100% 100%;}
+	.p-form .files .file.on .quit{ display:block;}
 	.p-form .files{ overflow:hidden;}
 	.p-form .files .file{ float:left; margin:0 5px 5px 0;}
 /*css_*/
@@ -27,20 +27,20 @@
 	    <dt>dl_file3：</dt>
 	    <dd>
 	        <div class="files">
-	            <div class="file" data-js-file>
+	            <div class="file" data-j-file>
 	                <input type="file" />
-					<img src="images/col_form/pic_default.jpg" data-js-role="images/col_form/pic_default.jpg" />
-	                <a class="quit_file"></a>
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
 	            </div>
-	            <div class="file" data-js-file>
+	            <div class="file" data-j-file>
 	                <input type="file" />
-					<img src="images/col_form/pic_default.jpg" data-js-role="images/col_form/pic_default.jpg" />
-	                <a class="quit_file"></a>
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
 	            </div>
-	            <div class="file" data-js-file>
+	            <div class="file" data-j-file>
 	                <input type="file" />
-					<img src="images/col_form/pic_default.jpg" data-js-role="images/col_form/pic_default.jpg" />
-	                <a class="quit_file"></a>
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
 	            </div>
 	        </div>
 	    </dd>
@@ -61,7 +61,7 @@ function previewFile(wrap){
 		}else{
 			$(this).parents(".file").removeClass("on");
 		}
-		$(wrap).find(".quit_file").click(function(){
+		$(wrap).find(".quit").click(function(){
 			var parent=$(this).data("js-role");
 			if(parent && parent!=".file"){
 				var $img=$(this).parents(parent).find("img");
@@ -92,7 +92,37 @@ function previewFile(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	previewFile(".p-form");
+	$("[data-j-file]").each(function(){
+		var _this=$(this);
+		$(this).on("change","input",function(){
+			var objUrl = getFileUrl(this);
+			if (objUrl){
+				_this.find("img").attr("src", objUrl);
+				_this.addClass("on");
+			}else{
+				_this.removeClass("on");
+			}
+		});
+		$(this).find(".quit").click(function(){
+			var def_img=_this.find("img").data("default");
+			_this.find("img").attr("src",def_img);
+			_this.removeClass("on");
+		});
+		function getFileUrl(obj){ 
+			var url; 
+			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
+				url = obj.value; 
+			}else if(window.createObjectURL!=undefined){ // basic
+				url = window.createObjectURL(obj.files.item(0));
+			}else if (window.URL!=undefined){ // mozilla(firefox)
+				url = window.URL.createObjectURL(obj.files.item(0)); 
+			}else if (window.webkitURL!=undefined){ // webkit or chrome
+				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
+			} 
+			return url; 
+		}
+	});
+	//previewFile(".p-form");
 /*js_*/
 });
 </script>

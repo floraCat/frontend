@@ -11,14 +11,13 @@
     .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .p-form dd{ margin-left:90px;}
-    .p-form .selects.g-flex{ width:298px;}
+    .p-form .selects{ width:298px;}
     .p-form .selects.g-flex > *{ width:31.3%; padding:0 1%;}
     .p-form .selects select{ width: 100%; height:30px; line-height:30px;}
     .p-form .selects ol{ position:relative;}
     .p-form .select{ position:relative;}
-    .p-form .select h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .p-form .select h6{ font-size:12px; height:35px; line-height:35px; padding:0 5px; border:#ddd 1px solid; color:#888; background-color:#fff; white-space:nowrap;}
     .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
-    .p-form .select h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
     .p-form .select select{ position:absolute; top:0; left:0; width: 100%; height:35px; opacity:0; -o-opacity:0; -moz-opacity:0;}
 /*css_*/
 </style>
@@ -30,7 +29,7 @@
     <dl data-js-select>
         <dt>dl_sel12：<em>*</em></dt>
         <dd class="selects g-flex">
-            <div class="select">
+            <div class="select" data-j-select>
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -40,7 +39,7 @@
                     </select>
                 </ol>
             </div>
-            <div class="select">
+            <div class="select" data-j-select>
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -50,7 +49,7 @@
                     </select>
                 </ol>
             </div>
-            <div class="select">
+            <div class="select" data-j-select>
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
@@ -81,7 +80,18 @@ function selectTrigger(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-    selectTrigger(".p-form .select");
+    $("[data-j-select]").each(function(){
+        var _this=$(this);
+        selectOn($(this));
+        $(this).on("change","select",function(){
+            selectOn(_this);
+        });
+        function selectOn(obj){
+            var on_sel=obj.find("select option:selected").text();
+            obj.find("h6").text(on_sel);
+        }
+    });
+    //selectTrigger(".p-form .select");
 /*js_*/
 });
 </script>

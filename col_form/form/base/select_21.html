@@ -30,13 +30,13 @@
     <dl class="select_drop">
         <dt>dl_sel21：<em>*</em></dt>
         <dd>
-        	<section class="re">
-                <div class="select" data-js-pop>
+        	<section class="re" data-js-dropdown=".key|.sel_drop">
+                <div class="select">
                     <input type="hidden" name="province" value="prov1" />
                     <h6 data-val></h6>
                     <i class="key"></i>
                 </div>
-                <div class="sel_drop" data-js-option>
+                <div class="sel_drop">
                     <ul>
                         <li data-val="prov1" class="on">北京</li>
                         <li data-val="prov31">青海</li>
@@ -68,13 +68,13 @@
 $(function(){
 /*_js*/
 	//选择框key
-	$("option[selected]").each(function(){
-		$(this).parent().siblings("h6").text($(this).text());
-	});
-	$("[data-js-select]").delegate("select","change",function(){
-		var cur=$(this).find('option:selected').text();
-		$(this).siblings("h6").text(cur);
-	});
+	// $("option[selected]").each(function(){
+	// 	$(this).parent().siblings("h6").text($(this).text());
+	// });
+	// $("[data-js-select]").delegate("select","change",function(){
+	// 	var cur=$(this).find('option:selected').text();
+	// 	$(this).siblings("h6").text(cur);
+	// });
 /*js_*/
 });
 </script>
@@ -106,7 +106,7 @@ test_desc_01
 
 <!----依赖---->
 <!--_refer-->
-
+js/col_plus/h_base_dropdown.js:通用的点击下拉插件
 <!--refer_-->
 
 <!----说明---->

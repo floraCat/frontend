@@ -8,14 +8,16 @@
 /*_css*/
 .p-mainnav-030{ height:40px; line-height:40px;}
 .p-mainnav-030 li{ position:relative; float:left; width:116px; text-align:center;}
-.p-mainnav-030 li .h_n{ display:block;}
+.p-mainnav-030 li > a{ display:block;}
 .p-mainnav-030 li ul a{ display:block; background-color:#ccc;}
-.p-mainnav-030 li a:hover,.p-mainnav-030 li .on,.p-mainnav-030 .open .h_n,.p-mainnav-030 .open .open .h_c{ color:#fff; background-color:#CC0000;}
 .p-mainnav-030 li ol{ position:absolute; top:40px; left:0; display:none; width:100%;}
 .p-mainnav-030 li.open ol{ display:block;}
 .p-mainnav-030 li ol ul{ position:relative;}
 .p-mainnav-030 li ol ul div{ position:absolute; top:0; left:116px; display:none; width:116px;}
 .p-mainnav-030 li.open ol ul.open div{ display:block;}
+.p-mainnav-030 li a:hover,
+.p-mainnav-030 li .on,
+.p-mainnav-030 .open > a{ color:#fff; background-color:#CC0000;}
 /*css_*/
 </style>
 
@@ -37,44 +39,44 @@
 
 <!--_html-->
 <div class="p-mainnav-030">
-	<li><a class="h_n on" href="#">首页</a></li>
-	<li><a class="h_n" href="#">栏目壹</a></li>
+	<li><a class="on" href="#">首页</a></li>
+	<li><a href="#">栏目壹</a></li>
 	<li data-js-hover>
-		<a class="h_n" href="#">栏目贰</a>
+		<a href="#">栏目贰</a>
 		<ol>
 			<ul data-js-hover>
-				<a class="h_c" href="#">产品展示21</a>
+				<a href="#">产品展示21</a>
 				<div>
-					<a class="h_s" href="#">产品展示31</a>
+					<a href="#">产品展示31</a>
 				</div>
 			</ul>
 			<ul>
-				<a class="h_c" href="#">产品展示22</a>
+				<a href="#">产品展示22</a>
 			</ul>
 			<ul data-js-hover>
-				<a class="h_c" href="#">产品展示23</a>
+				<a href="#">产品展示23</a>
 				<div>
-					<a class="h_s" href="#">产品展示33</a>
-					<a class="h_s" href="#">产品展示34</a>
+					<a href="#">产品展示33</a>
+					<a href="#">产品展示34</a>
 				</div>
 			</ul>
 			<ul>
-				<a class="h_c" href="#">产品展示24</a>
+				<a href="#">产品展示24</a>
 			</ul>
 		</ol>
 	</li>
 	<li data-js-hover>
-		<a class="h_n" href="#">栏目叁</a>
+		<a href="#">栏目叁</a>
 		<ol>
 			<ul>
-				<a class="h_c" href="#">新闻一</a>
+				<a href="#">新闻一</a>
 			</ul>
 			<ul>
-				<a class="h_c" href="#">新闻二</a>
+				<a href="#">新闻二</a>
 			</ul>
 		</ol>
 	</li>
-	<li><a class="h_n" href="#">栏目肆</a></li>
+	<li><a href="#">栏目肆</a></li>
 </div>
 <!--html_-->
 

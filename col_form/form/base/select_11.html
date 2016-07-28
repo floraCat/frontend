@@ -24,12 +24,12 @@
     <dl>
         <dt>dl_sel11：<em>*</em></dt>
         <dd>
-            <div class="select">
+            <div class="select" data-j-select>
                 <i class="key"></i>
                 <h6></h6>
                 <select>
-                    <option value="">选项一</option>
-                    <option value="" selected="selected">选项二</option>
+                    <option value="1">选项一</option>
+                    <option value="2">选项二</option>
                 </select>
             </div>
         </dd>
@@ -53,7 +53,18 @@ function selectTrigger(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-    selectTrigger(".p-form .select");
+    $("[data-j-select]").each(function(){
+        var _this=$(this);
+        selectOn($(this));
+        $(this).on("change","select",function(){
+            selectOn(_this);
+        });
+        function selectOn(obj){
+            var on_sel=obj.find("select option:selected").text();
+            obj.find("h6").text(on_sel);
+        }
+    });
+    //selectTrigger(".p-form .select");
 /*js_*/
 });
 </script>

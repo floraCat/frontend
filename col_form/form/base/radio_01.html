@@ -25,7 +25,7 @@
     <dl>
         <dt>dl_radio：<em>*</em></dt>
         <dd>
-            <ol class="radios g-flex" data-js-radio>
+            <ol class="radios g-flex" data-j-radio>
                 <div class="g-check"><input type="radio" value="1" name="sex" /><label>男</label></div>
                 <div class="g-check"><input type="radio" value="2" name="sex" checked /><label>女</label></div>
                 <div class="g-check"><input type="radio" value="3" name="sex" /><label>保密</label></div>
@@ -40,11 +40,21 @@
 <script>
 $(function(){
 /*_js*/
-	$("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
-	$("[ data-js-radio] label").click(function(){
-		$(this).parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
-		$(this).siblings("input").attr("checked",true).parent(".g-check").siblings(".g-check").find("input").removeAttr("checked");
-	});	
+    $("[data-j-radio]").each(function(){
+        $(this).find("[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
+        $(this).find("label").click(function(){
+            $(this).parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
+            $(this).siblings("input").attr("checked",true).parent(".g-check").siblings(".g-check").find("input").removeAttr("checked");
+        });
+    });
+
+
+	// $("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
+	// $("[ data-j-radio] label").click(function(){
+	// 	$(this).parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
+	// 	$(this).siblings("input").attr("checked",true).parent(".g-check").siblings(".g-check").find("input").removeAttr("checked");
+	// });	
+    
 /*js_*/
 });
 </script>

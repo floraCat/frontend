@@ -10,50 +10,61 @@
 .p-topbar .wrap{ width: 960px; margin:0 auto;}
 .p-topbar .left{ float:left;}
 .p-topbar .right{ float:right;}
-.p-topbar li{ float:left;}
-.p-topbar li > a{ display:block; padding:0 10px;}
+.p-topbar .wrap > ol > *{ float: left; padding: 0 10px; }
 .p-topbar [data-js-hover]{ position:relative;}
-.p-topbar .drop{ position:absolute; top:30px; left:0; display:none; width:100%; background-color:#ddd;}
-.p-topbar .open .drop{ display:block;}
-.p-topbar .nav .list a{ display:block;}
-.p-topbar .cart{ padding: 10px; width: 180px; }
+.p-topbar [data-js-hover] > ol{ position:absolute; top:30px; left: 0; display:none;}
+.p-topbar [data-js-hover].open > ol{ display:block;}
+.p-topbar [data-js-hover].open > a{ color: red;}
+.p-topbar .nav{ width:100%; background-color:#ddd;}
+.p-topbar .list a{ display:block;}
+.g-cart{ width: 180px; padding: 10px; background-color:#ddd;}
 /*css_*/
 </style>
 
 
 <!--_spec-->
 {z-index,position,left,top,width,height,line-height}
-{margin}
+{width,margin}
+{float}
+{float}
+{float}
+{position}
+{position,top,left,display}
+{display}
+{}
+{}
+{}
+{}
 <!--spec_-->
 
 
 <!--_html-->
 <div class="p-topbar">
 	<div class="wrap">
-		<ul class="left">
-			<li>欢迎光临本站！</li>
-			<li><a href="#">登录</a></li>
-			<li><a href="#">注册</a></li>
-		</ul>
-		<ul class="right">
-			<li data-js-hover>
+		<ol class="left">
+			<span>欢迎光临本站！</span>
+			<a href="#">登录</a>
+			<a href="#">注册</a>
+		</ol>
+		<ol class="right">
+			<div data-js-hover>
 				<a href="javascript:;">快捷导航</a>
-				<div class="drop nav">
-					<ol class="list">
+				<ol class="nav">
+					<div class="list">
 						<a href="#">栏目一</a>
 						<a href="#">栏目二</a>
 						<a href="#">栏目三</a>
-					</ol>
-				</div>
-			</li>
-			<li data-js-hover>
+					</div>
+				</ol>
+			</div>
+			<div data-js-hover>
 				<a href="javascript:;">购物车</a>
-				<div class="drop cart">
+				<ol class="g-cart">
 					<p>购物车为空！</p>
-				</div>
-			</li>
-			<li><a href="#">本站商城</a></li>
-		</ul>
+				</ol>
+			</div>
+			<a href="#">本站商城</a>
+		</ol>
 	</div>
 </div>
 <!--html_-->

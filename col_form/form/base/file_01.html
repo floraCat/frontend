@@ -9,11 +9,11 @@
 	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
 	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
 	.p-form dd{ margin-left:90px;}
-	.p-form .file1 .file{ position:relative; width:80px; height:80px;}
-	.p-form .file1 .file img{ width:100%; height:100%;}
-	.p-form .file1 .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
-	.p-form .file1 p{ color: #aaa;}
-	.p-form .file1 p a{ color: red;}
+	.p-form .file-1 .file{ position:relative; width:80px; height:80px;}
+	.p-form .file-1 .file img{ width:100%; height:100%;}
+	.p-form .file-1 .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
+	.p-form .file-1 p{ color: #aaa;}
+	.p-form .file-1 p a{ color: red;}
 /*css_*/
 </style>
 
@@ -22,13 +22,13 @@
 
 <!--_html-->
 	<dl>
-	    <dt>dl_file1：</dt>
-	    <dd class="file1">
-	        <div class="file" data-js-file>
+	    <dt>dl_file-1：</dt>
+	    <dd class="file-1" data-j-file>
+	        <div class="file">
+	            <img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
 	            <input type="file" name="" />
-	            <img src="images/col_form/list_1.jpg" data-js-role="images/col_form/list_1.jpg" />
 	        </div>
-	        <p><a class="quit_file red" data-js-role="dd">删除</a> 图片2M之内！</p>
+	        <p><a href="javascript:;" class="quit">删除</a> 图片2M之内！</p>
 	    </dd>
 	</dl>
 <!--html_-->
@@ -39,7 +39,7 @@
 <script>
 /*_fun*/
 function previewFile(wrap){
-	$(wrap).find("[data-js-file]").on("change","input",function(){
+	$(wrap).find("[data-j-file]").on("change","input",function(){
 		var objUrl = getFileUrl(this);
 		if (objUrl){
 			$(this).parents(".file").find("img").attr("src", objUrl);
@@ -47,7 +47,7 @@ function previewFile(wrap){
 		}else{
 			$(this).parents(".file").removeClass("on");
 		}
-		$(wrap).find(".quit_file").click(function(){
+		$(wrap).find(".quit").click(function(){
 			var parent=$(this).data("js-role");
 			if(parent && parent!=".file"){
 				var $img=$(this).parents(parent).find("img");
@@ -78,7 +78,36 @@ function previewFile(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	previewFile(".p-form");
+	$("[data-j-file]").each(function(){
+		var _this=$(this);
+		$(this).on("change","input",function(){
+			var objUrl = getFileUrl(this);
+			if (objUrl){
+				_this.find("img").attr("src", objUrl);
+				_this.addClass("on");
+			}else{
+				_this.removeClass("on");
+			}
+		});
+		$(this).find(".quit").click(function(){
+			var def_img=_this.find("img").data("default");
+			_this.find("img").attr("src",def_img);
+		});
+		function getFileUrl(obj){ 
+			var url; 
+			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
+				url = obj.value; 
+			}else if(window.createObjectURL!=undefined){ // basic
+				url = window.createObjectURL(obj.files.item(0));
+			}else if (window.URL!=undefined){ // mozilla(firefox)
+				url = window.URL.createObjectURL(obj.files.item(0)); 
+			}else if (window.webkitURL!=undefined){ // webkit or chrome
+				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
+			} 
+			return url; 
+		}
+	});
+	//previewFile(".p-form");
 /*js_*/
 });
 </script>

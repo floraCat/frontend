@@ -29,7 +29,7 @@
     <dl>
         <dt>dl_checkbox：</dt>
         <dd>
-            <ol class="checks g-flex" data-js-checkbox>
+            <ol class="checks g-flex" data-j-checkbox>
                 <div class="g-check"><input type="checkbox" value="1" name="fav" /><label>兴趣一</label></div>
                 <div class="g-check"><input type="checkbox" value="2" name="fav" /><label>兴趣二</label></div>
                 <div class="g-check"><input type="checkbox" value="3" name="fav" /><label>兴趣三</label></div>
@@ -46,7 +46,7 @@
 /*_fun*/
 function gCheck(wrap){
     $(wrap).find("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
-    $(wrap).find("[ data-js-checkbox] label").click(function(){
+    $(wrap).find("[ data-j-checkbox] label").click(function(){
         $(this).parent().toggleClass("on"); 
         if($(this).parent().hasClass("on")){
             $(this).siblings("input").attr("checked",true); 
@@ -58,7 +58,21 @@ function gCheck(wrap){
 /*fun_*/
 $(function(){
 /*_js*/
-	gCheck(".p-form");
+
+    $("[data-j-checkbox]")
+        .find("input[checked]")
+        .parent(".g-check").addClass("on")
+        .siblings(".g-check").removeClass("on");
+    $("[data-j-checkbox]")
+        .find("label").click(function(){
+            $(this).parent().toggleClass("on"); 
+            if($(this).parent().hasClass("on")){
+                $(this).siblings("input").attr("checked",true); 
+            }else{
+                $(this).siblings("input").attr("checked",false);    
+            }
+        });
+
 /*js_*/
 });
 </script>

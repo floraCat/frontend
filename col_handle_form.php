@@ -168,7 +168,7 @@ if($_REQUEST["act"]=="settingAll"){
 	fwrite($view,$code_all);
 	fclose($view);
 
-	$html=htmlTabs('<div class="fForm" style="width:500px; margin:10px auto;">'."\n".$arr_all[2].'</div>');
+	$html=htmlTabs('<div class="p-form" style="width:500px; margin:10px auto;">'."\n".$arr_all[2].'</div>');
 	$js=htmlTabs('<script>'."\n".$arr_all[4].'$(function(){'."\n".$arr_all[3].'});'."\n".'</script>');
 	$css=htmlTabs('<style>'."\n".$arr_all[0]."\n".'</style>');
 	$str_unit=$css."<br />".$html."<br />".$js;
