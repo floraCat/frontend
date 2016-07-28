@@ -24,21 +24,21 @@
 
 <!--_html-->
 	<dl>
-	    <dt>dl_file3：</dt>
+	    <dt>图片上传-3：</dt>
 	    <dd>
 	        <div class="files">
 	            <div class="file" data-j-file>
-	                <input type="file" />
+	                <input type="file" name="upload-img" />
 					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
 	                <a href="javascript:;" class="quit"></a>
 	            </div>
 	            <div class="file" data-j-file>
-	                <input type="file" />
+	                <input type="file" name="upload-img" />
 					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
 	                <a href="javascript:;" class="quit"></a>
 	            </div>
 	            <div class="file" data-j-file>
-	                <input type="file" />
+	                <input type="file" name="upload-img" />
 					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
 	                <a href="javascript:;" class="quit"></a>
 	            </div>
@@ -51,45 +51,6 @@
 
 
 <script>
-/*_fun*/
-function previewFile(wrap){
-	$(wrap).find("[data-js-file]").on("change","input",function(){
-		var objUrl = getFileUrl(this);
-		if (objUrl){
-			$(this).parents(".file").find("img").attr("src", objUrl);
-			$(this).parents(".file").addClass("on");
-		}else{
-			$(this).parents(".file").removeClass("on");
-		}
-		$(wrap).find(".quit").click(function(){
-			var parent=$(this).data("js-role");
-			if(parent && parent!=".file"){
-				var $img=$(this).parents(parent).find("img");
-				$(this).parents(parent).find(".file").removeClass("on");
-				$(this).parents(parent).find("input").val("");
-			}else{
-				var $img=$(this).parents(".file").find("img");
-				$(this).parents(".file").removeClass("on");
-				$(this).parents(".file").find("input").val("");
-			}
-			$img.attr("src",$img.data("js-role"));
-		});
-		function getFileUrl(obj) { 
-			var url; 
-			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
-				url = obj.value; 
-			}else if(window.createObjectURL!=undefined){ // basic
-				url = window.createObjectURL(obj.files.item(0));
-			}else if (window.URL!=undefined){ // mozilla(firefox)
-				url = window.URL.createObjectURL(obj.files.item(0)); 
-			}else if (window.webkitURL!=undefined){ // webkit or chrome
-				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
-			} 
-			return url; 
-		} 
-	});
-}
-/*fun_*/
 $(function(){
 /*_js*/
 	$("[data-j-file]").each(function(){
@@ -122,7 +83,6 @@ $(function(){
 			return url; 
 		}
 	});
-	//previewFile(".p-form");
 /*js_*/
 });
 </script>

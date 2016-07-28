@@ -22,12 +22,12 @@
 
 <!--_html-->
     <dl>
-        <dt>dl_sel11：<em>*</em></dt>
+        <dt>选项框-11：<em>*</em></dt>
         <dd>
             <div class="select" data-j-select>
                 <i class="key"></i>
                 <h6></h6>
-                <select>
+                <select name="options">
                     <option value="1">选项一</option>
                     <option value="2">选项二</option>
                 </select>
@@ -40,17 +40,6 @@
 
 
 <script>
-/*_fun*/
-function selectTrigger(wrap){
-    $(wrap).find("option[selected]").each(function(){
-        $(this).parent().siblings("h6").text($(this).text());
-    });
-    $(wrap).on("change","select",function(){
-        var cur=$(this).find('option:selected').text();
-        $(this).siblings("h6").text(cur);
-    });
-}
-/*fun_*/
 $(function(){
 /*_js*/
     $("[data-j-select]").each(function(){
@@ -64,7 +53,6 @@ $(function(){
             obj.find("h6").text(on_sel);
         }
     });
-    //selectTrigger(".p-form .select");
 /*js_*/
 });
 </script>

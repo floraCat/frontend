@@ -12,7 +12,7 @@
     .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .p-form dd{ margin-left:90px;}
-    .p-form .txt{ width:100%; height:112px; padding:5px; line-height:20px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
+    .p-form .txt{ width:100%; height:112px; padding:5px; line-height:20px;}
     .p-form .txt1 p{ height:21px; font-size:12px; line-height:21px; text-align:right; color:#aaa;}
 /*css_*/
 </style>
@@ -22,9 +22,9 @@
 
 <!--_html-->
     <dl>
-        <dt>dl_txt1：</dt>
+        <dt>输入框-1：</dt>
         <dd class="txt1">
-            <textarea  data-js-txt="20" class="txt" placeholder="请输入留言"></textarea>
+            <textarea name="message" data-j-txt="20" class="txt" placeholder="请输入留言"></textarea>
             <p>建议在20个字内</p>
         </dd>
     </dl>
@@ -34,24 +34,15 @@
 
 
 <script>
-/*_fun*/
-function txtLimit(wrap,isChange){
-    var $obj=$(wrap).find("[data-js-txt]");
-    $obj.keyup(function(){
-        var txtLimit=$(this).data("js-txt");
-        var txtLen=$(this).val().length;
-        if(txtLen>=txtLimit){
-            $obj.val($(this).val().substr(0,txtLimit));
-        }
-        if(isChange){
-            $(wrap).find(".txtNum").text(txtLimit-txtLen);
-        }        
-    })
-}
-/*fun_*/
 $(function(){
 /*_js*/
-    txtLimit(".p-form .txt1",0);
+    $("[data-j-txt]").keyup(function(){
+        var txtLimit=$(this).data("j-txt");
+        var txtLen=$(this).val().length;
+        if(txtLen>=txtLimit){
+            $(this).val($(this).val().substr(0,txtLimit));
+        }
+    })
 /*js_*/
 });
 </script>

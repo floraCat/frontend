@@ -133,13 +133,15 @@ function info_arr($page,$ttl,$folder){
 function code_all($page,$folder,$form){
 	$cookie_arr=explode("#",substr($form,14));
 	$arr_all=array();
+	$arr_js=array();
 	foreach($cookie_arr as $k=>$v){
 		$arr[$k]=explode(",",$v);
 		$sCode=code_arr($page,$folder,$arr[$k][0]);
 		$arr_css=$arr_css.$sCode[0]."\n";
 		$arr_spec=$arr_spec.$sCode[1];
 		$arr_html=$arr_html.$sCode[2]."\n";
-		$arr_js=$arr_js.$sCode[3];
+		array_push($arr_js, $sCode[3]);
+		//$arr_js=$arr_js.$sCode[3];
 		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
 	};
 
@@ -166,56 +168,63 @@ function code_all($page,$folder,$form){
 
 	//脚本去重
 	if($arr_js!=""){
-		$arr_js=explode("\n", $arr_js);
-		$arr_js2=array();
-		$arr_exFun2=array();
-		foreach($arr_js as $k=>$v){
-			if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
-				if(empty($arr_exFun2)){
-					$arr_js2[$k]=$v;
-					$arr_exFun2[$k]=$v;
-				}else{
-					$pushIn=1;
-					foreach($arr_exFun2 as $k2=>$v2){
-						if(trim($v)==trim($v2)){
-							$pushIn=0;
-						}
-					};
-					if($pushIn==1){
-						$arr_exFun2[$k]=$v;
-						$arr_js2[$k]=$v;
-					}
-				}
-			}else{
-				$arr_js2[$k]=$v;
-			}
-		};
-		$str_js=implode("\n", $arr_js2);
+		$arr_js=array_unique($arr_js);
+		$str_js =implode("\n", $arr_js); 
+		//echo("<pre>");print_r($str_js);echo("</pre>");
 	}
 
+
+	// if($arr_js!=""){
+	// 	$arr_js=explode("\n", $arr_js);
+	// 	$arr_js2=array();
+	// 	$arr_exFun2=array();
+	// 	foreach($arr_js as $k=>$v){
+	// 		if (preg_match('/^[^\.]\w+[\(]/',trim($v))) {
+	// 			if(empty($arr_exFun2)){
+	// 				$arr_js2[$k]=$v;
+	// 				$arr_exFun2[$k]=$v;
+	// 			}else{
+	// 				$pushIn=1;
+	// 				foreach($arr_exFun2 as $k2=>$v2){
+	// 					if(trim($v)==trim($v2)){
+	// 						$pushIn=0;
+	// 					}
+	// 				};
+	// 				if($pushIn==1){
+	// 					$arr_exFun2[$k]=$v;
+	// 					$arr_js2[$k]=$v;
+	// 				}
+	// 			}
+	// 		}else{
+	// 			$arr_js2[$k]=$v;
+	// 		}
+	// 	};
+	// 	$str_js=implode("\n", $arr_js2);
+	// }
+
 	//函数去重
-	if($arr_fun!=""){
-		$str_fun=preg_replace('/}\s*function/','}function',$arr_fun);
-		// $size_fun=substr_count($str_fun,"}function ",0);
-		// for($x=1;$x<=$size_fun+1;$x++){
-		// 	$start_pos=newstripos($str_fun,"function ",$x);
-		// 	$end_pos=strpos($str_fun,"}function",$start_pos+9);
-		// 	if(!$end_pos){ $end_pos=strlen($str_fun);}
-		// 	$len=$end_pos-$start_pos+1;
-		// 	$fun=substr($str_fun,$start_pos,$len);
-		// 	preg_match('/function\s+([^\(]+)/',$fun,$result);
-		// 	$rs[$x]=$result[1];
-		// 	$arr_funName[$x]=$rs[$x];
-		// 	if($x>1){
-		// 		$flag=0;
-		// 		foreach($arr_funName as $k2=>$v2){
-		// 			if($rs[$x]==$v2){ $flag=1;}
-		// 		};
-		// 		if($flag==1){ $str_fun=substr_replace($str_fun,'',$start_pos,$len);}
-		// 	}
-		// }
-		$str_fun=str_replace("}function","}"."\n"."function",$str_fun);
-	}
+	// if($arr_fun!=""){
+	// 	$str_fun=preg_replace('/}\s*function/','}function',$arr_fun);
+	// 	// $size_fun=substr_count($str_fun,"}function ",0);
+	// 	// for($x=1;$x<=$size_fun+1;$x++){
+	// 	// 	$start_pos=newstripos($str_fun,"function ",$x);
+	// 	// 	$end_pos=strpos($str_fun,"}function",$start_pos+9);
+	// 	// 	if(!$end_pos){ $end_pos=strlen($str_fun);}
+	// 	// 	$len=$end_pos-$start_pos+1;
+	// 	// 	$fun=substr($str_fun,$start_pos,$len);
+	// 	// 	preg_match('/function\s+([^\(]+)/',$fun,$result);
+	// 	// 	$rs[$x]=$result[1];
+	// 	// 	$arr_funName[$x]=$rs[$x];
+	// 	// 	if($x>1){
+	// 	// 		$flag=0;
+	// 	// 		foreach($arr_funName as $k2=>$v2){
+	// 	// 			if($rs[$x]==$v2){ $flag=1;}
+	// 	// 		};
+	// 	// 		if($flag==1){ $str_fun=substr_replace($str_fun,'',$start_pos,$len);}
+	// 	// 	}
+	// 	// }
+	// 	$str_fun=str_replace("}function","}"."\n"."function",$str_fun);
+	// }
 	
 	array_push($arr_all,"\t".$arr_css,$arr_spec,$arr_html,$str_js,$str_fun);
 	return($arr_all);

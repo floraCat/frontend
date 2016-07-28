@@ -7,7 +7,7 @@
 <style>
 /*_css*/
     .g-flex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-    .g-flex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .g-flex > *{ float:left;}
     .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .p-form dd{ margin-left:90px;}
@@ -27,13 +27,13 @@
 
 <!--_html-->
     <dl data-js-select>
-        <dt>dl_sel12：<em>*</em></dt>
+        <dt>选项框-12：<em>*</em></dt>
         <dd class="selects g-flex">
             <div class="select" data-j-select>
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
-                    <select>
+                    <select name="prov">
                         <option value="gd" selected="selected">广东</option>
                         <option value="gx">广西</option>
                     </select>
@@ -43,7 +43,7 @@
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
-                    <select>
+                    <select name="city">
                         <option value="gd" selected="selected">广东</option>
                         <option value="gx">广西</option>
                     </select>
@@ -53,7 +53,7 @@
                 <ol>
                     <i class="key"></i>
                     <h6></h6>
-                    <select>
+                    <select name="town">
                         <option value="gd" selected="selected">广东</option>
                         <option value="gx">广西</option>
                     </select>
@@ -67,17 +67,6 @@
 
 
 <script>
-/*_fun*/
-function selectTrigger(wrap){
-    $(wrap).find("option[selected]").each(function(){
-        $(this).parent().siblings("h6").text($(this).text());
-    });
-    $(wrap).on("change","select",function(){
-        var cur=$(this).find('option:selected').text();
-        $(this).siblings("h6").text(cur);
-    });
-}
-/*fun_*/
 $(function(){
 /*_js*/
     $("[data-j-select]").each(function(){
@@ -91,7 +80,6 @@ $(function(){
             obj.find("h6").text(on_sel);
         }
     });
-    //selectTrigger(".p-form .select");
 /*js_*/
 });
 </script>

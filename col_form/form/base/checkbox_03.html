@@ -16,9 +16,9 @@
 
 
 <!--_html-->
-    <div class="check" data-js-checkbox>
+    <div class="check" data-j-checkbox>
         <div class="g-check">
-        <input class="hide" type="checkbox" name="regAgree" />
+        <input class="hide" type="checkbox" name="agree" />
             <label>同意</label>
             <a href="#">《服务协议》</a>
         </div>
@@ -29,22 +29,21 @@
 
 
 <script>
-/*_fun*/
-function gCheck(wrap){
-    $(wrap).find("input[checked]").parent(".g-check").addClass("on").siblings(".g-check").removeClass("on");
-    $(wrap).find("[ data-js-checkbox] label").click(function(){
-        $(this).parent().toggleClass("on"); 
-        if($(this).parent().hasClass("on")){
-            $(this).siblings("input").attr("checked",true); 
-        }else{
-            $(this).siblings("input").attr("checked",false);    
-        }
-    });
-}
-/*fun_*/
 $(function(){
 /*_js*/
-    gCheck(".p-form");
+    $("[data-j-checkbox]")
+        .find("input[checked]")
+        .parent(".g-check").addClass("on")
+        .siblings(".g-check").removeClass("on");
+    $("[data-j-checkbox]")
+        .find("label").click(function(){
+            $(this).parent().toggleClass("on"); 
+            if($(this).parent().hasClass("on")){
+                $(this).siblings("input").attr("checked",true); 
+            }else{
+                $(this).siblings("input").attr("checked",false);    
+            }
+        });
 /*js_*/
 });
 </script>

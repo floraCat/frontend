@@ -7,7 +7,7 @@
 <style>
 /*_css*/
     .g-flex:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
-    .g-flex > *{ float:left; box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+    .g-flex > *{ float:left;}
     .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .p-form dd{ margin-left:90px;}
@@ -30,22 +30,22 @@
 
 <!--_html-->
     <dl>
-        <dt>dl_sel02：<em>*</em></dt>
+        <dt>选项框-02：<em>*</em></dt>
         <dd class="selects g-flex">
             <ol>
-    			<select>
+    			<select name="prov">
     				<option value="1">选项一</option>
     				<option value="2">选项二</option>
     			</select>
             </ol>
             <ol>
-    			<select>
+    			<select name="city">
     				<option value="1">选项一</option>
     				<option value="2">选项二</option>
     			</select>
             </ol>
             <ol>
-    			<select>
+    			<select name="town">
     				<option value="1">选项一</option>
     				<option value="2">选项二</option>
     			</select>

@@ -100,7 +100,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .modeList li ol a.a2{ width:87px}
 .listForm li{ width: 378px; }
 .listForm li a.a.img{ width:378px; height:120px;}
-.listForm li a.a img{ width:auto; max-width:378px; max-height:120px;}
+.listForm li a.a img{ width:auto; max-width:368px; max-height:120px;}
 
 .mAlert2{ display:none; position:fixed; top:100px; left:50%; margin-left:-100px; width:200px; height:60px; line-height:60px; font-size:16px; background: #e4f6e4; border:#c1dfc1 1px solid; text-align:center; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
 
