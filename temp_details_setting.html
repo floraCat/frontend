@@ -1,52 +1,74 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/h_reset.css" />
 <script src="js/jquery-1.10.2.js"></script>
-<script src="js/col_plus/h_base_hover.js"></script>
 
 <style>
-.p-topbar{ z-index: 99; position:absolute; left: 0; top: 0; width:100%; height:30px; line-height:30px; background: #f5f5f5; border-bottom: #eee 1px solid;}
-.p-topbar .wrap{ width: 960px; margin:0 auto;}
-.p-topbar .left{ float:left;}
-.p-topbar .right{ float:right;}
-.p-topbar .wrap > ol > *{ float: left; padding: 0 10px; }
-.p-topbar [data-js-hover]{ position:relative;}
-.p-topbar [data-js-hover] > ol{ position:absolute; top:30px; left: 0; display:none;}
-.p-topbar [data-js-hover].open > ol{ display:block;}
-.p-topbar [data-js-hover].open > a{ color: red;}
-.p-topbar .nav{ width:100%; background-color:#ddd;}
-.p-topbar .list a{ display:block;}
-.g-cart{ width: 180px; padding: 10px; background-color:#ddd;}
+	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+	.p-form dd{ margin-left:90px;}
+	.p-form .files .file{ position:relative; width:80px; height:80px;}
+	.p-form .files .file img{ width:100%; height:100%;}
+	.p-form .files .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
+	.p-form .files .file .quit{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit.png) no-repeat; background-size:100% 100%;}
+	.p-form .files .file.on .quit{ display:block;}
+	.p-form .files{ overflow:hidden;}
+	.p-form .files .file{ float:left; margin:0 5px 5px 0;}
 </style>
-<div class="p-topbar">
-	<div class="wrap">
-		<ol class="left">
-			<span>欢迎光临本站！</span>
-			<a href="#">登录</a>
-			<a href="#">注册</a>
-		</ol>
-		<ol class="right">
-			<div data-js-hover>
-				<a href="javascript:;">快捷导航</a>
-				<ol class="nav">
-					<div class="list">
-						<a href="#">栏目一</a>
-						<a href="#">栏目二</a>
-						<a href="#">栏目三</a>
-					</div>
-				</ol>
-			</div>
-			<div data-js-hover>
-				<a href="javascript:;">购物车</a>
-				<ol class="g-cart">
-					<p>购物车为空！</p>
-				</ol>
-			</div>
-			<a href="#">本站商城</a>
-		</ol>
-	</div>
+<div class="p-form" style="width:500px; margin:10px auto;">
+	<dl>
+	    <dt>图片上传-3：</dt>
+	    <dd>
+	        <div class="files">
+	            <div class="file" data-j-file>
+	                <input type="file" name="upload-img" />
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
+	            </div>
+	            <div class="file" data-j-file>
+	                <input type="file" name="upload-img" />
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
+	            </div>
+	            <div class="file" data-j-file>
+	                <input type="file" name="upload-img" />
+					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
+	                <a href="javascript:;" class="quit"></a>
+	            </div>
+	        </div>
+	    </dd>
+	</dl>
 </div>
 <script>
 $(function(){
-
+	$("[data-j-file]").each(function(){
+		var _this=$(this);
+		$(this).on("change","input",function(){
+			var objUrl = getFileUrl(this);
+			if (objUrl){
+				_this.find("img").attr("src", objUrl);
+				_this.addClass("on");
+			}else{
+				_this.removeClass("on");
+			}
+		});
+		$(this).find(".quit").click(function(){
+			var def_img=_this.find("img").data("default");
+			_this.find("img").attr("src",def_img);
+			_this.removeClass("on");
+		});
+		function getFileUrl(obj){ 
+			var url; 
+			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
+				url = obj.value; 
+			}else if(window.createObjectURL!=undefined){ // basic
+				url = window.createObjectURL(obj.files.item(0));
+			}else if (window.URL!=undefined){ // mozilla(firefox)
+				url = window.URL.createObjectURL(obj.files.item(0)); 
+			}else if (window.webkitURL!=undefined){ // webkit or chrome
+				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
+			} 
+			return url; 
+		}
+	});
 });
 </script>

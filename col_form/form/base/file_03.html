@@ -11,8 +11,8 @@
 	.p-form dd{ margin-left:90px;}
 	.p-form .files .file{ position:relative; width:80px; height:80px;}
 	.p-form .files .file img{ width:100%; height:100%;}
-	.p-form .files .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
-	.p-form .files .file .quit{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit.png) no-repeat; background-size:100% 100%;}
+	.p-form .files .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);}
+	.p-form .files .file .quit{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit2.png) no-repeat;}
 	.p-form .files .file.on .quit{ display:block;}
 	.p-form .files{ overflow:hidden;}
 	.p-form .files .file{ float:left; margin:0 5px 5px 0;}
@@ -55,19 +55,20 @@ $(function(){
 /*_js*/
 	$("[data-j-file]").each(function(){
 		var _this=$(this);
-		$(this).on("change","input",function(){
+		$(this).on("change","input[type=file]",function(){
 			var objUrl = getFileUrl(this);
 			if (objUrl){
 				_this.find("img").attr("src", objUrl);
 				_this.addClass("on");
-			}else{
-				_this.removeClass("on");
 			}
 		});
 		$(this).find(".quit").click(function(){
 			var def_img=_this.find("img").data("default");
 			_this.find("img").attr("src",def_img);
 			_this.removeClass("on");
+			var file_old=_this.find("input[type=file]");
+			file_old.after(file_old.clone().val(""));      
+			file_old.remove(); 
 		});
 		function getFileUrl(obj){ 
 			var url; 
@@ -109,7 +110,7 @@ firefox:yes,
 
 <!----描述---->
 <!--_desc-->
-test_desc_01
+图片上传_固定多个
 <!--desc_-->
 
 <!----依赖---->
@@ -120,8 +121,7 @@ test_desc_01
 <!----说明---->
 <!--_note-->
 <pre>
-test_note_1
-test_note_1
+图片上传_固定多个
 </pre>
 <!--note_-->
 

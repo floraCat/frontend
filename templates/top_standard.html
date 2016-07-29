@@ -67,7 +67,7 @@ a{ text-decoration: none; }
 		<br />
 		<a target="_blank" href="index.php?page=standard_cssAttr">样式属性命名顺序</a>
 		<br />
-		<a target="_blank" href="index.php?page=standard&extra=naming_html">html文件命名参考</a>
+		<a target="_blank" href="index.php?page=standard&extra=naming_html">html相关命名参考</a>
 		<a target="_blank" href="index.php?page=standard&extra=naming_style">css相关命名参考</a>
 		<a target="_blank" href="index.php?page=standard&extra=naming_js">js相关命名规范</a>
 		
@@ -213,7 +213,6 @@ index.html             ---首页html
 		<ol>
 			<h3>html格式<a class="key"></a></h3>
 			<ul class="unit">
-				<li>用<em>两个空格</em>代替tab键实现<em>缩进</em>（这是唯一能保证在所有环境下获得一致展现的方法）</li>
 				<li>尽量<em>避免使用实体</em>，如：</li>
 				<xmp style="margin:10px auto;">&nbsp; | &mdash; | &rdquo; 等</xmp>
 				<li>css代码不建议写在html里;如<em>外调style</em>文件请在<em>head中引入</em></li>
@@ -310,7 +309,7 @@ index.html             ---首页html
 		<ol>
 			<h3>html命名<a class="key"></a></h3>
 			<ul class="unit">
-			<li>参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=naming_html"><em>html文件命名</em>参考</a></li>
+			<li>参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=naming_html"><em>html相关命名</em>参考</a></li>
 			</ul>
 		</ol>
 
@@ -416,20 +415,16 @@ index.html             ---首页html
 		<ol>
 			<h3>js格式<a class="key"></a></h3>
 			<ul class="unit">
-				<li>用<em>两空格缩进</em></li>
-				<li>每句语句<em>后加';'</em>（方便压缩工具"断句"）</li>
+				<li>每句语句<em>后的';'不能省略</em></li>
 				<li><em>if、while、for、do</em>语句的执行体总是<em>用"{"和"}"</em>括起来，即使在其结构体内只有一条语句</li>
 				<li>应该<em>优先</em>使用<em>单引号(‘)</em>，因为字符串可能包含带有双引号(“)的HTML代码</li>
 			</ul>
 		</ol>
 
 		<ol>
-			<h3>js命名规则<a class="key"></a></h3>
+			<h3>js命名<a class="key"></a></h3>
 			<ul class="unit">
-				<li><em>变量</em>命名: 以下划线'_'开头，驼峰式命名, 首字母须小写, 如_iTaoLun</li>
-				<li><em>函数</em>命名: 首字母小写驼峰式命名. 如iTaoLun()</li>
-				<li><em>类</em>命名: 首字母大写, 驼峰式命名. 如 ITaoLun</li>
-				<li><em>常量</em>（不会重定义的变量）：全部大写，下划线'_'分隔</li>
+				<li>参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=naming_js"><em>js相关命名</em>规范</a></li>
 			</ul>
 		</ol>
 
@@ -459,13 +454,6 @@ index.html             ---首页html
  */
  function fooFunction (arg1, arg2) {
  }</xmp>
-			</ul>
-		</ol>
-
-		<ol>
-			<h3>js命名<a class="key"></a></h3>
-			<ul class="unit">
-			<li>参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=naming_js"><em>js相关命名</em>规范</a></li>
 			</ul>
 		</ol>
 

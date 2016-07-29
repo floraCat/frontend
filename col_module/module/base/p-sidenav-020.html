@@ -7,15 +7,15 @@
 <style>
 /*_css*/
 .p-sidenav-020{ position:relative; width:100px;}
-.p-sidenav-020 .hd{ height:40px; font-size:14px; line-height:40px;}
-.p-sidenav-020 ul li > a{ display:block;}
-.p-sidenav-020 ul li ol{ position:absolute; left:100px; top:40px; display:none; width:100px; background-color:#eee;}
-.p-sidenav-020 ul li ol a{ display:block;}
-.p-sidenav-020 ul li.open ol{ display:block;}
-.p-sidenav-020 ul li > a:hover,
-.p-sidenav-020 ul li .on,
-.p-sidenav-020 ul li.open > a{ color:#0000FF; background-color: #eee;}
-.p-sidenav-020 ul li ol a:hover{ color:#0000FF; background-color: #ddd;}
+.p-sidenav-020 h3{ height:40px; font-size:14px; line-height:40px;}
+.p-sidenav-020 li > a{ display:block;}
+.p-sidenav-020 ol{ position:absolute; left:100px; top:40px; display:none; width:100px; background-color:#eee;}
+.p-sidenav-020 ol a{ display:block;}
+.p-sidenav-020 .open ol{ display:block;}
+.p-sidenav-020 li > a:hover,
+.p-sidenav-020 li.on > a,
+.p-sidenav-020 .open > a{ color:#0000FF; background-color: #eee;}
+.p-sidenav-020 a:hover{ color:#0000FF; background-color: #ddd;}
 /*css_*/
 </style>
 
@@ -24,7 +24,7 @@
 
 <!--_html-->
 <div class="p-sidenav-020">
-	<h3 class="hd">全部分类</h3>
+	<h3>全部分类</h3>
 	<ul>
 		<li data-js-hover>
 			<a href="#">类目一</a>

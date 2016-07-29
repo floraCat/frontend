@@ -9,11 +9,11 @@
 .p-mainnav-020{ height:40px; line-height:40px;}
 .p-mainnav-020 li{ position:relative; float:left;}
 .p-mainnav-020 li > a{ display:block; padding:0 15px;}
-.p-mainnav-020 li ol{ position:absolute; top:40px; left:0; display:none; width:100%;}
-.p-mainnav-020 li ol a{ display:block; background-color:#eee;}
-.p-mainnav-020 li.open ol{ display:block;}
+.p-mainnav-020 ol{ position:absolute; top:40px; left:0; display:none; width:100%;}
+.p-mainnav-020 .open ol{ display:block;}
+.p-mainnav-020 ol a{ display:block; background-color:#eee;}
 .p-mainnav-020 li a:hover,
-.p-mainnav-020 li .on,
+.p-mainnav-020 li.on > a,
 .p-mainnav-020 .open > a{ color:#fff; background-color:#CC0000;}
 /*css_*/
 </style>
@@ -32,7 +32,7 @@
 
 <!--_html-->
 <div class="p-mainnav-020">
-	<li><a class="on" href="#">首页</a></li>
+	<li class="on"><a href="#">首页</a></li>
 	<li><a href="#">栏目壹</a></li>
 	<li data-js-hover>
 		<a href="#">栏目贰</a>

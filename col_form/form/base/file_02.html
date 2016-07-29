@@ -42,19 +42,20 @@ $(function(){
 /*_js*/
 	$("[data-j-file]").each(function(){
 		var _this=$(this);
-		$(this).on("change","input",function(){
+		$(this).on("change","input[type=file]",function(){
 			var objUrl = getFileUrl(this);
 			if (objUrl){
 				_this.find("img").attr("src", objUrl);
 				_this.addClass("on");
-			}else{
-				_this.removeClass("on");
 			}
 		});
 		$(this).find(".quit").click(function(){
 			var def_img=_this.find("img").data("default");
 			_this.find("img").attr("src",def_img);
 			_this.removeClass("on");
+			var file_old=_this.find("input[type=file]");
+			file_old.after(file_old.clone().val(""));      
+			file_old.remove(); 
 		});
 		function getFileUrl(obj){ 
 			var url; 
@@ -94,7 +95,7 @@ firefox:yes,
 
 <!----描述---->
 <!--_desc-->
-test_desc_01
+图片上传_单个
 <!--desc_-->
 
 <!----依赖---->
@@ -105,8 +106,7 @@ test_desc_01
 <!----说明---->
 <!--_note-->
 <pre>
-test_note_1
-test_note_1
+图片上传_单个
 </pre>
 <!--note_-->
 
