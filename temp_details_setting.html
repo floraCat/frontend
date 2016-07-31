@@ -3,72 +3,11 @@
 <script src="js/jquery-1.10.2.js"></script>
 
 <style>
-	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-	.p-form dd{ margin-left:90px;}
-	.p-form .files .file{ position:relative; width:80px; height:80px;}
-	.p-form .files .file img{ width:100%; height:100%;}
-	.p-form .files .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; -moz-opacity:0; -khtml-opacity:0; -webkit-opacity:0;}
-	.p-form .files .file .quit{ display:none; position:absolute; bottom:0; right:0; width:15px; height:15px; background:url(images/col_form/i_quit.png) no-repeat; background-size:100% 100%;}
-	.p-form .files .file.on .quit{ display:block;}
-	.p-form .files{ overflow:hidden;}
-	.p-form .files .file{ float:left; margin:0 5px 5px 0;}
+.ar_zdB{ width:0; height:0; border:transparent dashed; border-top:#e43a3d solid; border-width:8px; border-top-width:10px;}
 </style>
-<div class="p-form" style="width:500px; margin:10px auto;">
-	<dl>
-	    <dt>图片上传-3：</dt>
-	    <dd>
-	        <div class="files">
-	            <div class="file" data-j-file>
-	                <input type="file" name="upload-img" />
-					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
-	                <a href="javascript:;" class="quit"></a>
-	            </div>
-	            <div class="file" data-j-file>
-	                <input type="file" name="upload-img" />
-					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
-	                <a href="javascript:;" class="quit"></a>
-	            </div>
-	            <div class="file" data-j-file>
-	                <input type="file" name="upload-img" />
-					<img src="images/col_form/pic_default.jpg" data-default="images/col_form/pic_default.jpg" />
-	                <a href="javascript:;" class="quit"></a>
-	            </div>
-	        </div>
-	    </dd>
-	</dl>
-</div>
+<div class="ar_zdB"></div>
 <script>
 $(function(){
-	$("[data-j-file]").each(function(){
-		var _this=$(this);
-		$(this).on("change","input",function(){
-			var objUrl = getFileUrl(this);
-			if (objUrl){
-				_this.find("img").attr("src", objUrl);
-				_this.addClass("on");
-			}else{
-				_this.removeClass("on");
-			}
-		});
-		$(this).find(".quit").click(function(){
-			var def_img=_this.find("img").data("default");
-			_this.find("img").attr("src",def_img);
-			_this.removeClass("on");
-		});
-		function getFileUrl(obj){ 
-			var url; 
-			if (navigator.userAgent.indexOf("MSIE")>=1){ // IE 
-				url = obj.value; 
-			}else if(window.createObjectURL!=undefined){ // basic
-				url = window.createObjectURL(obj.files.item(0));
-			}else if (window.URL!=undefined){ // mozilla(firefox)
-				url = window.URL.createObjectURL(obj.files.item(0)); 
-			}else if (window.webkitURL!=undefined){ // webkit or chrome
-				url = window.webkitURL.createObjectURL(obj.files.item(0)); 
-			} 
-			return url; 
-		}
-	});
+
 });
 </script>
