@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>前端规范文档</title>
+	<link rel="stylesheet" href="css/h_reset.css" />
+	<link rel="stylesheet" href="css/col_style.css" />
+	<link rel="stylesheet" href="css/top_standard.css" />
+	<script src="js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+
+<!--头部-->
+<{include file="global_header.php"}>
+
+
+<h1 class="mainTtl">网站前端规范<a class="switch close">全部展开</a></h1>
+
+<div class="main">
+
+	<!--@左边导航-->
+	<div class="mLeft">
+		<ol>
+			<a href="#rule">基本规范</a>
+			<a href="#html">HTML规范</a>
+			<a href="#css">CSS规范</a>
+			<a href="#js">JAVASCRIPT规范</a>
+		</ol>
+		<ul>
+			<h6>快捷入口：</h6>
+			<a target="_blank" href="index.php?page=standard&extra=standard_html">html基本结构</a>
+			<a target="_blank" href="index.php?page=standard&extra=standard_reset">重置样式参考设置</a>
+			<br />
+			<a target="_blank" href="index.php?page=standard_cssAttr">样式属性命名顺序</a>
+			<br />
+			<a target="_blank" href="index.php?page=standard&extra=naming_html">html相关命名参考</a>
+			<a target="_blank" href="index.php?page=standard&extra=naming_style">css相关命名参考</a>
+			<a target="_blank" href="index.php?page=standard&extra=naming_js">js相关命名规范</a>
+		</ul>
+	</div><!--/mLeft-->
+
+
+	<!--@右边正文-->
+	<div class="mRight">
+
+		<!--基本规范-->
+		<a name="rule"></a>
+		<div class="section rule" style="padding-top: 15px;">
+			<a class="key0 close2" style="top: -10px;">'基本规范'<span>全部展开</span></a>
+			<ol>
+				<a class="key" href="javascript:;">规范目的</a>
+				<div class="unit">
+					<ul class="unit2">
+						<p>为提高团队协作效率, 便于后台人员添加功能及前端后期优化维护,前端开发人员<em>必须按本文档规范</em>进行前端页面开发；
+		本文档如有不对或者不合理的地方请及时提出, 经讨论决定后方可更改。</p>
+					</ul>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">基本准则</a>
+				<div class="unit">
+					<ul class="unit2">
+						<li>符合<em>web标准</em></li>
+						<li><em>结构/表现/行为 分离</em></li>
+						<li><em>语义化</em>html</li>
+						<li><em>代码书写</em>简洁明了有序</li>
+						<li>测试需<em>兼容</em>Firefox,Chrome,Opera,IE(ie8及以上版本)浏览器;</li>
+						<li>尽可能<em>减小服务器负载</em>, 保证最快的解析速度。</li>
+					</ul>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">前端架构</a>
+				<div class="unit">
+					<div class="unit2">
+					<h4>html</h4>
+
+						<ul style=" margin:0 0 20px 15px;">
+							<li>每个站点都应该有一个<em>整站链接目录页</em>（统一命名为__enter.html）</li>
+							<li>整站<em>通用的模块</em>（如头部、底部等）需<em>独立</em>出来，各页面再通过java来引入</li>
+							<!-- <li><em>样式</em>的设置尽量只用<em>class</em>属性；<br><em>js</em>行为的选择器尽量只用<em>data-*</em>属性；<br><em>id</em>属性一般由团队确立分配，<em>不建议私自设置</em></li> -->
+						</ul>
+
+						<h4>css</h4>
+						<ul style=" margin:0 0 20px 15px;">
+							<li>使用<em>less</em>预编译css</li>
+						</ul>
+						
+						<h4>javascript</h4>
+						<ul style=" margin:0 0 20px 15px;">
+							<li>使用<em>requirejs</em>技术模块化引入脚本文件</li>
+							<li>脚本一般基于<em>jQuery</em>库来书写：pc端使用1.10.2版本，移动端使用2.2.0版本</li>
+							<!-- <li>表单的<em>数据提交</em>统一使用<em>ajax</em>完成，不建议使用默认的表单控件提交</li> -->
+							<li><em>表单</em>都需要做前端<em>验证</em></li>
+							<li>每个页面所有变量和函数都放到一个全局对象中</li>
+						</ul>
+
+						<h4>辅助工具</h4>
+						<ul style=" margin:0 0 20px 15px;">
+							<li>使用<em>Git</em>版本控制工具来管理网站</li>
+							<li>使用<em>Gulp</em>构建工具自动化打包网站</li>
+						</ul>
+
+					</div>
+				</div>
+			</ol>
+
+		</div>
+
+
+
+
+		<!--html规范-->
+		<a name="html"></a>
+		<i style=" margin: 60px 0 25px;">----------------------------------------以下是html规范 START----------------------------------------</i>
+
+		<div class="section html">
+			<a class="key0 close2">'html规范'<span>全部展开</span></a>
+			<ol>
+				<a class="key" href="javascript:;">html结构</a>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html基本结构</a>	
+					<div class="unit2">
+						<li>文档声明</li>
+						<li>编码</li>
+						<li>样式代码或外调style文件在head中引入；不建议在html内设置css样式</li>
+						<li>脚本代码或外调的js文件在head中或body后引入</li>
+						<li>使用退格键缩进代码</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html参考模板</a>	
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">html基本结构</a>
+						</li>
+						<xmp>此文档内容说明：
+- 文档中的common.css为项目共用的样式表，包含重置样式，头部底部等网站共用的样式
+- 文档中的iconfig.js为项目通用路径配置
+- 项目使用了requirejs技术来管理脚本文件，文档中的rconfig.js为requirejs的配置文件</xmp>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">html标签</a>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html标签格式</a>	
+					<div class="unit2">
+						<li>不能省略可选的结束标签</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html标签使用</a>	
+					<div class="unit2">
+						<li>h1 - 网页主题 / 一个页面只有一个</li>
+						<li>h2 - 大栏目标题 or 楼层标题 等</li>
+						<li>h3 - 小栏目标题</li>
+						<li>h4 - 列表每一条目的标题</li>
+						<li>h5,h6 - 除以上情况的其他如强调加粗等情况适当使用</li>
+						<li>ul+li - 列表最佳搭配</li>
+						<li>p - 描述文字</li>
+						<li>span - 搭配其他元素用以布局标签等，尽量不要用于外容器</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html标签优化</a>	
+					<div class="unit2">
+						<li>页面title不可缺少</li>
+						<li>aaa</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">html属性</a>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html属性格式</a>	
+					<div class="unit2">
+						<li>标签属性值使用双引号，不要使用单引号</li>
+						<li>ID属性在一个页面内是唯一的</li>
+						<li>外调文件如是默认类型不需要声明type??</li>
+						<li>一般情况下不使用内置style</li>
+						<li>合理设置链接的target属性，如：target='_blank' | target='_self' 等</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">html属性优化</a>	
+					<div class="unit2">
+						<li>a标签如无链接时其属性href值填充':javascript:;'</li>
+						<li>img标签需要加alt属性 (装饰性的图片或图标不加alt)</li>
+						<li>a链接需要加title属性？</li>
+						<li>页面元信息name为keywords/description等在发布前应添加合适内容</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">html文本</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>-文本内尽量避免使用实体</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">html注释</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>每个大模块都应该注释其栏目名称或相关说明</li>
+						<li>一些整站通用的模块如头部/底部/侧栏等为了更好地区分开来，需要用一对对应的注释包裹起来??</li>
+						<li>嵌套太深或代码太多不好区分各自结束符时，应在容易混淆的结束符后添加注释</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">html命名</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">html基本结构</a>
+						</li>
+					</div>
+				</div>
+			</ol>
+
+		</div><!--/html-->
+		<i style=" margin: 40px 0 60px;">-----------------------------------------以上是html规范 END------------------------------------------</i>
+
+
+
+
+
+		<!--css规范-->
+		<a name="css"></a>
+		<i style=" margin: 60px 0 25px;">-----------------------------------------以下是css规范 START-----------------------------------------</i>
+		<div class="section css">
+			<a class="key0 close2">'css规范'<span>全部展开</span></a>
+
+			<ol>
+				<a class="key" href="javascript:;">css基本设置</a>
+				<div class="unit">
+					<a class="key2" href="javascript:;">重置样式</a>	
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">重置样式参考设置</a>
+						</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">var.less</a>	
+					<div class="unit2">
+						<li>设置整站主色调</li>
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">var.less参考设置</a>
+						</li>
+					</div>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">mix.less</a>	
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">mix.less参考设置</a>
+						</li>
+						<li>css3不用前缀，打包时使用**自动添加前缀</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">css格式</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>值为0时后面不加单位</li>
+						<li>颜色值都用小写</li>
+						<li>属性值用单引号，而不是双引号 （推荐：content:'aaa';）</li>
+						<li>每个样式属性后加 ";"</li>
+						<li>尽量用缩写</li>
+						<li>需注释所属栏目或模块标题，跟html对应模块标题一致; 多个模块标题用'&'分隔</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">css属性声明顺序</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">css属性声明顺序</a>
+						</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">css优化</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>样式都用class设置，慎用id</li>
+						<li>相同或类似的模块尽量把代码整合重用起来</li>
+						<li>css慎用expression表达式</li>
+						<li>尽量使用css选择器（以防止属性设置冲突，从而减少类名设置，保持结构清晰）</li>
+						<li>如多个元素一并设置，元素之间换一行</li>
+						<li>尽量减少不必要的嵌套层级</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">css命名</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">css相关命名参考</a>
+						</li>
+					</div>
+				</div>
+			</ol>
+
+		</div><!--/css-->
+		<i style=" margin: 40px 0 60px;">------------------------------------------以上是css规范 END-------------------------------------------</i>
+
+
+
+
+
+
+		<!--js规范-->
+		<a name="js"></a>
+		<i style=" margin: 60px 0 25px;">-----------------------------------------以下是js规范 START-----------------------------------------</i>
+		<div class="section js">
+			<a class="key0 close2">'js规范'<span>全部展开</span></a>
+
+			<ol>
+				<a class="key" href="javascript:;">js基本设置</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>传统js脚本的编写，要求用下面的模板进行包裹：</li>
+						<xmp>(function($){
+	'use strict';
+	// code...
+}(jQuery));</xmp>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">js格式</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>每句语句后的';'不能省略</li>
+						<li>if、while、for、do语句的执行体总是用"{"和"}"括起来，即使在其结构体内只有一条语句</li>
+						<li>应该优先使用单引号(‘)，因为字符串可能包含带有双引号(“)的HTML代码</li>
+						<li>总是使用var声明变量，且要求变量集中在函数开头声明, 避免全局变量的污染</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">js优化</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>js用data-*作为选择器，不用class & id</li>
+						<li>使用闭包时防止循环引用</li>
+						<li>尽量避免使用存在兼容性及消耗资源的方法或属性, 比如eval() & innerText</li>
+						<li>避免对象上使用with()</li>
+						<li>避免数组使用for in</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">js 注释</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>注释尽量详尽且到位</li>
+						<li>需写明所属页面或栏目</li>
+						<li>类等脚本文件需添加头描述</li>
+					</div>
+				</div>
+			</ol>
+
+			<ol>
+				<a class="key" href="javascript:;">js命名</a>
+				<div class="unit">
+					<div class="unit2">
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">js相关命名规范</a>
+						</li>
+					</div>
+				</div>
+			</ol>
+			
+		</div><!--/js-->
+		<i style=" margin: 40px 0 60px;">------------------------------------------以上是js规范 END-------------------------------------------</i>
+
+
+
+
+	</div>
+
+</div>
+
+
+<a class="gotop" href="javascript:;">返回顶部</a>
+
+
+
+
+
+<script>
+$(function(){
+
+	//滚动时左栏固定
+	$(window).scroll(function(){
+		var scrollTop=document.documentElement.scrollTop + document.body.scrollTop;
+		if(scrollTop>200){
+			$(".mLeft").css({"position":"fixed","top":"0"});
+		}else{
+			$(".mLeft").css({"position":"absolute","top":"30px"});
+		}
+	});
+
+	//全部收起 & 全部打开
+	$(".mainTtl .switch").click(function(){
+		if(!$(this).hasClass("close")){
+			$(this).addClass("close").text("全部展开");
+			$(".mRight ol").removeClass("drop");
+			$(".mRight .unit").removeClass("open");
+		}else{
+			$(this).removeClass("close").text("全部收起");
+			$(".mRight ol").addClass("drop");
+			$(".mRight .unit").addClass("open");
+		}
+	});
+
+	//单个收起 & 打开
+	$(".mRight .key").on("click",function(){
+		if($(this).parent().hasClass("drop")){
+			$(this).parent().removeClass("drop");
+			$(this).siblings(".unit").removeClass("open");
+		}else{
+			$(this).parent().addClass("drop");
+			$(this).siblings(".unit").addClass("open");
+		}
+	});
+	$(".mRight .key2").on("click",function(){
+		if($(this).parent().hasClass("open")){
+			$(this).parent().removeClass("open");
+		}else{
+			$(this).parent().addClass("open");
+		}
+	});
+	$(".mRight .key0").on("click",function(){
+		if(!$(this).hasClass("close2")){
+			$(this).addClass("close2").find("span").text("全部展开");
+			$(this).parents(".section").find("ol").removeClass("drop");
+			$(this).parents(".section").find(".unit").removeClass("open");
+		}else{
+			$(this).removeClass("close2").find("span").text("全部收起");
+			$(this).parents(".section").find("ol").addClass("drop");
+			$(this).parents(".section").find(".unit").addClass("open");
+		}
+	});
+
+	//返回顶部
+	$(".gotop").click(function(){
+		$("html,body").animate({scrollTop:0},200);
+	});
+
+});
+</script>
+
+
+
+<!--当前导航加.on-->
+<input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<script>
+$(function(){
+    var page=$("#page").val();
+    $(".pNav ."+page).addClass("on").parent().siblings().children().removeClass("on");
+});
+</script>
+
+
+<!--底部-->
+<{include file="global_footer.php"}>
+</body>
+</html>

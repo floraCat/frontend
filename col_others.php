@@ -58,66 +58,118 @@ if($_REQUEST["col"]=="css3"){
 	$borderRadius["title"]="border-radius";
 	$borderRadius["ttl"]="border-radius";
 	$borderRadius["val"]='5px';
+	$borderRadius["funName"]='borderRadius';
+	function borderRadius($val){
+		return $rs='border-radius:'.$val.';';
+	}
 
 	//opacity
 	$opacity["title"]="opacity";
 	$opacity["ttl"]="opacity";
 	$opacity["val"]=0.6;
+	$opacity["funName"]='opacity';
+	function opacity($val){
+		return $rs='opacity:'.$val.';';
+	}
 
 	//box-shadow
 	$boxShadow["title"]="box-shadow";
 	$boxShadow["ttl"]="box-shadow";
 	$boxShadow["val"]='0 0 2px #ccc';
+	$boxShadow["funName"]='boxShadow';
+	function boxShadow($val){
+		return $rs='box-shadow:'.$val.';';
+	}
 
 	//text-shadow
 	$textShadow["title"]="text-shadow";
 	$textShadow["ttl"]="text-shadow";
 	$textShadow["val"]='1px 1px 0 #ccc';
+	$textShadow["funName"]='textShadow';
+	function textShadow($val){
+		return $rs='text-shadow:'.$val.';';
+	}
 
 	//transform: rotate(45deg)
 	$rotate["title"]="transform:rotate";
-	$rotate["ttl"]="transform";
+	$rotate["ttl"]="rotate";
 	$rotate["val"]='rotate(45deg)';
+	$rotate["funName"]='rotate';
+	function rotate($val){
+		return $rs='-webkit-transform: rotate('.$val.'); -ms-transform: rotate('.$val.'); transform: rotate('.$val.');';
+	}
 
 	//transform: translate(50px,100px)
 	$translate["title"]="transform:translate";
-	$translate["ttl"]="transform";
+	$translate["ttl"]="translate";
 	$translate["val"]='translate(50px,50px)';
+	$translate["funName"]='translate';
+	function translate($val){
+		return $rs='-webkit-transform: translate('.$val.'); -ms-transform: translate('.$val.'); transform: translate('.$val.');';
+	}
 
 	//transform: scale(2,4);
 	$scale["title"]="transform:scale";
-	$scale["ttl"]="transform";
+	$scale["ttl"]="scale";
 	$scale["val"]='scale(2,1)';
+	$scale["funName"]='scale';
+	function scale($val){
+		return $rs='-webkit-transform: scale('.$val.'); -ms-transform: scale('.$val.'); transform: scale('.$val.');';
+	}
 
 	//transform: skew(30deg,20deg);
 	$skew["title"]="transform:skew";
-	$skew["ttl"]="transform";
+	$skew["ttl"]="skew";
 	$skew["val"]='skew(-30deg,0deg)';
+	$skew["funName"]='skew';
+	function skew($val){
+		return $rs='-webkit-transform: skew('.$val.'); -ms-transform: skew('.$val.'); transform: skew('.$val.');';
+	}
 
 	//transform:matrix(0.866,0.5,-0.5,0.866,0,0);
 	$matrix["title"]="transform:matrix";
-	$matrix["ttl"]="transform";
+	$matrix["ttl"]="matrix";
 	$matrix["val"]='matrix(0.866,0.5,-0.5,0.866,0,0)';
+	$matrix["funName"]='matrix';
+	function matrix($val){
+		return $rs='-webkit-transform: matrix('.$val.'); -ms-transform: matrix('.$val.'); transform: matrix('.$val.');';
+	}
 
 	//transform: rotateX(120deg);
 	$rotateX["title"]="transform:rotateX";
-	$rotateX["ttl"]="transform";
+	$rotateX["ttl"]="rotateX";
 	$rotateX["val"]='rotateX(30deg)';
+	$rotateX["funName"]='rotateX';
+	function rotateX($val){
+		return $rs='-webkit-transform: rotateX('.$val.'); transform: rotateX('.$val.');';
+	}
 
 	//transform: rotateY(130deg);
 	$rotateY["title"]="transform:rotateY";
-	$rotateY["ttl"]="transform";
+	$rotateY["ttl"]="rotateY";
 	$rotateY["val"]='rotateY(30deg)';
+	$rotateY["funName"]='rotateY';
+	function rotateY($val){
+		return $rs='-webkit-transform: rotateY('.$val.'); transform: rotateY('.$val.');';
+	}
 
 	//transition:all .5s ease-in-out; 
 	$transition["title"]="transition";
 	$transition["ttl"]="transition";
 	$transition["val"]='all .5s ease-in-out';
+	$transition["funName"]='transition';
+	function transition($val){
+		return $rs='-webkit-transition: '.$val.'; transition: '.$val.';';
+	}
 
 	//animation: myfirst 5s linear 2s infinite alternate;
 	$animation["title"]="animation";
 	$animation["ttl"]="animation";
 	$animation["val"]='myfirst 5s linear 2s infinite alternate';
+	$animation["funName"]='animation';
+	function animation($val){
+		return $rs='-webkit-animation: '.$val.'; animation: '.$val.';';
+	}
 
 	array_push($rsList, 
 		$borderRadius,
@@ -134,32 +186,24 @@ if($_REQUEST["col"]=="css3"){
 		$transition,
 		$animation);
 
-	foreach($rsList as $k2=>$v2){
-		if(strpos($v2["title"],"transform")!== false){
-			$rsList[$k2]['ttl_img']=substr($v2["title"],10);
-			$rsList[$k2]["code"]=val($v2["title"],$v2["val"]);
-		}else{
-			$rsList[$k2]['ttl_img']=$v2["title"];
-			$rsList[$k2]["code"]=val($v2["title"],$v2["val"]);
-		}
-	};
-
 	//column-count:3;
 	//column-gap:40px;
 	//column-rule:3px outset #ff0000;
 
 	if($_POST["data_title"]){//复制操作时
-
 		foreach($rsList as $k=>$v){
 
 			if($v["title"]==$_POST["data_title"]){
 				$v1=$_POST["data_val"];
-				$code=val($_POST["data_title"],$v1);
+				$code=$v["funName"]($v1);
 				echo json_encode($code);
 			}
 		};
-		
 	}else{//展示列表
+		foreach($rsList as $k2=>$v2){
+			$rsList[$k2]['ttl_img']=$v2["ttl"];
+			$rsList[$k2]["code"]=$v2["funName"]($v2["val"]);
+		};
 		$smarty->assign("rsList",$rsList);
 		$smarty->display("top_others_css3.html");
 	}

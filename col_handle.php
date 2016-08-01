@@ -12,6 +12,7 @@ $sdb=new db();
 if($_GET["list"]){
 	$list=$_GET["list"];
 	$page=$_REQUEST['page'];
+	$col=$_REQUEST['col'];
 	$url2='col_'.$_REQUEST["page"].'/'.$_REQUEST["col"];
 	$sort=$_GET["sort"];
 	$folder=$_GET["folder"];
@@ -33,10 +34,10 @@ if($_GET["list"]){
 	if($page=="module"){
 		$sorts=array('base:基本结构模块','refer:参考样式模块');
 	}
-	if($page=="plus"){
+	if($page=="plus" && $col=="plus"){
 		$sorts=array('self:自主封装插件','common:常用插件','recommend:推荐插件');
 	}
-	if($page=="unit"){
+	if($page=="plus" && $col=="unit"){
 		$sorts=array('common:常用');
 	}
 	if($page=="form"){

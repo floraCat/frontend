@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/h_reset.css" />
 <link rel="stylesheet" href="css/col_style.css" />
+<link rel="stylesheet" href="css/top_frame.css" />
 <script src="js/jquery-1.10.2.js"></script>
 <title>base</title>
 </head>
@@ -13,39 +14,6 @@
 <!--头部-->
 <{include file="global_header.php"}>
 
-
-<style>
-.frameFile{ position: absolute; top: 190px; left: 50%; width: 1200px; height: 730px; line-height: 22px; margin-left: -600px;}
-.frameFile h5{ font-size: 18px; font-weight: bold; position: relative;}
-.frameFile .dir1 div{ display: none; }
-.frameFile ol{ position: relative; float: left; width: 690px; padding-top: 30px; background: url(css/imgs/line_dotted_v.png) 53px repeat-y;}
-.btn_download{ position: absolute; top:-30px; left: 0; width: 145px; height: 24px; line-height: 24px; text-align: center; border:#c1dfc1 1px solid; background-color: #e4f6e4; }
-.key_toggle{ position: absolute; top: 0; left: 28px; width: 60px; height: 26px; line-height: 26px; text-align: center; color: #aaa; background: #fff; cursor: pointer;}
-.key_toggle.on{ color: red; }
-.frameFile .dir1{ padding-left: 50px; }
-.frameFile .dir2{ padding-left: 50px; }
-.frameFile .dir3{ padding-left: 50px; }
-.frameFile ol p{ padding-left: 17px; position: relative; overflow: hidden; }
-.frameFile ol p.key{ padding-left: 0; }
-.frameFile ol p a{ float: left; width:13px; height: 13px; margin-top:6px; margin-right: 20px;  background: url(css/imgs/i_add.png) no-repeat center; background-size: 13px;}
-.frameFile ol .open p a{ background: url(css/imgs/i_sub.png) no-repeat center; background-size: 13px;}
-.frameFile ol p b{ float: left; font-weight: bold; margin-right: 6px; background: #fff;}
-.frameFile ol p s{ float: left; width: 200px; height: 24px; background:#fff url(css/imgs/line_dotted.png) repeat-x center;}
-.frameFile ol p span{ float: left; padding: 0 6px; background: #fff;}
-.frameFile ol p i{ float: left; width: 18px; height: 18px; padding-right: 10px; margin-top: 3px; cursor: pointer; background:#fff url(css/imgs/i_note.png) no-repeat center; background-size: auto 100%; opacity: .3;}
-.frameFile ol p i:hover,.frameFile ol p.on i{ opacity: 1; }
-.frameFile ol p.on{ background: url(css/imgs/line_dotted.png) repeat-x center; }
-.frameFile ol p.on:after{ content:''; position: absolute; top: 0; right: 0; width: 24px; height: 24px; background: url(css/imgs/ar_r.png) no-repeat center right; background-size: auto 80%;}
-.frameFile .dir2{ background-position: 40px 7px;}
-.frameFile p:before{ content: ''; position: absolute; top: 0; left: 0; width: 14px; height: 14px; margin-top: 5px; background: url(css/imgs/i_file_2.png) no-repeat center; background-size: 12px;}
-.frameFile p.key:before{ content: ''; position: absolute; top: 0; left: 17px; width: 14px; height: 14px; margin-top: 6px; background: url(css/imgs/i_folder.png) no-repeat center; background-size: 14px;}
-.showDivs{ position: absolute; left: 700px; width: 498px; height: 728px; background-color: #f8f8f8; border:#eee 1px solid; border-radius: 5px; -webkit-border-radius:5px;}
-.showDivs .show{ display: none; padding: 20px;}
-.showDivs .show.fixed{ position: fixed; top: 0;}
-.showDivs .show .btn{ display: block; width: 120px; text-align: center; padding:0 10px; border:#c1dfc1 1px solid; background-color: #e4f6e4; margin-bottom: 6px;}
-</style>
-
-
 	
 <div class="pTabs">
 	<li class="fl on">开发时文件目录结构</li>
@@ -54,13 +22,13 @@
 <input type="hidden" id="tab" name="tab" value="<{$smarty.get.tab}>" />
 
 
-<div style="width: 100%; height: 730px"></div>
+<div style="width: 100%; height: 830px"></div>
 
 <!--开发时文件目录结构-->
 <div class="frameFile frame_1">
 
 	<ol>
-		<a class="btn_download" href="files/zip/dev.zip">下载整个项目文件夹/dev</a>
+		<a class="btn_download" href="files/zip/dev.zip">下载'开发目录'整个项目文件夹'/dev'</a>
 		<a class="key_toggle">展开全部</a>
 		<div class="dir0">
 			<p class="key"><b style="padding-left: 32px;" data-role="appDir">/dev</b><s></s><span>站点根目录</span><i></i></p>
@@ -278,7 +246,7 @@
 <div class="frameFile frame_2" style="left:-9999px;">
 
 	<ol>
-		<a class="btn_download" href="files/zip/app.zip">下载整个项目文件夹/app</a>
+		<a class="btn_download" href="files/zip/app.zip">下载'打包后'整个项目文件夹'/app'</a>
 		<a class="key_toggle">展开全部</a>
 		<div class="dir0">
 			<p class="key"><b style="padding-left: 32px;" data-role="appDir">/app</b><s></s><span>站点根目录</span><i></i></p>
