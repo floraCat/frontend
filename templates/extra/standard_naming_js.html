@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="css/top_standard.css" />
+
+<div class="txtBody">
+
+<div class="section">
+	<h5>js代码命名规范：</h5>
+	<ul>
+		<li>变量命名: 以下划线'_'开头，驼峰式命名, 首字母须小写, 如_iTaoLun</li>
+		<li>函数命名: 首字母小写驼峰式命名. 如iTaoLun()</li>
+		<li>类命名: 首字母大写, 驼峰式命名. 如 ITaoLun</li>
+		<li>常量（不会重定义的变量）：全部大写，下划线'_'分隔</li>
+	</ul>
+</div>
+
+<div class="section">
+	<h5>网页脚本(功能)选择器规范：</h5>
+	<pre>前端脚本选择器请尽量使用属性data-j-*，命名示例如下：
+data-j-checkbox
+data-j-toggle
+...
+//要求需要前缀'data-j'，(j寓意js)</pre>
+</div>
+
+<div class="section">
+	<h5>特殊情况不能使用data-j-*而需要用到id作为选择器的，命名示例如下：</h5>
+	<pre>j-slider
+j-dialog
+j-toggle
+...
+//要求需要前缀'j-'，以区分是id名称，(j寓意js)
+//前端html里尽量少设置id
+//网页常用的通用功能本站有部分封装好的插件（为区分开非封装插件，此处使用了属性data-js-*作为选择器），只要正确设置好data-js-*的值既能实现对应功能，不需设置id和编写额外js代码</pre>
+</div>
+
+<div class="section">
+	<h5>js文件命名规范：</h5>
+	<pre>示例：
+jquery-1.10.2.min.js
+jquery.jqzoom.js
+...
+//分隔符适当使用点'.'或中划线'-'
+//压缩版插件后加'.min'来区分</pre>
+</div>
+
+</div>
+
+

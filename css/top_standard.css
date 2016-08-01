@@ -12,16 +12,18 @@
 
 .mRight{ width: 640px; padding:30px 30px 20px 230px;}
 .mRight .section{ position: relative; }
+.mRight s{ font-family: arial; font-size: 12px; text-decoration: none; margin-right: 2px; text-shadow:1px 1px #fff; color: #777;}
+.mRight .key s{ font-size: 16px; font-weight: normal;}
 .mRight .key0{ position: absolute; top: -47px; right: 5px; padding: 0 5px; height: 18px; line-height: 18px; background: #f8f8f8; border:dashed#5668a4 1px; color:#5668a4; cursor: pointer;}
 .mRight ol{ margin-bottom: 10px; font-size: 13px; line-height: 21px; color: #666; }
-.mRight .key{ display: block; font-size:16px; font-weight: bold; height: 40px; line-height: 40px; padding-left: 25px; border-bottom: #deeace 6px solid; margin-bottom: 10px; color: #333; position: relative; background: url(../images/sys/icon145_2.png) no-repeat 5px center;}
+.mRight .key{ display: block; font-size:16px; font-weight: bold; height: 40px; line-height: 40px; padding-left: 25px; border-bottom: #ecf1e7 6px solid; margin-bottom: 10px; color: #333; position: relative; background: url(../images/sys/icon145_2.png) no-repeat 5px center;}
 .mRight .key:after{ content:'以下展开'; position: absolute; top: 0; right: 0; width: 60px; height: 40px; line-height: 40px; text-align: center; font-size: 10px; font-weight: normal; color:#999;}
 .mRight .key:hover:after{ color:red; }
 .mRight .drop .key:after{ content:'以下收起';}
 .mRight .unit2{ display: none; padding:0 0 15px 20px;}
 .mRight .open .unit2{ display: block; }
 .mRight h4{ font-size:14px; height: 24px; line-height: 24px; padding-left: 15px; color: #333; margin-bottom: 5px;}
-.mRight .key2{ position: relative; display: block; font-size:14px; height: 30px; margin-left: 15px; line-height: 30px; margin-bottom: 10px; color: #333; background:#ecf1e7 url(imgs/ar_up.png) no-repeat 598px center; background-size: 12px; padding-left: 20px;}
+.mRight .key2{ position: relative; display: block; font-size:14px; height: 30px; margin-left: 15px; line-height: 30px; margin-bottom: 10px; color: #333; background:#ecf1e7 url(imgs/ar_up.png) no-repeat 598px center; background-size: 12px; padding-left: 23px;}
 .mRight .key2:after{ content: ''; position: absolute; top: 12px; left: 8px; width: 6px; height: 6px; background: #c3d9a5; }
 .mRight .open .key2{ background:#ecf1e7 url(imgs/ar_btm.png) no-repeat 598px center; background-size: 12px;}
 
@@ -31,3 +33,14 @@
 .mRight i{ display: block; font-size: 14px; color: #5668a4; width: 100%; text-align: center;}
 
 .gotop{ position: fixed; bottom: 30px; right: 30px; width: 40px; height: 40px; background: url(imgs/i_gotop2.png) no-repeat center; background-size: 100%; text-indent: -9999px;}
+
+
+
+/*外接文件*/
+.txtBody *{ padding: 0; margin: 0;}
+.txtBody{ width: 900px; margin: 30px auto; font-family: 微软雅黑; font-size: 13px; line-height: 22px;}
+.txtBody h5{ font-size: 14px; line-height: 35px; margin-bottom: 12px; border-bottom: #ddd 1px dashed;}
+.txtBody ul{ padding-left: 10px; margin-left: 20px;}
+.txtBody li{ list-style: disc; color: #666;}
+.txtBody .section{ margin-bottom: 30px;}
+.txtBody pre{ font-family: 微软雅黑; font-size: 13px; line-height: 22px; padding-left: 20px; border-left: #eee 5px solid; color: #666;}

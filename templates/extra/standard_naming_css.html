@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="css/top_standard.css" />
+
+<div class="txtBody">
+
+<div class="section">
+	<h5>css样式编写规范：</h5>
+	<ul>
+		<li>尽量使用css选择器（以防止属性设置冲突，从而减少类名设置，保持结构清晰）</li>
+		<li>如多个元素一并设置，元素之间换一行</li>
+		<li>尽量减少不必要的嵌套层级</li>
+		<li>网页中的背景图片和比较小的图标（一般是变动性很小的图片）存放在根目录'/css/imgs'中，发布前尽量分类合并一张图且压缩处理（区别于网页后台可配置的图片）</li>
+	</ul>
+</div>
+
+<div class="section">
+	<h5>网页模块外容器类名参考：</h5>
+	<pre>p-topbar            //顶部工具栏
+p-header            //网页头部
+p-search            //网页搜索框
+p-mainnav            //头部主导航
+p-sidebar            //侧导航
+p-crumb            //面包屑导航
+p-floor            //楼层
+p-channel            //频道
+p-column            //栏目
+p-special            //专栏
+p-cats            //分类列表
+p-ttls            //标题列表
+p-menu            //菜单
+p-submenu            //下级菜单
+p-wraper            //容器
+p-container            //容器
+p-main            //主体内容
+p-details            //详情
+p-article            //文档正文
+p-list            //通用列表
+p-list-news            //新闻列表
+p-list-prod            //产品列表
+p-list-case            //案例列表
+p-pagination            //分页
+p-banner-ad            //广告横幅
+p-ads            //广告位
+p-info            //相关信息
+p-notice            //通告之类
+p-friendlink            //友情链接
+p-partner            //合作伙伴
+p-brand            //合作品牌
+p-guide            //向导之类
+p-copyright            //版权之类
+p-footer            //网页底部
+p-login            //登录
+p-register            //注册
+p-layout            //版面布局
+p-form            //表单
+p-table            //表格
+...
+//要求需要前缀'p-'，(p寓意page)
+//整个项目中是唯一的，不能重复</pre>
+</div>
+
+<div class="section">
+	<h5>共用样式或独立(功能)模块命名参考：</h5>
+	<pre>g-clr            //清除消浮
+g-ttl            //通用标题
+g-hd            //栏目头部
+g-btn            //按键
+g-label            //标签之类
+g-switch            //切换小控件
+g-toggle            //切换小控件
+g-arrow-down            //通用箭头样式（如下拉箭头）
+g-flex            //flex弹性盒模型通用样式
+g-check            //自定义勾选框
+g-select            //自定义选项框
+g-cart            //购物车模块
+...
+//要求需要前缀'g-'，(g寓意global)
+//整个项目中是唯一的，不能重复</pre>
+</div>
+
+<div class="section">
+	<h5>外容器内部元素（除共用模块外）的命名参考：</h5>
+	<pre>left            //左边
+right            //右边
+cen            //中间
+top            //顶部
+bottom            //底部
+logo            //商标
+ttl            //标题
+btn            //按键
+more            //更多
+item            //条目
+items            //一组条目
+list            //列表
+unit            //一组
+drop            //下拉
+menu            //菜单
+pannel            //面板
+wrap            //容器
+list            //列表
+info            //信息
+desc            //描述
+summary            //摘要
+body            //主体
+banner            //横幅
+tab            //标签
+label            //标签
+msg            //信息
+icon            //图标
+hot            //热点
+new            //最新
+column            //栏目
+status            //状态
+...
+//要求不要带有前缀如'p-'和'g-'，以区分外容器和共用样式的类名
+//只要不在同一个外容器内命名可以重复，只要样式设置时带有外容器类名前缀即可</pre>
+</div>
+
+
+</div>
+
+

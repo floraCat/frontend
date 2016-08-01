@@ -16,6 +16,11 @@ if($g["page"]=="standard" && !$g["extra"]){ $smarty->display("top_standard.html"
 if($g["page"]=="standard2" && !$g["extra"]){ $smarty->display("top_standard_2.html");}
 if($g["extra"]=="standard_html"){ $smarty->display("extra/standard_html.html");}
 if($g["extra"]=="standard_reset"){ $smarty->display("extra/standard_reset.html");}
+if($g["extra"]=="standard_naming_html"){ $smarty->display("extra/standard_naming_html.html");}
+if($g["extra"]=="standard_naming_css"){ $smarty->display("extra/standard_naming_css.html");}
+if($g["extra"]=="standard_naming_js"){ $smarty->display("extra/standard_naming_js.html");}
+if($g["extra"]=="standard_attr_css"){ $smarty->display("extra/standard_attr_css.html");}
+
 if($g["extra"]=="naming_html"){ $smarty->display("extra/naming_html.html");}
 if($g["extra"]=="naming_style"){ $smarty->display("extra/naming_style.html");}
 if($g["extra"]=="naming_js"){ $smarty->display("extra/naming_js.html");}
