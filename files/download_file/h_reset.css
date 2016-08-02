@@ -1,23 +1,21 @@
 @charset "utf-8";
 
 /*****reset*****/
-body,input,button,select,textarea{ font:12px/24px "Microsoft Yahei",arial,Tahoma,sans-serif; color:#333;}
-body,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,form,input,button,textarea{ padding:0; margin:0;}
+body,input,button,select,textarea{ font:12px/24px "Microsoft Yahei",arial,Tahoma,sans-serif; color:#333; word-wrap:break-word;}
+body,div,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,form,input,button,textarea{ padding:0; margin:0; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
 ul,ol,li{ list-style-type:none;}
 img,iframe{ border:0;}
 input,button,textarea,select{ border:#ddd 1px solid; outline:none;}
 input,button,textarea{ background:transparent;}
 table{ border-collapse:collapse; border-spacing:0;}
 a{ text-decoration:none; color:#333;}
-a:hover{ color: #e43a3d;}
-h1,h2,h3,h4,h5,h6{ font-size:14px; font-weight:normal;}
-i,em{ font-style:normal;} 
+h1,h2,h3,h4,h5,h6{ font-size:100%; font-weight:normal;}
 img,textarea{ vertical-align:top;}
-a img:hover{ opacity:.8;}
 html,body{ overflow-x:hidden;}
-body{ position:relative;}
+body{ position:relative;} 
+a:hover{ color: #e43a3d;}
 
-.pWrap{ width:1200px; margin-left:auto; margin-right:auto;}
+
 
 
 

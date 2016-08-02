@@ -32,11 +32,11 @@
 			<a target="_blank" href="index.php?page=standard&extra=standard_html">html基本结构</a>
 			<a target="_blank" href="index.php?page=standard&extra=standard_reset">重置样式参考设置</a>
 			<br />
-			<a target="_blank" href="index.php?page=standard_cssAttr">样式属性命名顺序</a>
+			<a target="_blank" href="index.php?page=standard_attr_css">css属性命名顺序</a>
 			<br />
-			<a target="_blank" href="index.php?page=standard&extra=naming_html">html相关命名参考</a>
-			<a target="_blank" href="index.php?page=standard&extra=naming_style">css相关命名参考</a>
-			<a target="_blank" href="index.php?page=standard&extra=naming_js">js相关命名规范</a>
+			<a target="_blank" href="index.php?page=standard&extra=standard_naming_html">html相关命名参考</a>
+			<a target="_blank" href="index.php?page=standard&extra=standard_naming_css">css相关命名参考</a>
+			<a target="_blank" href="index.php?page=standard&extra=standard_naming_js">js相关命名规范</a>
 		</ul>
 	</div><!--/mLeft-->
 
@@ -124,8 +124,8 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>基本结构</a>	
 					<div class="unit2">
-						<li>文档声明</li>
-						<li>编码</li>
+						<li>文档声明<!DOCTYPE HTML></li>
+						<li>编码用utf-8</li>
 						<li>样式代码或外调style文件在head中引入；不建议在html内设置css样式</li>
 						<li>脚本代码或外调的js文件在head中或body后引入</li>
 						<li>使用退格键缩进代码</li>
@@ -134,12 +134,10 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>参考模板</a>	
 					<div class="unit2">
-						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html"><s>html</s>基本结构</a>
-						</li>
-						<xmp>此文档内容说明：
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html"><s>html</s>基本结构</a><xmp>此文档内容说明：
 - 文档中的common.css为项目共用的样式表，包含重置样式，头部底部等网站共用的样式
 - 文档中的iconfig.js为项目通用路径配置
-- 项目使用了requirejs技术来管理脚本文件，文档中的rconfig.js为requirejs的配置文件</xmp>
+- 项目使用了requirejs技术来管理脚本文件，文档中的rconfig.js为requirejs的配置文件</xmp></li>
 					</div>
 				</div>
 			</ol>
@@ -155,21 +153,21 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>标签使用</a>	
 					<div class="unit2">
-						<li>h1 - 网页主题 / 一个页面只有一个</li>
-						<li>h2 - 大栏目标题 or 楼层标题 等</li>
-						<li>h3 - 小栏目标题</li>
-						<li>h4 - 列表每一条目的标题</li>
-						<li>h5,h6 - 除以上情况的其他如强调加粗等情况适当使用</li>
-						<li>ul+li - 列表最佳搭配</li>
-						<li>p - 描述文字</li>
-						<li>span - 搭配其他元素用以布局标签等，尽量不要用于外容器</li>
+						<li>h1 - 用于网页主题 / 一个页面只有一个</li>
+						<li>h2 - 用于大栏目标题 or 楼层标题 等</li>
+						<li>h3 - 用于小栏目标题</li>
+						<li>h4 - 用于列表每一条目的标题</li>
+						<li>h5,h6 - 用于除以上情况的其他如强调加粗等情况适当使用</li>
+						<li>ul+li - 用于列表最佳搭配</li>
+						<li>p - 用于描述文字</li>
+						<li>span - 用于搭配其他元素用以布局标签等，尽量不要用于外容器</li>
 					</div>
 				</div>
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>标签优化</a>	
 					<div class="unit2">
 						<li>页面title不可缺少</li>
-						<li>aaa</li>
+						<li>表单控件的标签文本使用label元素包裹，或使用其for属性确保点击标签文本时能激活对应控件</li>
 					</div>
 				</div>
 			</ol>
@@ -181,17 +179,20 @@
 					<div class="unit2">
 						<li>标签属性值使用双引号，不要使用单引号</li>
 						<li>ID属性在一个页面内是唯一的</li>
-						<li>外调文件如是默认类型不需要声明type??</li>
+						<li>外调文件如果是默认类型时不需要声明type，如：
+						<xmp><script src="xxx.js"></script>
+<link rel="stylesheet" href="xxx.css" /></xmp></li>
 						<li>一般情况下不使用内置style</li>
-						<li>合理设置链接的target属性，如：target='_blank' | target='_self' 等</li>
+						<li>合理设置链接的target属性，如：target='_blank'</li>
 					</div>
 				</div>
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>属性优化</a>	
 					<div class="unit2">
 						<li>a标签如无链接时其属性href值填充':javascript:;'</li>
-						<li>img标签需要加alt属性 (装饰性的图片或图标不加alt)</li>
-						<li>a链接需要加title属性？</li>
+						<li>img标签需要加alt属性 (装饰性的图片或图标除外)</li>
+						<li>a链接如锚文本不足以描述此链接，需要加title属性，如：
+						<xmp><a title="力德网站" href="#">点击这里</a></xmp></li>
 						<li>页面元信息name为keywords/description等在发布前应添加合适内容</li>
 					</div>
 				</div>
@@ -201,7 +202,7 @@
 				<a class="key" href="javascript:;"><s>html</s>文本</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>-文本内尽量避免使用实体</li>
+						<li>文本内尽量避免使用实体，如空格实体'&nbsp'</li>
 					</div>
 				</div>
 			</ol>
@@ -210,9 +211,10 @@
 				<a class="key" href="javascript:;"><s>html</s>注释</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>每个大模块都应该注释其栏目名称或相关说明</li>
-						<li>一些整站通用的模块如头部/底部/侧栏等为了更好地区分开来，需要用一对对应的注释包裹起来??</li>
-						<li>嵌套太深或代码太多不好区分各自结束符时，应在容易混淆的结束符后添加注释</li>
+						<li>网页每个模块都应该注释其栏目名称或简短说明,格式如下：
+						<xmp><!--头部-->
+...
+<!--/头部--></xmp></li>
 					</div>
 				</div>
 			</ol>
@@ -221,7 +223,7 @@
 				<a class="key" href="javascript:;"><s>html</s>命名</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">html基本结构</a>
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_naming_html">html相关命名参考</a>
 						</li>
 					</div>
 				</div>
@@ -260,9 +262,9 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;">mix.less</a>	
 					<div class="unit2">
+						<li>设置整站比较常用到的样式</li>
 						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">mix.less参考设置</a>
 						</li>
-						<li>css3不用前缀，打包时使用**自动添加前缀</li>
 					</div>
 				</div>
 			</ol>
@@ -273,10 +275,18 @@
 					<div class="unit2">
 						<li>值为0时后面不加单位</li>
 						<li>颜色值都用小写</li>
-						<li>属性值用单引号，而不是双引号 （推荐：content:'aaa';）</li>
-						<li>每个样式属性后加 ";"</li>
-						<li>尽量用缩写</li>
-						<li>需注释所属栏目或模块标题，跟html对应模块标题一致; 多个模块标题用'&'分隔</li>
+						<li>content的属性值用单引号包含，不是双引号，如：content:'xxx';</li>
+						<li>每个样式属性后的分号";"不能省略</li>
+						<li>属性值尽量用缩写，如：
+						<xmp>border:0 10px;
+margin:10px 15px 20px;
+padding:10px;
+color:#ccc;
+color:#efg;
+background:#eee url(xxx.png) no-repeat center right;</xmp></li>
+						<li>需注释所属栏目或模块标题，跟html对应模块标题一致; 多个模块标题用'&'分隔，格式如下：
+						<xmp>/*案件列表 & 新闻列表*/
+.p-list-pics{...}</xmp></li>
 					</div>
 				</div>
 			</ol>
@@ -285,7 +295,7 @@
 				<a class="key" href="javascript:;"><s>css</s>属性声明顺序</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">css属性声明顺序</a>
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_attr_css">css属性声明顺序</a>
 						</li>
 					</div>
 				</div>
@@ -298,8 +308,12 @@
 						<li>样式都用class设置，慎用id</li>
 						<li>相同或类似的模块尽量把代码整合重用起来</li>
 						<li>css慎用expression表达式</li>
-						<li>尽量使用css选择器（以防止属性设置冲突，从而减少类名设置，保持结构清晰）</li>
-						<li>如多个元素一并设置，元素之间换一行</li>
+						<li>尽量使用css选择器（以防止属性设置冲突，从而减少类名设置，保持结构清晰），如：
+						<xmp>ul > li{...}
+input[type=text]{...}</xmp></li>
+						<li>如多个选择器一并设置，元素之间换一行，如：
+						<xmp>a:hover,
+a.on{...}</xmp></li>
 						<li>尽量减少不必要的嵌套层级</li>
 					</div>
 				</div>
@@ -309,7 +323,7 @@
 				<a class="key" href="javascript:;"><s>css</s>命名</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">css相关命名参考</a>
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_naming_css">css相关命名参考</a>
 						</li>
 					</div>
 				</div>
@@ -333,11 +347,12 @@
 				<a class="key" href="javascript:;"><s>js</s>基本设置</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>传统js脚本的编写，要求用下面的模板进行包裹：</li>
+						<li>传统js脚本的编写，要求用下面的模板进行包裹：
 						<xmp>(function($){
 	'use strict';
 	// code...
-}(jQuery));</xmp>
+}(jQuery));</xmp></li>
+						
 					</div>
 				</div>
 			</ol>
@@ -348,8 +363,8 @@
 					<div class="unit2">
 						<li>每句语句后的';'不能省略</li>
 						<li>if、while、for、do语句的执行体总是用"{"和"}"括起来，即使在其结构体内只有一条语句</li>
-						<li>应该优先使用单引号(‘)，因为字符串可能包含带有双引号(“)的HTML代码</li>
-						<li>总是使用var声明变量，且要求变量集中在函数开头声明, 避免全局变量的污染</li>
+						<li>代码编写时应该优先使用单引号(‘)，防止字符串可能包含带有双引号(“)的HTML代码</li>
+						<li>总是使用var声明变量，避免全局变量的污染，且要求变量集中在函数开头声明</li>
 					</div>
 				</div>
 			</ol>
@@ -358,7 +373,6 @@
 				<a class="key" href="javascript:;"><s>js</s>优化</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>js用data-*作为选择器，不用class & id</li>
 						<li>使用闭包时防止循环引用</li>
 						<li>尽量避免使用存在兼容性及消耗资源的方法或属性, 比如eval() & innerText</li>
 						<li>避免对象上使用with()</li>
@@ -371,9 +385,19 @@
 				<a class="key" href="javascript:;"><s>js</s>注释</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>注释尽量详尽且到位</li>
-						<li>需写明所属页面或栏目</li>
-						<li>类等脚本文件需添加头描述</li>
+						<li>脚本模块需写明所属页面或栏目，注释必要时尽量详尽且到位</li>
+						<li>插件等独立脚本文件需添加详细的头描述，格式如下：
+						<xmp>/*
+ * 简述
+ *
+ * 功能详细描述
+ *
+ * @param <String> arg1 参数1
+ * @param <Number> arg2 参数2，默认为0
+ * @return <Boolean> 看xxx是否成功
+ */
+ function fooFunction (arg1, arg2) {
+ }</xmp></li>
 					</div>
 				</div>
 			</ol>
@@ -382,7 +406,7 @@
 				<a class="key" href="javascript:;"><s>js</s>命名</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_html">js相关命名规范</a>
+						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_naming_js">js相关命名规范</a>
 						</li>
 					</div>
 				</div>

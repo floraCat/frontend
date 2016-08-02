@@ -22,9 +22,17 @@ if($_GET["list"]){
 	}else if($folder){//网址有floder参数
 		$temp=eachFile($list,$page,$url2,$folder);//指定文件夹模块源码数组
 	}else{//全部
+		$temp=array();
+		$index=0;
 		foreach($handle as $folder){
-			if($folder!='.' || $folder!='..'){
-				$temp=eachFile($list,$page,$url2,$folder);//全部模块源码数组
+			if($folder!='.' && $folder!='..'){
+				$temp_=eachFile($list,$page,$url2,$folder);//全部模块源码数组
+				if($temp_){
+					foreach($temp_ as $k=>$v){
+						$temp[$index]=$v;
+						$index++;
+					};
+				}
 			}
 		};
 	}
