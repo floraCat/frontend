@@ -76,36 +76,40 @@
 			</ol>
 
 			<ol>
-				<a class="key" href="javascript:;">前端架构</a>
+				<a class="key" href="javascript:;">文件命名原则</a>
 				<div class="unit">
-					<div class="unit2">
+					<ul class="unit2">
+						<li>命名优先考虑对应英文，可使用常规缩写形式，如英文太生僻或复杂再考虑拼音</li>
+						<li>命名尽可能使得你自己和工作组的每一个成员能够理解每一个文件的意义；</li>
+						<li>同一类的文件使用一样的前缀，使得同类文件都能排列在一起，如：
+						<xmp>shopping                //商城首页	
+shopping-cart          //购物车
+shopping-order        //订购清单</xmp></li>
+					</ul>
+				</div>
+			</ol>
 
-						<h4>html</h4>
-						<ul style=" margin:0 0 20px 15px;">
-							<li>每个站点都应该有一个整站链接目录页（统一命名为__enter.html）</li>
-							<li>整站通用的模块（如头部、底部等）需独立出来，各页面再通过java来引入</li>
-						</ul>
-
-						<h4>css</h4>
-						<ul style=" margin:0 0 20px 15px;">
-							<li>使用less预编译css</li>
-						</ul>
-						
-						<h4>javascript</h4>
-						<ul style=" margin:0 0 20px 15px;">
-							<li>使用requirejs技术模块化引入脚本文件</li>
-							<li>脚本一般基于jQuery库来书写：pc端使用1.10.2版本，移动端使用2.2.0版本</li>
-							<li>表单都需要做前端验证</li>
-							<li>每个页面所有变量和函数都放到一个全局对象中</li>
-						</ul>
-
-						<h4>辅助工具</h4>
-						<ul style=" margin:0 0 20px 15px;">
-							<li>使用Git版本控制工具来管理网站</li>
-							<li>使用Gulp构建工具自动化打包网站</li>
-						</ul>
-
-					</div>
+			<ol>
+				<a class="key" href="javascript:;">图片规范</a>
+				<div class="unit">
+					<a class="key2" href="javascript:;">案例图片</a>
+					<ul class="unit2">
+						<li>案例图片指前端页面用img元素调用的图片，一般为后台可配置的图片</li>
+						<li>存放路径：项目根目录的/images文件夹内</li>
+						<li>在保证视觉效果的情况下选择最小的图片格式与图片质量, 以减少加载时间</li>
+						<li>非首页轮播大图外的图片大小尽量限定在 70K 左右或更小</li>
+						<li>图片格式仅限于gif || png || jpg</li>
+					</ul>
+				</div>
+				<div class="unit">
+					<a class="key2" href="javascript:;">背景图片</a>
+					<ul class="unit2">
+						<li>背景图片指样式中使用background属性设置的图片，一般为比较少改动的背景图或小图标</li>
+						<li>存放路径：项目根目录的/css/imgs文件夹内</li>
+						<li>项目发布前背景图需分类合并，以减小http请求</li>
+						<li>图片格式仅限于gif || png || jpg</li>
+						<li>透明背景的图标用png24格式；非透明背景的图标如图形扁平色彩单一的用png8格式，否则用jpg格式</li>
+					</ul>
 				</div>
 			</ol>
 
@@ -127,22 +131,25 @@
 					<div class="unit2">
 						<li>必须有文档类型声明<xmp class="inline"><!DOCTYPE HTML></xmp>，且在文档的第一行，位于html标签之前</li>
 						<li>使用utf-8编码</li>
-						<li>样式代码或外调style文件请在head元素中引入；不建议在html内设置css样式，如下：
+						<li>样式代码或外调style文件请在head元素中引入，如下：
 						<xmp><head>
-	<link rel="stylesheet" href="xxx.css" />						
+	<link rel="stylesheet" href="xxx.css" />
+	<style>
+	... //不建议直接在html文件内设置css样式
+	</style>						
 </head></xmp></li>
 						<li>脚本代码或外调的js文件在head元素中或在body元素内部的最后引入，如下：
 						<xmp><head>
 	<script src="xxx.js"></script>
 	<script>
-	//...
+	...
 	</script>						
 </head>
 <body>
-	...
+	html code here ...
 	<script src="xxx.js"></script>
 	<script>
-	//...
+	...
 	</script>
 </body>
 </xmp></li>
@@ -176,15 +183,15 @@
 						<li>h3 - 用于小栏目标题</li>
 						<li>h4 - 用于列表每一条目的标题</li>
 						<li>h5,h6 - 用于除以上情况的其他如强调加粗等情况</li>
-						<li>ul+li - 列表最佳搭配元素组合</li>
-						<li>p - 用于描述文字</li>
+						<li>ul+li - 列表最佳元素组合</li>
+						<li>p - 用于描述简介等文本</li>
 						<li>span - 用于搭配其他元素用以布局标签等，尽量不要用于外容器</li>
 					</div>
 				</div>
 				<div class="unit">
 					<a class="key2" href="javascript:;"><s>html</s>标签优化</a>	
 					<div class="unit2">
-						<li>页面头部元信息的title元素不可缺少</li>
+						<li>页面元信息的title元素不可缺少</li>
 						<li>表单控件的标签文本使用label元素包裹，或使用其for属性确保点击标签文本时能激活对应控件，如：
 						<xmp><label>check-1:<input type="checkbox" /></label>
 <lable for="check2">check-2:</lable><input type="checkbox" id="check2" /></xmp></li>
@@ -210,7 +217,7 @@
 					<a class="key2" href="javascript:;"><s>html</s>属性优化</a>	
 					<div class="unit2">
 						<li>a标签如无链接时其属性href值填充':javascript:;'</li>
-						<li>img标签需要加alt属性 (装饰性的图片或图标除外)</li>
+						<li>img标签需要加alt属性 (无意义的装饰性图标除外)</li>
 						<li>a链接如锚文本不足以描述此链接，需要加title属性，如：
 						<xmp><a title="力德网站" href="#">点击这里</a></xmp></li>
 						<li>页面的关键字和描述（即元信息name为keywords/description）在发布前应添加合适内容</li>
@@ -274,7 +281,7 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;">var.less</a>	
 					<div class="unit2">
-						<li>设置整站主色调</li>
+						<li>设置样式变量，主要包括整站的主色调（字色，背景色，线色等）</li>
 						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_less_var">var.less参考设置</a>
 						</li>
 					</div>
@@ -282,7 +289,9 @@
 				<div class="unit">
 					<a class="key2" href="javascript:;">mix.less</a>	
 					<div class="unit2">
-						<li>设置整站比较常用到的样式</li>
+						<li>设置项目中常用样式的属性组合</li>
+						<li>此文件的属性集合都不要暴露到最后生成的css中，所以如不带参数也需要加一个空的小括号</li>
+						<li>针对需要带兼容前缀的css3样式，本项目将使用gulp构建工具在打包时自动添加对应的兼容前缀，此文件内就不需要再设置相关的属性组合了</li>
 						<li>模板参看：<a target="_blank" class="btn" href="index.php?page=standard&extra=standard_less_mix">mix.less参考设置</a>
 						</li>
 					</div>
@@ -330,10 +339,10 @@ background:#eee url(xxx.png) no-repeat center right;</xmp></li>
 						<li>样式都用class设置，慎用id</li>
 						<li>相同或类似的模块尽量把代码整合重用起来</li>
 						<li>css慎用expression表达式</li>
-						<li>尽量使用css选择器（以防止属性设置冲突，从而减少类名设置，保持结构清晰），如：
+						<li>基于减少类名设置、防止属性设置冲突、保持结构清晰的目的，尽量使用css选择器，如：
 						<xmp>ul > li{...}
 input[type=text]{...}</xmp></li>
-						<li>如多个选择器一并设置，元素之间换一行，如：
+						<li>如多个元素一并设置，元素之间换一行，如：
 						<xmp>a:hover,
 a.on{...}</xmp></li>
 						<li>选择器尽量减少不必要的嵌套层级，如：
@@ -370,13 +379,19 @@ a.on{...}</xmp></li>
 				<a class="key" href="javascript:;"><s>js</s>基本设置</a>
 				<div class="unit">
 					<div class="unit2">
-						<li>传统js脚本的编写，要求用下面的模板进行包裹：
+						<li>传统js脚本的编写，要求使用下面的模板进行包裹：
 						<xmp>(function($){
 	'use strict';
 	// code...
 }(jQuery));</xmp></li>
-						<li>requirejs脚本的编写，要求用下面的模板进行包裹：
-						<xmp>???</xmp></li>
+						<li>requirejs脚本的编写，要求使用下面的格式：
+						<xmp>define([
+    "jquery",
+    "angular"
+], function ($, angular) {
+    'use strict';
+    // code...
+});</xmp></li>
 						
 					</div>
 				</div>
@@ -389,7 +404,7 @@ a.on{...}</xmp></li>
 						<li>每句语句后的';'不能省略</li>
 						<li>if、while、for、do语句的执行体总是用"{"和"}"括起来，即使在其结构体内只有一条语句</li>
 						<li>代码编写时应该优先使用单引号(‘)，防止字符串可能包含带有双引号(“)的HTML代码</li>
-						<li>总是使用var声明变量，避免全局变量的污染，且要求变量集中在函数开头声明</li>
+						<li>总是使用var声明变量，避免全局变量的污染</li>
 					</div>
 				</div>
 			</ol>
@@ -411,7 +426,7 @@ a.on{...}</xmp></li>
 				<div class="unit">
 					<div class="unit2">
 						<li>脚本模块需写明所属页面或栏目，注释必要时尽量详尽且到位</li>
-						<li>插件等独立脚本文件需添加详细的头描述，格式如下：
+						<li>插件等独立脚本文件需添加详细的头描述，格式参考如下：
 						<xmp>/*
  * 简述
  *
@@ -421,8 +436,12 @@ a.on{...}</xmp></li>
  * @param <Number> arg2 参数2，默认为0
  * @return <Boolean> 看xxx是否成功
  */
- function fooFunction (arg1, arg2) {
- }</xmp></li>
+ +(function(){
+	'use strict';
+	var pluginName = "xxx";
+	...
+})();
+</xmp></li>
 					</div>
 				</div>
 			</ol>

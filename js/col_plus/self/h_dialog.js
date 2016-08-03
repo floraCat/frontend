@@ -4,7 +4,9 @@
 *2016-5-4
  */
 
-(function($){
+;(function($){
+
+	'use strict';
 
 	$.H_dialog=function(opts){
 
@@ -23,44 +25,44 @@
 	
 		//图标
 		if(opts.icon){
-			icon='<div class="icon '+opts.icon+'"></div>';
-		}else{icon='';}
+			var icon='<div class="icon '+opts.icon+'"></div>';
+		}else{var icon='';}
 
 		//标题
 		if(opts.title){
-			title='<p class="title">'+opts.title+'</p>';
-		}else{ title='';}
+			var title='<p class="title">'+opts.title+'</p>';
+		}else{ var title='';}
 
 		//提示
 		if(opts.note){
-			note='<p class="note">'+opts.note+'</p>';
-		}else{ note='';}
+			var note='<p class="note">'+opts.note+'</p>';
+		}else{ var note='';}
 
 		//倒计时秒数
 		if(opts.setTime){
 			setTime=opts.setTime/1000;
-			timeNote='<p class="setTime">本窗口<span>'+setTime+'</span>s后自动关闭</p>';
-		}else{timeNote='';}
+			var timeNote='<p class="setTime">本窗口<span>'+setTime+'</span>s后自动关闭</p>';
+		}else{ var timeNote='';}
 
 		//按键
 		var btn=opts.btn.split('|');
 		if(btn[6]){ 
-			link='href="'+btn[6]+'"';
-		}else{link='';}
-		html_btn='<a data-role="'+btn[2]+'" class="btn '+btn[1]+'" '+link+' style="background:'+btn[3]+'; color:'+btn[4]+'; border:'+btn[5]+' 1px solid;">'+btn[0]+'</a>';
+			var link='href="'+btn[6]+'"';
+		}else{ var link='';}
+		var html_btn='<a data-role="'+btn[2]+'" class="btn '+btn[1]+'" '+link+' style="background:'+btn[3]+'; color:'+btn[4]+'; border:'+btn[5]+' 1px solid;">'+btn[0]+'</a>';
 		
 		//按键2[如有]
 		if(opts.btn2){
 			var btn2=opts.btn2.split('|');
 			if(btn2[6]){ 
-				link2='href="'+btn2[6]+'"';
-			}else{link2='';}
-			html_btn2='<a data-role="'+btn2[2]+'" class="btn '+btn2[1]+'" '+link2+' style="background:'+btn2[3]+'; color:'+btn2[4]+'; border:'+btn2[5]+' 1px solid;">'+btn2[0]+'</a>';
-		}else{ html_btn2='';}
+				var link2='href="'+btn2[6]+'"';
+			}else{ var link2='';}
+			var html_btn2='<a data-role="'+btn2[2]+'" class="btn '+btn2[1]+'" '+link2+' style="background:'+btn2[3]+'; color:'+btn2[4]+'; border:'+btn2[5]+' 1px solid;">'+btn2[0]+'</a>';
+		}else{ var html_btn2='';}
 
 		//退出x
 		if(opts.icon_quit){
-			icon_quit='<div class="quit '+opts.icon_quit+'"></div>';
+			var icon_quit='<div class="quit '+opts.icon_quit+'"></div>';
 		}
 
 		//弹窗html结构
@@ -79,8 +81,8 @@
 
 		//添加弹窗到body
 		$('body').append(html);
-		if(opts.id){ $id=$("#"+opts.id);}
-		var top_dialog=(windowHeight()-150)/2;
+		if(opts.id){ var $id=$("#"+opts.id);}
+		var top_dialog=($(window).height()-150)/2;
 		$id.css("top",top_dialog);
 		$('html,body').css('overflow-y','hidden');
 		
@@ -141,21 +143,6 @@
 			clearUp();
 			opts.callback();
 		});
-
-
-		//视图高
-		function windowHeight(){
-			if(self.innerHeight){ var windowHeight = self.innerHeight;
-			}else{
-				if(document.documentElement && document.documentElement.clientHeight){    
-					var windowHeight = document.documentElement.clientHeight;
-				}else{
-					if(document.body){ var windowHeight = document.body.clientHeight;}
-				}
-			} 
-			return windowHeight; 
-		}
-		
 
 		//退出函数
 		var clearUp=function(){

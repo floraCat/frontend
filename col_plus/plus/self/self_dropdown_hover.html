@@ -7,6 +7,7 @@
 <style>
 /*_css*/
 	ol{ width: 100px; }
+	ol a{ display: block;}
 	ol.open a{ color: red; }
 	ol.open ul{ display: block; }
 	ul{height: 100px; display: none; background: #333; color: #fff;}
@@ -16,7 +17,7 @@
 
 
 <!--_html-->
-<ol data-js-hover>
+<ol data-js-hover="a|ul">
 	<a>hover控件</a>
 	<ul>
 		hover显隐层

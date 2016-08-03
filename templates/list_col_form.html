@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -52,7 +53,7 @@
 	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&details=<{$temp[list].ttl}>" target="_blank">
 		<img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list].ttl}>" />
 	</a>
-	<h5><{$temp[list].ttl}> / <{$temp[list].ttl_zh}></h5>
+	<h5><span><{$temp[list].ttl}></span> / <{$temp[list].ttl_zh}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
 		<a href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&_temp=<{$temp[list].ttl}>" target="_blank">效果展示</a>
 		<a class="copy">源码复制</a>
@@ -185,7 +186,7 @@ $(function() {
 					var cookie_form_def=$.cookie("form");
 					var cookie_code=cookie_form_def?cookie_form_def.substr(0,13):Date.parse(new Date());
 					var cookie_form=cookie_form_def?cookie_form_def.substr(14).split("#"):[];
-					var ttl=that.parents("li").find("h5").text();
+					var ttl=that.parents("li").find("h5 span").text();
 					var img=that.parents("li").find("img").attr("src");
 					var new_data=ttl+","+img;
 					cookie_form.push(new_data);
@@ -201,7 +202,7 @@ $(function() {
 			//cookie中去掉对应数据
 			var cookie_code=$.cookie("form").substr(0,14)
 			var cookie_form=$.cookie("form").substr(14).split("#");
-			var ttl=that.parents("li").find("h5").text();
+			var ttl=that.parents("li").find("h5 span").text();
 			var temp=[];
 			for(var j=0;j<cookie_form.length;j++){
 				if(cookie_form[j].indexOf(ttl)<0){

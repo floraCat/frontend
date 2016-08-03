@@ -1,3 +1,17 @@
 <link rel="stylesheet" href="css/col_style.css" />
-<pre class="preTxt">.clr(){}
+<pre class="preTxt">/*要求只兼容ie8*/
+
+
+//单行文本超出容器显示省略号
+.e-(){ display:block; overflow:hidden; white-spacing:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis;}
+
+//消浮
+.clr(){ *display: inline-block;
+	&::after{ 
+		content:"."; display:block; height:0; clear:both; visibility:hidden;
+	}
+}
+
+//向下箭头
+.ar_zdB(){ width:0; height:0; border:transparent dashed; border-top:#e43a3d solid; border-width:8px; border-top-width:10px;}
 </pre>
