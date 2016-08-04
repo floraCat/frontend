@@ -5,7 +5,7 @@
  * 插件描述：模拟默认的选项框
  * 参数说明：
  *   - 'data-js-select'的值为三个（最后一个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
- *   - @param1:触发按键（必需）
+ *   - @param1:显示默认值的容器（必需）
  *   - @param2:下拉选项框（必需）
  *   - @param3:下拉选项框显示模式（可选）
  * 其他说明：
@@ -28,7 +28,7 @@
 		$(_pluginName).each(function(){
 			var _val=$(this).data("js-select");
 			var _arr=_val.split("|");
-			var _key=_arr[0];//触发按键
+			var _key=_arr[0];//显示默认值的容器
 			var _drop=_arr[1];//下拉选项框
 			var _showMode=_arr[2];//显隐模式
 			selectDefault($(this),_key,_drop);
@@ -60,28 +60,9 @@
 	//下拉操作 + 点击空白处隐藏
 	var selectClick=function($this,_key,_drop,_showMode,ev){
 		var _target=ev.target;
-
-
-		// if(_key.indexOf(".")>=0){//_key类名
-		// 	if($(_target).attr("class")){
-		// 		var _isKey=$(_target).attr("class").indexOf(_key.substr(1))>=0?true:false;
-		// 	}else{ var _isKey=false;}
-		// }else{//_key属性名
-		// 	var _isKey=_target.nodeName.toLowerCase()==_key?true:false;
-		// }
-
-
-		if(_drop.indexOf(".")>=0){//_drop类名
-			if($(_target).attr("class")){
-				var _isDrop=$(_target).attr("class").indexOf(_drop.substr(1))>=0?true:false;
-			}else{ var _isDrop=false;}
-		}else{//_drop属性名
-			var _isDrop=_target.nodeName.toLowerCase()==_drop?true:false;
-		}
-console.log(_isDrop);
-
-		if($(_target).parents("[data-js-select]").length>0 && _isDrop==false){//_target是_key
-			var _keyCur=$(_target);
+		var _isOption=$(_target).is(_drop) || $(_target).parents(_drop).length>0?true:false;
+		if($(_target).parents(_pluginName).length>0 && _isOption==false){//target在this内且不是下拉选项框
+			var _keyCur=$this.find(_key);
 			var _dropCur=$this.find(_drop);
 			if(!_keyCur.hasClass("on")){
 				cleanUp();
@@ -122,7 +103,7 @@ console.log(_isDrop);
 		$(document).on("keydown",function(ev){
 			ev.preventDefault();
 			ev.stopPropagation();
-			var _index=_dropCur.find(".selected")._index();
+			var _index=_dropCur.find(".selected").index();
 			var _items=_dropCur.find("[data-val]");
 			if (ev.which == 38 && _index > 0) _index--;//向上
 			if (ev.which == 40 && _index < _items.length-1) _index++;//向下			

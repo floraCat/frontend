@@ -43,13 +43,9 @@
 	//下拉操作 + 点击空白处隐藏
 	var dropClick=function($this,_key,_drop,_showMode,ev){
 		var _target=ev.target;
-		if(_key.indexOf(".")>=0){//_key为类名
-			var _isKey=$(_target).attr("class").indexOf(_key.substr(1))>=0?true:false;
-		}else{//_key为属性名
-			var _isKey=_target.nodeName.toLowerCase()==_key?true:false;
-		}
-		if(_isKey){//target是_key
-			var _keyCur=$(_target);
+		var _isDrop=$(_target).is(_drop) || $(_target).parents(_drop).length>0?true:false;
+		if($(_target).parents(_pluginName).length>0 && _isDrop==false){//target在this内且不是下拉框
+			var _keyCur=$this.find(_key);
 			var _dropCur=$this.find(_drop);
 			if(!_keyCur.hasClass("on")){
 				cleanUp();

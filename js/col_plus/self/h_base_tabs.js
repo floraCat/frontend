@@ -27,49 +27,45 @@
 		$(_pluginName).each(function(){
 			var _val=$(this).data("js-tabs");
 			var _arr=_val.split("|");
-			var _key=_arr[0];//触发器组容器
-			var _drop=_arr[1];//显隐层组容器
+			var _keys=_arr[0];//触发器组容器
+			var _drops=_arr[1];//显隐层组容器
 			var _showMode=_arr[2];//显隐层显示模式
-			tabDefault($(this),_key,_drop,_showMode);
+			tabDefault($(this),_keys,_drops,_showMode);
 			$(this).on("click",function(ev){
-				tabClick($(this),_key,_drop,_showMode,ev);
+				tabClick($(this),_keys,_drops,_showMode,ev);
 			});
 		});
 	});
 
 
 	//.on对应index的层显示
-	var tabDefault=function($this,_key,_drop,_showMode){
+	var tabDefault=function($this,_keys,_drops,_showMode){
 		$this.each(function(){
-			var _indexCur=$(this).find(_key+" .on").index();
+			var _indexCur=$(this).find(_keys+" .on").index();
 			_indexCur=_indexCur>=0?_indexCur:0;
 			if(_showMode=="fade"){
-				$(this).find(_drop).children().eq(_indexCur).fadeIn().siblings().hide();
+				$(this).find(_drops).children().eq(_indexCur).fadeIn().siblings().hide();
 			}else{
-				$(this).find(_drop).children().eq(_indexCur).show().siblings().hide();
+				$(this).find(_drops).children().eq(_indexCur).show().siblings().hide();
 			}
 		});
 	}
 
 
-	//切换操作 __运用事件委托
-	var tabClick=function($this,_key,_drop,_showMode,ev){
+	//切换操作
+	var tabClick=function($this,_keys,_drops,_showMode,ev){
 		var _target=ev.target;
-		if(_key.indexOf(".")>=0){
-			var _isKey=$(_target).parent().attr("class").indexOf(_key.substr(1))>=0?true:false;
-		}else{
-			var _isKey=_target.parentNode.nodeName.toLowerCase()==_key?true:false;
-		}
-		if(_isKey){
-			var _keyCur=$(_target);
-			if(!_keyCur.hasClass("on")){
-				var _indexCur=_keyCur.index();
-				var _dropCur=$this.find(_drop);
-				_keyCur.addClass("on").siblings().removeClass("on");
+		var _isKey=$(_target).parents(_keys).length>0?true:false;
+		if(_isKey==true){//target在_keys内
+			var _keysCur=$(_target).parent().children().length<=1?$(_target).parent():$(_target);
+			if(!_keysCur.hasClass("on")){
+				var _indexCur=_keysCur.index();
+				var _dropsCur=$this.find(_drops);
+				_keysCur.addClass("on").siblings().removeClass("on");
 				if(_showMode=="fade"){
-					_dropCur.children().eq(_indexCur).fadeIn().siblings().hide();
+					_dropsCur.children().eq(_indexCur).fadeIn().siblings().hide();
 				}else{
-					_dropCur.children().eq(_indexCur).show().siblings().hide();
+					_dropsCur.children().eq(_indexCur).show().siblings().hide();
 				}
 			}
 		}	
