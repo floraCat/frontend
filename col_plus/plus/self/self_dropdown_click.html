@@ -6,20 +6,18 @@
 
 <style>
 /*_css*/
-.tDropdown{ float: left; width: 100px; }
-.tDropdown ol{ display:none; height: 100px; background: #333; color: #fff;}
-.tDropdown .t_a.on{ color:red; }
+.p-dropdown{ float: left; width: 100px; }
+.p-dropdown .key.on{ color:red; }
+.p-dropdown .drop{ display: none; width: 100px; height: 100px; background: #333; color: #fff; }
 /*css_*/
 </style>
 
 
-<!--data-js-dropdown:点击按键选择器|下拉选择器|多个下拉的父级选择器-->
 <!--_html-->
-<ul class="tDropdown" data-js-dropdown=".t_a|ol">
-    <a class="t_a">切换控件</a>
-    <br>
-    <ol id="ol">
-        切换层
+<ul class="p-dropdown" data-js-dropdown=".key|.drop">
+    <a class="key">click触发按键</a>
+    <ol class="drop">
+        click下拉框
     </ol>
 </ul>
 <!--html_-->
@@ -53,7 +51,7 @@ ie6:yes
 
 <!----描述---->
 <!--_desc-->
-点击下拉
+点击下拉框
 <!--desc_-->
 
 <!----依赖---->
@@ -64,7 +62,7 @@ js/col_plus/self/h_base_dropdown.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-点击下拉
+点击下拉框
 </pre>
 <!--note_-->
 

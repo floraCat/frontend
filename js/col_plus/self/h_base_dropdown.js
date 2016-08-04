@@ -1,15 +1,18 @@
 ﻿
 /*
- * 插件名称：下拉框
+ * 插件名称：点击下拉框
  * 监听属性：'data-js-dropdown'
- * 简介：模拟默认的下拉框
+ * 插件描述：模拟默认的下拉框
  * 参数说明：
- *   - 'data-js-dropdown'的值为多个参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
+ *   - 'data-js-dropdown'的值为三个(最后一个可选)参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
  *   - @param1:触发按键（必需）
  *   - @param2:下拉框（必需）
- *   - @param3:多个下拉框的父级，参数无值时为单个下拉框（可选）
- *   - 所有参数可以是类名如'.clsName'，也可以是属性名如'p'
- * 其他：
+ *   - @param3:下拉框显示模式（可选）
+ * 基本原理：
+ *   - 点击触发按键加类名.on，下拉框加类名.active同时显示
+ *   - 下拉框显示的前提下点击下拉框不隐藏，点击触发按键或空白处时下拉框隐藏
+ * 其他说明：
+ *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
  *   - 兼容chorme,firefox,ie
  */
 
@@ -18,48 +21,49 @@
 
 	'use strict';
 
-	//'下拉框'模块
-	var modeName="[data-js-dropdown]";
+	//'点击下拉框'模块
+	var _pluginName="[data-js-dropdown]";
 
 
 	//监听
 	$(window).on("load",function(){
-		$(modeName).each(function(){
-			var $val=$(this).data("js-dropdown");
-			var $arr=$val.split("|");
-			var key=$arr[0];
-			var opts=$arr[1];
-			var parent=$arr[2]?$arr[2]:'';
+		$(_pluginName).each(function(){
+			var _val=$(this).data("js-dropdown");
+			var _arr=_val.split("|");
+			var _key=_arr[0];//触发按键
+			var _drop=_arr[1];//下拉框
+			var _showMode=_arr[2];//下拉框显示模式
 			$(this).on("click",function(ev){
-				dropdown_click($(this),key,opts,parent,ev);
+				dropClick($(this),_key,_drop,_showMode,ev);
 			});
 		});
 	});
 
 
-	//下拉操作 __运用事件委托
-	var dropdown_click=function($this,key,opts,parent,ev){
-		var target=ev.target;
-		if(key.indexOf(".")>=0){//类名
-			var isKey=$(target).attr("class").indexOf(key.substr(1))>=0?true:false;
-		}else{//属性名
-			var isKey=target.nodeName.toLowerCase()==key?true:false;
+	//下拉操作 + 点击空白处隐藏
+	var dropClick=function($this,_key,_drop,_showMode,ev){
+		var _target=ev.target;
+		if(_key.indexOf(".")>=0){//_key为类名
+			var _isKey=$(_target).attr("class").indexOf(_key.substr(1))>=0?true:false;
+		}else{//_key为属性名
+			var _isKey=_target.nodeName.toLowerCase()==_key?true:false;
 		}
-		if(isKey){//target是key
-			var $key=$(target);
-			var $parent=parent?$key.closest(parent):$this;
-			var $option=$parent.find(opts);
-			if(!$key.hasClass("on")){
+		if(_isKey){//target是_key
+			var _keyCur=$(_target);
+			var _dropCur=$this.find(_drop);
+			if(!_keyCur.hasClass("on")){
 				cleanUp();
-				$key.addClass("on");
-				$option.addClass("h_show").show();
-				$option.scrollTop(0);
-
-				if(ev && ev.stopPropagation){ ev.stopPropagation();}
-				else{ ev.cancelBubble=true;}
+				_keyCur.addClass("on");
+				if(_showMode=="fade"){
+					_dropCur.addClass("active").fadeIn();
+				}else{
+					_dropCur.addClass("active").show();
+				}
+				_dropCur.scrollTop(0);
+				ev.stopPropagation();//防冒泡，即防止点击_pluginName时同时也触发了下面的document点击事件（虽然此例不影响表面效果）
 				$(document).on("click",function(ev2){
-					var target2=ev2.target;
-					if($(target2).attr("data")=="js-dropdown" || $(target2).parents("[data-js-dropdown]").length>0){
+					var _target2=ev2.target;
+					if($(_target2).attr("data")=="js-dropdown" || $(_target2).parents("[data-js-dropdown]").length>0){
 					}else{
 						cleanUp();
 						ev2.preventDefault();
@@ -73,9 +77,8 @@
 
 	//还原
 	var cleanUp=function(){
-		$(modeName).find(".on").removeClass("on");
-		$(".h_show").hide().removeClass("h_show");
-		$(document).off("keydown");
+		$(_pluginName).find(".on").removeClass("on");
+		$(_pluginName).find(".active").hide().removeClass("active");
 	}
 
 

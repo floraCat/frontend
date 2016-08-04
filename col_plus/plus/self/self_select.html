@@ -6,22 +6,31 @@
 
 <style>
 /*_css*/
-.pSelect{ width: 40px; margin-right: 20px; position: relative;}
-.pSelect i{ position: absolute; top: 5px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 12px;}
-.pSelect .t_a{ display: block; position: relative;}
-.pSelect .t_a.on{ color:red;}
-.pSelect ol{ display:none;}
-.pSelect ol .selected,.pSelect ol li:hover{ color:#FF0004; cursor: pointer;}
+.p-select{ width: 40px; margin-right: 20px; position: relative; float: left;}
+.p-select i{ position: absolute; top: 3px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 10px;}
+.p-select .key.on{ color:red;}
+.p-select ol{ display:none;}
+.p-select ol .selected,.p-select ol li:hover{ color:#FF0004;}
 /*css_*/
 </style>
 
 
-<!--data-js-select:点击按键选择器|下拉选择器|多个下拉的父级选择器-->
 <!--_html-->
-<ul class="pSelect" data-js-select="a|ol" style="float: left;">
+<ul class="p-select" data-js-select=".key|.drop">
     <i></i>
-    <a class="t_a t2" data-val="" href="javascript:;"></a>
-    <ol id="ol">
+    <a class="key" data-val="" href="javascript:;"></a>
+    <ol class="drop">
+        <ul>
+            <li data-val="1">111</li>
+            <li data-val="2">222</li>
+            <li data-val="3">333</li>
+        </ul>
+    </ol>
+</ul>
+<ul class="p-select" data-js-select=".key|.drop">
+    <i></i>
+    <a class="key" data-val="" href="javascript:;"></a>
+    <ol class="drop">
         <ul>
             <li data-val="1">111</li>
             <li data-val="2">222</li>

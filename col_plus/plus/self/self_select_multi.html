@@ -6,20 +6,20 @@
 
 <style>
 /*_css*/
-.pSelects .unit{ float: left; width: 40px; margin-right: 20px; position: relative;}
-.pSelects i{ position: absolute; top: 5px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 12px;}
-.pSelects .t_a{ display: block; position: relative;}
-.pSelects .t_a.on{ color:red; }
-.pSelects ol{ display:none;}
-.pSelects ol .selected,.pSelects ol li:hover{ color:#FF0004; cursor: pointer;}
+.unit{ float: left; width: 40px; margin-right: 20px; position: relative;}
+.unit i{ position: absolute; top: 5px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 12px;}
+.unit .t_a{ display: block; position: relative;}
+.unit .t_a.on{ color:red; }
+.unit ol{ display:none;}
+.unit ol .selected,.unit ol li:hover{ color:#FF0004; cursor: pointer;}
 /*css_*/
 </style>
 
 
 <!--data-js-select:点击按键选择器|下拉选择器|多个下拉的父级选择器-->
 <!--_html-->
-<div class="pSelects" data-js-select=".t_a|ol|.unit">
-    <div class="unit">
+
+    <div class="unit" data-js-select=".t_a|ol">
         <i></i>
         <a class="t_a t1" data-val="3" href="javascript:;">333</a>
         <ol id="ol">
@@ -30,7 +30,7 @@
             </ul>
         </ol>
     </div>
-    <div class="unit">
+    <div class="unit" data-js-select=".t_a|ol">
         <i></i>
         <a class="t_a t2" data-val="" href="javascript:;"></a>
         <ol id="ol">
@@ -41,7 +41,7 @@
             </ul>
         </ol>
     </div>
-</div>
+
 <!--html_-->
 
 

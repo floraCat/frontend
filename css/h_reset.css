@@ -1,25 +1,26 @@
 @charset "utf-8";
 /*****reset*****/
-body,input,button,select,textarea{ font:12px/1.75 "Microsoft Yahei",arial,Tahoma,sans-serif; color:#333; word-wrap:break-word;}
+body,input,button,textarea,select{ font:12px/1.75 "Microsoft Yahei",arial,Tahoma,sans-serif; color:#333; word-wrap:break-word;}
 body,div,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,form,input,button,textarea{ padding:0; margin:0; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
 ul,ol,li{ list-style-type:none;}
-h1,h2,h3,h4,h5,h6{ font-size:100%;}
+h1,h2,h3,h4,h5,h6{ font-size:100%; font-weight:normal;}
 input,button,textarea,select{ border:#ddd 1px solid; outline:none;}
-img,textarea{ vertical-align:top;}
-img{ border:0;}
+textarea{ vertical-align:top;}
+img{ border:0; vertical-align:top;}
 em{ font-style:normal;} 
-a{ text-decoration:none; color:#333;}
 
+a{ text-decoration:none; color:#333;}
+a:hover{ color: #e43a3d;}
 
 /*****针对本项目*****/
-h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+// html,body{ overflow-x:hidden;}
+// body{ position:relative;}
 iframe{ border:0;}
-input,button,textarea{ background:transparent;}
+// input,button,textarea{ background:transparent;}
 table{ border-collapse:collapse; border-spacing:0;}
 
-html,body{ overflow-x:hidden;}
-body{ position:relative;} 
-a:hover{ color: #e43a3d;}
+ 
+// 
 
 
 

@@ -1,17 +1,18 @@
 ﻿
 /*
- * 插件名称：hover下拉
+ * 插件名称：hover下拉框
  * 监听属性：'data-js-hover'
- * 简介：鼠标滑入下拉显示，鼠标划出下拉隐藏
+ * 插件描述：鼠标滑入下拉显示，鼠标划出下拉隐藏
  * 参数说明：
- *   - 'data-js-hover'无值；
- * 原理：
- *   - 鼠标滑入时this加类.open；
- *   - 鼠标划出时删掉.open
- * 样式设置：
- *   - 下拉层默认隐藏；
- *   - .open下的下拉层显示
- * 其他：
+ *   - 'data-js-hover'的值为三个(最后一个可选)参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
+ *   - @param1:触发按键（必需）
+ *   - @param2:下拉框（必需）
+ *   - @param3:下拉框显示模式（可选）
+ * 基本原理：
+ *   - 鼠标滑入触发按键加类名.on，下拉框加类名.active同时显示
+ *   - 鼠标划出时所添加的类名删除，同时下拉框隐藏
+ * 其他说明：
+ *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
  *   - 兼容chorme,firefox,ie
  */
 
@@ -20,40 +21,33 @@
 
 	'use strict';
 
-	//'hover下拉'模块
-	var modeName="[data-js-hover]";
-
-	//显示模式
-	$.fn.showMode=function(){
-		$(this).stop(false,false).fadeIn();
-		return this;
-		//.dequeue()
-	}
-	//隐藏模式
-	$.fn.hideMode=function(){
-		$(this).stop(false,false).fadeOut();
-		return this;
-	}
+	//'hover下拉框'模块
+	var _pluginName="[data-js-hover]";
 
 
 	//监听
 	$(window).on("load",function(){
-		$(modeName).each(function(){
-			var $val=$(this).data("js-hover");
-			var $arr=$val.split("|");
-			var key=$arr[0];//触发器组容器
-			var opts=$arr[1];//显隐层组容器
+		$(_pluginName).each(function(){
+			var _val=$(this).data("js-hover");
+			var _arr=_val.split("|");
+			var _key=_arr[0];//触发按键
+			var _drop=_arr[1];//下拉框
+			var _showMode=_arr[2];//下拉框显示模式
 			$(this).on("mouseover",function(){
-				$(this).find(key).addClass("on");
-				$(this).find(opts).showMode();
+				$(this).find(_key).addClass("active");
+				if(_showMode=="fade"){
+					$(this).find(_key).addClass("on");
+					$(this).find(_drop).addClass("active").fadeIn();
+				}else{
+					$(this).find(_key).addClass("on");
+					$(this).find(_drop).addClass("active").show();
+				}
 			});
 			$(this).on("mouseleave",function(){
-				$(this).find(key).removeClass("on");
-				$(this).find(opts).hideMode();
+				$(this).find(_key).removeClass("on");
+				$(this).find(_drop).removeClass("active").hide();
 			});
 		});
-
-
 	});
 
 

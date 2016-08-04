@@ -6,38 +6,37 @@
 
 <style>
 /*_css*/
-.jTabs{ width: 200px; }
-.jTabs .keys{ overflow: hidden; }
-.jTabs .keys li{ float: left; width: 50px; text-align: center; cursor: pointer;}
-.jTabs .keys li:hover,.jTabs .keys li.on{ color: red; }
-.jTabs .shows ol{ display: none; padding: 10px; background-color: #eee; }
+.p-tabs{ width: 150px; }
+.p-tabs .keys{ overflow: hidden; }
+.p-tabs .keys li{ float: left; width: 50px; text-align: center; cursor: pointer;}
+.p-tabs .keys li:hover,.p-tabs .keys li.on{ color: red; }
+.p-tabs .drops ol{ display: none; padding: 10px; background-color: #eee; }
 /*css_*/
 </style>
 
 <!--_html-->
-<div class="jTabs" data-js-tabs=".keys|.shows">
+<div class="p-tabs" data-js-tabs=".keys|.drops|fade">
     <ul class="keys">
-        <li>tab_1</li>
-        <li class="on">tab_2</li>
+        <li class="on">tab_1</li>
+        <li>tab_2</li>
         <li>tab_3</li>
     </ul>
-    <div class="shows">
-        <!--展示1-->
+    <div class="drops">
+        <!--展示层1-->
         <ol>
-            show_div_1
+            drop_div_1
         </ol>
-        <!--展示2-->
+        <!--展示层2-->
         <ol>
-            show_div_2
+            drop_div_2
         </ol>
-        <!--展示3-->
+        <!--展示层3-->
         <ol>
-            show_div_3
+            drop_div_3
         </ol>
     </div>
 </div>
 <!--html_-->
-
 
 
 <script>
@@ -67,7 +66,7 @@ ie6:no
 
 <!----描述---->
 <!--_desc-->
-切换卡[单个]
+切换卡[多个]
 <!--desc_-->
 
 <!----依赖---->
@@ -78,11 +77,9 @@ js/col_plus/self/h_base_tabs.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-本模块的执行脚本封装到依赖文件h_base_tabs.js里；
-切换卡[单个]--点击key可切换到对应的div
+切换卡[多个]
 </pre>
 <!--note_-->
-
 
 
 </body>
