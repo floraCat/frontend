@@ -8,9 +8,9 @@
 
 	'use strict';
 			
-		var pluginName = "H_carousel",
+		var pluginName = "jCarousel",
 
-			defaults = {
+		var defaults = {
 				itemBox: ".itemBox", //显示图片容器
 				navBox: ".os", //导航圆点容器
 				prev: ".prev", //向前箭头
@@ -250,7 +250,7 @@
 		
 		//调用
 		$(window).on("load",function(){
-			$("[data-js-carousel]").H_carousel();
+			$("[data-js-carousel]").jCarousel();
 		});
 
 })( jQuery, window, document );

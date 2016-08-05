@@ -63,7 +63,28 @@ js/col_plus/self/h_base_dropdown.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-点击下拉框
+ * 插件名称：点击下拉框
+ * 监听属性：'data-js-dropdown'
+ * 插件描述：模拟默认的下拉框
+ * 参数说明：
+ *   - 'data-js-dropdown'的值为三个(最后一个可选)参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
+ *   - @param1:触发按键（必需）
+ *   - @param2:下拉框（必需）
+ *   - @param3:下拉框显示模式（可选）
+ * 基本原理：
+ *   - 点击触发按键加类名.on，下拉框加类名.active同时显示
+ *   - 下拉框显示的前提下点击下拉框不隐藏，点击触发按键或空白处时下拉框隐藏
+ * 其他说明：
+ *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-dropdown='>a|ol|fade'>
+	<a data-val>触发按键</a>
+    <ol>
+        下拉框
+    </ol>
+</div></xmp>
 </pre>
 <!--note_-->
 

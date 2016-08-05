@@ -9,13 +9,10 @@
 .p-sidenav-020{ position:relative; width:100px;}
 .p-sidenav-020 h3{ height:40px; font-size:14px; line-height:40px;}
 .p-sidenav-020 li > a{ display:block;}
+.p-sidenav-020 a.on{ color:red; background-color: #eee;}
 .p-sidenav-020 ol{ position:absolute; left:100px; top:40px; display:none; width:100px; background-color:#eee;}
 .p-sidenav-020 ol a{ display:block;}
-.p-sidenav-020 .open ol{ display:block;}
-.p-sidenav-020 li > a:hover,
-.p-sidenav-020 li.on > a,
-.p-sidenav-020 .open > a{ color:#0000FF; background-color: #eee;}
-.p-sidenav-020 a:hover{ color:#0000FF; background-color: #ddd;}
+.p-sidenav-020 ol a:hover{ color:red; background-color: #ddd;}
 /*css_*/
 </style>
 
@@ -26,7 +23,7 @@
 <div class="p-sidenav-020">
 	<h3>全部分类</h3>
 	<ul>
-		<li data-js-hover>
+		<li data-js-hover=">a|ol">
 			<a href="#">类目一</a>
 			<ol>
 				<a href="#">下级类目一</a>
@@ -35,7 +32,7 @@
 				<a href="#">下级类目四</a>
 			</ol>
 		</li>
-		<li data-js-hover>
+		<li data-js-hover=">a|ol">
 			<a href="#">类目二</a>
 			<ol>
 				<a href="#">下级类目一</a>
@@ -80,7 +77,7 @@ firefox:yes,
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/h_base_hover.js:通用hover下拉插件
+js/col_plus/self/h_base_hover.js:通用hover下拉插件
 <!--refer_-->
 
 <!----说明---->

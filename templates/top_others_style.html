@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="css/h_reset.css" />
     <link rel="stylesheet" href="css/col_style.css" />
     <link rel="stylesheet" href="css/col_style_2.css" />
-    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="js/copy/jquery.zclip.min.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/copy/jquery.zclip.min.js"></script>
 </head>
 <body>
 
@@ -41,9 +41,18 @@
         <ol>
             <h3>容器中的图片或文字垂直和水平居中：</h3>
             <xmp class="code">display: table-cell; width: 200px; height: 200px; vertical-align: middle; text-align: center;</xmp>
-            <div class="des">注：以上样式设置在容器上，如容器绝对定位或浮动，垂直居中不生效</div>
+            <div class="des">说明：以上样式设置在容器上，如容器绝对定位或浮动，垂直居中不生效</div>
             <a class="copy">复制代码</a>
         </ol>
+
+        <ol>
+            <h3>背景透明度：</h3>
+            <xmp class="code">background:#000; opacity:.5; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);</xmp>
+            <div class="des">说明：兼容ie7及以上版本的浏览器；请避免在使用filter的同时使用rgba来设置背景色与透明度，因为ie9两者都能识别从而会重复设置</div>
+            <a class="copy">复制代码</a>
+        </ol>
+
+
 
     </div>
 

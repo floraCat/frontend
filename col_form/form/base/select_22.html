@@ -20,12 +20,12 @@
     .sel_drop{ z-index:999; display:none; position:absolute; top:35px; left:0; width:100%; border:#ddd 1px solid; background-color:#fff;}
     .open .sel_drop{ display:block;}
     .sel_drop ul{ height:100%; overflow-y:scroll;}
-    .sel_drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888;}
-    .sel_drop li.on{ background-color:#eee;}
+    .sel_drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888; cursor: pointer;}
+    .sel_drop li:hover,
+    .sel_drop li.selected{ background-color:#eee;}
     .p-form .select{ position:relative;}
-    .p-form .select h6{ font-size:12px; height:35px; line-height:29px; color:#888; background-color:#fff; white-space:nowrap;}
+    .p-form .select h6{ font-size:12px; height:35px; line-height:33px; padding:0 5px; color:#888; border:#ddd 1px solid; background-color:#fff; white-space:nowrap;}
     .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
-    .p-form .select h6{ height:33px; padding:0 5px; line-height:33px; border:#ddd 1px solid;}
 /*css_*/
 </style>
 
@@ -36,7 +36,7 @@
     <dl class="select_drop">
         <dt>选项框-22：<em>*</em></dt>
         <dd class="selects g-flex">
-            <section name="prov" data-js-dropdown=".key|.sel_drop">
+            <section name="prov" data-js-select="h6|.sel_drop">
                 <div class="select">
                     <ol>
                         <input type="hidden" name="prov" value="1" />
@@ -51,7 +51,7 @@
                     </ul>
                 </div>
             </section>
-            <section name="city" data-js-dropdown=".key|.sel_drop">
+            <section name="city" data-js-select="h6|.sel_drop">
                 <div class="select">
                     <ol>
                         <input type="hidden" name="city" value="1" />
@@ -66,7 +66,7 @@
                     </ul>
                 </div>
             </section>
-            <section name="town" data-js-dropdown=".key|.sel_drop">
+            <section name="town" data-js-select="h6|.sel_drop">
                 <div class="select">
                     <ol>
                         <input type="hidden" name="town" value="1" />
@@ -121,7 +121,7 @@ firefox:yes,
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/h_base_dropdown.js:通用的点击下拉插件
+js/col_plus/self/h_base_select.js:通用的自定义选项框
 <!--refer_-->
 
 <!----说明---->

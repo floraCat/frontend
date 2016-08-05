@@ -10,11 +10,10 @@
 .p-mainnav-020 li{ position:relative; float:left;}
 .p-mainnav-020 li > a{ display:block; padding:0 15px;}
 .p-mainnav-020 ol{ position:absolute; top:40px; left:0; display:none; width:100%;}
-.p-mainnav-020 .open ol{ display:block;}
 .p-mainnav-020 ol a{ display:block; background-color:#eee;}
 .p-mainnav-020 li a:hover,
-.p-mainnav-020 li.on > a,
-.p-mainnav-020 .open > a{ color:#fff; background-color:#CC0000;}
+.p-mainnav-020 .cur > a,
+.p-mainnav-020 a.on{ color:#fff; background-color:#CC0000;}
 /*css_*/
 </style>
 
@@ -32,16 +31,16 @@
 
 <!--_html-->
 <div class="p-mainnav-020">
-	<li class="on"><a href="#">首页</a></li>
+	<li class="cur"><a href="#">首页</a></li>
 	<li><a href="#">栏目壹</a></li>
-	<li data-js-hover>
+	<li data-js-hover=">a|ol">
 		<a href="#">栏目贰</a>
 		<ol>
 			<a href="#">下拉栏目一</a>
 			<a href="#">下拉栏目二</a>
 		</ol>
 	</li>
-	<li data-js-hover>
+	<li data-js-hover=">a|ol">
 		<a href="#">栏目叁</a>
 		<ol>
 			<a href="#">新闻一</a>
@@ -86,7 +85,7 @@ firefox:yes,
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/h_base_hover.js:通用hover下拉插件
+js/col_plus/self/h_base_hover.js:通用hover下拉插件
 <!--refer_-->
 
 <!----说明---->

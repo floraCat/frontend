@@ -9,8 +9,9 @@
 	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
 	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
 	.p-form dd{ margin-left:90px;}
-	.p-form .file-1 .file{ position:relative; width:80px; height:80px;}
-	.p-form .file-1 .file img{ width:100%; height:100%;}
+	.p-form .file-1 .file{ display: table-cell; width:80px; height:80px; text-align: center; vertical-align: middle;}
+	.p-form .active .file{ border:#eee 1px solid; }
+	.p-form .file-1 .file img{ max-width:100%; max-height: 100%;}
 	.p-form .file-1 .file input{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);}
 	.p-form .file-1 p{ color: #aaa;}
 	.p-form .file-1 p a{ color: red;}
@@ -45,13 +46,13 @@ $(function(){
 			var objUrl = getFileUrl(this);
 			if (objUrl){
 				_this.find("img").attr("src", objUrl);
-				_this.addClass("on");
+				_this.addClass("active");
 			}
 		});
 		$(this).find(".quit").click(function(){
 			var def_img=_this.find("img").data("default");
 			_this.find("img").attr("src",def_img);
-			_this.removeClass("on");
+			_this.removeClass("active");
 			var file_old=_this.find("input[type=file]");
 			file_old.after(file_old.clone().val(""));      
 			file_old.remove(); 

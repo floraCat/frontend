@@ -2,7 +2,7 @@
 /*
  * 插件名称：模态弹出层
  * 监听属性：'data-js-modal'
- * 插件描述：带覆盖层的大尺寸弹出层
+ * 插件描述：带覆盖层的模态弹窗
  * 参数说明：
  *   - 'data-js-modal'的值为四个（最后两个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3|param4；
  *   - @param1:触发按键（必需）
@@ -10,6 +10,7 @@
  *   - @param3:模态弹出层内的退出按键（可选）
  *   - @param4:模态弹出层显示模式（可选）
  * 其他说明：
+ *   - 模态弹出层内还需要有一个内层容器
  *   - param1/param2/param3的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
  *   - 兼容chorme,firefox,ie
  */
@@ -76,13 +77,6 @@
 			$("html").css({"overflow-y":"hidden"});	
 			$this.find(_quit).click(function(){
 				cleanUp();
-			});
-			_modalCur.on("click",function(ev2){
-				var _target2=ev2.target;
-				if($(_target2).is(_innerDiv) || $(_target2).parents(".j-inner").length>0){
-				}else{
-					cleanUp();
-				}
 			});
 		}	
 	}

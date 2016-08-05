@@ -53,7 +53,19 @@ js/col_plus/self/h_base_gotop.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-返回顶部
+ * 插件名称：返回顶部
+ * 监听属性：'data-js-gotop'
+ * 插件描述：（滚动一定距离后显示，）点击后返回顶部
+ * 参数说明：
+ *   - 'data-js-gotop'的值为两个（可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2；
+ *   - @param1：<Number> 控件显示的滚动距离（可选）
+ *   - @param2: <Number> 返回顶部时的速度（可选）
+ * 其他说明：
+  *   - param1/param2的参数值为纯数值，每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-gotop="200|400"></div></xmp>
 </pre>
 <!--note_-->
 

@@ -63,12 +63,28 @@ js/col_plus/self/h_base_hover.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-鼠标滑过显隐层显示;
-依赖插件h_base_hover.js；
-插件实现原理：
-(1).在要执行下拉的对象添加必要的属性[data-js-hover]
-(2).符合条件(1)后鼠标hover就会使得此对象切换类名.open
-(3).切换层默认情况下设置隐藏，再设置.open下切换层显示即可
+ * 插件名称：hover下拉框
+ * 监听属性：'data-js-hover'
+ * 插件描述：鼠标滑入下拉显示，鼠标划出下拉隐藏
+ * 参数说明：
+ *   - 'data-js-hover'的值为三个(最后一个可选)参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
+ *   - @param1:触发按键（必需）
+ *   - @param2:下拉框（必需）
+ *   - @param3:下拉框显示模式（可选）
+ * 基本原理：
+ *   - 鼠标滑入触发按键加类名.on，下拉框加类名.active同时显示
+ *   - 鼠标划出时所添加的类名删除，同时下拉框隐藏
+ * 其他说明：
+ *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-hover='>a|ol|fade'>
+	<a data-val>触发按键</a>
+    <ol>
+        下拉框
+    </ol>
+</div></xmp>
 </pre>
 <!--note_-->
 

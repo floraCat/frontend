@@ -9,12 +9,11 @@
 .p-sidenav-030{ width: 200px; }
 .p-sidenav-030 h3{ height:40px; line-height:40px;}
 .p-sidenav-030 li > a{ display:block; height:30px; line-height:30px;}
+.p-sidenav-030 li > a:hover,
+.p-sidenav-030 a.on{ color:red; background-color: #eee;}
 .p-sidenav-030 ol{ display:none;}
 .p-sidenav-030 ol a{ display:block;}
-.p-sidenav-030 .open ol{ display:block;}
-.p-sidenav-030 ol a:hover{ color:#0000FF; background-color: #eee;}
-.p-sidenav-030 li > a:hover,
-.p-sidenav-030 li.on > a{ color:#0000FF; background-color: #ddd;}
+.p-sidenav-030 ol a:hover{ color:red; background-color: #ddd;}
 /*css_*/
 </style>
 
@@ -25,7 +24,7 @@
 <div class="p-sidenav-030">
 	<h3>分类名称</h3>
 	<ul>
-		<li data-js-dropdown='a|ol'>
+		<li data-js-dropdown='>a|ol'>
 			<a href="javascript:;">类目一</a>
 			<ol>
 				<a href="#">下级类目一</a>
@@ -34,7 +33,7 @@
 				<a href="#">下级类目四</a>
 			</ol>
 		</li>
-		<li data-js-dropdown='a|ol'>
+		<li data-js-dropdown='>a|ol'>
 			<a href="javascript:;">类目二</a>
 			<ol>
 				<a href="#">下级类目五</a>
@@ -79,7 +78,7 @@ firefox:yes,
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/h_base_dropdown.js:通用点击下拉插件
+js/col_plus/self/h_base_dropdown.js:通用点击下拉插件
 <!--refer_-->
 
 <!----说明---->

@@ -6,7 +6,8 @@
     <div class="pNav">
         <ul>
             <li><a class="on" href="index.php">首页</a></li>
-            <li><a class="standard" href="index.php?page=standard">前端规范</a></li>
+            <li><a class="standard" href="index.php?page=standard">前端规范old</a></li>
+            <li><a class="standard" href="index.php?page=standard2">前端规范new</a></li>
             <li><a class="frame" href="index.php?page=frame">站点架构</a></li>
             <li><a class="module" href="index.php?page=module">常用模块</a></li>
             <li><a class="plus" href="index.php?page=plus">插件<i>&</i>组件</a></li>

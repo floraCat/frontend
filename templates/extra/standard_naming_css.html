@@ -80,11 +80,13 @@ g-cart            //购物车模块
 </div>
 
 <div class="section">
-	<h5>内元素类名：</h5>
+	<h5>下级类名：</h5>
 	<h6>规范说明：</h6>
 	<ul>
-		<li>内元素指的是外容器内部的元素，这里排除掉共用模块</li>
+		<li>下级类名指的是外容器下级的元素类名，这里排除掉共用模块</li>
 		<li>要求不要带有前缀如'p-'和'g-'，以区分外容器和共用模块的类名</li>
+		<li>除切换用途外请避免使用类名'active','on'和'cur'，以防止与js设置的切换类名冲突</li>
+		<li>一组时可在类名后适当添加's',如：多个条目可使用'items'</li>
 		<li>只要不在同一个外容器内命名可以重复，只要其样式设置在外容器下级即可</li>
 	</ul>
 	<i></i>
@@ -93,16 +95,17 @@ g-cart            //购物车模块
 right            //右边
 cen            //中间
 top            //顶部
-bottom            //底部
+btm            //底部
 logo            //商标
 ttl            //标题
+hd
 btn            //按键
 more            //更多
 item            //条目
-items            //一组条目
 list            //列表
 unit            //一组
 drop            //下拉
+nav            //导航
 menu            //菜单
 pannel            //面板
 wrap            //容器
@@ -115,11 +118,28 @@ banner            //横幅
 tab            //标签
 label            //标签
 msg            //信息
+link            //链接
 icon            //图标
 hot            //热点
 new            //最新
+tel            //电话
 column            //栏目
 status            //状态
+ad            //广告
+slogan
+keyword
+submit
+spec
+img
+first
+last
+prev
+next
+hidden
+power
+brand
+switch
+txt
 ...</pre>
 </div>
 

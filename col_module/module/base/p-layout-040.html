@@ -22,7 +22,7 @@
 
 
 <!--_html-->
-<div class="p-layout-040">
+<div class="p-layout-040" data-j-brand>
 	<!--1-->
 	<ol>
 		<h3>店铺品牌：</h3>
@@ -90,9 +90,9 @@
 $(function(){
 /*_js*/
 	//展开筛选条件
-	$(".p-layout-040 .toggle").hide();
-	$(".p-layout-040 .switch").click(function(){
-		$(".p-layout-040 .toggle").slideToggle();
+	$("[data-j-brand] .toggle").hide();
+	$("[data-j-brand] .switch").click(function(){
+		$("[data-j-brand] .toggle").slideToggle();
 	});
 /*js_*/
 });

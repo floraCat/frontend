@@ -6,11 +6,12 @@
 
 <style>
 /*_css*/
-.p-select{ width: 40px; position: relative;}
-.p-select i{ position: absolute; top: 8px; right: 0; width: 15px; height: 15px; background: url(images/pics/arrow_btm.png) no-repeat center; background-size: 10px; cursor: pointer;}
-.p-select .key{ display: block; width: 100%; height: 30px; line-height: 30px;}
+.p-select{ width: 55px; position: relative;}
+.p-select i{ position: absolute; top: 13px; right: 5px; width:0; height:0; border:transparent dashed; border-top:#666 solid; border-width:5px; border-top-width:7px; cursor: pointer;}
+.p-select .key{ display: block; width: 100%; height: 30px; line-height: 30px; text-indent: 5px; border:#ddd 1px solid; background: #f6f6f6;}
 .p-select .key.on{ color:red;}
-.p-select ol{ position: absolute; top: 30px; left: 0; display:none; width: 100%;}
+.p-select ol{ position: absolute; top: 31px; left: 1px; display:none; width: 100%; border:#ddd 1px solid; border-bottom: none; background: #fff;}
+.p-select ol li{ height: 30px; line-height: 30px; text-align: center; border-bottom: #ddd 1px solid; cursor: pointer;}
 .p-select ol .selected,.p-select ol li:hover{ color:#FF0004;}
 /*css_*/
 </style>
@@ -70,7 +71,28 @@ js/col_plus/self/h_base_select.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-自定义选项框
+ * 插件名称：自定义选项框
+ * 监听属性：'data-js-select'
+ * 插件描述：模拟默认的选项框
+ * 参数说明：
+ *   - 'data-js-select'的值为三个（最后一个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
+ *   - @param1:显示默认值的容器（必需）
+ *   - @param2:下拉选项框（必需）
+ *   - @param3:下拉选项框显示模式（可选）
+ * 其他说明：
+ *   - 触发按键和下拉选项必需带有属性'data-val'
+ *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-select='>a|ul|fade'>
+    <a data-val>默认值</a>
+    <ul>
+        <li data-val="1">下拉_1</li>
+        <li data-val="2">下拉_2</li>
+        <li data-val="3">下拉_3</li>
+    </ul>
+</div></xmp>
 </pre>
 <!--note_-->
 

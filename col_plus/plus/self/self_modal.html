@@ -5,29 +5,22 @@
 
 <style>
 /*_css*/
-.pModal{ position:relative;}
-ol{ display:none;}
-ol ul{ width:500px; padding:20px; background:#fff; border:#ddd 1px solid;}
-.pModal .quit{ position: absolute; top: -15px; right: -15px; width: 35px; height: 35px; text-indent: -9999px; background: url(images/pics/i_quit.png) no-repeat center; background-size: 100%;}
+.p-modal{ position:relative;}
+.p-modal .dialog{ display:none;}
+.p-modal .dialog ul{ width:500px; padding:20px; background:#fff; border-radius: 5px;}
+.p-modal .quit{ position: absolute; top: -15px; right: -15px; width: 35px; height: 35px; text-indent: -9999px; background: url(images/pics/i_quit.png) no-repeat center; background-size: 100%;}
 /*css_*/
 </style>
 
 
 <!--_html-->
-<div class="pModal" data-js-modal=".btn|ol|.quit|fade">
-    <a class="btn">点击打开模态窗</a>
-    <ol>
+<div class="p-modal" data-js-modal=".btn|.dialog|.quit">
+    <a class="btn" href="javascript:;">点击打开模态窗</a>
+    <ol class="dialog">
         <ul>
-            <p>sedjsksjdfksdtuk</p>
-            <p>sdfksdtuk</p>
-            <p>sedjsksjdfksdtusgjsgjsfjsk</p>
-            <p>sedjsksjdfksdtuk</p>
-            <p>sdfksdtuk</p>
-            <p>sedjsksjdfksdtusgjsgjsfjsk</p>
-            <p>sedjsksjdfksdtuk</p>
-            <p>sdfksdtuk</p>
-            <p>sedjsksjdfksdtusgjsgjsfjsk</p>
-            <a class="quit">点击关闭</a>
+            <p>模态窗内容</p>
+            <p>模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗内容正文模态窗</p>
+            <a class="quit" href="javascript:;">点击关闭</a>
         </ul>
     </ol>
 </div>
@@ -73,7 +66,30 @@ js/col_plus/self/h_base_modal.js:主要执行脚本
 <!----说明---->
 <!--_note-->
 <pre>
-模态窗
+ * 插件名称：模态弹出层
+ * 监听属性：'data-js-modal'
+ * 插件描述：带覆盖层的模态弹窗
+ * 参数说明：
+ *   - 'data-js-modal'的值为四个（最后两个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3|param4；
+ *   - @param1:触发按键（必需）
+ *   - @param2:模态弹出层（必需）
+ *   - @param3:模态弹出层内的退出按键（可选）
+ *   - @param4:模态弹出层显示模式（可选）
+ * 其他说明：
+ *   - 模态弹出层内还需要有一个内层容器
+ *   - param1/param2/param3的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-modal='>a|ol|.quit|fade'>
+	<a data-val>触发按键</a>
+    <ol>
+        <ul>
+		模态弹
+		<a class="quit">关闭</a>
+        </ul>
+    </ol>
+</div></xmp>
 </pre>
 <!--note_-->
 
