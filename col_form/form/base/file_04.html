@@ -56,9 +56,9 @@ $(function(){
 			$("[data-j-file2]").find(".control").prepend('<input type="file" name="upload-'+nameID_new+'" />');
 		}
 		$("[data-j-file2]").on("click",".imgs .quit",function(){
-			var nameID=$(this).parent().attr("data-file");
+			var nameID=$(this).parents("li").attr("data-file");
 			$("[data-j-file2]").find("input[name="+nameID+"]").remove();
-			$(this).parent().remove();
+			$(this).parents("li").remove();
 		});
 		function getFileUrl(obj){ 
 			var url; 
