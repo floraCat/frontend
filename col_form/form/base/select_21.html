@@ -9,17 +9,16 @@
     .p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
     .p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
     .p-form dd{ margin-left:90px;}
-    .p-form dl.select_drop{ overflow:visible;}
-    .p-form dl.select_drop section{ position:relative;}
-    .sel_drop{ z-index:999; display:none; position:absolute; top:35px; left:0; width:100%; border:#ddd 1px solid; background-color:#fff;}
-    .open .sel_drop{ display:block;}
-    .sel_drop ul{ height:100%; overflow-y:scroll;}
-    .sel_drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888; cursor: pointer;}
-    .sel_drop li:hover,
-    .sel_drop li.selected{ background-color:#eee;}
     .p-form .select{ position:relative;}
     .p-form .select h6{ font-size:12px; height:35px; line-height:33px; padding:0 5px; border:#ddd 1px solid; color:#888; background-color:#fff; white-space:nowrap;}
     .p-form .select .key{ position:absolute; top:1px; right:1px; width:33px; height:33px; background:url(images/col_form/i_key_drop.png) no-repeat; background-size:100% 100%;}
+    .p-form dl.select-drop{ overflow:visible;}
+    .p-form dl.select-drop section{ position:relative;}
+    .select-drop .drop{ z-index:999; display:none; position:absolute; top:35px; left:0; width:100%; border:#ddd 1px solid; background-color:#fff;}
+    .select-drop .drop ul{ height:100%; overflow-y:scroll;}
+    .select-drop .drop li{ height:35px; line-height:35px; padding:0 20px; font-size:15px; color:#888; cursor: pointer;}
+    .select-drop .drop li:hover,
+    .select-drop .drop li.selected{ background-color:#eee;}
 /*css_*/
 </style>
 
@@ -27,16 +26,16 @@
 
 
 <!--_html-->
-    <dl class="select_drop">
+    <dl class="select-drop">
         <dt>选项框-21：<em>*</em></dt>
         <dd>
-        	<section class="re" name="prov" data-js-select="h6|.sel_drop">
+        	<section class="re" name="prov" data-js-select="h6|.drop">
                 <div class="select">
                     <input type="hidden" name="school" value="1" />
                     <h6 data-val></h6>
                     <i class="key"></i>
                 </div>
-                <div class="sel_drop">
+                <div class="drop">
                     <ul>
                         <li data-val="1" class="on">学校1</li>
                         <li data-val="2">学校2</li>
@@ -90,7 +89,7 @@ firefox:yes,
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/self/h_base_select.js:通用的自定义选项框
+js/col_plus/self/h-select.js:通用的自定义选项框
 <!--refer_-->
 
 <!----说明---->

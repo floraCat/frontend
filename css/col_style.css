@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-body,div,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,form,input,button,textarea{box-sizing:content-box; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;}
-i,em{ font-style: normal;}
-a img:hover{ opacity:.8;}
-
 
 .noClick{ position: relative;}
 .noClick:after{ content: '待完善中'; position: absolute; top: 0; left:0; width: 100%; height: 100%; line-height: 140px; z-index: 99; background: #fff; opacity: .7; -webkit-opacity:.7; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);}
@@ -18,7 +14,7 @@ a img:hover{ opacity:.8;}
 
 
 /*导航*/
-.pNav{ position: absolute; top: 200px; left: 0; width: 100%; height:40px; line-height:40px; padding: 50px 0; background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% auto;}
+.pNav{ position: absolute; top: 200px; left: 0; width: 100%; height:90px; line-height:40px; padding: 50px 0; background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% auto;}
 .pNav ul{ width: 1080px; margin:0 auto; overflow: hidden;}
 .pNav li{ position:relative; float:left; width: 125px; text-align: center;}
 .pNav li a{ display:block; width: 90%; margin: 0 auto; font-size: 15px; color: #6b6b6b;
@@ -33,7 +29,7 @@ a img:hover{ opacity:.8;}
 .pNav li a:hover,.pNav li a.on{ 
     color: #cf5d4e; font-weight: bold; background: #e8e3e3;
 }
-.pNav li a i{ font-size: 12px;}
+.pNav li a i{ font-size: 12px; font-style: normal;}
 .indexBack{ position: fixed; top: 0; left: 0; width: 100%; height: 100%;  background: url(imgs/pattern.jpg) no-repeat center; background-size: 100% 100%; opacity: .5; z-index: -1;}
 
 /*侧栏*/
@@ -69,7 +65,7 @@ border-radius:66px; -webkit-border-radius:66px; -moz-border-radius:66px; -khtml-
 border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-border-radius:60px;}
 .pCat7 li h5{ font-size:13px;line-height: 30px;}
 .pCat7 li h5 a{ color: #444;}
-.pCat7 li h5 a i{ display: inline; font-size: 12px; color: #5cb85c;}
+.pCat7 li h5 a i{ display: inline; font-size: 12px; color: #5cb85c; font-style: normal;}
 /*.topTtl{ width: 800px; margin:30px auto 0; font-size: 14px; font-weight:bold;}*/
 
 
@@ -78,7 +74,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .noteList p{ width: 1200px; margin: 0 auto;}
 .noteList p.s{ width: 800px;}
 .noteList p em{ color: #5cb85c;}
-.noteList p i{ color: #aaa;}
+.noteList p i{ font-style: normal; color: #aaa;}
 .noteList span.f{ font-family: sans-serif;}
 .noteList span.c{ color: #ccc;}
 .noteList span.r{ float: right;}
@@ -87,7 +83,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .noteList.style2{ position: absolute; top: 0; left: 0; width: 100%; margin: 0; padding:0 20px;}
 
 .modeList{ width:1200px; margin:30px auto; line-height:30px; overflow:hidden;}
-.modeList li{ position: relative; float:left; width:270px; margin:0 5px 15px; border:#ddd 1px solid; padding:5px 5px 3px; background:#FDFFD3;}
+.modeList li{ position: relative; float:left; width:282px; margin:0 5px 15px; border:#ddd 1px solid; padding:5px 5px 3px; background:#FDFFD3;}
 .modeList li h5{ font-size: 12px; text-align: center; }
 .modeList li a.a{ display:block; height:30px; line-height:30px; text-align:center; border:none;}
 .modeList li a.a.img{ background-color:#f6f6f6; display:table-cell; vertical-align:middle;}
@@ -132,7 +128,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .listCart .hd{ font-weight: bold;}
 .listCart td{ padding: 8px 0; border-bottom:dotted #e5e5e5 1px;}
 .listCart td a{ color: #cf5d4e; margin:0 10px; cursor: pointer; }
-.pBtns{ width: 900px; margin: 0 auto; overflow:hidden; }
+.pBtns{ width: 900px; margin: 0 auto 30px; overflow:hidden; }
 .pBtns a{ float: right; width: 120px; height: 35px; line-height: 35px; text-align: center;  margin-left: 15px; background: #e4f6e4; border:#c1dfc1 1px solid; text-align:center; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
 
 
@@ -149,7 +145,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .fHack ol.no{ background: url(imgs/i_no.png) no-repeat right 33px; }
 .fHack ol img{ float: left; margin-top: 12px;}
 .fHack ol.ie{ padding-right: 0; margin-right: 0;}
-.fHack ul{ float: left; overflow: hidden; width: 140px; padding-left: 20px;}
+.fHack ul{ float: left; overflow: hidden; width: 160px; padding-left: 20px;}
 .fHack ul li{ font-size:16px;  float: left; width: 34px; padding: 10px 0 0 0; margin-right: 10px;}
 .fHack ul li.yes{ color:#7ccc4f; background: url(imgs/i_yes.png) no-repeat right bottom; }
 .fHack ul li.no{ color:#d5d5d5; background: url(imgs/i_no.png) no-repeat right bottom; }
@@ -181,7 +177,7 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 /* detail_setting */
 xmp{ margin:0; padding: 0; }
 
-.tView{ width:55%; position:relative; top:30px;}
+.tView{ width:55%; position:relative; top:30px; border:none;}
 .tCode{ position: absolute; right: 0; width: 45%; top: 30px;}
 .btn_view{ position: fixed; bottom: 12px; right: 46%; width: 88px; height: 22px; line-height: 22px; padding:7px 15px; background: #e4f6e4; border:#c1dfc1 1px solid; text-align: center; z-index: 99; border-radius: 5px; -webkit-border-radius: 5px;}
 .btn_copy{ position: fixed; bottom: 60px; right: 46%; width: 88px; height: 22px; line-height: 22px; padding:7px 15px; background: #e4f6e4; border:#c1dfc1 1px solid; text-align: center; z-index: 99; border-radius: 5px; -webkit-border-radius: 5px;}

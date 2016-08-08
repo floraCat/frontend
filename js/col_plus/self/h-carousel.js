@@ -8,7 +8,7 @@
 
 	'use strict';
 			
-		var pluginName = "jCarousel",
+		var pluginName = "jCarousel";
 
 		var defaults = {
 				itemBox: ".itemBox", //显示图片容器

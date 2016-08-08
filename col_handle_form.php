@@ -163,7 +163,7 @@ if($_REQUEST["act"]=="settingAll"){
 	$code_all=code_str_all($arr_all);
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');
-	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />');
+	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />');
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>');
 	fwrite($view,$code_all);
 	fclose($view);

@@ -28,7 +28,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$folder=$_REQUEST["folder"];
 		$arr_all=code_all($page,$folder,$_REQUEST["form"]);
 		//模板渲染代码
-		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
+		$doc_top='<!DOCTYPE HTML>'."\n".'<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$code_all=$doc_top."\n".code_str_all($arr_all)."\n".$doc_btm;
 		$f=fopen($url."/form_".date("YmdHis", time()).".html","w+");
@@ -41,7 +41,7 @@ if($_REQUEST["act"]=="zipAll"){
 		getImages($url,$html);//获取html图片
 
 		$files=array();
-		array_push($files,'./css/h_reset.css');
+		array_push($files,'./css/reset.css');
 		array_push($files,'./js/jquery-1.10.2.js');
 		foreach($files as $k=>$v){
 			file2dir($v, $url);
@@ -53,7 +53,7 @@ if($_REQUEST["act"]=="zipAll"){
 		$ttl=$_GET["ttl"];
 		$str_script=getRefer($page,$ttl,$folder,1);//依赖
 		//模板渲染代码
-		$doc_top='<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="h_reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
+		$doc_top='<!DOCTYPE HTML>'."\n".'<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$arr_code=code_arr($page,$folder,$ttl);
 		$code_all=$doc_top."\n".code_str($arr_code)."\n".$doc_btm;
@@ -80,7 +80,7 @@ if($_REQUEST["act"]=="zipAll"){
 				array_push($files,$arr_temp[0]);
 			};
 		}
-		array_push($files,'./css/h_reset.css');
+		array_push($files,'./css/reset.css');
 		array_push($files,'./js/jquery-1.10.2.js');
 		foreach($files as $k=>$v){
 			file2dir($v, $url);

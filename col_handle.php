@@ -100,7 +100,7 @@ if($_REQUEST["act"]=="setting"){
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">'."\n");
-	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />'."\n");
+	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,$code_all);
 	fclose($view);
@@ -191,7 +191,7 @@ if($_REQUEST["setting"]=="render"){
 	$all.=$script."\n".$newCode;
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">'."\n");
-	fwrite($view,'<link rel="stylesheet" href="css/h_reset.css" />'."\n");
+	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,$all);
 	fclose($view);

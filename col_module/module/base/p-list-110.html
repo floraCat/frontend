@@ -8,10 +8,10 @@
 /*_css*/
 .p-list-110{ overflow:hidden; width:680px;}
 .p-list-110 li{ float:left; width:200px; margin:0 20px 20px 0;}
-.p-list-110 li .img img{ width:200px; height:200px;}
-.p-list-110 li h6{ overflow:hidden; max-height:60px; line-height:20px;}
+.p-list-110 .img img{ width:200px;}
+.p-list-110 h4{ overflow:hidden; max-height:60px; line-height:20px;}
 .p-list-110 ol{ padding:5px 5px; background: #eee;}
-.p-list-110 em{ color:#FF0004; margin-right: 6px;}
+.p-list-110 em{ color:#ff0004; margin-right: 6px;}
 .p-list-110 s{ color:#aaa;}
 /*css_*/
 </style>
@@ -20,48 +20,48 @@
 
 
 <!--_html-->
-<script type="text/javascript" src="_demo/111_github/imagesloaded/imagesloaded-master/imagesloaded.pkgd.min.js"></script><!--确保图片加载完成-->
-<script type="text/javascript" src="_demo/111_github/masonry/masonry-master/dist/masonry.pkgd.min.js"></script><!--瀑布流-->
+<script type="text/javascript" src="js/col_module/base/imagesloaded.pkgd.min.js"></script><!--确保图片加载完成-->
+<script type="text/javascript" src="js/col_module/base/masonry.pkgd.min.js"></script><!--瀑布流-->
 <ul class="p-list-110">
 	<li>
 		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
 		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
+			<p><em>￥100.00</em><s>￥200.00</s></p>
+		</ol>
+	</li>
+	<li>
+		<div class="img"><a href="#"><img src="images/col_module/focus_1.jpg" alt="" /></a></div>
+		<ol>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
 			<p><em>￥100.00</em><s>￥200.00</s></p>
 		</ol>
 	</li>
 	<li>
 		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
 		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
 			<p><em>￥100.00</em><s>￥200.00</s></p>
 		</ol>
 	</li>
 	<li>
 		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
 		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
 			<p><em>￥100.00</em><s>￥200.00</s></p>
 		</ol>
 	</li>
 	<li>
 		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
 		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
 			<p><em>￥100.00</em><s>￥200.00</s></p>
 		</ol>
 	</li>
 	<li>
 		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
 		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
-			<p><em>￥100.00</em><s>￥200.00</s></p>
-		</ol>
-	</li>
-	<li>
-		<div class="img"><a href="#"><img src="images/col_module/2.jpg" alt="" /></a></div>
-		<ol>
-			<h6><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h6>
+			<h4><a href="#">d1_图片标题图片标题图片标题图片标题图片标题</a></h4>
 			<p><em>￥100.00</em><s>￥200.00</s></p>
 		</ol>
 	</li>
@@ -74,7 +74,6 @@
 <script>
 $(function(){
 /*_js*/
-	$(".p-list-110 li").eq(1).css("margin-top","20px");
 	$(".p-list-110").imagesLoaded( function(){ 
 		$(".p-list-110").masonry({
 			itemSelector : 'li',
