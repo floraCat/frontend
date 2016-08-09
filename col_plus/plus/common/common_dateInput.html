@@ -1,10 +1,11 @@
-<meta charset="utf-8">
-<link rel="stylesheet" href="css/reset.css" />
-<script src="js/jquery-1.10.2.js"></script>
-<<<<<<< HEAD
-<script src="js/col_plus/common/date_input.js"></script>
+<?php echo($meta);?>
+
+<body>
+
+
 
 <style>
+/*_css*/
 .date_selector, .date_selector * {
   width: auto;
   height: auto;
@@ -116,7 +117,10 @@
       color: white;
     }
 
+/*css_*/
 </style>
+
+<!--_html-->
 <h3>用法一：添加class名"date_input"</h3>
  <input type="text" class="date_input" placeholder="点击输入日期">
 <br>
@@ -124,28 +128,63 @@
 <h3>用法二：指定一个id为date的元素</h3>
  <input type="text" id="date" placeholder="点击输入日期">
 
+<!--html_-->
+
+
+
 <script>
 $(function(){
+/*_js*/
     $.date_input.initialize();
 
     $('#date').date_input();
-=======
-
-<style>
-	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
-	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
-	.p-form dd{ margin-left:90px;}
-	.p-form .input{ width:100%; height:35px; padding:3px 5px; line-height:27px;}
-</style>
-<div class="p-form" style="width:500px; margin:10px auto;">
-	<dl>
-	    <dt>密码-1：<em>*</em></dt>
-	    <dd><input class="input" type="text" name="password" placeholder="6-18位字母和数字" /></dd>
-	</dl>
-</div>
-<script>
-$(function(){
-
->>>>>>> 09d94efffc3dcd5d00a39d978b51b7394cd81e93
+/*js_*/
 });
 </script>
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+日期选择
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/common/date_input.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+用法：
+	1. 给要输入日期的input元素添加class名 "date_input"
+		&lt;input type="text" class="date_input" placeholder="点击输入日期">
+	   插件初始化：
+	   $.date_input.initialize();
+
+	2. 指定一个input元素：
+		&lt;input type="text" id="date" placeholder="点击输入日期">
+	   插件初始化：
+	   $('#date').date_input();
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

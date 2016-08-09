@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日期控件</title>
+</head>
+<body>
+
+
+<style>
+/*_css*/
+div {
+	margin-bottom: 20px;
+}
+input {
+	font-size: 16px;
+	width: 150px;
+}
+span {
+	font-size: 12px;
+	margin-right: 20px;
+	color: #666;
+}
+/*css_*/
+</style>
+
+
+<!--_html-->
+	<link rel="stylesheet" href="js/col_unit/pikaday/css/pikaday.css">
+	<div>
+		<input type="text" id="Ydate1">
+		<span>YYYY-MM-DD</span>
+		<input type="text" id="Ydate2">
+		<span>YYYY/MM/DD</span>
+		<input type="text" id="Ydate3">
+		<span>YYYY.MM.DD</span>
+	</div>
+	<div>
+		<input type="text" id="Mdate1">
+		<span>MM-DD-YYYY</span>
+		<input type="text" id="Mdate2">
+		<span>MM/DD/YYYY</span>
+		<input type="text" id="Mdate3">
+		<span>MM.DD.YYYY</span>
+	</div>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+	new Pikaday({
+		field: document.getElementById('Ydate1'),
+		format: 'YYYY-MM-DD'
+	});
+	new Pikaday({
+		field: document.getElementById('Ydate2'),
+		format: 'YYYY/MM/DD'
+	});
+	new Pikaday({
+		field: document.getElementById('Ydate3'),
+		format: 'YYYY.MM.DD'
+	});
+	new Pikaday({
+		field: document.getElementById('Mdate1'),
+		format: 'MM-DD-YYYY'
+	});
+	new Pikaday({
+		field: document.getElementById('Mdate2'),
+		format: 'MM/DD/YYYY'
+	});
+	new Pikaday({
+		field: document.getElementById('Mdate3'),
+		format: 'MM.DD.YYYY'
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:yes,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+pikaday日期选择
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_unit/pikaday/js/moment.js:日期格式插件,js/col_unit/pikaday/js/pikaday.js:主要js文件
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+官网：https://github.com/dbushell/Pikaday
+
+使用方法：
+
+html结构如下：
+	&lt;input type="text" id="date">
+
+js调用：
+	原生方式：
+		new Pikaday({
+			field: document.getElementById('date'),
+			format: 'YYYY-MM-DD'
+		});
+	jquery方式：
+		$('#date').pikaday({
+			format: 'YYYY-MM-DD'
+		});
+
+参数说明：
+	field 
+		(Element) 原生方式要用这个参数选定元素
+
+	format
+		(String) 指定日期格式，比如：'YYYY-MM-DD'、'YYYY.MM.DD'
+
+	trigger
+		(Element) 指定一个元素作为弹出日期选择界面的触发器
+	
+	position
+		(String) 指定日期选择界面显示的位置，比如：'top left'、top right'、'bottom right'、'bottom left'
+
+	container
+		(Element) 让日期选择界面固定显示在一个元素里
+
+	onSelect
+		(callback) 当选择一个日期时触发
+
+	onOpen
+		(callback) 当日期界面弹出时触发
+
+	onClose
+	 	(callback) 当日期界面隐藏时触发
+
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

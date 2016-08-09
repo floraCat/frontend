@@ -6,35 +6,39 @@
 
 <style>
 /*_css*/
-form p {
-	margin-bottom: 10px;
-}
+	.p-form dl{ position:relative; overflow:hidden; margin-bottom:15px;}
+	.p-form dt{ float:left; width:80px; line-height:35px; text-align:right; white-space:nowrap;}
+	.p-form .input{ width:100%; height:35px; padding:0 5px; line-height:33px;}
+	.p-form .theme2 dt{ border: #ddd 1px solid; border-right: none;}
+	.p-form .theme2 .i_name{ width:33px; height: 33px; background-image:url(images/col_form/i_name.png); background-size: 100% 100%;}
+	.p-form .theme2 dd{ border: #ddd 1px solid; border-right: none; margin-left:33px;}
+	.p-form .theme2 .input{ height:33px; text-indent:5px; border: none;}
+	.p-form .theme2{ border: #ddd 1px solid;}
+	.p-form .theme2 .i_pass{ width: 33px; height: 33px; background-image:url(images/col_form/i_pass.png); background-size:100% 100%;}
+	.p-form .theme2 dd{ margin-left: 33px;}
+	.g-btn{ display:block; width:200px; height:40px; margin:0 auto 15px; line-height:40px; text-align:center; color:#fff; border:none; background-color:#e43a3d; cursor: pointer;}
+	#Validform_msg {text-align: center;}
 /*css_*/
 </style>
 
 <!--_html-->
 
-<form class="form1">
-	<h3>邮箱地址：（datatype: e）</h3>
-	<p>
-		<input type="text" datatype="e">
-		<span class="Validform_checktip"></span>
-	</p>
-	<h3>手机号码：（datatype: m）</h3>
-	<p>
-		<input type="text" datatype="m" errormsg="非法手机号">
-		<span class="Validform_checktip"></span>
-	</p>
-	<h3>5到10个字符：（datatype: s5-10）</h3>
-	<p>
-		<input type="text" datatype="s5-10">
-		<span class="Validform_checktip"></span>
-	</p>
-	<h3>6到10个数字：（datatype: n6-10）</h3>
-	<p>
-		<input type="text" datatype="n6-10">
-		<span class="Validform_checktip"></span>
-	</p>
+<form class="p-form" style="width:500px; margin:10px auto;">
+	<dl class="theme2">
+	    <dt class="i_pass"></dt>
+	    <dd>
+	    	<input class="input" datatype="e" nullmsg="邮箱不能为空" type="text" name="password" placeholder="请输入邮箱">
+	    </dd>
+	</dl>
+    <dl class="theme2">
+        <dt class="i_name"></dt>
+        <dd><input class="input" datatype="s6-10" nullmsg="用户名不能为空" type="text" name="name" placeholder="用户名"></dd>
+    </dl>
+	<dl class="theme2">
+	    <dt class="i_pass"></dt>
+	    <dd><input class="input" datatype="n6-10" nullmsg="密码不能为空" type="password" name="password" placeholder="请输入密码"></dd>
+	</dl>
+	<input class="g-btn" type="submit" value="提交">
 </form>
 	
 
@@ -45,8 +49,9 @@ form p {
 <script>
 $(function(){
 /*_js*/
-    $('.form1').Validform({
-    	tiptype: 3
+    $('.p-form').Validform({
+    	tiptype: 1,
+    	tipSweep: true
     });
 /*js_*/
 });

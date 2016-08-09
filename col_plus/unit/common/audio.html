@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音频播放</title>
+</head>
+<body>
+
+
+<style>
+/*_css*/
+body { color: #666; font-family: sans-serif; line-height: 1.4; }
+h1 { color: #444; font-size: 1.2em; padding: 14px 2px 12px; margin: 0px; }
+h1 em { font-style: normal; color: #999; }
+a { color: #888; text-decoration: none; }
+#wrapper { width: 400px; margin: 40px auto; }
+
+ol { padding: 0px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; width: 460px; border-top: 1px solid #ccc; font-size: 0.9em; }
+ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
+ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
+li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
+li.playing a { color: #000; }
+li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+
+#shortcuts { position: fixed; bottom: 0px; width: 100%; color: #666; font-size: 0.9em; margin: 60px 0px 0px; padding: 20px 20px 15px; background: #f3f3f3; background: rgba(240, 240, 240, 0.7); }
+#shortcuts div { width: 460px; margin: 0px auto; }
+#shortcuts h1 { margin: 0px 0px 6px; }
+#shortcuts p { margin: 0px 0px 18px; }
+#shortcuts em { font-style: normal; background: #d3d3d3; padding: 3px 9px; position: relative; left: -3px;
+    -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+
+@media screen and (max-device-width: 480px) {
+    #wrapper { position: relative; left: -3%; }
+    #shortcuts { display: none; }
+}
+
+.credit {
+    text-align: center;
+}
+
+.volume {
+	width: 100px;
+	margin: 10px 0;
+	height: 15px;
+	background-color: #ccc;
+	position: relative;
+}
+
+.volume .progress {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 15px;
+	background-color: #000;
+}
+/*css_*/
+</style>
+
+
+<!--_html-->
+<div id="wrapper">
+    <audio id="player" preload></audio>
+    <div class="volume" title="音量">
+    	<div class="progress"></div>
+    </div>
+    <ol>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-dubstep.mp3">Dubstep</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-cute.mp3">Cute</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-buddy.mp3">Buddy</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-acousticbreeze.mp3">Acoustic Breeze</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-epic.mp3">Epic</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-funnysong.mp3">Funny Song</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-littleidea.mp3">Little Idea</a></li>
+        <li><a href="#" data-src="js/col_unit/audio/mp3/bensound-betterdays.mp3">Better Days</a></li>
+    </ol>
+    <p style="text-align: center;">点击列表切换歌曲</p>
+</div>
+<div id="shortcuts">
+    <div>
+        <h1>快捷键:</h1>
+        <p><em>&rarr;</em>下一首</p>
+        <p><em>&larr;</em>上一首</p>
+        <p><em>Space</em>播放/暂停</p>
+    </div>
+</div>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+	var player = audiojs.create($('#player').get(0), {
+        trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            player.load($('a', next).data('src'));
+            player.play();
+        }
+    });
+
+	var first = $('ol a').first().data('src');
+    $('ol li').first().addClass('playing');
+    player.load(first);
+
+    $('ol li').click(function(e) {
+        e.preventDefault();
+        $(this).addClass('playing').siblings().removeClass('playing');
+        player.load($('a', this).attr('data-src'));
+        player.play();
+    });
+
+    $('.volume').on('mousedown', function(e) {
+    	 var left = e.pageX - $(this).offset().left;
+    	 if (left < 0) left = 0;
+    	 if (left > 100) left = 100;
+    	 $(this).find('.progress').css('width', left);
+    	 player.setVolume(left / 100);
+    });
+
+    $(document).keydown(function(e) {
+        var unicode = e.charCode ? e.charCode : e.keyCode;
+        // right arrow
+        if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // back arrow
+        } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // spacebar
+        } else if (unicode == 32) {
+            player.playPause();
+        }
+    });
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+音频播放
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_unit/audio/js/audio.js: audio音频播放
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+官网：http://kolber.github.io/audiojs/
+
+说明：
+	这个插件使得html5标签&lt;audio>能够在不支持的浏览器上播放
+
+使用方法：
+
+html结构如下：
+	&lt;audio id="player" src="music.mp3"></audio>
+
+js调用：
+	var audioElem = document.getElementById('player');
+	// 获取播放器的实例对象
+	var player = audiojs.create(audioElem);
+
+播放器实例对象有几个方法供使用：
+	load
+		加载音频文件，传入一个字符串参数为音频文件的地址。
+
+	play
+		播放音频。无参数
+
+	pause
+		暂停播放。无参数
+
+	setVolume
+		调节音量，传入0到1之间的数值。
+</pre>
+<!--note_-->
+
+
+</body>
+</html>
