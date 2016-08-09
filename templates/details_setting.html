@@ -55,10 +55,10 @@ body{ overflow-x: visible; }
 
 <input type="hidden" id="page" value="<{$smarty.get.page}>" />
 
+
 <script>
 $(function(){
  
-
     //复制改后代码
     $(".btn_copy").zclip({
         path: "js/copy/ZeroClipboard.swf",
@@ -78,7 +78,7 @@ $(function(){
         }
     });
 
-    //
+
     $(".zclip").on("mouseover",function(){
         $(".btn_copy").addClass("on");
     });
@@ -103,29 +103,13 @@ $(function(){
         });
     });
 
-
-    //屏幕高
-    function windowHeight(){
-        var windowHeight;
-        if(self.innerHeight){ windowHeight = self.innerHeight;
-        }else{
-            if(document.documentElement && document.documentElement.clientHeight){    
-                windowHeight = document.documentElement.clientHeight;
-            }else{
-                if(document.body){ windowHeight = document.body.clientHeight;}
-            }
-        } 
-        return windowHeight;
-    }
     window.onload=function(){
         setTimeout(function(){
-            $("#cke_1_contents").add($(".tView")).height(windowHeight()-32); 
-        },60);
-        
+            $("#cke_1_contents").add($(".tView")).height($(window).height()-32); 
+        },60); 
     }
 
 });
-
 </script>
 
 

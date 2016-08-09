@@ -10,7 +10,7 @@
 .mLeft ul h6{ margin-bottom: 6px; font-weight: bold; color: #666;}
 .mLeft ul a{ display: block; width: 120px; text-align: center; padding:0 10px; border:#c3d9a5 1px solid; background-color: #e7f2d9; margin-bottom: 6px;}
 
-.mRight{ width: 900px; padding:30px 30px 20px 230px;}
+.mRight{ width: 640px; padding:30px 30px 20px 230px;}
 .mRight .section{ position: relative; }
 .mRight s{ font-family: arial; font-size: 12px; text-decoration: none; margin-right: 2px; text-shadow:1px 1px #fff; color: #777;}
 .mRight .key s{ font-size: 16px; font-weight: normal;}

@@ -88,6 +88,23 @@ if($_REQUEST["_temp"]){
 }
 
 
+//切换demo_[详情页]
+if($_REQUEST["act"]=="demos"){
+	$page=$_REQUEST["page"];
+	$folder=$_REQUEST["folder"];
+	$ttl=$_REQUEST["demo"];
+	$arr_code=code_arr($page,$folder,$ttl);
+	$str_script=getRefer($page,$ttl,$folder,0);//依赖
+	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
+	$view=fopen("temp_details_setting.html","w");
+	fwrite($view,'<meta charset="utf-8">'."\n");
+	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
+	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
+	fwrite($view,$code_all);
+	fclose($view);
+	echo json_encode($arr_code[3]);
+}
+
 
 //自定义设置
 if($_REQUEST["act"]=="setting"){
@@ -212,6 +229,10 @@ if($_REQUEST["details"]){
 	$arr=array();
 	$arr["image"]="images/"+$_REQUEST['page']+"/"+$_REQUEST['details']+".jpg";
 	$arr["ttl"]=$_REQUEST["details"];
+	if($_REQUEST['page']=="plus"){
+		$arr["ttl_short"]=substr($_REQUEST["details"], 0,-6);
+	}
+	
 	$arr_info=info_arr($_REQUEST["page"],$_REQUEST["details"],$_REQUEST["folder"]);
 	$arr["hack"]=$arr_info[0];
 	$arr["desc"]=$arr_info[1];
@@ -226,11 +247,12 @@ if($_REQUEST["details"]){
 //遍历文件夹全部模块返回源码
 function eachFile($list,$page,$url2,$folder){
 	$index=0;
-	$files=@my_scandir($url2."/".$folder);
+	$files=@my_scandir($url2."/".$folder,$page);
 	foreach($files as $k0=>$v0){
 		if(strstr($v0,$list)){
 			$ttl=substr($v0,0,-5);
 			$temp[$index]["ttl"]=$ttl;
+			if($page=="plus"){$temp[$index]["ttl_short"]=substr($ttl,0,-6);}
 			$arr_code=code_arr($page,$folder,$ttl);
 			$code_all=code_str($arr_code);
 			$temp[$index]["code"]=$code_all;
@@ -241,6 +263,18 @@ function eachFile($list,$page,$url2,$folder){
 		}
 	}
 	return $temp;
+}
+
+
+//获取插件demo文件名和描述
+function plusDemos($dir,$page,$folder){
+	$files=my_scandir($dir,$page);
+	foreach($files as $k=>$v){
+		$demo[$k]["name"]=substr($v,0,-5);
+		$infos=info_arr($page,$v,$folder);
+		$demo[$k]["desc"]=$infos[2];
+	};
+	return $demo;
 }
 
 

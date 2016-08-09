@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="reset.css" />
+	<script src="jquery-1.10.2.js"></script>
+	<script src="h-dialog.js"></script>
+
+</head>
+<body>
+
+
+<script>
+$(function(){
+    $.jDialog({
+    	data_id:'1', //识别id
+		icon:'icon_ok', //图标：class名
+		title:'', //标题
+		note:'弹窗提示信息|center', //提示信息
+		setTime:'', //倒计时：毫秒数
+		btn:'确定|right|confirm|#89b632|white|#89b632', //按键：文本|定位|data-role值|底色|字色|边线色|链接
+		btn2:'取消|left|cancel|#fff|#529d20|#beda84', //按键2：文本|定位|data-role值|底色|字色|边线色|链接
+		icon_quit:'right', //退出x：定位
+		callback:function(){} //回调
+    });
+});
+</script>
+
+
+</body>
+</html>

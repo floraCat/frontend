@@ -19,8 +19,100 @@
 <div class="fDetails">
 
 	<!--图片-->
-	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$info.ttl}>" /></ol></div>
-	<p class="ttl"><{$info.ttl}></p>
+	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}>" /></ol></div>
+	<p class="ttl"><{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}></p>
+
+	<!--常用模板展示-->
+	<div class="fTemps">
+		<div class="hd">此插件常用的情景demo如下：</div>
+		<div class="tabs" data-way="js">
+			<a data-ttl="dialog_default">默认弹窗</a>
+			<a data-ttl="dialog_callback">确认后回调</a>
+			<a data-ttl="dialog_icon">带提示图标</a>
+			<a data-ttl="dialog_link">确认后跳转</a>
+			<a data-ttl="dialog_setTime">倒计时关闭</a>
+		</div>
+		<div class="drops">
+			<div class="ttl2">如下是此demo的配置，可按需修改配置项后运行：</div>
+			<textarea class="code">$.jDialog({
+        data_id:'1', //识别id
+        icon:'icon_ok', //图标：class名
+        title:'', //标题
+        note:'弹窗提示信息|center', //提示信息
+        setTime:'', //倒计时：毫秒数
+        btn:'确定|right|confirm|#89b632|white|#89b632', //按键：文本|定位|data-role值|底色|字色|边线色|链接
+        btn2:'取消|left|cancel|#fff|#529d20|#beda84', //按键2：文本|定位|data-role值|底色|字色|边线色|链接
+        icon_quit:'right', //退出x：定位
+        callback:function(){} //回调
+    });</textarea>
+		    <a class="btn-run">运行此demo</a>
+		    <div class="btns">
+		    	<span>此demo其他操作：</span>
+		    	<{if $smarty.get.page!="unit"}>
+				<a class="btn_code fr" target="_blank" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&act=setting&ttl=<{$info.ttl}>">修改源码</a>
+				<{/if}>
+				<a class="fl copy" href="javascript:;">复制主体代码</a>
+				<{if $smarty.get.page!="unit"}>
+					<a class="fr btn_download" href="col_zip.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&ttl=<{$info.ttl}>&act=zipAll">整套下载</a>
+				<{else}>
+					<a class="fr download" href="files/zip/col_<{$smarty.get.page}>/<{$info.ttl}>.zip">整套下载</a>
+				<{/if}>
+		    </div>
+		</div>
+	</div>
+	<div class="fDemo">
+		<div class="mask"></div>
+		<a class="quit"></a>
+	</div>
+
+
+
+<script>
+window.onload=function(){
+	//默认第一个demo点击
+	$(".fTemps .tabs a").eq(0).trigger("click");
+}
+$(function(){
+	//切换demo
+	$(".fTemps .tabs a").click(function(){
+		$(this).addClass("on").siblings().removeClass("on");
+		var way=$(this).parent().attr("data-way");
+		var page=$("#page").val();
+		var col=$("#col").val();
+		var folder=$("#folder").val();
+		var details=$("#details").val();
+		var demo=details.substr(0,details.length-6)+"/"+$(this).attr("data-ttl");
+		var submitdata={
+			'page':page,
+			'col':col,
+			'folder':folder,
+			'demo':demo,
+			'way':way,
+			'act':'demos'
+		}
+		$.post("col_handle.php",submitdata,function(data){
+			var data = eval("(" + data + ")");
+			$(".fTemps .code").text(data);
+			$(".btn_code").attr("src",'col_handle.php?page='+page+'&col='+col+'&folder='+folder+'&act=setting&ttl='+demo);
+			if($(".btn_download").length>0){
+				$(".btn_download").attr("src",'col_zip.php?page='+page+'&col='+col+'&folder='+folder+'&ttl='+demo+'&act=zipAll');
+			}
+				
+		});
+	});
+
+	//运行demo
+	$(".btn-run").click(function(){
+		$(".fDemo").append('<iframe class="iframe" src="temp_details_setting.html"></iframe>').show();
+	});
+	//关闭demo
+	$(".fDemo .quit").on("click",function(){
+		$(".fDemo").hide();
+		$(".fDemo").find("iframe").remove()
+	});
+});
+	</script>
+
 
 	<!--兼容-->
 	<input type="hidden" id="dataHack" value="<{$info.hack}>" />
@@ -42,7 +134,7 @@
 	</div>
 
 	<!--按键-->
-	<ol class="fBtn">
+<!-- 	<ol class="fBtn">
 		<ul class="btn1">
 			<a class="fl" target="_blank" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&_temp=<{$info.ttl}>">效果展示</a>
 			<{if $smarty.get.page!="unit"}>
@@ -59,9 +151,9 @@
 		</ul>
 	</ol>		
 
-	<xmp id="code" style="display:none;"><{$code}></xmp><!--源码-->
-	<div class="h_mask"></div><!--覆盖层-->
-	<div class="mAlert2">已复制到剪切板！</div>
+	<xmp id="code" style="display:none;"><{$code}></xmp>
+	<div class="h_mask"></div>
+	<div class="mAlert2">已复制到剪切板！</div> -->
 
 	<!--简介-->
 	<div class="fDesc"><p>模块描述：<{$info.desc}></p></div>
@@ -132,7 +224,7 @@ $(function(){
 		
 
 	//复制代码
-	$(".fBtn .copy").zclip({
+	$(".fTemps .copy").zclip({
 		path: "js/copy/ZeroClipboard.swf",
 		copy: function(){
 			var str_code=$("#code").text();
@@ -147,30 +239,19 @@ $(function(){
 		},
 		afterCopy:function(){
 			$(".h_mask").show().delay(1000).fadeOut();
-			$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
+			$(".mAlert2").css("top",$(window).height()/2-30+"px").show().delay(1000).fadeOut();
 		}
 	});
 
 });
-
-//屏高
-function windowH(){
-	if(self.innerHeight){ windowHeight = self.innerHeight;
-	}else{
-		if(document.documentElement && document.documentElement.clientHeight){    
-			windowHeight = document.documentElement.clientHeight;
-		}else{
-			if(document.body){ windowHeight = document.body.clientHeight;}
-		}
-	} 
-	return windowHeight;
-}
 </script>
 
 
 <!--当前导航加.on-->
 <input type="hidden" id="page" value="<{$smarty.get.page}>" />
+<input type="hidden" id="col" value="<{$smarty.get.col}>" />
 <input type="hidden" id="folder" value="<{$smarty.get.folder}>" />
+<input type="hidden" id="details" value="<{$smarty.get.details}>" />
 <script>
 $(function(){
     var page=$("#page").val();

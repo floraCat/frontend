@@ -2,23 +2,36 @@
 
 
 //获取$dir目录下所有文件名称列表
-function my_scandir($dir){
+function my_scandir($dir,$page){
     $files = array();  
     $dir_list = scandir($dir);  
     foreach($dir_list as $file){  
 		$path_parts = pathinfo($file);
-		if($path_parts['extension']=='html'){
-			if ( $file != ".." && $file != "." ){  
-				if ( is_dir($dir . "/" . $file) ){  
-					$files[$file] = my_scandir($dir . "/" . $file);  
-				}else{  
-					$files[] = $file;  
+		if($page=="plus"){
+			if($path_parts['extension']!='html'){
+				if ( $file != ".." && $file != "." ){  
+					if ( is_dir($dir . "/" . $file) ){  
+						$files[] = $file."/index.html";  
+					}else{  
+						$files[] = $file;  
+					}  
 				}  
-			}  
+			}
+		}else{
+			if($path_parts['extension']=='html'){
+				if ( $file != ".." && $file != "." ){  
+					if ( is_dir($dir . "/" . $file) ){  
+						$files[$file] = my_scandir($dir . "/" . $file);  
+					}else{  
+						$files[] = $file;  
+					}  
+				}  
+			}
 		}
     }  
     return $files;  
 }  
+
 
 
 //第几次出现的位置
@@ -141,7 +154,6 @@ function code_all($page,$folder,$form){
 		$arr_spec=$arr_spec.$sCode[1];
 		$arr_html=$arr_html.$sCode[2]."\n";
 		array_push($arr_js, $sCode[3]);
-		//$arr_js=$arr_js.$sCode[3];
 		if($sCode[4]){$arr_fun=$arr_fun.$sCode[4];}
 	};
 
@@ -170,7 +182,6 @@ function code_all($page,$folder,$form){
 	if($arr_js!=""){
 		$arr_js=array_unique($arr_js);
 		$str_js =implode("\n", $arr_js); 
-		//echo("<pre>");print_r($str_js);echo("</pre>");
 	}
 
 
