@@ -33,18 +33,8 @@
 			<a data-ttl="dialog_setTime">倒计时关闭</a>
 		</div>
 		<div class="drops">
-			<div class="ttl2">如下是此demo的配置，可按需修改配置项后运行：</div>
-			<textarea class="code">$.jDialog({
-        data_id:'1', //识别id
-        icon:'icon_ok', //图标：class名
-        title:'', //标题
-        note:'弹窗提示信息|center', //提示信息
-        setTime:'', //倒计时：毫秒数
-        btn:'确定|right|confirm|#89b632|white|#89b632', //按键：文本|定位|data-role值|底色|字色|边线色|链接
-        btn2:'取消|left|cancel|#fff|#529d20|#beda84', //按键2：文本|定位|data-role值|底色|字色|边线色|链接
-        icon_quit:'right', //退出x：定位
-        callback:function(){} //回调
-    });</textarea>
+			<div class="ttl2">以下是此demo的配置，可按需修改配置项后运行：</div>
+			<textarea class="code"></textarea>
 		    <a class="btn-run">运行此demo</a>
 		    <div class="btns">
 		    	<span>此demo其他操作：</span>
@@ -58,6 +48,9 @@
 					<a class="fr download" href="files/zip/col_<{$smarty.get.page}>/<{$info.ttl}>.zip">整套下载</a>
 				<{/if}>
 		    </div>
+			<xmp id="code" style="display:none;"><{$code}></xmp>
+			<div class="h_mask"></div>
+			<div class="mAlert2">已复制到剪切板！</div>
 		</div>
 	</div>
 	<div class="fDemo">
@@ -74,7 +67,7 @@ window.onload=function(){
 }
 $(function(){
 	//切换demo
-	$(".fTemps .tabs a").click(function(){
+	$(".fTemps").on("click",".tabs a",function(){
 		$(this).addClass("on").siblings().removeClass("on");
 		var way=$(this).parent().attr("data-way");
 		var page=$("#page").val();
@@ -92,11 +85,16 @@ $(function(){
 		}
 		$.post("col_handle.php",submitdata,function(data){
 			var data = eval("(" + data + ")");
-			$(".fTemps .code").text(data);
-			$(".btn_code").attr("src",'col_handle.php?page='+page+'&col='+col+'&folder='+folder+'&act=setting&ttl='+demo);
+			console.log(data["code"]);
+			$(".fTemps .drops").prepend('<xmp style="display:none;" id="height_code">'+data["script"]+'</xmp>');
+			$(".fTemps .code").height($("#height_code").height()+80).text(data["script"]);
+			$("#height_code").remove();
+			$("#code").text(data["code"]);
+			$(".btn_code").attr("href",'col_handle.php?page='+page+'&col='+col+'&folder='+folder+'&act=setting&ttl='+demo);
 			if($(".btn_download").length>0){
-				$(".btn_download").attr("src",'col_zip.php?page='+page+'&col='+col+'&folder='+folder+'&ttl='+demo+'&act=zipAll');
+				$(".btn_download").attr("href",'col_zip.php?page='+page+'&col='+col+'&folder='+folder+'&ttl='+demo+'&act=zipAll');
 			}
+			
 				
 		});
 	});

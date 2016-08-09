@@ -94,6 +94,7 @@ if($_REQUEST["act"]=="demos"){
 	$folder=$_REQUEST["folder"];
 	$ttl=$_REQUEST["demo"];
 	$arr_code=code_arr($page,$folder,$ttl);
+	//echo json_encode($arr_code[3]);
 	$str_script=getRefer($page,$ttl,$folder,0);//依赖
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$view=fopen("temp_details_setting.html","w");
@@ -102,7 +103,14 @@ if($_REQUEST["act"]=="demos"){
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,$code_all);
 	fclose($view);
-	echo json_encode($arr_code[3]);
+	//源代码
+	$arr_code=code_arr($page,$folder,$ttl);
+	$code_all=code_str($arr_code);
+	//echo json_encode($code_all);
+	$demo=array();
+	$demo["script"]=$arr_code[3];
+	$demo["code"]=$code_all;
+	echo json_encode($demo);
 }
 
 
