@@ -80,7 +80,7 @@ if($_REQUEST["_temp"]){
 	$page=$_GET["page"];
 	$folder=$_GET["folder"];
 	$ttl=$_GET["_temp"];
-	$str_script=getRefer($page,$ttl,$folder,0);//依赖
+	$str_script=getRefer($page,$ttl,$folder,0,"");//依赖
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$smarty->assign('content',$code_all);
@@ -88,38 +88,13 @@ if($_REQUEST["_temp"]){
 }
 
 
-//切换demo_[详情页]
-if($_REQUEST["act"]=="demos"){
-	$page=$_REQUEST["page"];
-	$folder=$_REQUEST["folder"];
-	$ttl=$_REQUEST["demo"];
-	$arr_code=code_arr($page,$folder,$ttl);
-	//echo json_encode($arr_code[3]);
-	$str_script=getRefer($page,$ttl,$folder,0);//依赖
-	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
-	$view=fopen("temp_details_setting.html","w");
-	fwrite($view,'<meta charset="utf-8">'."\n");
-	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
-	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
-	fwrite($view,$code_all);
-	fclose($view);
-	//源代码
-	$arr_code=code_arr($page,$folder,$ttl);
-	$code_all=code_str($arr_code);
-	//echo json_encode($code_all);
-	$demo=array();
-	$demo["script"]=$arr_code[3];
-	$demo["code"]=$code_all;
-	echo json_encode($demo);
-}
-
 
 //自定义设置
 if($_REQUEST["act"]=="setting"){
 	$page=$_GET["page"];
 	$folder=$_GET["folder"];
 	$ttl=$_REQUEST["ttl"];
-	$str_script=getRefer($page,$ttl,$folder,0);//依赖
+	$str_script=getRefer($page,$ttl,$folder,0,"");//依赖
 	$smarty->assign("script",$str_script);
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
@@ -246,8 +221,91 @@ if($_REQUEST["details"]){
 	$arr["desc"]=$arr_info[1];
 	$arr["refer"]=$arr_info[2];
 	$arr["note"]=$arr_info[3];
+
+	if($page=="plus"){
+		$dir='col_'.$_REQUEST["page"].'/'.$_REQUEST["col"].'/'.$_REQUEST["folder"].'/'.substr($_REQUEST["details"],0,-6);
+		$info_demo=plusDemos($dir,$_REQUEST["page"],$_REQUEST["folder"],substr($_REQUEST["details"], 0,-6));
+		$arr["descs"]=$info_demo;
+	}
+
 	$smarty->assign("info",$arr);
 	$smarty->display("details_all.html");
+}
+
+
+//切换demo_[详情页]
+if($_REQUEST["act"]=="demos"){
+	$page=$_REQUEST["page"];
+	$folder=$_REQUEST["folder"];
+	$col=$_REQUEST["col"];
+	$ttl=$_REQUEST["demo"];
+	$arr_code=code_arr($page,$folder,$ttl);//源代码数组
+	$str_script=getRefer($page,$ttl,$folder,0,"");//依赖
+	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
+	$demo=array();
+	if(trimall($_REQUEST["way"])=="data-js"){
+		$pos_data=newstripos($arr_code[2], "data-js", 1);
+		$code_before=substr($arr_code[2], 0,$pos_data);
+		$pos_data2=substr($arr_code[2],$pos_data);
+		$pos_tab_end=newstripos($pos_data2, ">", 1);
+		$pos_data3=substr($pos_data2,0,$pos_tab_end);		
+		$pos_data_end=newstripos($pos_data3, "&nbsp;", 1);
+		if(!$pos_data_end){
+			$pos_data_end=newstripos($pos_data2, ">", 1);
+			$code_data=substr($pos_data2, 0,$pos_data_end);
+		}else{
+			$code_data=substr($arr_code[2], 0,$pos_data_end);
+		}
+		$demo["script"]=$code_data;
+	}else{
+		$demo["script"]=$arr_code[3];
+	}
+	$demo["code"]=$code_all;
+	echo json_encode($demo);
+}
+
+
+
+//运行demo_[详情页]
+if($_REQUEST["act"]=="running"){
+	$page=$_REQUEST["page"];
+	$folder=$_REQUEST["folder"];
+	$col=$_REQUEST["col"];
+	$ttl=$_REQUEST["demo"];
+	$dataRefer=$_REQUEST["dataRefer"];
+	$code_config=stripcslashes($_REQUEST["code_config"]);
+	$arr_code=code_arr($page,$folder,$ttl);//源代码数组
+	if(trimall($_REQUEST["way"])=="data-js"){
+		//截取data-js两边的代码
+		$pos_data=newstripos($arr_code[2], "data-js", 1);
+		$code_before=substr($arr_code[2], 0,$pos_data);
+		$pos_data2=substr($arr_code[2],$pos_data);
+		$pos_tab_end=newstripos($pos_data2, ">", 1);
+		$pos_data3=substr($pos_data2,0,$pos_tab_end);		
+		$pos_data_end=newstripos($pos_data3, "&nbsp;", 1);
+		if(!$pos_data_end){
+			$pos_data_end=newstripos($pos_data2, ">", 1);
+			$code_after=substr($pos_data2, $pos_data_end);
+		}else{
+			$code_after=substr($arr_code[2], $pos_data_end);
+		}
+		$code_all["html"]=$code_before.$code_config.$code_after;
+		$code_all["script"]="<script>"."\n"."$(function(){"."\n".$arr_code[3]."});"."\n"."</script>";
+	}else{
+		$code_all["html"]=$arr_code[2];
+		$code_all["script"]="<script>"."\n"."$(function(){"."\n".$code_config."});"."\n"."</script>";
+	}
+	$str_script=getRefer($page,$ttl,$folder,0,$dataRefer);//依赖
+	$code_all=$str_script."\n"."<style>".$arr_code[0]."</style>"."\n".$code_all["html"]."\n".$code_all["script"];//模板渲染代码
+	$view=fopen("temp_details_setting.html","w");
+	fwrite($view,'<meta charset="utf-8">'."\n");
+	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
+	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
+	fwrite($view,'<body style="min-height:1500px;">'."\n");
+	fwrite($view,$code_all);
+	fwrite($view,'</body>'."\n");
+	fclose($view);
+	echo json_encode("seccess");
 }
 
 
@@ -275,14 +333,18 @@ function eachFile($list,$page,$url2,$folder){
 
 
 //获取插件demo文件名和描述
-function plusDemos($dir,$page,$folder){
+function plusDemos($dir,$page,$folder,$ttl){
 	$files=my_scandir($dir,$page);
+	$index=0;
 	foreach($files as $k=>$v){
-		$demo[$k]["name"]=substr($v,0,-5);
-		$infos=info_arr($page,$v,$folder);
-		$demo[$k]["desc"]=$infos[2];
+		if(substr($v,0,-5)!="index"){
+			$info_demo[$index]["name"]=substr($v,0,-5);
+			$infos=info_arr($page,$ttl.'/'.substr($v,0,-5),$folder);
+			$info_demo[$index]["desc"]=$infos[1];
+			$index++;
+		}
 	};
-	return $demo;
+	return $info_demo;
 }
 
 

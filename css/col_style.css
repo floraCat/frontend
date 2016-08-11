@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+html,body{ overflow-x: hidden;}
 
 .noClick{ position: relative;}
 .noClick:after{ content: '待完善中'; position: absolute; top: 0; left:0; width: 100%; height: 100%; line-height: 140px; z-index: 99; background: #fff; opacity: .7; -webkit-opacity:.7; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);}
@@ -57,7 +58,7 @@
 
 /* top_* */
 .pCat7{ overflow:hidden; width:800px; margin: 40px auto 0;}
-.pCat7 li{ float:left; text-align:center; padding: 0 14px; margin-top: 30px;}
+.pCat7 li{ float:left; text-align:center; padding: 0 14px; margin:20px 0px 10px;}
 .pCat7 li .img{ display:block; width:120px; height:120px; border:#ddd solid 6px;
 border-radius:66px; -webkit-border-radius:66px; -moz-border-radius:66px; -khtml-border-radius:66px;}
 .pCat7 li:hover .img{ background-color:#3f86f0;}
@@ -66,11 +67,11 @@ border-radius:60px; -webkit-border-radius:60px; -moz-border-radius:60px; -khtml-
 .pCat7 li h5{ font-size:13px;line-height: 30px;}
 .pCat7 li h5 a{ color: #444;}
 .pCat7 li h5 a i{ display: inline; font-size: 12px; color: #5cb85c; font-style: normal;}
-/*.topTtl{ width: 800px; margin:30px auto 0; font-size: 14px; font-weight:bold;}*/
+.hd-pCat{ font-size: 14px; font-weight: bold;}
 
 
 /* list_1 */
-.noteList{ position: absolute; top: 116px; left: 0; width: 100%; margin: 0; background: #f7f7f7; border:1px solid #e1e1e1; color: #666; line-height: 28px;}
+.noteList{ position: absolute; top: 116px; left: 0; width: 100%; margin: 0; background: #f7f7f7; border:1px solid #e1e1e1; color: #666; line-height: 28px; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;}
 .noteList p{ width: 1200px; margin: 0 auto;}
 .noteList p.s{ width: 800px;}
 .noteList p em{ color: #5cb85c;}
@@ -198,11 +199,11 @@ body .cke_chrome{ border:none; border-left: #ddd 1px solid;}
 .fTemps .drops .ttl2{ height: 20px; line-height: 20px; padding:10px 0 5px 20px; color: #888; }
 .fTemps .drops .code{ overflow-y:visible; display: block; width:630px; margin: 0 auto; background-color: #ecf1e7; padding: 15px 15px 10px; color: #5cb85c; border:#c1dfc1 1px solid; white-space:pre-wrap; font-size: 13px; font-family: 微软雅黑;}
 .fTemps .btn-run{ position: absolute; bottom: 75px; right: 30px; width: 100px; height: 35px; font-size: 14px; line-height: 35px; cursor: pointer; background: #5cb85c; text-align: center; color: #fff; border-radius: 5px;}
-.fTemps .btns{ overflow: hidden; padding: 15px 20px;}
+.fTemps .btns{ position: relative; overflow: hidden; padding: 15px 20px;}
 .fTemps .btns span{ float: left; height: 35px; line-height: 35px; color: #888; margin-right: 10px;}
 .fTemps .btns a{ float: left; width: 100px; height: 33px; font-size: 14px; line-height: 33px; border:#5cb85c 1px solid; text-align: center; color:#5cb85c; margin-right: 15px; border-radius: 5px;}
 
 .fDemo{ display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;}
-.fDemo .mask{ position: absolute; top: 10%; left: 50%; width: 800px; height: 80%; margin-left: -400px; background-color: #000; opacity: .5;}
-.fDemo .quit{ z-index: 99; position: absolute; top: 10%; left: 50%; margin-left: 320px; width: 80px; height: 80px; background-color: #000; opacity: .5; }
-.fDemo .iframe{ position: absolute; top: 10%; left: 50%; width: 800px; height: 80%; border:none; margin-left: -400px;}
+.fDemo .mask{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; opacity: .5;}
+.fDemo .quit{ z-index: 99; position: absolute; top: 0; right:0; width: 80px; height: 80px; opacity: .5; background:#fff url(imgs/i_cross.png) no-repeat center; background-size: 70px;}
+.fDemo .iframe{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:none;}

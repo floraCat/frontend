@@ -32,58 +32,57 @@
     <div class="Mbody MStyle">
 
         <ol>
-            <h3>消浮：</h3>
+            <h3>常用cdn链接：</h3>
             <ul>
-                <xmp class="code">.clr{ *display: inline-block;}
-.clr:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}</xmp>
+                <xmp class="code">http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js</xmp>
+                <a class="copy">复制代码</a>
+            </ul>
+            <ul>
+                <xmp class="code">http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css</xmp>
+                <a class="copy">复制代码</a>
+            </ul>
+            <ul>
+                <xmp class="code">http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js</xmp>
+                <a class="copy">复制代码</a>
+            </ul>
+            <ul>
+                <xmp class="code">http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js</xmp>
+                <a class="copy">复制代码</a>
+            </ul>
+            <ul>
+                <xmp class="code">http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js</xmp>
+                <a class="copy">复制代码</a>
+            </ul>
+            <xmp class="des">说明：对应非压缩版的去掉链接中的.min即可 | 链接中对应版本号可改成你需要的即可</xmp>
+        </ol>
+        <ol>
+            <h3>html5兼容：</h3>
+            <ul>
+                <xmp class="code"><script src="http://api.html5media.info/1.1.4/html5media.min.js"></script></xmp>
+                <xmp class="des">说明：为不支持html5标签的浏览器使用；可包含在<!--[if lt IE 9]><![endif]-->内</xmp>
                 <a class="copy">复制代码</a>
             </ul>
         </ol>
         <ol>
-            <h3>背景透明度：</h3>
+            <h3>css3兼容：</h3>
             <ul>
-                <xmp class="code">background:#000; opacity:.5; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);</xmp>
-                <xmp class="des">说明：此方案一兼容ie7及以上版本的浏览器；不足之处在于内部的文本会继承其透明度，从而字体看上去比较浅</xmp>
+                <xmp class="code"><script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script></xmp>
+                <xmp class="des">说明：为 IE6-8 以及其它不支持 CSS3 Media Queries 的浏览器提供媒体查询的 min-width 和 max-width 特性，实现响应式网页设计；可包含在<!--[if lt IE 9]><![endif]-->内</xmp>
                 <a class="copy">复制代码</a>
             </ul>
-            <ul>
-                <xmp class="code">background:rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000,endcolorstr=#7F000000);</xmp>
-                <xmp class="des">说明：此方案二兼容ie7及以上版本的浏览器；不足之处在于ie9会识别两次透明度，从而较其他浏览器透明度要底</xmp>
+            <!-- <ul>
+                <xmp class="code">.test{ behavior: url(ie-css3.htc);}</xmp>
+                <xmp class="des">说明：</xmp>
                 <a class="copy">复制代码</a>
-            </ul>
+            </ul> -->
         </ol>
-        <ol>
-            <h3>图片垂直和水平居中：</h3>
+       <!--  <ol>
+            <h3>视频播放兼容：</h3>
             <ul>
-                <xmp class="code">display: table-cell; width: 200px; height: 200px; vertical-align: middle; text-align: center;</xmp>
-                <xmp class="des">说明：以上样式设置在容器上，如容器绝对定位或浮动，垂直居中不生效</xmp>
-                <a class="copy">复制代码</a>
-            </ul>
-        </ol>
-
-        <!-- <ol>
-            <h3>文本或格式相关：</h3>
-            <ul>
-                <xmp class="code">font-family: Consolas;</xmp>
-                <xmp class="des">说明：html代码字体使用此字体较其他美观</xmp>
-                <a class="copy">复制代码</a>
-            </ul>
-            <ul>
-                <xmp class="code">xmp{ white-space: pre-wrap;}</xmp>
-                <xmp class="des">说明：让xmp标签中的文本自动换行</xmp>
-                <a class="copy">复制代码</a>
-            </ul>
-            <ul>
-                <xmp class="code"><textarea spellcheck="false"></textarea></xmp>
-                <xmp class="des">说明：此设置让浏览器不要对元素内容进行拼写检查，即不会出现波浪底线等样式</xmp>
-                <a class="copy">复制代码</a>
-            </ul>
-        </ol>
-        <ol>
-            <h3>html代码字体：</h3>
-            <ul>
-                <xmp class="code"></xmp>
-                <xmp class="des">说明：显示效果较其他字体美观</xmp>
+                <xmp class="code"><link rel="stylesheet" href="http://www.jq22.com/demo/video-js/video-js.css" />
+<script src="http://www.jq22.com/demo/video-js/video.js"></script></xmp>
+                <div class="des">说明：此为通用的在网页上嵌入视频播放器的 JS 库，Video.js 自动检测浏览器对 HTML5 的支持情况，如果不支持 HTML5 则自动使用 Flash 播放器;
+video.js在低版本的ie浏览器要求放在<head>内才能生效</div>
                 <a class="copy">复制代码</a>
             </ul>
         </ol> -->

@@ -12,11 +12,12 @@
 .Mbody a.more{ display:inline-block; width:8px; height:8px; background-color:#cc0000; margin:0 5px; /**/border-radius:4px; -webkit-border-radius:4px;}
 
 .Mbody ol{ margin-bottom: 10px; border:#e5e5e5 1px solid; border-top: none;}
-.Mbody ul{ position: relative;}
-.Mbody .code{ font-family:Consolas; color:#8da76f; padding:5px 85px 5px 5px; border:none; background-color:#f8f8f8; font-size:12px; line-height:22px; border-top: #eee 1px solid; overflow:auto; word-wrap:break-word;}
+.Mbody ul{ position: relative; background-color:#f8f8f8;}
+.Mbody ul:hover{ background-color: #f3f3f3;}
+.Mbody .code{ font-family:Consolas; color:#8da76f; padding:5px 85px 5px 5px; border:none; font-size:12px; line-height:22px; border-top: #eee 1px solid; overflow:auto; white-space: pre-wrap;}
 
 
-.MStyle .des{ font-size: 12px; color: #bbb; line-height: 21px; border-top: #eee 1px solid; padding: 0 10px;}
+.MStyle .des{ font-family: Consolas; font-size: 12px; color: #bbb; line-height: 18px; border-top: #eee 1px solid; padding: 3px 10px; white-space: pre-wrap;}
 .MStyle .copy{ position: absolute; top: 6px; right: 5px; height: 20px; line-height: 20px; padding: 0 10px; cursor: pointer; font-size: 12px; text-align: center; border:#c1dfc1 1px solid; background-color: #e4f6e4;}
 
 .mAlert3{ position:absolute; bottom:10px; right: -18%; width:95px; height:20px; line-height:20px; font-size:10px; background:#5cb85c; color: #fff; text-align:center; border-radius: 4px; opacity:0;}

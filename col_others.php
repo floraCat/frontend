@@ -25,6 +25,11 @@ if($_REQUEST["col"]=="style"){
 	$smarty->display("top_others_style.html");
 }
 
+//常用脚本
+if($_REQUEST["col"]=="js"){
+	$smarty->display("top_others_js.html");
+}
+
 //常用正则
 if($_REQUEST["col"]=="reg"){
 	$smarty->display("top_others_reg.html");

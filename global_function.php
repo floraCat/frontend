@@ -5,19 +5,22 @@
 function my_scandir($dir,$page){
     $files = array();  
     $dir_list = scandir($dir);  
+
     foreach($dir_list as $file){  
 		$path_parts = pathinfo($file);
 		if($page=="plus"){
-			if($path_parts['extension']!='html'){
+			if($path_parts['extension']!='html'){//插件列表读取文件夹名称
 				if ( $file != ".." && $file != "." ){  
 					if ( is_dir($dir . "/" . $file) ){  
 						$files[] = $file."/index.html";  
 					}else{  
 						$files[] = $file;  
 					}  
-				}  
+				} 
+			}else{//插件详情页读取文件夹名称
+				$files[] = $file;
 			}
-		}else{
+		}else{//除插件外读取html文件名称
 			if($path_parts['extension']=='html'){
 				if ( $file != ".." && $file != "." ){  
 					if ( is_dir($dir . "/" . $file) ){  
@@ -261,9 +264,13 @@ function htmlTabs($str){
 
 
 //获取依赖js文件
-function getRefer($page,$ttl,$folder,$basename){
+function getRefer($page,$ttl,$folder,$basename,$dataRefer){
 	$arr_info=info_arr($page,$ttl,$folder);
-	$refer=trimall($arr_info[2]);
+	if($dataRefer!=""){
+		$refer=trimall($dataRefer);
+	}else{
+		$refer=trimall($arr_info[2]);
+	}
 	if($refer!=""){
 		$arr_refer=explode(',', $refer);
 		$str_script="";
@@ -272,7 +279,11 @@ function getRefer($page,$ttl,$folder,$basename){
 			if($basename){
 				$url_js=basename($temp[0]);
 			}else{ $url_js=$temp[0];}
-			$script='<script src="'.$url_js.'"></script>';
+			if(substr($url_js,-3,3)=="css"){
+				$script='<link rel="stylesheet" href="'.$url_js.'" />';
+			}else{
+				$script='<script src="'.$url_js.'"></script>';
+			}
 			$str_script.=$script."\n";
 		}
 	}

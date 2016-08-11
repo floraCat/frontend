@@ -53,56 +53,22 @@ $(function(){
 
 <!----兼容---->
 <!--_hack-->
-firefox:yes,
-chrome:yes,
-safari:yes,
-ie11:yes,
-ie10:yes,
-ie9:yes,
-ie8:yes,
-ie7:no,
-ie6:no
+
 <!--hack_-->
 
 <!----描述---->
 <!--_desc-->
-切换卡[多个]
+fade效果
 <!--desc_-->
 
 <!----依赖---->
 <!--_refer-->
-js/col_plus/self/h-tabs.js:主要执行脚本
+
 <!--refer_-->
 
 <!----说明---->
 <!--_note-->
-<pre>
-* 插件名称：切换卡
- * 监听属性：'data-js-tabs'
- * 插件描述：多个显隐层选择触发切换
- * 参数说明：
- *   - 'data-js-tabs'的值为三个（最后一个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
- *   - @param1:触发器组容器（必需）
- *   - @param2:显隐层组容器（必需）
- *   - @param3:显隐层显示模式（可选）
- * 其他说明：
- *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
- *   - 兼容chorme,firefox,ie
 
- 示例：
-<xmp><div data-js-tabs='ul|ol|fade'>
-    <ul>
-        <li>触发器_1</li>
-        <li>触发器_2</li>
-        <li>触发器_3</li>
-    </ul>
-    <ol>
-        <div>显隐层_1</div>
-        <div>显隐层_2</div>
-        <div>显隐层_3</div>
-    </ol>
-</div></xmp>
-</pre>
 <!--note_-->
 
 

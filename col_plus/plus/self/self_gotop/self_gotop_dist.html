@@ -1,0 +1,75 @@
+<?php echo($meta);?>
+
+<body>
+
+
+<style>
+/*_css*/
+.p-gotop{ position: fixed; display: none; bottom: 100px; right: 20px; width: 35px; height: 35px; background: url(images/pics/i_gotop.png) no-repeat center; background-size: 100%;}
+/*css_*/
+</style>
+
+
+<!--_html-->
+<div class="p-gotop" data-js-gotop="200|400"></div>
+<!--html_-->
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+滚动一定距离才显示
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_plus/self/h-gotop.js:主要执行脚本
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+ * 插件名称：返回顶部
+ * 监听属性：'data-js-gotop'
+ * 插件描述：（滚动一定距离后显示，）点击后返回顶部
+ * 参数说明：
+ *   - 'data-js-gotop'的值为两个（可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2；
+ *   - @param1：<Number> 控件显示的滚动距离（可选）
+ *   - @param2: <Number> 返回顶部时的速度（可选）
+ * 其他说明：
+  *   - param1/param2的参数值为纯数值，每个参数不需要用引号包裹
+ *   - 兼容chorme,firefox,ie
+
+ 示例：
+<xmp><div data-js-gotop="200|400"></div></xmp>
+</pre>
+<!--note_-->
+
+
+
+</body>
+</html>

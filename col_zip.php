@@ -51,14 +51,19 @@ if($_REQUEST["act"]=="zipAll"){
 		$page=$_GET["page"];
 		$folder=$_GET["folder"];
 		$ttl=$_GET["ttl"];
-		$str_script=getRefer($page,$ttl,$folder,1);//依赖
+		$str_script=getRefer($page,$ttl,$folder,1,"");//依赖
 		//模板渲染代码
 		$doc_top='<!DOCTYPE HTML>'."\n".'<html>'."\n".'<head>'."\n\t".'<meta charset="utf-8">'."\n\t".'<link rel="stylesheet" href="reset.css" />'."\n\t".'<script src="jquery-1.10.2.js"></script>'."\n\t".$str_script."\n".'</head>'."\n".'<body>'."\n";
 		$doc_btm="\n".'</body>'."\n".'</html>';
 		$arr_code=code_arr($page,$folder,$ttl);
 		$code_all=$doc_top."\n".code_str($arr_code)."\n".$doc_btm;
 
-		$f=fopen($url."/".$ttl.".html","w+");
+		if(stripos($ttl,"/")===false){//名称带斜杠路径
+			$ttl8=$ttl;
+		}else{//只文件名称
+			$ttl8=substr($ttl, stripos($ttl,"/")+1);
+		}
+		$f=fopen($url."/".$ttl8.".html","w+");
 		fwrite($f,$code_all);
 		fclose($f);
 
