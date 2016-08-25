@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="js/mediaelement.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<video id="player1" src="media/echo-hereweare.mp4" controls="controls"></video>
+	<script>
+		new MediaElement('player1', {
+			success: function(video) {
+				video.play();
+			}
+		});
+	</script>
+</body>
+</html>

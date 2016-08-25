@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>视频播放</title>
+</head>
+<body>
+
+
+<style>
+/*_css*/
+
+/*css_*/
+</style>
+
+
+<!--_html-->
+	<video id="player1" src="js/col_unit/mediaElement/media/echo-hereweare.mp4" controls="controls"></video>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+	
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:yes,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+视频播放
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_unit/mediaElement/js/mediaelement.min.js:视频播放
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+官网：http://mediaelementjs.com/
+
+
+调用：
+	html:
+		&lt;video src="media/echo-hereweare.mp4">&lt;/video>
+
+	js:
+		new MediaElement('player1', {
+			success: function(video) {
+				video.play();
+			}
+		});
+
+参数：
+	success回调函数的video参数有如下方法：
+		load
+			加载视频
+
+		play
+			播放视频
+			
+		pause
+			暂停视频
+
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

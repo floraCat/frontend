@@ -51,7 +51,7 @@
 <{section name=list loop=$temp}>
 <li data-ttl="<{$temp[list].ttl}>">
 	<a class="a img" href="col_handle.php?page=<{$smarty.get.page}>&col=<{$smarty.get.col}>&folder=<{$smarty.get.folder}>&details=<{$temp[list].ttl}>" target="_blank">
-		<img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list].ttl}>" />
+		<img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{$temp[list].ttl}>.png" />
 	</a>
 	<h5><span><{$temp[list].ttl}></span> / <{$temp[list].ttl_zh}></h5>
 	<ol data-title="<{$temp[list].ttl}>">
@@ -109,25 +109,11 @@ $(function(){
 			},
 			afterCopy:function(){
 				$(".h_mask").show().delay(1000).fadeOut();
-				$(".mAlert2").css("top",windowH()/2-30+"px").show().delay(1000).fadeOut();
+				$(".mAlert2").css("top",$(window).height()/2-30+"px").show().delay(1000).fadeOut();
 			}
 		});
 	});
 });
-
-
-//屏高
-function windowH(){
-	if(self.innerHeight){ windowHeight = self.innerHeight;
-	}else{
-		if(document.documentElement && document.documentElement.clientHeight){    
-			windowHeight = document.documentElement.clientHeight;
-		}else{
-			if(document.body){ windowHeight = document.body.clientHeight;}
-		}
-	} 
-	return windowHeight;
-}
 
 </script>
 

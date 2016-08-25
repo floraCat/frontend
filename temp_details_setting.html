@@ -1,13 +1,26 @@
+<!DOCTYPE HTML>
+<html>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" />
 <script src="js/jquery-1.10.2.js"></script>
 <body style="min-height:1500px;">
-<script src="js/col_plus/self/h-gotop.js"></script>
+<script src="js/col_plus/self/h-dialog.js"></script>
 
-<style>.p-gotop{ position: fixed; display: none; bottom: 100px; right: 20px; width: 35px; height: 35px; background: url(images/pics/i_gotop.png) no-repeat center; background-size: 100%;}</style>
-<div class="p-gotop" data-js-gotop="110|300"></div>
+<style></style>
+
 <script>
 $(function(){
-
+    $.jDialog({
+    	data_id:'1', //识别id
+		icon:'icon_ok', //图标：class名
+		title:'', //标题
+		note:'弹窗提示信息|center', //提示信息
+		setTime:'', //倒计时：毫秒数
+		btn:'确定|right|confirm|#89b632|white|#89b632', //按键：文本|定位|data-role值|底色|字色|边线色|链接
+		btn2:'取消|left|cancel|#fff|#529d20|#beda84', //按键2：文本|定位|data-role值|底色|字色|边线色|链接
+		icon_quit:'right', //退出x：定位
+		callback:function(){} //回调
+    });
 });
 </script></body>
+</html>

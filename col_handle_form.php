@@ -132,7 +132,7 @@ if($_REQUEST["goto"]=="del"){
 if($_REQUEST["act"]=="viewForm"){
 	$page=$_REQUEST['page'];
 	$folder=$_REQUEST["folder"];
-	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
+	$arr_all=code_all($page,$folder,$_COOKIE["form"]);
 	$smarty->assign("sCode",$arr_all);
 	$smarty->display("list_form_viewAll.html");
 }
@@ -143,7 +143,7 @@ if($_REQUEST["act"]=="viewForm"){
 if($_REQUEST["act"]=="createForm"){
 	$page=$_REQUEST["page"];
 	$folder=$_REQUEST["folder"];
-	$form=$_REQUEST["form"];
+	$form=$_COOKIE["form"];
 	$arr_all=code_all($page,$folder,$form);
 	$code_all=code_str_all($arr_all);
 	$smarty->assign("code",$code_all);
@@ -156,10 +156,10 @@ if($_REQUEST["act"]=="createForm"){
 if($_REQUEST["act"]=="settingAll"){
 	$page=$_REQUEST["page"];
 	$folder=$_REQUEST["folder"];
-	$form=$_REQUEST["form"];
+	$form=$_COOKIE["form"];
 
 	//模板渲染代码
-	$arr_all=code_all($page,$folder,$_REQUEST["form"]);
+	$arr_all=code_all($page,$folder,$_COOKIE["form"]);
 	$code_all=code_str_all($arr_all);
 	$view=fopen("temp_details_setting.html","w");
 	fwrite($view,'<meta charset="utf-8">');

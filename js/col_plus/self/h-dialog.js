@@ -20,7 +20,6 @@
 ;(function($){
 
 	'use strict';
-	alert(111);
 
 	//自定义参数
 	var _maskColor="#333";//覆盖层底色

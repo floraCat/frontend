@@ -131,8 +131,7 @@ html[xmlns] .flexslider .slides {
   transition: all 0.3s ease-in-out;
 }
 .flex-direction-nav a:before {
-  font-family: "flexslider-icon";
-  font-size: 40px;
+  font:40px "flexslider-icon";
   display: inline-block;
   content: '\f001';
   color: rgba(0, 0, 0, 0.8);

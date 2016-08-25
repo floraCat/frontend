@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>日期控件</title>
+</head>
+<body>
+
+
+<style>
+/*_css*/
+.wrap {
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 100px;
+}
+.section {
+	margin-bottom: 30px;
+}
+h3 {
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	color: #fff;
+}
+input {
+	width: 250px;
+	height: 30px;
+	font-size: 16px;
+}
+/*css_*/
+</style>
+
+
+<!--_html-->
+	<div class="wrap">
+		<div class="section">
+			<h3>常规日期选择：</h3>
+			<input type="text" onfocus="">
+		</div>
+	</div>
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+	$('input').on('focus', function() {
+		WdatePicker();
+	});
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:yes,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+常规日期选择
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_unit/WdatePicker/WdatePicker.js: 主文件
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

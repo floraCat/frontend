@@ -4,6 +4,14 @@
 
 
 
+<!--===================== 标题 =====================-->
+<!--_desc-->
+fade效果
+<!--desc_-->
+
+
+
+<!--===================== 样式 =====================-->
 <style>
 /*_css*/
 .p-select{ width: 55px; position: relative;}
@@ -17,6 +25,8 @@
 </style>
 
 
+
+<!--===================== HTML =====================-->
 <!--_html-->
 <ul class="p-select" data-js-select=".key|.drop|fade">
     <i></i>
@@ -33,6 +43,7 @@
 
 
 
+<!--===================== 脚本 =====================-->
 <script>
 $(function(){
 /*_js*/
@@ -41,60 +52,6 @@ $(function(){
 });
 </script>
 
-
-
-<!--------------------------详情页信息------------------------------>
-
-<!----兼容---->
-<!--_hack-->
-firefox:yes,
-chrome:yes,
-safari:yes,
-ie11:yes,
-ie10:yes,
-ie9:yes,
-ie8:yes,
-ie7:no,
-ie6:no
-<!--hack_-->
-
-<!----描述---->
-<!--_desc-->
-fade效果
-<!--desc_-->
-
-<!----依赖---->
-<!--_refer-->
-js/col_plus/self/h-select.js:主要执行脚本
-<!--refer_-->
-
-<!----说明---->
-<!--_note-->
-<pre>
- * 插件名称：自定义选项框
- * 监听属性：'data-js-select'
- * 插件描述：模拟默认的选项框
- * 参数说明：
- *   - 'data-js-select'的值为三个（最后一个可选）参数组合的字符串，每个参数用'|'隔开，格式如：param1|param2|param3；
- *   - @param1:显示默认值的容器（必需）
- *   - @param2:下拉选项框（必需）
- *   - @param3:下拉选项框显示模式（可选）
- * 其他说明：
- *   - 触发按键和下拉选项必需带有属性'data-val'
- *   - param1/param2的参数值为所有可行的css选择器，如（.cls,#id,p,>a,[data-role]等），每个参数不需要用引号包裹
- *   - 兼容chorme,firefox,ie
-
- 示例：
-<xmp><div data-js-select='>a|ul|fade'>
-    <a data-val>默认值</a>
-    <ul>
-        <li data-val="1">下拉_1</li>
-        <li data-val="2">下拉_2</li>
-        <li data-val="3">下拉_3</li>
-    </ul>
-</div></xmp>
-</pre>
-<!--note_-->
 
 
 

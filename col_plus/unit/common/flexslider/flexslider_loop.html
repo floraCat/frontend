@@ -1,0 +1,50 @@
+
+<!--===================== 标题 =====================-->
+<!--_desc-->
+不循环轮播
+<!--desc_-->
+
+<!--===================== 样式 =====================-->
+<style>
+/*_css*/
+.flexslider {
+	margin: 0 auto;
+	width: 600px;
+	height: 400px;
+}
+/*css_*/
+</style>
+
+
+<!--===================== HTML =====================-->
+<!--_html-->
+<div class="flexslider">
+	<ul class="slides">
+		<li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (1).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (2).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (3).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (4).jpg" />
+		</li>
+	</ul>
+</div>
+<!--html_-->
+
+
+<!--===================== 脚本 =====================-->
+<script>
+$(function(){
+	/*_js*/
+	$('.flexslider').flexslider({
+		animation: 'slide',
+		animationLoop: false
+	});
+	/*js_*/
+});
+</script>

@@ -99,10 +99,13 @@ if($_REQUEST["act"]=="setting"){
 	$arr_code=code_arr($page,$folder,$ttl);
 	$code_all=$str_script."\n".code_str($arr_code);//模板渲染代码
 	$view=fopen("temp_details_setting.html","w");
+	fwrite($view,'<!DOCTYPE HTML>'."\n");
+	fwrite($view,'<html>'."\n");
 	fwrite($view,'<meta charset="utf-8">'."\n");
 	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,$code_all);
+	fwrite($view,"\n".'</html>');
 	fclose($view);
 
 	//固定和可编辑样式
@@ -161,16 +164,14 @@ if($_REQUEST["act"]=="setting"){
 			}
 			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($class).'{'.$css.'}<br />';
 		}else{
-			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($v1).'<br />';
+			$css='&nbsp;&nbsp;&nbsp;&nbsp;'.trim($v1).'}<br />';
 		}
 		$str_unit.=$css;
 	};
-	
 	if($page=="form"){ $html=htmlTabs('<div class="p-form" style="width:500px; margin:10px auto;">'."\n".$arr_code[2]."\n".'</div>');}
 	else{ $html=htmlTabs($arr_code[2]);}
 	$js=htmlTabs('<script>'."\n".$arr_code[4].'$(function(){'."\n".$arr_code[3].'});'."\n".'</script>');
 	$str_unit='<p>&lt;style&gt;</p>'.$str_unit.'<p>&lt;/style&gt;</p>'.$html."<br />".$js;
-
 	$smarty->assign("str",$str_unit);
 	$smarty->display("details_setting.html");
 }
@@ -205,7 +206,11 @@ if($_REQUEST["details"]){
 
 	//源代码
 	$arr_code=code_arr($_REQUEST['page'],$_REQUEST['folder'],$_REQUEST['details']);
+	if($_GET["page"]=="plus"){
+		$way=$arr_code[2];
+	}
 	$code_all=code_str($arr_code);
+	$smarty->assign("way",$way);
 	$smarty->assign("code",$code_all);
 
 	//模块相关信息
@@ -222,7 +227,7 @@ if($_REQUEST["details"]){
 	$arr["refer"]=$arr_info[2];
 	$arr["note"]=$arr_info[3];
 
-	if($page=="plus"){
+	if($_GET["page"]=="plus"){
 		$dir='col_'.$_REQUEST["page"].'/'.$_REQUEST["col"].'/'.$_REQUEST["folder"].'/'.substr($_REQUEST["details"],0,-6);
 		$info_demo=plusDemos($dir,$_REQUEST["page"],$_REQUEST["folder"],substr($_REQUEST["details"], 0,-6));
 		$arr["descs"]=$info_demo;
@@ -298,12 +303,14 @@ if($_REQUEST["act"]=="running"){
 	$str_script=getRefer($page,$ttl,$folder,0,$dataRefer);//依赖
 	$code_all=$str_script."\n"."<style>".$arr_code[0]."</style>"."\n".$code_all["html"]."\n".$code_all["script"];//模板渲染代码
 	$view=fopen("temp_details_setting.html","w");
+	fwrite($view,'<!DOCTYPE HTML>'."\n");
+	fwrite($view,'<html>'."\n");
 	fwrite($view,'<meta charset="utf-8">'."\n");
 	fwrite($view,'<link rel="stylesheet" href="css/reset.css" />'."\n");
 	fwrite($view,'<script src="js/jquery-1.10.2.js"></script>'."\n");
 	fwrite($view,'<body style="min-height:1500px;">'."\n");
 	fwrite($view,$code_all);
-	fwrite($view,'</body>'."\n");
+	fwrite($view,'</body>'."\n".'</html>');
 	fclose($view);
 	echo json_encode("seccess");
 }

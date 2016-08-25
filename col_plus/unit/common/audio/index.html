@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>音频播放</title>
+</head>
+<body>
+
+
+<style>
+/*_css*/
+
+/*css_*/
+</style>
+
+
+<!--_html-->
+
+<!--html_-->
+
+
+
+<script>
+$(function(){
+/*_js*/
+
+/*js_*/
+});
+</script>
+
+
+
+
+<!--------------------------详情页信息------------------------------>
+
+<!----兼容---->
+<!--_hack-->
+firefox:yes,
+chrome:yes,
+safari:yes,
+ie11:yes,
+ie10:yes,
+ie9:yes,
+ie8:yes,
+ie7:no,
+ie6:no
+<!--hack_-->
+
+<!----描述---->
+<!--_desc-->
+音频播放
+<!--desc_-->
+
+<!----依赖---->
+<!--_refer-->
+js/col_unit/audio/js/audio.js: audio音频播放,
+js/col_unit/audio/css/blue.css: 样式
+<!--refer_-->
+
+<!----说明---->
+<!--_note-->
+<pre>
+官网：http://kolber.github.io/audiojs/
+
+说明：
+	这个插件使得html5标签&lt;audio>能够在不支持的浏览器上播放
+
+使用方法：
+
+html结构如下：
+	&lt;audio id="player" src="music.mp3"></audio>
+
+js调用：
+	var audioElem = document.getElementById('player');
+	// 获取播放器的实例对象
+	var player = audiojs.create(audioElem);
+
+播放器实例对象有几个方法供使用：
+	load
+		加载音频文件，传入一个字符串参数为音频文件的地址。
+
+	play
+		播放音频。无参数
+
+	pause
+		暂停播放。无参数
+
+	setVolume
+		调节音量，传入0到1之间的数值。
+
+    skipTo
+        跳到指定进度，传入0到1之间的数值。
+</pre>
+<!--note_-->
+
+
+</body>
+</html>

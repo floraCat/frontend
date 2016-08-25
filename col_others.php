@@ -38,7 +38,7 @@ if($_REQUEST["col"]=="reg"){
 //列表
 if($_REQUEST["act"]=="listAll"){
 	$url2='col_others/'.$_REQUEST["col"].'/'.$_REQUEST["folder"];
-	$files=my_scandir($url2);
+	$files=my_scandir($url2,$_REQUEST["page"]);
 	foreach($files as $k0=>$v0){
 		$temp[$k0]=substr($v0,0,strpos($v0,"_"));
 				$cats[0]=$temp[0];
@@ -60,7 +60,7 @@ if($_REQUEST["col"]=="css3"){
 	$rsList=array();
 
 	//border-radius
-	$borderRadius["title"]="border-radius";
+	$borderRadius["title"]="border-radius:";
 	$borderRadius["ttl"]="border-radius";
 	$borderRadius["val"]='5px';
 	$borderRadius["funName"]='borderRadius';
@@ -69,7 +69,7 @@ if($_REQUEST["col"]=="css3"){
 	}
 
 	//opacity
-	$opacity["title"]="opacity";
+	$opacity["title"]="opacity:";
 	$opacity["ttl"]="opacity";
 	$opacity["val"]=0.6;
 	$opacity["funName"]='opacity';
@@ -78,7 +78,7 @@ if($_REQUEST["col"]=="css3"){
 	}
 
 	//box-shadow
-	$boxShadow["title"]="box-shadow";
+	$boxShadow["title"]="box-shadow:";
 	$boxShadow["ttl"]="box-shadow";
 	$boxShadow["val"]='0 0 2px #ccc';
 	$boxShadow["funName"]='boxShadow';
@@ -87,7 +87,7 @@ if($_REQUEST["col"]=="css3"){
 	}
 
 	//text-shadow
-	$textShadow["title"]="text-shadow";
+	$textShadow["title"]="text-shadow:";
 	$textShadow["ttl"]="text-shadow";
 	$textShadow["val"]='1px 1px 0 #ccc';
 	$textShadow["funName"]='textShadow';
@@ -96,70 +96,70 @@ if($_REQUEST["col"]=="css3"){
 	}
 
 	//transform: rotate(45deg)
-	$rotate["title"]="transform:rotate";
+	$rotate["title"]="transform:rotate(...)";
 	$rotate["ttl"]="rotate";
-	$rotate["val"]='rotate(45deg)';
+	$rotate["val"]='45deg';
 	$rotate["funName"]='rotate';
 	function rotate($val){
 		return $rs='-webkit-transform: rotate('.$val.'); -ms-transform: rotate('.$val.'); transform: rotate('.$val.');';
 	}
 
 	//transform: translate(50px,100px)
-	$translate["title"]="transform:translate";
+	$translate["title"]="transform:translate(...)";
 	$translate["ttl"]="translate";
-	$translate["val"]='translate(50px,50px)';
+	$translate["val"]='50px,50px';
 	$translate["funName"]='translate';
 	function translate($val){
 		return $rs='-webkit-transform: translate('.$val.'); -ms-transform: translate('.$val.'); transform: translate('.$val.');';
 	}
 
 	//transform: scale(2,4);
-	$scale["title"]="transform:scale";
+	$scale["title"]="transform:scale(...)";
 	$scale["ttl"]="scale";
-	$scale["val"]='scale(2,1)';
+	$scale["val"]='2,1';
 	$scale["funName"]='scale';
 	function scale($val){
 		return $rs='-webkit-transform: scale('.$val.'); -ms-transform: scale('.$val.'); transform: scale('.$val.');';
 	}
 
 	//transform: skew(30deg,20deg);
-	$skew["title"]="transform:skew";
+	$skew["title"]="transform:skew(...)";
 	$skew["ttl"]="skew";
-	$skew["val"]='skew(-30deg,0deg)';
+	$skew["val"]='-30deg,0deg';
 	$skew["funName"]='skew';
 	function skew($val){
 		return $rs='-webkit-transform: skew('.$val.'); -ms-transform: skew('.$val.'); transform: skew('.$val.');';
 	}
 
 	//transform:matrix(0.866,0.5,-0.5,0.866,0,0);
-	$matrix["title"]="transform:matrix";
+	$matrix["title"]="transform:matrix(...)";
 	$matrix["ttl"]="matrix";
-	$matrix["val"]='matrix(0.866,0.5,-0.5,0.866,0,0)';
+	$matrix["val"]='0.866,0.5,-0.5,0.866,0,0';
 	$matrix["funName"]='matrix';
 	function matrix($val){
 		return $rs='-webkit-transform: matrix('.$val.'); -ms-transform: matrix('.$val.'); transform: matrix('.$val.');';
 	}
 
 	//transform: rotateX(120deg);
-	$rotateX["title"]="transform:rotateX";
+	$rotateX["title"]="transform:rotateX(...)";
 	$rotateX["ttl"]="rotateX";
-	$rotateX["val"]='rotateX(30deg)';
+	$rotateX["val"]='30deg';
 	$rotateX["funName"]='rotateX';
 	function rotateX($val){
 		return $rs='-webkit-transform: rotateX('.$val.'); transform: rotateX('.$val.');';
 	}
 
 	//transform: rotateY(130deg);
-	$rotateY["title"]="transform:rotateY";
+	$rotateY["title"]="transform:rotateY(...)";
 	$rotateY["ttl"]="rotateY";
-	$rotateY["val"]='rotateY(30deg)';
+	$rotateY["val"]='30deg';
 	$rotateY["funName"]='rotateY';
 	function rotateY($val){
 		return $rs='-webkit-transform: rotateY('.$val.'); transform: rotateY('.$val.');';
 	}
 
 	//transition:all .5s ease-in-out; 
-	$transition["title"]="transition";
+	$transition["title"]="transition(...)";
 	$transition["ttl"]="transition";
 	$transition["val"]='all .5s ease-in-out';
 	$transition["funName"]='transition';
@@ -168,7 +168,7 @@ if($_REQUEST["col"]=="css3"){
 	}
 
 	//animation: myfirst 5s linear 2s infinite alternate;
-	$animation["title"]="animation";
+	$animation["title"]="animation(...)";
 	$animation["ttl"]="animation";
 	$animation["val"]='myfirst 5s linear 2s infinite alternate';
 	$animation["funName"]='animation';

@@ -22,13 +22,13 @@
 <input type="hidden" id="folder" value="<{$smarty.get.folder}>" />
 <input type="hidden" id="details" value="<{$smarty.get.details}>" />
 <{if $smarty.get.page=="plus"}>
-<input type="hidden" id="html" value="<{$code}>" />
+<input type="hidden" id="html" value="<{$way}>" />
 <{/if}>
 
 <div class="fDetails">
 
 	<!--图片-->
-	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}>" /></ol></div>
+	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}>.png" /></ol></div>
 	<p class="ttl"><{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}></p>
 
 	<{if $smarty.get.page=="plus"}>
@@ -146,6 +146,7 @@
 
 
 <script>
+
 window.onload=function(){
 	//默认第一个demo点击
 	$(".fTemps .tabs a").eq(0).trigger("click");
@@ -158,8 +159,7 @@ $(function(){
 		var col=$("#col").val();
 		var folder=$("#folder").val();
 		var details=$("#details").val();
-		var code_str=$("#html").val();
-		var way=code_str.substr(0,code_str.indexOf("<script>"));
+		var way=$("#html").val();
 		var demo=details.substr(0,details.length-6)+"/"+$(this).attr("data-ttl");
 		var submitdata={
 			'page':page,
@@ -189,8 +189,7 @@ $(function(){
 		var col=$("#col").val();
 		var details=$("#details").val();
 		var code_config=$("textarea.code").val();
-		var code_str=$("#html").val();
-		var way=code_str.substr(0,code_str.indexOf("<script>"));
+		var way=$("#html").val();
 		var dataRefer=$("#dataRefer").val().replace(/\s+/g,"");//去掉空格？
 		var demo=details.substr(0,details.length-6)+"/"+$(".fTemps .tabs .on").attr("data-ttl");
 		var submitdata={

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>日期选择</title>
+	<link rel="stylesheet" href="http://localhost:8080/FrontPublic/frontend/css/reset.css">
+	<script src="WdatePicker.js"></script>
+	<style>
+		.wrap {
+			width: 1000px;
+			margin: 0 auto;
+			padding-top: 100px;
+		}
+		.section {
+			margin-bottom: 30px;
+		}
+		h3 {
+			font-size: 14px;
+			font-weight: bold;
+			margin-bottom: 4px;
+			color: #666;
+		}
+		input {
+			width: 250px;
+			height: 30px;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="section">
+			<h3>快速选择月份：</h3>
+			<input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM'})">
+		</div>
+		<div class="section">
+			<h3>快速选择时间：</h3>
+			<input type="text" onfocus="WdatePicker({dateFmt:'HH:mm:ss'})">
+		</div>
+		<div class="section">
+			<h3>正常的日期选择：</h3>
+			<input type="text" onfocus="WdatePicker()">
+		</div>
+		<div class="section">
+			<h3>带时分秒选择：</h3>
+			<input type="text" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+		</div>
+		<div class="section">
+			<h3>自定义格式：</h3>
+			<input type="text" onfocus="WdatePicker({dateFmt:'yyyy年MM月dd日 HH时mm分ss秒'})">
+		</div>
+	</div>
+</body>
+</html>

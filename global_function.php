@@ -55,7 +55,8 @@ function code_arr($page,$folder,$ttl){
 	$start_css=strpos($str,"/*_css");
 	$end_css=strpos($str,"/*css_");
 	$len_css=$end_css-$start_css;
-	$css=substr($str,$start_css+10,$len_css-12);
+	if($start_css){$css=substr($str,$start_css+10,$len_css-12);}
+	else{$css="";}
 
 	$start_spec=strpos($str,"<!--_spec");
 	$end_spec=strpos($str,"<!--spec_");
@@ -66,7 +67,8 @@ function code_arr($page,$folder,$ttl){
 	$start_html=strpos($str,"<!--_html");
 	$end_html=strpos($str,"<!--html_");
 	$len_html=$end_html-$start_html;
-	$html=substr($str,$start_html+14,$len_html-16);
+	if($start_html){$html=substr($str,$start_html+14,$len_html-16);}
+	else{$html="";}
 
 	$start_js=strpos($str,"/*_js");
 	$end_js=strpos($str,"/*js_");
@@ -265,6 +267,11 @@ function htmlTabs($str){
 
 //获取依赖js文件
 function getRefer($page,$ttl,$folder,$basename,$dataRefer){
+
+	if($_REQUEST["col"]=="plus"){
+		$ttl = preg_replace('/(.*)\/(.+)/', '$1/index', $ttl);
+	}
+	//echo($ttl);
 	$arr_info=info_arr($page,$ttl,$folder);
 	if($dataRefer!=""){
 		$refer=trimall($dataRefer);
