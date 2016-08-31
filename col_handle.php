@@ -42,7 +42,7 @@ if($_GET["list"]){
 	if($page=="module"){
 		$sorts=array('base:基本结构模块','refer:参考样式模块');
 	}
-	if($page=="plus" && $col=="plus"){
+	if($page=="plus"){
 		$sorts=array('self:自主封装插件','common:常用插件','recommend:推荐插件');
 	}
 	if($page=="plus" && $col=="unit"){

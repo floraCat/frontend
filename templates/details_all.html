@@ -27,14 +27,45 @@
 
 <div class="fDetails">
 
-	<!--图片-->
-	<div class="fPic"><ol><img src="col_<{$smarty.get.page}>/pictures/<{$smarty.get.col}>/<{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}>.png" /></ol></div>
-	<p class="ttl"><{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}></p>
+	<!--===================图片===================-->
+	<div class="fPic">
+		<ul>
+			<ol>
+				<img src="col_<{$smarty.get.page}>/pictures/<{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}>.png" />
+			</ol>
+		</ul>
+	</div>
 
+
+	<!--===================标题===================-->
+	<div class="fPart name">
+		<h3>名称：</h3>
+		<div class="cont"><{if $smarty.get.page=="plus"}><{$info.ttl_short}><{else}><{$info.ttl}><{/if}></div>
+	</div>
+	
+
+	<!--===================简介===================-->
+	<div class="fPart">
+		<h3>简介：</h3>
+		<div class="cont"><{$info.desc}></div>
+	</div>
+
+
+	<!--===================优势===================-->
+	<div class="fPart">
+		<h3>优势：</h3>
+		<div class="cont"><{$info.desc}></div>
+	</div>
+
+
+	<!--===================demo===================-->
+	<div class="fPart demo">
+		<h3>Demo：</h3>
+		<div class="cont grey">(此插件常用的情景demo)</div>
+	</div>	
 	<{if $smarty.get.page=="plus"}>
 	<!--常用模板展示-->
 	<div class="fTemps">
-		<div class="hd">此插件常用的情景demo如下：</div>
 		<div class="tabs">
 			<{section name=list loop=$info.descs}>
 			<a data-ttl="<{$info.descs[list].name}>"><{$info.descs[list].desc}></a>
@@ -66,8 +97,7 @@
 	<{/if}>
 
 
-
-	<!--兼容-->
+	<!--===================兼容===================-->
 	<input type="hidden" id="dataHack" value="<{$info.hack}>" />
 	<div class="fHack">
 		<ol id="firefox" class="yes"><img src="images/sys/tab_firefox.png" /></ol>
@@ -85,7 +115,6 @@
 			</ul>
 		</ol>
 	</div>
-
 	<{if $smarty.get.page!="plus"}>
 	<!--按键-->
 	<ol class="fBtn">
@@ -105,18 +134,17 @@
 		</ul>
 	</ol>	
 	<{/if}>	
-
 	<xmp id="code" style="display:none;"><{$code}></xmp>
 	<div class="h_mask"></div>
 	<div class="mAlert2">已复制到剪切板！</div>
 
-	<!--简介-->
-	<div class="fDesc"><p>模块描述：<{$info.desc}></p></div>
 
-	<!--依赖-->
+	<!--===================依赖===================-->
+	<div class="fPart">
+		<h3>依赖：</h3>
+		<div class="cont grey">(Demo所依赖的文件)</div>
 	<input type="hidden" id="dataRefer" value="<{$info.refer}>" />
 	<div class="fRely">
-		<h5>DEMO所依赖的文件：</h5>
 		<ol>
 			<li>
 				<p>reset.css</p>
@@ -132,14 +160,55 @@
 			</li>
 		</ol>
 	</div>
+	</div>
 
-	<!--其他说明-->
+
+	<!--===================链接===================-->
+	<div class="fPart">
+		<h3>链接：</h3>
+		<div class="cont">
+			<p><a class="link" href="#">http://www.baidu.com</a></p>
+			<p><a class="link" href="#">http://www.baidu.com</a></p>
+		</div>
+	</div>
+
+
+	<!--===================参数===================-->
+	<div class="fPart">
+		<h3>常用参数：</h3>
+		<div class="cont grey">(此处只列举插件常用的参数，更多详情请点击上面链接查询)</div>
+		<div class="param">
+			<table border="1">
+				<tr class="hd">
+					<td class="t1">参数名</td>
+					<td class="t2">是否必要</td>
+					<td class="t3">说明</td>
+				</tr>
+				<tr>
+					<td class="t1">参数名</td>
+					<td class="t2">是否必要</td>
+					<td class="t3">说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</td>
+				</tr>
+				<tr>
+					<td class="t1">参数名</td>
+					<td class="t2">是否必要</td>
+					<td class="t3">说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+	<!--===================其他说明===================-->
+	<div class="fPart style2">
+		<h3>其他说明：</h3>
+	</div>
 	<div class="fNote">
-		<h5>其他说明：</h5>
 		<ol>
 			<{$info.note}>
 		</ol>
 	</div>
+
 
 </div><!--/fDetails-->
 

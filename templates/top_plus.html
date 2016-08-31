@@ -16,51 +16,48 @@
 
 
 <div class="pTabs pPlus">
-    <li class="fl on" data-role="plus">插件</li>
-    <li class="fr" data-role="unit">组件</li>
+    <li class="fl on" data-role="0">展示</li>
+    <li class="fl" data-role="1">功能</li>
+    <li class="fl" data-role="2">布局</li>
+    <li class="fl" data-role="3">兼容</li>
+    <li class="fl" data-role="4">其他</li>
 </div>
 <input type="hidden" id="tab" name="tab" value="<{$smarty.get.tab}>" />
 <div style="width: 100%; height: 800px;"></div>
 
 
-<div class="pShow show_plus">
 
-    <div class="noteList" style="top: 0;">
+<!--======================切换=======================-->
+<div class="pShow">
+
+    <!-- <div class="noteList" style="top: 0;">
         <p>以下为网页常用插件的分类，每个分类包含 <i>[ </i><em>'自主封装插件'</em><i>：团队成员自主开发封装的插件，不保障无漏洞 ]</i> 和 <i>[ </i><em>'常用插件'</em><i>：常用且较轻量简单的插件 ]</i> 和 <i>[ </i><em>'推荐插件'</em><i>：较有意思值得分享的插件 ]</i></p>
-    </div>
+    </div> -->
 
-    <ul class="pCat7" style="margin-top:50px;">
+    <ul class="pCat7" style="margin-top:50px;" data-url="col_handle.php?page=plus&col=_show&list=">
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=carousel"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=carousel">幻灯片</a></h5>
+            <a class="img" data-col="carousel"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="carousel">幻灯片</a></h5>
         </li>
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=tabs"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=tabs">切换卡</a></h5>
+            <a class="img" data-col="tabs"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="tabs">切换卡</a></h5>
         </li>
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=dropdown"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=dropdown">下拉</a></h5>
+            <a class="img" data-col="dropdown"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="dropdown">下拉</a></h5>
         </li>
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=modal"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=modal">模态窗</a></h5>
+            <a class="img" data-col="pop"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="pop">弹出层</a></h5>
         </li>
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=dialog"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=dialog">对话框</a></h5>
+            <a class="img" data-col="dialog"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="dialog">对话框</a></h5>
         </li>
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=select"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=select">选项框</a></h5>
-        </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=validator"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=validator">表单验证</a></h5>
-        </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=plus&list=gotop"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=plus&list=gotop">返回顶部</a></h5>
+            <a class="img" data-col="select"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="select">选项框</a></h5>
         </li>
     </ul>
 
@@ -68,39 +65,71 @@
 
 
 
-<div class="pShow show_unit" style="left:-9999px;">
+<!--======================输入=======================-->
+<div class="pShow" style="left:-9999px;">
 
-    <div class="noteList" style="top: 0;">
+    <!-- <div class="noteList" style="top: 0;">
         <p class="s">以下为网页常用的功能组件 / 本站所说的<em>'组件'</em>指的是一组附带有指定样式表、脚本文件或图标等资料的整套功能模块</p>
-    </div>
+    </div> -->
 
+    <ul class="pCat7" data-url="col_handle.php?page=plus&col=_function&list=">
+        <li>
+            <a class="img" data-col="validator"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="validator">表单验证</a></h5>
+        </li>
+        <li>
+            <a class="img" data-col="ckeditor"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="ckeditor">编辑器</a></h5>
+        </li>
 
-    <ul class="pCat7">
         <li>
-            <a class="img" href="col_handle.php?page=plus&col=unit&list=ckeditor"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=unit&list=ckeditor">编辑器</a></h5>
+            <a class="img" data-col="WdatePicker"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="WdatePicker">日期选择</a></h5>
         </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=unit&list=flexslider"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=unit&list=ckeditor">图片轮播</a></h5>
-        </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=unit&list=WdatePicker"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=unit&list=WdatePicker">日期选择</a></h5>
-        </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=unit&list=audio"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=unit&list=audio">音频播放</a></h5>
-        </li>
-        <li>
-            <a class="img" href="col_handle.php?page=plus&col=unit&list=mediaelement"><img src="images/sys/3.jpg" alt="" /></a>
-            <h5><a href="col_handle.php?page=plus&col=unit&list=mediaelement">视频播放</a></h5>
-        </li>
+
     </ul><!--pCat7-->
 
 </div><!---->
 
 
+
+<!--======================布局=======================-->
+<div class="pShow" style="left:-9999px;">
+    <ul class="pCat7" data-url="col_handle.php?page=plus&col=_layout&list=">
+        <li>
+            <a class="img" data-col="gotop"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="gotop">返回顶部</a></h5>
+        </li>
+    </ul>
+</div>
+
+
+
+<!--======================兼容=======================-->
+<div class="pShow" style="left:-9999px;">
+    <ul class="pCat7" data-url="col_handle.php?page=plus&col=_compat&list=">
+        <li>
+            <a class="img" data-col="audio"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="audio">音频播放</a></h5>
+        </li>
+        <li>
+            <a class="img" data-col="mediaelement"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="mediaelement">视频播放</a></h5>
+        </li>
+    </ul>
+</div>
+
+
+
+<!--======================其他=======================-->
+<div class="pShow" style="left:-9999px;">
+    <ul class="pCat7" data-url="col_handle.php?page=plus&col=_other&list=">
+        <li>
+            <a class="img" data-col="gotop"><img src="images/sys/3.jpg" alt="" /></a>
+            <h5><a data-col="gotop">返回顶部</a></h5>
+        </li>
+    </ul>
+</div>
 
 
 <script>
@@ -108,18 +137,16 @@
 function optUrl(){
     var url_plus=window.location.href;
     var index_plus=url_plus.indexOf("#");
-    if(index_plus!=0){
-        var opt_plus=url_plus.substr(index_plus);
-        if(opt_plus=="#unit"){
-            $(".show_plus").animate({"left":"9999px"},200);
-            $(".show_unit").animate({"left":"50%"},200);
-            $(".pTabs li").eq(1).addClass("on").siblings().removeClass("on");
-        }
-        if(opt_plus=="#plus"){
-            $(".show_plus").animate({"left":"50%"},200);
-            $(".show_unit").animate({"left":"-9999px"},200);
-            $(".pTabs li").eq(0).addClass("on").siblings().removeClass("on");
-        }
+    if(index_plus>=0){
+        var opt_plus=url_plus.substr(index_plus+1);
+        $(".pTabs li").eq(opt_plus).addClass("on").siblings().removeClass("on");
+        $(".pShow").animate({"left":"9999px"},0);
+        $(".pShow").eq(opt_plus).animate({"left":"50%"},200);
+    }else{
+        $(".pTabs li").eq(0).addClass("on").siblings().removeClass("on");
+        $(".pShow").animate({"left":"9999px"},0);
+        $(".pShow").eq(0).animate({"left":"50%"},200);
+        window.location.href=url_plus+'#0';
     }
 }
 $(function(){
@@ -134,6 +161,14 @@ $(function(){
         window.location.href=url_plus+"#"+dataRole;
         optUrl();
     });   
+
+    //链接处理
+    $(".pShow a").click(function(){
+        var col=$(this).attr("data-col");
+        var url_pre=$(this).parents("ul").attr("data-url");
+        var url=url_pre+col;
+        $(this).attr("href",url);
+    });
 });
 </script>
 

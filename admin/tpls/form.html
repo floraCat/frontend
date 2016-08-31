@@ -1,0 +1,122 @@
+<div class="container-fluid app-container-fluid-dialog">
+    <div class="row">
+        <div class="col-xs-12  no-padding">
+            <div class="box box-primary" app-box-widget>
+                <form method="post"
+                      class="form-horizontal"
+                      data-app-required-validate
+                      data-app-submit="vModel.Submit()"
+                      data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                      data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                      data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
+                      data-bv-live="enabled"
+                      data-bv-submitbuttons="button[data-bv-submitbutton]"
+                >
+                    <div class="box-body">
+
+                        <fieldset>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed" ng-show="vModel.Entity.Id > 0">
+                                <label class="col-md-2 control-label">Id</label>
+
+                                <div class="col-md-8">
+                                    <input type="number" name="vModel.Entity.Id" placeholder="Id"
+                                           ng-model="vModel.Entity.Id"
+                                           class="form-control required digits"
+                                           readonly
+                                           maxlength="11"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed">
+                                <label class="col-md-2 control-label"><sup class="text-red">*</sup>名称</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" name="vModel.Entity.Name" placeholder="名称"
+                                           ng-model="vModel.Entity.Name"
+                                           class="form-control required"
+                                           maxlength="100"
+                                           data-bv-notempty
+                                           data-bv-stringlength="true" data-bv-stringlength-max="100" data-bv-stringlength-min="1"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed">
+                                <label class="col-md-2 control-label">状态</label>
+
+                                <div class="col-md-2">
+                                    <select class="form-control" name="vModel.Entity.Status"
+                                            ng-options="k | appParseNumeric as v for (k, v) in vModel.StatusDesxs"
+                                            ng-model="vModel.Entity.Status">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed">
+                                <label class="col-md-2 control-label">关注</label>
+
+                                <div class="col-md-2">
+                                    <select class="form-control" name="vModel.Entity.Attention"
+                                            ng-options="k as v for (k, v) in vModel.AttentionDesxs"
+                                            ng-model="vModel.Entity.Attention"
+                                    >
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed">
+                                <label class="col-md-2 control-label">标题</label>
+
+                                <div class="col-md-8">
+                                    <input type="text" name="vModel.Entity.Title" placeholder="标题"
+                                           ng-model="vModel.Entity.Title"
+                                           class="form-control"
+                                           maxlength="100"
+                                           data-bv-stringlength="true" data-bv-stringlength-max="100" data-bv-stringlength-min="0"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm form-group-condensed-10 col-condensed">
+                                <label class="col-md-2 control-label">备注</label>
+
+                                <div class="col-md-8">
+                                <textarea type="text" name="vModel.Entity.Remark" placeholder="备注"
+                                          ng-model="vModel.Entity.Remark"
+                                          class="form-control"
+                                          maxlength="100"
+                                          data-bv-stringlength="true" data-bv-stringlength-max="100" data-bv-stringlength-min="0"
+                                          rows="2"
+                                ></textarea>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group form-group-sm form-group-condensed-10 col-condensed" ng-show="vModel.Entity.Id > 0">
+                                <label class="col-md-2 control-label">创建时间</label>
+
+                                <div class="col-md-8">
+                                    <p class="form-control-static">{{vModel.Entity.CreateTime | appGoDatetime}}</p>
+                                </div>
+                            </div>-->
+
+
+                        </fieldset>
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="button" ng-click="vModel.DeleteEntityForce()" class="btn btn-danger pull-left" ng-show="vModel.Entity.Id > 0"
+                                title="硬删除，将同时删除与记录相关的数据(邮件告警)"
+                        >硬删除
+                        </button>
+                        <button type="button" data-bv-submitbutton class="btn btn-primary pull-right">提交</button>
+                    </div>
+                    <!-- /.box-footer-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,23 +4,35 @@
 <link rel="stylesheet" href="css/reset.css" />
 <script src="js/jquery-1.10.2.js"></script>
 <body style="min-height:1500px;">
-<script src="js/col_plus/self/h-dialog.js"></script>
+<link rel="stylesheet" href="js/col_unit/flexslider/css/flexslider.css" />
+<script src="js/col_unit/flexslider/js/jquery.flexslider.js"></script>
 
-<style></style>
-
+<style>.flexslider {
+	margin: 0 auto;
+	width: 600px;
+	height: 400px;
+}</style>
+<div class="flexslider">
+	<ul class="slides">
+		<li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (1).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (2).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (3).jpg" />
+	    </li>
+	    <li>
+			<img src="js/col_unit/flexslider/imgs/slide1 (4).jpg" />
+		</li>
+	</ul>
+</div>
 <script>
 $(function(){
-    $.jDialog({
-    	data_id:'1', //识别id
-		icon:'icon_ok', //图标：class名
-		title:'', //标题
-		note:'弹窗提示信息|center', //提示信息
-		setTime:'', //倒计时：毫秒数
-		btn:'确定|right|confirm|#89b632|white|#89b632', //按键：文本|定位|data-role值|底色|字色|边线色|链接
-		btn2:'取消|left|cancel|#fff|#529d20|#beda84', //按键2：文本|定位|data-role值|底色|字色|边线色|链接
-		icon_quit:'right', //退出x：定位
-		callback:function(){} //回调
-    });
+	$('.flexslider').flexslider({
+		controlNav: false
+	});
 });
 </script></body>
 </html>

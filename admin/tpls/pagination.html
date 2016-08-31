@@ -1,0 +1,30 @@
+<div class="app-datatable-wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive" ng-transclude></div>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-sm-5">
+            <div class="app-datatable-length">
+                <label>每页</label>
+                <label>
+                    <select class="form-control input-sm"
+                            ng-options="i as i for i in vModel.Pagers.Limits"
+                            ng-model="vModel.Pagers.Page.limit" ng-change="vModel.ChangeLimit()">
+                    </select></label>
+                <label>条，共 {{vModel.Pagers.Page.count}} 条</label>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="app-datatable-paginate">
+                <ul class="pagination">
+                    <li ng-repeat="page in vModel.PageList" class="paginate_button" ng-class="{disabled: page.disabled, active: page.active}">
+                        <a href="javascript:;" ng-if="!page.disabled" ng-click="vModel.ChangePage({pageNo: page.pageNo})">{{page.title}}</a>
+                        <a href="javascript:;" ng-if="page.disabled">{{page.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
